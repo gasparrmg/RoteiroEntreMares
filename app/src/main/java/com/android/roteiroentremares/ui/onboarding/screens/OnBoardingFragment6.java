@@ -1,28 +1,21 @@
 package com.android.roteiroentremares.ui.onboarding.screens;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.method.MovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.util.ClickableString;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class OnBoardingFragment4 extends Fragment {
+public class OnBoardingFragment6 extends Fragment {
 
     // Views
     private TextView textViewTitle;
@@ -31,7 +24,7 @@ public class OnBoardingFragment4 extends Fragment {
     private ImageButton buttonPrev;
     private ViewPager2 viewPager;
 
-    public OnBoardingFragment4() {
+    public OnBoardingFragment6() {
         // Required empty public constructor
     }
 
@@ -39,7 +32,7 @@ public class OnBoardingFragment4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_on_boarding4, container, false);
+        View view = inflater.inflate(R.layout.fragment_on_boarding6, container, false);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
@@ -60,14 +53,14 @@ public class OnBoardingFragment4 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(4);
+                viewPager.setCurrentItem(6);
             }
         });
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(2);
+                viewPager.setCurrentItem(4);
             }
         });
     }
@@ -81,22 +74,13 @@ public class OnBoardingFragment4 extends Fragment {
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
-        // TextView with a Clickable Span
-
-        SpannableString link = ClickableString.makeLinkSpan("seguinte vídeo", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=oVxG30nwQtk"));
-                startActivity(browserIntent);
-            }
-        });
-
         textViewContent.setText(HtmlCompat.fromHtml(
-                "As marés são movimentos periódicos e previsíveis da subida e descida do nível das águas (que equivalem a uma onda de grande comprimento de onda).<br><br>As marés altas e as marés baixas são causadas pela ação conjunta da lua e do sol, no entanto, a força gravitacional da lua é mais forte devido à sua maior proximidade. A atração gravitacional da Lua gera o que podemos chamar a força de maré.<br><br>A força de atração da lua sobre a Terra faz com que a Terra - e a água - seja projetada no lado mais próximo da Lua e também no lado mais distante dela.<br><br>Para compreenderes melhor este fenómeno vê o ",
+                "Mas esta é apenas uma explicação da força de maré - não das marés reais. De facto, a Terra não está coberta na totalidade por oceanos. Existem os continentes, e essa terra “atrapalha”. Os continentes impedem que a água siga perfeitamente a força exercida pela lua. É por isso que em alguns lugares a diferença entre a maré alta e a baixa não é muito grande e, noutros lugares, a diferença é drástica." +
+                        "<br><br>" +
+                        "Isso explica a primeira maré alta de cada dia mas e a segunda maré alta? O oceano também é projetado no lado da Terra oposto à lua. Mas como?!" +
+                        "<br><br>" +
+                        "Se a gravidade da Lua puxa os oceanos na sua direção, como é que o oceano também pode aumentar no lado da Terra que fica longe da Lua?",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
-        textViewContent.append(link);
-        textViewContent.append(" do Instituto Hidrográfico");
-        ClickableString.makeLinksFocusable(textViewContent);
     }
 }

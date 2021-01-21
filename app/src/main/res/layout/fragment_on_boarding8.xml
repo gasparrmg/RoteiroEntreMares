@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onboarding.screens.OnBoardingFragment4">
+    tools:context=".ui.onboarding.screens.OnBoardingFragment8">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +40,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false">
 
             <TextView
                 android:id="@+id/text_content"
