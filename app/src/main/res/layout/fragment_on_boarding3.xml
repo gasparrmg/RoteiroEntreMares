@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.onboarding.screens.OnBoardingFragment2">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/text_title"
         android:layout_width="match_parent"
@@ -37,15 +36,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btn_prev"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:background="@null"
-        android:src="@drawable/ic_prev"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_fabNext"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:indicatorColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_fabNext"
+        app:layout_constraintTop_toTopOf="@+id/btn_fabNext"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

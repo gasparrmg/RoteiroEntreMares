@@ -47,9 +47,9 @@
                 android:id="@+id/text_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/open_sans_semibold"
+                android:fontFamily="@font/open_sans"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </ScrollView>
 
     </LinearLayout>
@@ -71,11 +71,21 @@
         android:id="@+id/btn_prev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:background="@null"
         android:src="@drawable/ic_prev"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
         app:layout_constraintEnd_toStartOf="@+id/btn_fabNext"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:indicatorColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_fabNext"
+        app:layout_constraintTop_toTopOf="@+id/btn_fabNext"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

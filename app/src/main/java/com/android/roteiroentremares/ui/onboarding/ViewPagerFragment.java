@@ -12,6 +12,16 @@ import android.view.ViewGroup;
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.onboarding.adapters.ViewPagerAdapter;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment1;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment10;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment11;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment12;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment13;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment14;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment15;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment16;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment17;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment18;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment19;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment2;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment3;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment4;
@@ -19,6 +29,7 @@ import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment5;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment6;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment7;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment8;
+import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment9;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +59,17 @@ public class ViewPagerFragment extends Fragment {
         fragmentList.add(new OnBoardingFragment6());
         fragmentList.add(new OnBoardingFragment7());
         fragmentList.add(new OnBoardingFragment8());
+        fragmentList.add(new OnBoardingFragment9());
+        fragmentList.add(new OnBoardingFragment10());
+        fragmentList.add(new OnBoardingFragment11());
+        fragmentList.add(new OnBoardingFragment12());
+        fragmentList.add(new OnBoardingFragment13());
+        fragmentList.add(new OnBoardingFragment14());
+        fragmentList.add(new OnBoardingFragment15());
+        fragmentList.add(new OnBoardingFragment16());
+        fragmentList.add(new OnBoardingFragment17());
+        fragmentList.add(new OnBoardingFragment18());
+        fragmentList.add(new OnBoardingFragment19());
 
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(

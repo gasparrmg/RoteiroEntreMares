@@ -14,13 +14,16 @@ import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class OnBoardingFragment3 extends Fragment {
+
+    private static final int SEQUENCE_NUMBER = 3;
 
     // Views
     private TextView textViewTitle;
     private FloatingActionButton buttonFabNext;
-    private ImageButton buttonPrev;
+    private CircularProgressIndicator progressBar;
     private ViewPager2 viewPager;
 
     public OnBoardingFragment3() {
@@ -36,11 +39,15 @@ public class OnBoardingFragment3 extends Fragment {
         // View declaration
         textViewTitle = view.findViewById(R.id.text_title);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
-        buttonPrev = view.findViewById(R.id.btn_prev);
+        progressBar = view.findViewById(R.id.progressBar);
         viewPager = getActivity().findViewById(R.id.viewPager);
 
         setOnClickListeners();
         insertContent();
+
+        // Progress Bar update
+        progressBar.setMax(viewPager.getAdapter().getItemCount());
+        progressBar.setProgress(SEQUENCE_NUMBER);
 
         return view;
     }
@@ -52,14 +59,7 @@ public class OnBoardingFragment3 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(3);
-            }
-        });
-
-        buttonPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(1);
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
     }
