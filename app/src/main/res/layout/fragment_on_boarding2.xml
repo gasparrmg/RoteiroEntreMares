@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
-            android:checkedButton="@+id/radio_button_1"
+            android:checkedButton="@+id/radiobutton_aluno"
             android:orientation="horizontal">
 
             <RadioButton
@@ -45,14 +45,22 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/open_sans"
-                android:text="Aluno" />
+                android:text="Aluno"/>
 
             <RadioButton
                 android:id="@+id/radiobutton_professor"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/open_sans"
+                android:layout_marginEnd="10dp"
                 android:text="Professor" />
+
+            <RadioButton
+                android:id="@+id/radiobutton_explorador"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/open_sans"
+                android:text="Explorador" />
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -105,7 +113,9 @@
                 android:id="@+id/textinputedittext_anoescolaridade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans" />
+                android:fontFamily="@font/open_sans"
+                android:inputType="number"
+                android:maxLength="2"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -121,7 +131,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textinputedittext_anolectivo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans"
+                android:inputType="number"
+                android:maxLength="9"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,11 +157,11 @@
         android:id="@+id/btn_prev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:background="@null"
         android:src="@drawable/ic_prev"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
         app:layout_constraintEnd_toStartOf="@+id/btn_fabNext"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

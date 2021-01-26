@@ -1,6 +1,9 @@
 package com.android.roteiroentremares.ui.onboarding.screens;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,21 +15,30 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.ClickableString;
+import com.android.roteiroentremares.util.ImageUtils;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class OnBoardingFragment8 extends Fragment {
+
+    private static final int SEQUENCE_NUMBER = 8;
 
     // Views
     private TextView textViewTitle;
     private TextView textViewContent;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
+    private CircularProgressIndicator progressBar;
     private ViewPager2 viewPager;
 
     public OnBoardingFragment8() {
@@ -43,10 +55,15 @@ public class OnBoardingFragment8 extends Fragment {
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+        progressBar = view.findViewById(R.id.progressBar);
         viewPager = getActivity().findViewById(R.id.viewPager);
 
         setOnClickListeners();
         insertContent();
+
+        // Progress Bar update
+        progressBar.setMax(viewPager.getAdapter().getItemCount());
+        progressBar.setProgress(SEQUENCE_NUMBER);
 
         return view;
     }
@@ -58,14 +75,14 @@ public class OnBoardingFragment8 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(8);
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(6);
+                viewPager.setCurrentItem(SEQUENCE_NUMBER-2);
             }
         });
     }
@@ -85,9 +102,7 @@ public class OnBoardingFragment8 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                // TODO: Open image on Span Click
-
-                Toast.makeText(getContext(), "Span clicked.", Toast.LENGTH_SHORT).show();
+                ImageUtils.createImageDialog(getContext(), R.drawable.img_tipos_mares);
             }
         });
 
@@ -104,4 +119,5 @@ public class OnBoardingFragment8 extends Fragment {
         textViewContent.append(" para veres a imagem.");
         ClickableString.makeLinksFocusable(textViewContent);
     }
+
 }

@@ -17,6 +17,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class OnBoardingFragment1 extends Fragment {
 
+    private static final int SEQUENCE_NUMBER = 1;
+
     // Views
     private FloatingActionButton buttonFabNext;
     private TextView textWelcome;
@@ -49,7 +51,7 @@ public class OnBoardingFragment1 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(1);
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
     }

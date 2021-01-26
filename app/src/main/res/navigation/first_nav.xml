@@ -20,5 +20,14 @@
         android:id="@+id/viewPagerFragment"
         android:name="com.android.roteiroentremares.ui.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" />
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_avencasViewPagerFragment"
+            app:destination="@id/avencasViewPagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/avencasViewPagerFragment"
+        android:name="com.android.roteiroentremares.ui.onboarding.AvencasViewPagerFragment"
+        android:label="fragment_avencas_view_pager"
+        tools:layout="@layout/fragment_avencas_view_pager" />
 </navigation>
