@@ -190,8 +190,6 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
             onBoardingViewModel.setAnoLectivo(editTextAnoLectivo.getText().toString());
         }
 
-        Toast.makeText(getContext(), "Nome: " + onBoardingViewModel.getNome(), Toast.LENGTH_SHORT).show();
-
         viewPager.setCurrentItem(SEQUENCE_NUMBER);
     }
 

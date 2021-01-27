@@ -18,11 +18,6 @@ public class OnBoardingViewModel extends ViewModel {
         this.dataRepository = dataRepository;
     }
 
-    // For testing purposes, can delete after.
-    public String getNome() {
-        return dataRepository.getNome();
-    }
-
     public boolean getOnBoarding() {
         return dataRepository.getOnBoarding();
     }
