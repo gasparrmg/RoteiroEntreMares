@@ -1,4 +1,4 @@
-package com.android.roteiroentremares.data;
+package com.android.roteiroentremares.data.model;
 
 import android.view.View;
 

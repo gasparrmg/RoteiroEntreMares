@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/roteiroFragment">
+
+    <fragment
+        android:id="@+id/roteiroFragment"
+        android:name="com.android.roteiroentremares.ui.dashboard.screens.RoteiroFragment"
+        android:label="Roteiro"
+        tools:layout="@layout/fragment_roteiro" />
+
+    <fragment
+        android:id="@+id/artefactosFragment"
+        android:name="com.android.roteiroentremares.ui.dashboard.screens.ArtefactosFragment"
+        android:label="Artefactos"
+        tools:layout="@layout/fragment_artefactos" />
+
+    <fragment
+        android:id="@+id/guiaDeCampoFragment"
+        android:name="com.android.roteiroentremares.ui.dashboard.screens.GuiaDeCampoFragment"
+        android:label="Guia de Campo"
+        tools:layout="@layout/fragment_guia_de_campo" />
+    <fragment
+        android:id="@+id/pessoalFragment"
+        android:name="com.android.roteiroentremares.ui.dashboard.screens.PessoalFragment"
+        android:label="Pessoal"
+        tools:layout="@layout/fragment_pessoal" />
+</navigation>

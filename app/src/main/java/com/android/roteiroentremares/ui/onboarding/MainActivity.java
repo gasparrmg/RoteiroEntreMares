@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.data.Question;
-import com.android.roteiroentremares.data.QuestionFactory;
+import com.android.roteiroentremares.data.model.Question;
+import com.android.roteiroentremares.data.factory.QuestionFactory;
+import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 
 import java.util.ArrayList;
 

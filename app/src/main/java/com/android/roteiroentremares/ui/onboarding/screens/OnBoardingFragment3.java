@@ -13,18 +13,31 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class OnBoardingFragment3 extends Fragment {
 
     private static final int SEQUENCE_NUMBER = 3;
+
+    // ViewModel
+    @Inject
+    OnBoardingViewModel onBoardingViewModel;
 
     // Views
     private TextView textViewTitle;
     private FloatingActionButton buttonFabNext;
     private CircularProgressIndicator progressBar;
     private ViewPager2 viewPager;
+
+    // Global variables
+    private String nomeUtilizador;
 
     public OnBoardingFragment3() {
         // Required empty public constructor
@@ -41,6 +54,8 @@ public class OnBoardingFragment3 extends Fragment {
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         progressBar = view.findViewById(R.id.progressBar);
         viewPager = getActivity().findViewById(R.id.viewPager);
+
+        nomeUtilizador = onBoardingViewModel.getNome();
 
         setOnClickListeners();
         insertContent();
@@ -69,7 +84,7 @@ public class OnBoardingFragment3 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Para começarmos a explorar o mundo na zona entre marés, vamos começar por te explicar o que é uma maré e porque é que ocorre...",
+                "Olá " + nomeUtilizador + "!<br>" + "Para começarmos a explorar o mundo na zona entre marés, vamos começar por te explicar o que é uma maré e porque é que ocorre...",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

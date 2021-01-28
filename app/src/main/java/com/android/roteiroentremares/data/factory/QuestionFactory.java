@@ -1,13 +1,13 @@
-package com.android.roteiroentremares.data;
+package com.android.roteiroentremares.data.factory;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.data.model.Question;
 
 import java.util.ArrayList;
 

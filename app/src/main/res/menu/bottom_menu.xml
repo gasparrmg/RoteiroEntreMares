@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/roteiroFragment" android:title="Roteiro" android:icon="@drawable/ic_roteiro"/>
+    <item android:id="@+id/artefactosFragment" android:title="Artefactos" android:icon="@drawable/ic_artefactos"/>
+    <item android:id="@+id/guiaDeCampoFragment" android:title="Guia de Campo" android:icon="@drawable/ic_guiadecampo"/>
+</menu>

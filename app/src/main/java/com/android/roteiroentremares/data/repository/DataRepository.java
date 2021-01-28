@@ -1,4 +1,4 @@
-package com.android.roteiroentremares.data;
+package com.android.roteiroentremares.data.repository;
 
 import android.content.SharedPreferences;
 
@@ -8,11 +8,12 @@ import javax.inject.Singleton;
 @Singleton
 public class DataRepository {
     private static String SHAREDPREF_KEY_TIPOUTILIZADOR = "key_tipoutilizador";
-    private static String SHAREDPREF_KEY_ONBOARDING = "key_nome";
+    private static String SHAREDPREF_KEY_ONBOARDING = "key_onboarding";
     private static String SHAREDPREF_KEY_NOME = "key_nome";
     private static String SHAREDPREF_KEY_ESCOLA = "key_escola";
     private static String SHAREDPREF_KEY_ANOESCOLARIDADE = "key_anoescolaridade";
     private static String SHAREDPREF_KEY_ANOLECTIVO = "key_anolectivo";
+    private static String SHAREDPREF_KEY_CODIGOTURMA = "key_codigoturma";
 
     private SharedPreferences sharedPreferences;
 
@@ -162,6 +163,28 @@ public class DataRepository {
         sharedPreferences.edit().putString(
                 SHAREDPREF_KEY_ANOLECTIVO,
                 anoLectivo
+        ).apply();
+    }
+
+    /**
+     * Returns the Class Code written in the Shared Preferences
+     * @return
+     */
+    public String getCodigoTurma() {
+        return sharedPreferences.getString(
+                SHAREDPREF_KEY_CODIGOTURMA,
+                ""
+        );
+    }
+
+    /**
+     * Inserts the Class Code into Shared Preferences
+     * @param codigoTurma
+     */
+    public void setCodigoTurma(String codigoTurma) {
+        sharedPreferences.edit().putString(
+                SHAREDPREF_KEY_CODIGOTURMA,
+                codigoTurma
         ).apply();
     }
 }
