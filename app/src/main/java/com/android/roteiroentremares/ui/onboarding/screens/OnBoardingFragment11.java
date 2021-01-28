@@ -13,8 +13,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.data.Question;
-import com.android.roteiroentremares.data.QuestionFactory;
+import com.android.roteiroentremares.data.model.Question;
+import com.android.roteiroentremares.data.factory.QuestionFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 

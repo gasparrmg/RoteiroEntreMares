@@ -1,8 +1,8 @@
-package com.android.roteiroentremares.ui.onboarding;
+package com.android.roteiroentremares.ui.onboarding.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.android.roteiroentremares.data.DataRepository;
+import com.android.roteiroentremares.data.repository.DataRepository;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -30,6 +30,10 @@ public class OnBoardingViewModel extends ViewModel {
         dataRepository.setTipoUtilizador(tipoUtilizador);
     }
 
+    public String getNome() {
+        return dataRepository.getNome();
+    }
+
     public void setNome(String nome) {
         dataRepository.setNome(nome);
     }
@@ -39,10 +43,10 @@ public class OnBoardingViewModel extends ViewModel {
     }
 
     public void setAnoEscolaridade(String anoEscolaridade) {
-        dataRepository.setEscola(anoEscolaridade);
+        dataRepository.setAnoEscolaridade(anoEscolaridade);
     }
 
     public void setAnoLectivo(String anoLectivo) {
-        dataRepository.setEscola(anoLectivo);
+        dataRepository.setAnoLectivo(anoLectivo);
     }
 }

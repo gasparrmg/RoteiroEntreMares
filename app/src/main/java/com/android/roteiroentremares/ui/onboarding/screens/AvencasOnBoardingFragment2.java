@@ -15,9 +15,8 @@ import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
-import com.android.roteiroentremares.ui.onboarding.OnBoardingViewModel;
+import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import javax.inject.Inject;
 

@@ -16,9 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.onboarding.OnBoardingViewModel;
+import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -28,8 +27,6 @@ import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.Max;
 import com.mobsandgeeks.saripaar.annotation.Min;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -189,6 +186,8 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
             onBoardingViewModel.setAnoEscolaridade(editTextAnoEscolaridade.getText().toString());
             onBoardingViewModel.setAnoLectivo(editTextAnoLectivo.getText().toString());
         }
+
+        Toast.makeText(getActivity(), "Registo feito com sucesso!", Toast.LENGTH_SHORT).show();
 
         viewPager.setCurrentItem(SEQUENCE_NUMBER);
     }
