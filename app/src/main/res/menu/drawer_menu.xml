@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_artefactos"
+        android:icon="@drawable/ic_artefactos"
+        android:title="Artefactos" />
+    <item
+        android:id="@+id/nav_guiaDeCampo"
+        android:icon="@drawable/ic_guiadecampo"
+        android:title="Guia de Campo" />
+
+    <item
+        android:id="@+id/nav_pessoal"
+        android:icon="@drawable/ic_roteiro"
+        android:title="Pessoal" />
+</menu>

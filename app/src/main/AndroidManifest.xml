@@ -10,7 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.dashboard.UserDashboardActivity"></activity>
+        <activity android:name=".ui.dashboard.PessoalActivity"
+            android:parentActivityName=".ui.dashboard.UserDashboardActivity"></activity>
+        <activity
+            android:name=".ui.dashboard.UserDashboardActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.onboarding.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
