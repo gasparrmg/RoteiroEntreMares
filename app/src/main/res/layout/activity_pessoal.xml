@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.screens.PessoalFragment"
+    tools:context=".ui.dashboard.PessoalActivity"
     android:padding="32dp"
     android:background="@null">
 
@@ -174,8 +174,7 @@
                     android:layout_height="match_parent"
                     android:text="Copiar"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="12sp"
-                    android:visibility="gone" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>

@@ -6,5 +6,10 @@
     <string name="error_maximum_school_year">O ano de escolaridade máximo é 12</string>
     <string name="error_invalid_academic_year">Ano lectivo inválido</string>
     <string name="helper_text_codigoturma">Pede este código ao teu professor para conseguires observar os artefactos dos teus colegas!</string>
+    <string name="title_pessoal">Informações Pessoais</string>
+    <string name="title_artefactos">Artefactos</string>
+    <string name="title_guiaDeCampo">Guia de Campo</string>
 
+    <string name="navigation_drawer_open">Abrir menu de navegação</string>
+    <string name="navigation_drawer_close">Fechar menu de navegação</string>
 </resources>
