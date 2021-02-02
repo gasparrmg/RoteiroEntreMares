@@ -7,8 +7,7 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:context=".ui.dashboard.UserDashboardActivity"
-    android:background="@color/colorBackground"
-    tools:openDrawer="start">
+    android:background="@color/colorBackground">
 
      <LinearLayout
          android:layout_width="match_parent"
@@ -27,10 +26,13 @@
                  style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
          </com.google.android.material.appbar.AppBarLayout>
 
-         <FrameLayout
-             android:id="@+id/fragment_container"
+         <fragment
+             android:id="@+id/navhostfragment_container"
+             android:name="androidx.navigation.fragment.NavHostFragment"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"/>
+             android:layout_height="match_parent"
+             app:defaultNavHost="true"
+             app:navGraph="@navigation/roteiro_nav" />
          
      </LinearLayout>
 
@@ -39,6 +41,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemTextAppearance="@style/PoppinsTextViewStyle"
+        app:itemTextColor="#1D1D1D"
+        app:itemIconTint="#1D1D1D"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_menu"/>
 

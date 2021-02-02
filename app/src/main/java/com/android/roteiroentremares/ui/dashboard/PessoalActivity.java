@@ -6,6 +6,8 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -14,10 +16,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.DashboardViewModel;
 import com.android.roteiroentremares.ui.onboarding.MainActivity;
+import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -89,13 +93,18 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pessoal);
-        getSupportActionBar().setTitle(R.string.title_pessoal);
+
+        SpannableString s = new SpannableString(getResources().getString(R.string.title_pessoal));
+        s.setSpan(new TypefaceSpan(this, "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        getSupportActionBar().setTitle(s);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Keeps keyboard from opening right away
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        //dashboardViewModel.setTipoUtilizador(1); // Uncomment ONLY for testing purposes
+        // dashboardViewModel.setTipoUtilizador(1); // Uncomment ONLY for testing purposes
 
         getUserInfo();
 
@@ -245,7 +254,7 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
                 dashboardViewModel.setCodigoTurma(editTextGerarCodigoTurma.getText().toString());
 
 
-                btnGerarCodigoTurma.setVisibility(View.INVISIBLE);
+                btnGerarCodigoTurma.setVisibility(View.GONE);
                 btnCopiarCodigoTurma.setVisibility(View.VISIBLE);
             }
         }

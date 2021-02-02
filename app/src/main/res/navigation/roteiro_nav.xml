@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/roteiro_nav"
+    app:startDestination="@id/roteiroFragment">
+
+    <fragment
+        android:id="@+id/roteiroFragment"
+        android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.RoteiroFragment"
+        android:label="fragment_roteiro"
+        tools:layout="@layout/fragment_roteiro" >
+        <action
+            android:id="@+id/action_roteiroFragment_to_historiasPassadoFragment"
+            app:destination="@id/historiasPassadoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/historiasPassadoFragment"
+        android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.HistoriasPassadoFragment"
+        android:label="fragment_historias_passado"
+        tools:layout="@layout/fragment_historias_passado" >
+        <action
+            android:id="@+id/action_historiasPassadoFragment_to_roteiroFragment"
+            app:popUpTo="@id/roteiroFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+</navigation>

@@ -174,7 +174,8 @@
                     android:layout_height="match_parent"
                     android:text="Copiar"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
 
             </LinearLayout>
         </LinearLayout>

@@ -1,27 +1,43 @@
 package com.android.roteiroentremares.data.repository;
 
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+
+import androidx.lifecycle.LiveData;
+
+import com.android.roteiroentremares.data.dao.ArtefactoDao;
+import com.android.roteiroentremares.data.database.RoteiroDatabase;
+import com.android.roteiroentremares.data.model.Artefacto;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
 public class DataRepository {
-    private static String SHAREDPREF_KEY_TIPOUTILIZADOR = "key_tipoutilizador";
-    private static String SHAREDPREF_KEY_ONBOARDING = "key_onboarding";
-    private static String SHAREDPREF_KEY_NOME = "key_nome";
-    private static String SHAREDPREF_KEY_ESCOLA = "key_escola";
-    private static String SHAREDPREF_KEY_ANOESCOLARIDADE = "key_anoescolaridade";
-    private static String SHAREDPREF_KEY_ANOLECTIVO = "key_anolectivo";
-    private static String SHAREDPREF_KEY_CODIGOTURMA = "key_codigoturma";
+    private static final String SHAREDPREF_KEY_TIPOUTILIZADOR = "key_tipoutilizador";
+    private static final String SHAREDPREF_KEY_ONBOARDING = "key_onboarding";
+    private static final String SHAREDPREF_KEY_NOME = "key_nome";
+    private static final String SHAREDPREF_KEY_ESCOLA = "key_escola";
+    private static final String SHAREDPREF_KEY_ANOESCOLARIDADE = "key_anoescolaridade";
+    private static final String SHAREDPREF_KEY_ANOLECTIVO = "key_anolectivo";
+    private static final String SHAREDPREF_KEY_CODIGOTURMA = "key_codigoturma";
 
     private SharedPreferences sharedPreferences;
+    private ArtefactoDao artefactoDao;
+
+    private LiveData<List<Artefacto>> allArtefactos;
 
     @Inject
     public DataRepository (
-            SharedPreferences sharedPreferences
+            SharedPreferences sharedPreferences,
+            ArtefactoDao artefactoDao
     ) {
         this.sharedPreferences = sharedPreferences;
+        this.artefactoDao = artefactoDao;
+
+        allArtefactos = artefactoDao.getAll();
     }
 
     /**
@@ -186,5 +202,90 @@ public class DataRepository {
                 SHAREDPREF_KEY_CODIGOTURMA,
                 codigoTurma
         ).apply();
+    }
+
+    /**
+     * -------------------------------- LOCAL DATABASE METHODS -------------------------------------------------
+     */
+
+    public void insertArtefacto(Artefacto artefacto) {
+        new InsertArtefactoAsyncTask(artefactoDao).execute(artefacto);
+    }
+
+    public void updateArtefacto(Artefacto artefacto) {
+        new UpdateArtefactoAsyncTask(artefactoDao).execute(artefacto);
+    }
+
+    public void deleteArtefacto(Artefacto artefacto) {
+        new DeleteArtefactoAsyncTask(artefactoDao).execute(artefacto);
+    }
+
+    public void deleteAllArtefacto() {
+        new DeleteAllArtefactoAsyncTask(artefactoDao).execute();
+    }
+
+    /**
+     * Return all artefacts.
+     * Methods that return LiveData don't need AsyncTasks bc Room already does it behind the scenes
+     * @return
+     */
+    public LiveData<List<Artefacto>> getAllArtefactos() {
+        return allArtefactos;
+    }
+
+    private static class InsertArtefactoAsyncTask extends AsyncTask<Artefacto, Void, Void> {
+        private ArtefactoDao artefactoDao;
+
+        private InsertArtefactoAsyncTask(ArtefactoDao artefactoDao) {
+            this.artefactoDao = artefactoDao;
+        }
+
+        @Override
+        protected Void doInBackground(Artefacto... artefactos) {
+            artefactoDao.insert(artefactos[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateArtefactoAsyncTask extends AsyncTask<Artefacto, Void, Void> {
+        private ArtefactoDao artefactoDao;
+
+        private UpdateArtefactoAsyncTask(ArtefactoDao artefactoDao) {
+            this.artefactoDao = artefactoDao;
+        }
+
+        @Override
+        protected Void doInBackground(Artefacto... artefactos) {
+            artefactoDao.update(artefactos[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteArtefactoAsyncTask extends AsyncTask<Artefacto, Void, Void> {
+        private ArtefactoDao artefactoDao;
+
+        private DeleteArtefactoAsyncTask(ArtefactoDao artefactoDao) {
+            this.artefactoDao = artefactoDao;
+        }
+
+        @Override
+        protected Void doInBackground(Artefacto... artefactos) {
+            artefactoDao.delete(artefactos[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllArtefactoAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ArtefactoDao artefactoDao;
+
+        private DeleteAllArtefactoAsyncTask(ArtefactoDao artefactoDao) {
+            this.artefactoDao = artefactoDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            artefactoDao.deleteAll();
+            return null;
+        }
     }
 }

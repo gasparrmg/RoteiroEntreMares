@@ -1,8 +1,12 @@
 package com.android.roteiroentremares.ui.dashboard.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.data.repository.DataRepository;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -11,12 +15,20 @@ import javax.inject.Singleton;
 public class DashboardViewModel extends ViewModel {
     private DataRepository dataRepository;
 
+    private LiveData<List<Artefacto>> allArtefactos;
+
     @Inject
     public DashboardViewModel (
             DataRepository dataRepository
     ) {
         this.dataRepository = dataRepository;
+
+        allArtefactos = dataRepository.getAllArtefactos();
     }
+
+    /**
+     * -------------------------------- SHARED PREFERENCES METHODS -------------------------------------------------
+     */
 
     public boolean getOnBoarding() {
         return dataRepository.getOnBoarding();
@@ -72,5 +84,29 @@ public class DashboardViewModel extends ViewModel {
 
     public void setCodigoTurma(String codigoTurma) {
         dataRepository.setCodigoTurma(codigoTurma);
+    }
+
+    /**
+     * -------------------------------- LOCAL DATABASE METHODS -------------------------------------------------
+     */
+
+    public void insertArtefacto(Artefacto artefacto) {
+        dataRepository.insertArtefacto(artefacto);
+    }
+
+    public void updateArtefacto(Artefacto artefacto) {
+        dataRepository.updateArtefacto(artefacto);
+    }
+
+    public void deleteArtefacto(Artefacto artefacto) {
+        dataRepository.deleteArtefacto(artefacto);
+    }
+
+    public void deleteAllArtefacto() {
+        dataRepository.deleteAllArtefacto();
+    }
+
+    public LiveData<List<Artefacto>> getAllArtefactos() {
+        return allArtefactos;
     }
 }

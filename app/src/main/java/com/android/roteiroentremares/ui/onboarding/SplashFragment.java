@@ -23,7 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class SplashFragment extends Fragment {
 
-    // View Model
+    // ViewModel
     @Inject
     OnBoardingViewModel onBoardingViewModel;
 
