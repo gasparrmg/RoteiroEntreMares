@@ -1,6 +1,5 @@
 package com.android.roteiroentremares.ui.dashboard;
 
-import android.app.ActionBar;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -13,15 +12,18 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.dashboard.viewmodel.DashboardViewModel;
-import com.android.roteiroentremares.ui.onboarding.MainActivity;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -45,8 +47,9 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
     private static String TAG = "PESSOAL_ACTIVITY";
 
     // ViewModel
-    @Inject
-    DashboardViewModel dashboardViewModel;
+    /*@Inject
+    DashboardViewModel dashboardViewModel;*/
+    private DashboardViewModel dashboardViewModel;
 
     // Form Validator
     private Validator formValidator;
@@ -80,6 +83,9 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
     private Button btnSave;
     private Button btnCopiarCodigoTurma;
 
+    private SwitchMaterial switchShareLocationArtefacto;
+    private LinearLayout linearLayoutShareLocationArtefacto;
+
     // Global variables
     private int position = 0;
     private int tipoUtilizador;
@@ -88,11 +94,14 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
     private String anoEscolaridadeUtilizador;
     private String anoLectivoUtilizador;
     private String code;
+    private boolean shareLocationArtefactos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pessoal);
+
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         SpannableString s = new SpannableString(getResources().getString(R.string.title_pessoal));
         s.setSpan(new TypefaceSpan(this, "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
@@ -104,7 +113,7 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         // Keeps keyboard from opening right away
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        // dashboardViewModel.setTipoUtilizador(1); // Uncomment ONLY for testing purposes
+        // dashboardViewModel.setTipoUtilizador(0); // Uncomment ONLY for testing purposes
 
         getUserInfo();
 
@@ -116,6 +125,8 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         // Init Form Validator
         formValidator = new Validator(this);
         formValidator.setValidationListener(this);
+
+        Log.d(TAG, "Tipo Utilizador: " + tipoUtilizador);
     }
 
     private void getUserInfo() {
@@ -125,6 +136,7 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         anoEscolaridadeUtilizador = dashboardViewModel.getAnoEscolaridade();
         anoLectivoUtilizador = dashboardViewModel.getAnoLectivo();
         code = dashboardViewModel.getCodigoTurma();
+        shareLocationArtefactos = dashboardViewModel.getSharedLocationArtefactos();
     }
 
     private void initViews() {
@@ -142,6 +154,8 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         btnGerarCodigoTurma = findViewById(R.id.btn_gerarcodigoturma);
         btnSave = findViewById(R.id.btn_save);
         btnCopiarCodigoTurma = findViewById(R.id.btn_copiarcodigoturma);
+        switchShareLocationArtefacto = findViewById(R.id.switch_share_location_artefacto);
+        linearLayoutShareLocationArtefacto = findViewById(R.id.linearlayout_share_location_artefacto);
 
         editTextAnoLectivo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -169,6 +183,8 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         editTextAnoLectivo.addTextChangedListener(pessoalTextWatcher);
         editTextCodigoTurma.addTextChangedListener(pessoalTextWatcher);
         editTextGerarCodigoTurma.addTextChangedListener(pessoalTextWatcher);
+
+        switchShareLocationArtefacto.setOnCheckedChangeListener(switchListener);
     }
 
     /**
@@ -221,6 +237,7 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
             textInputLayoutCodigoTurma.setVisibility(View.GONE);
             textInputLayoutGerarCodigoTurma.setVisibility(View.GONE);
             btnGerarCodigoTurma.setVisibility(View.GONE);
+            linearLayoutShareLocationArtefacto.setVisibility(View.GONE);
         }
 
         editTextNome.setText(nomeUtilizador);
@@ -230,11 +247,20 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
             editTextEscola.setText(escolaUtilizador);
             editTextAnoEscolaridade.setText(anoEscolaridadeUtilizador);
             editTextAnoLectivo.setText(anoLectivoUtilizador);
+            switchShareLocationArtefacto.setChecked(shareLocationArtefactos);
 
             if (!code.isEmpty()) {
                 editTextCodigoTurma.setText(code);
                 editTextGerarCodigoTurma.setText(code);
                 btnGerarCodigoTurma.setVisibility(View.GONE);
+            } else {
+                if (tipoUtilizador == 0) {
+                    // Aluno
+
+                } else {
+                    // Professor
+                    btnGerarCodigoTurma.setVisibility(View.VISIBLE);
+                }
             }
         }
     }
@@ -247,6 +273,7 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
             dashboardViewModel.setEscola(editTextEscola.getText().toString());
             dashboardViewModel.setAnoEscolaridade(editTextAnoEscolaridade.getText().toString());
             dashboardViewModel.setAnoLectivo(editTextAnoLectivo.getText().toString());
+            dashboardViewModel.setSharedLocationArtefactos(switchShareLocationArtefacto.isChecked());
 
             if (tipoUtilizador == 0) {
                 dashboardViewModel.setCodigoTurma(editTextCodigoTurma.getText().toString());
@@ -281,6 +308,17 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         }
     }
 
+    private CompoundButton.OnCheckedChangeListener switchListener = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (isChecked != shareLocationArtefactos) {
+                btnSave.setEnabled(true);
+            } else {
+                //btnSave.setEnabled(false);
+            }
+        }
+    };
+
     private TextWatcher pessoalTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -294,7 +332,12 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
                     !editTextAnoEscolaridade.getText().toString().equals(anoEscolaridadeUtilizador) ||
                     !editTextAnoLectivo.getText().toString().equals(anoLectivoUtilizador) ||
                     !editTextCodigoTurma.getText().toString().equals(code) ||
-                    !editTextGerarCodigoTurma.getText().toString().equals(code)) {
+                    (!editTextGerarCodigoTurma.getText().toString().equals(code) && !editTextGerarCodigoTurma.getText().toString().equals("-"))) {
+
+                Log.d(TAG, "Code bool: " + !editTextGerarCodigoTurma.getText().toString().equals(code));
+                Log.d(TAG, "Code edit: " + editTextGerarCodigoTurma.getText().toString());
+                Log.d(TAG, "Code code: " + code);
+
                 btnSave.setEnabled(true);
             } else {
                 btnSave.setEnabled(false);

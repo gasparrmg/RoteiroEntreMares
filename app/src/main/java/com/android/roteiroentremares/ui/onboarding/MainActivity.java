@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.onboarding;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -20,8 +21,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MainActivity extends AppCompatActivity {
 
     // ViewModel
-    @Inject
-    OnBoardingViewModel onBoardingViewModel;
+    /*@Inject
+    OnBoardingViewModel onBoardingViewModel;*/
+    private OnBoardingViewModel onBoardingViewModel;
 
     public ArrayList<Question> onBoardingQuestions;
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
         // Prevents buttons constrained on the bottom of the parent to pop-up on the top of the keyboard
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);

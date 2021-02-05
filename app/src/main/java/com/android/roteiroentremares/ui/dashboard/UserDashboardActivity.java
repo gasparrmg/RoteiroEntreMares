@@ -1,33 +1,43 @@
 package com.android.roteiroentremares.ui.dashboard;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.dashboard.viewmodel.DashboardViewModel;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
+import com.android.roteiroentremares.util.PermissionsUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 @AndroidEntryPoint
-public class UserDashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class UserDashboardActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EasyPermissions.PermissionCallbacks {
 
-    @Inject
-    DashboardViewModel dashboardViewModel;
+    private DashboardViewModel dashboardViewModel;
+
+    private MaterialToolbar toolbar;
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -37,8 +47,10 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_dashboard);
 
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
         // Init Toolbar (extended version of an ActionBar)
-        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
 
         SpannableString s = new SpannableString(getResources().getString(R.string.app_name));
         s.setSpan(new TypefaceSpan(this, "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
@@ -56,6 +68,8 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        askForPermissions();
     }
 
     @Override
@@ -86,5 +100,45 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
+    private void askForPermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getPermissionList())) {
+            Toast.makeText(this, "Already has permissions needed", Toast.LENGTH_SHORT).show();
+        } else {
+            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+                    PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getPermissionList());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show();
+        } else {
+            askForPermissions();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
+            askForPermissions();
+        }
     }
 }

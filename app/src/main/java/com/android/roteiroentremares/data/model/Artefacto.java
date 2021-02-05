@@ -15,9 +15,15 @@ public class Artefacto {
 
     private String content;
 
+    /**
+     * TYPE:
+     * 0 -> Text
+     * 1 -> Image
+     * 2 -> Audio
+     * 3 -> Video
+     */
     private int type;
 
-    @Nullable
     private String description;
 
     private String date;

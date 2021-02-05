@@ -5,9 +5,12 @@
     <string name="error_minimum_school_year">O ano de escolaridade mínimo é 1</string>
     <string name="error_maximum_school_year">O ano de escolaridade máximo é 12</string>
     <string name="error_invalid_academic_year">Ano lectivo inválido</string>
+    <string name="confirm_delete_message">Tens a certeza que queres apagar o teu magnífico artefacto?</string>
     <string name="helper_text_codigoturma">Pede este código ao teu professor para conseguires observar os artefactos dos teus colegas!</string>
     <string name="title_pessoal">Informações Pessoais</string>
     <string name="title_artefactos">Artefactos</string>
+    <string name="title_new_artefacto">Novo Artefacto</string>
+    <string name="title_edit_artefacto">Editar Artefacto</string>
     <string name="title_guiaDeCampo">Guia de Campo</string>
 
     <string name="navigation_drawer_open">Abrir menu de navegação</string>

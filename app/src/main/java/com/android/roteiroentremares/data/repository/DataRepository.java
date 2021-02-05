@@ -23,6 +23,7 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_ANOESCOLARIDADE = "key_anoescolaridade";
     private static final String SHAREDPREF_KEY_ANOLECTIVO = "key_anolectivo";
     private static final String SHAREDPREF_KEY_CODIGOTURMA = "key_codigoturma";
+    private static final String SHAREDPREF_KEY_SHARE_LOCATION_ARTEFACTOS = "key_share_location_artefactos";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
@@ -180,6 +181,20 @@ public class DataRepository {
                 SHAREDPREF_KEY_ANOLECTIVO,
                 anoLectivo
         ).apply();
+    }
+
+    public void setShareLocationArtefactos(boolean shareLocationArtefactos) {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_SHARE_LOCATION_ARTEFACTOS,
+                shareLocationArtefactos
+        ).apply();
+    }
+
+    public boolean getShareLocationArtefactos() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_SHARE_LOCATION_ARTEFACTOS,
+                false
+        );
     }
 
     /**

@@ -2,22 +2,29 @@ package com.android.roteiroentremares.ui.onboarding.screens;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
+import com.android.roteiroentremares.util.PermissionsUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -33,14 +40,18 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 
 @AndroidEntryPoint
-public class OnBoardingFragment2 extends Fragment implements Validator.ValidationListener {
-    private static final int SEQUENCE_NUMBER = 2;
+public class OnBoardingFragment2 extends Fragment implements Validator.ValidationListener, EasyPermissions.PermissionCallbacks {
+    private static final int SEQUENCE_NUMBER = 18;
 
     // ViewModel
-    @Inject
-    OnBoardingViewModel onBoardingViewModel;
+    /*@Inject
+    OnBoardingViewModel onBoardingViewModel;*/
+    private OnBoardingViewModel onBoardingViewModel;
 
     // Form Validator
     private Validator formValidator;
@@ -72,6 +83,8 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
     private ViewPager2 viewPager;
+    private SwitchMaterial switchShareLocation;
+    private LinearLayout linearLayoutShareLocationArtefacto;
 
     // Global variables
     private int position = 0;
@@ -86,6 +99,8 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_on_boarding2, container, false);
+
+        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
         initViews(view);
         setOnClickListeners();
@@ -110,6 +125,8 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
         viewPager = getActivity().findViewById(R.id.viewPager);
+        switchShareLocation = view.findViewById(R.id.switch_share_location_artefacto);
+        linearLayoutShareLocationArtefacto = view.findViewById(R.id.linearlayout_share_location_artefacto);
 
         editTextAnoLectivo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -139,11 +156,22 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
                     textInputLayoutEscola.setVisibility(View.INVISIBLE);
                     textInputLayoutAnoEscolaridade.setVisibility(View.INVISIBLE);
                     textInputLayoutAnoLectivo.setVisibility(View.INVISIBLE);
+                    linearLayoutShareLocationArtefacto.setVisibility(View.INVISIBLE);
                 } else {
                     isExplorador = false;
                     textInputLayoutEscola.setVisibility(View.VISIBLE);
                     textInputLayoutAnoEscolaridade.setVisibility(View.VISIBLE);
                     textInputLayoutAnoLectivo.setVisibility(View.VISIBLE);
+                    linearLayoutShareLocationArtefacto.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        switchShareLocation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    askForLocationPermissions();
                 }
             }
         });
@@ -180,6 +208,7 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
         }
 
         onBoardingViewModel.setNome(editTextNome.getText().toString());
+        onBoardingViewModel.setShareLocationArtefactos(switchShareLocation.isChecked());
 
         if (!isExplorador) {
             onBoardingViewModel.setEscola(editTextEscola.getText().toString());
@@ -205,6 +234,42 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
             } else {
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
+    private void askForLocationPermissions() {
+        if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getLocationPermissionList())) {
+            Toast.makeText(getActivity(), "Already has permissions needed", Toast.LENGTH_SHORT).show();
+            switchShareLocation.setChecked(true);
+        } else {
+            EasyPermissions.requestPermissions(getActivity(), "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+                    PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getLocationPermissionList());
+            switchShareLocation.setChecked(false);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, getActivity());
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        Log.d("TESTE_PERMISSIONS", "granted");
+        switchShareLocation.setChecked(true);
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        switchShareLocation.setChecked(false);
+
+        if (EasyPermissions.somePermissionPermanentlyDenied(getActivity(), perms)) {
+            new AppSettingsDialog.Builder(getActivity()).build().show();
+        } else {
+            askForLocationPermissions();
         }
     }
 }
