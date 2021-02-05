@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -23,20 +24,13 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class OnBoardingFragment3 extends Fragment {
 
-    private static final int SEQUENCE_NUMBER = 3;
-
-    // ViewModel
-    @Inject
-    OnBoardingViewModel onBoardingViewModel;
+    private static final int SEQUENCE_NUMBER = 2;
 
     // Views
     private TextView textViewTitle;
     private FloatingActionButton buttonFabNext;
     private CircularProgressIndicator progressBar;
     private ViewPager2 viewPager;
-
-    // Global variables
-    private String nomeUtilizador;
 
     public OnBoardingFragment3() {
         // Required empty public constructor
@@ -53,8 +47,6 @@ public class OnBoardingFragment3 extends Fragment {
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         progressBar = view.findViewById(R.id.progressBar);
         viewPager = getActivity().findViewById(R.id.viewPager);
-
-        nomeUtilizador = onBoardingViewModel.getNome();
 
         setOnClickListeners();
         insertContent();
@@ -83,7 +75,7 @@ public class OnBoardingFragment3 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Olá " + nomeUtilizador + "!<br>" + "Para começarmos a explorar o mundo na zona entre marés, vamos começar por te explicar o que é uma maré e porque é que ocorre...",
+                "Olá!<br>Para começarmos a explorar o mundo na zona entre marés, vamos começar por te explicar o que é uma maré e porque é que ocorre...",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

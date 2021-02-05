@@ -2,6 +2,7 @@ package com.android.roteiroentremares.ui.onboarding.screens;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
@@ -11,14 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.util.PermissionsUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
-public class OnBoardingFragment18 extends Fragment {
+import java.util.List;
 
-    private static final int SEQUENCE_NUMBER = 18;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+
+public class OnBoardingFragment18 extends Fragment implements EasyPermissions.PermissionCallbacks {
+
+    private static final int SEQUENCE_NUMBER = 17;
 
     // Views
     private TextView textViewTitle;
@@ -62,6 +71,7 @@ public class OnBoardingFragment18 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                askForPermissions();
                 viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
@@ -95,5 +105,36 @@ public class OnBoardingFragment18 extends Fragment {
                         "Confirma sempre o estado do mar, antes de ires visitar estes locais. A ondulação deve estar abaixo dos 2m.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
+    }
+
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
+    private void askForPermissions() {
+        if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getPermissionList())) {
+            Toast.makeText(getActivity(), "Already has permissions needed", Toast.LENGTH_SHORT).show();
+        } else {
+            EasyPermissions.requestPermissions(getActivity(), "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+                    PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getPermissionList());
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, getActivity());
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(getActivity(), perms)) {
+            new AppSettingsDialog.Builder(getActivity()).build().show();
+        } else {
+            askForPermissions();
+        }
     }
 }

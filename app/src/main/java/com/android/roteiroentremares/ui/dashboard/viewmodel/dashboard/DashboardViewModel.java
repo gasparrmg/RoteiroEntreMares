@@ -1,6 +1,7 @@
-package com.android.roteiroentremares.ui.dashboard.viewmodel;
+package com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.android.roteiroentremares.data.model.Artefacto;
@@ -11,16 +12,21 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class DashboardViewModel extends ViewModel {
+    private SavedStateHandle savedStateHandle;
     private DataRepository dataRepository;
 
     private LiveData<List<Artefacto>> allArtefactos;
 
     @Inject
     public DashboardViewModel (
+            SavedStateHandle savedStateHandle,
             DataRepository dataRepository
     ) {
+        this.savedStateHandle = savedStateHandle;
         this.dataRepository = dataRepository;
 
         allArtefactos = dataRepository.getAllArtefactos();
@@ -84,6 +90,14 @@ public class DashboardViewModel extends ViewModel {
 
     public void setCodigoTurma(String codigoTurma) {
         dataRepository.setCodigoTurma(codigoTurma);
+    }
+
+    public boolean getSharedLocationArtefactos() {
+        return dataRepository.getShareLocationArtefactos();
+    }
+
+    public void setSharedLocationArtefactos(boolean sharedLocationArtefactos) {
+        dataRepository.setShareLocationArtefactos(sharedLocationArtefactos);
     }
 
     /**

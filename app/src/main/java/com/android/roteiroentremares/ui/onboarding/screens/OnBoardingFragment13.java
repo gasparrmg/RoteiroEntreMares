@@ -6,6 +6,7 @@ import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 public class OnBoardingFragment13 extends Fragment implements View.OnClickListener {
 
     private static final int QUESTION_ID = 2; // Question ID from the Sequence at hand
-    private static final int SEQUENCE_NUMBER = 13;
+    private static final int SEQUENCE_NUMBER = 12;
 
     // Views
     private TextView textViewTitle;
@@ -36,7 +37,7 @@ public class OnBoardingFragment13 extends Fragment implements View.OnClickListen
 
     // Variables
     private Question question;
-    private boolean isCorrect = false;
+    private boolean isCorrect;
 
     public OnBoardingFragment13() {
         // Required empty public constructor
@@ -65,6 +66,8 @@ public class OnBoardingFragment13 extends Fragment implements View.OnClickListen
         progressBar.setMax(viewPager.getAdapter().getItemCount());
         progressBar.setProgress(SEQUENCE_NUMBER);
         buttonFabNext.setEnabled(false);
+
+        isCorrect = false;
 
         // Init methods
         setOnClickListeners();

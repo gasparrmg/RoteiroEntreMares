@@ -21,7 +21,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 public class OnBoardingFragment15 extends Fragment implements View.OnClickListener {
 
     private static final int QUESTION_ID = 3; // Question ID from the Sequence at hand
-    private static final int SEQUENCE_NUMBER = 15;
+    private static final int SEQUENCE_NUMBER = 14;
 
     // Views
     private TextView textViewTitle;
@@ -36,7 +36,7 @@ public class OnBoardingFragment15 extends Fragment implements View.OnClickListen
 
     // Variables
     private Question question;
-    private boolean isCorrect = false;
+    private boolean isCorrect;
 
     public OnBoardingFragment15() {
         // Required empty public constructor
@@ -65,6 +65,8 @@ public class OnBoardingFragment15 extends Fragment implements View.OnClickListen
         progressBar.setMax(viewPager.getAdapter().getItemCount());
         progressBar.setProgress(SEQUENCE_NUMBER);
         buttonFabNext.setEnabled(false);
+
+        isCorrect = false;
 
         // Init methods
         setOnClickListeners();

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.roteiroentremares">
+    
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".RoteiroEntreMaresApplication"
@@ -11,11 +18,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.dashboard.screens.artefactos.NewArtefactoActivity"
+            android:parentActivityName=".ui.dashboard.ArtefactosActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.dashboard.screens.artefactos.EditArtefactoActivity"
+            android:parentActivityName=".ui.dashboard.ArtefactosActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".ui.dashboard.GuiaDeCampoActivity"
-            android:parentActivityName=".ui.dashboard.UserDashboardActivity"/>
+            android:parentActivityName=".ui.dashboard.UserDashboardActivity" />
         <activity
             android:name=".ui.dashboard.ArtefactosActivity"
-            android:parentActivityName=".ui.dashboard.UserDashboardActivity" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.dashboard.UserDashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.PessoalActivity"
             android:parentActivityName=".ui.dashboard.UserDashboardActivity" />

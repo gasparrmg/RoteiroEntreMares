@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.onboarding.viewmodel;
 
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.android.roteiroentremares.data.repository.DataRepository;
@@ -7,15 +8,20 @@ import com.android.roteiroentremares.data.repository.DataRepository;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class OnBoardingViewModel extends ViewModel {
+    private SavedStateHandle savedStateHandle;
     private DataRepository dataRepository;
 
     @Inject
     public OnBoardingViewModel (
+            SavedStateHandle savedStateHandle,
             DataRepository dataRepository
     ) {
         this.dataRepository = dataRepository;
+        this.savedStateHandle = savedStateHandle;
     }
 
     public boolean getOnBoarding() {
@@ -48,5 +54,9 @@ public class OnBoardingViewModel extends ViewModel {
 
     public void setAnoLectivo(String anoLectivo) {
         dataRepository.setAnoLectivo(anoLectivo);
+    }
+
+    public void setShareLocationArtefactos(boolean shareLocationArtefactos) {
+        dataRepository.setShareLocationArtefactos(shareLocationArtefactos);
     }
 }

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Antes de começarmos,\n fala-nos um pouco sobre ti..."
+            android:text="Antes de continuarmos,\n fala-nos um pouco sobre ti..."
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -125,6 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Ano Lectivo"
+            android:layout_marginBottom="16dp"
             app:boxStrokeColor="@color/colorAccent"
             app:hintTextColor="@color/colorAccent">
 
@@ -137,6 +138,29 @@
                 android:maxLength="9"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_share_location_artefacto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="Partilhar localização dos meus Artefactos"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans"
+                android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_share_location_artefacto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

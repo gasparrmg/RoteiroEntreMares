@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
@@ -18,12 +20,19 @@ import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.ClickableString;
+import com.android.roteiroentremares.util.PermissionsUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
+import java.util.List;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+
 public class OnBoardingFragment17 extends Fragment {
 
-    private static final int SEQUENCE_NUMBER = 17;
+    private static final int SEQUENCE_NUMBER = 16;
 
     // Views
     private TextView textViewTitle;

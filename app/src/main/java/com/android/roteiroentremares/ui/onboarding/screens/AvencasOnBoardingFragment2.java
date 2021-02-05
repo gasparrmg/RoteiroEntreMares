@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -28,8 +29,9 @@ public class AvencasOnBoardingFragment2 extends Fragment {
     private static final int SEQUENCE_NUMBER = 2;
 
     // ViewModel
-    @Inject
-    OnBoardingViewModel onBoardingViewModel;
+    /*@Inject
+    OnBoardingViewModel onBoardingViewModel;*/
+    private OnBoardingViewModel onBoardingViewModel;
 
     // Views
     private TextView textViewTitle;
@@ -47,6 +49,8 @@ public class AvencasOnBoardingFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_avencas_on_boarding2, container, false);
+
+        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);

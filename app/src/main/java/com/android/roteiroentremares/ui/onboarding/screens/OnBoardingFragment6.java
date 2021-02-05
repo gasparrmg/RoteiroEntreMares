@@ -18,7 +18,7 @@ import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 public class OnBoardingFragment6 extends Fragment {
 
-    private static final int SEQUENCE_NUMBER = 6;
+    private static final int SEQUENCE_NUMBER = 5;
 
     // Views
     private TextView textViewTitle;

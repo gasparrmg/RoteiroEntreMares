@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 
 import javax.inject.Inject;
@@ -24,8 +26,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class SplashFragment extends Fragment {
 
     // ViewModel
-    @Inject
-    OnBoardingViewModel onBoardingViewModel;
+    /*@Inject
+    OnBoardingViewModel onBoardingViewModel;*/
+    private OnBoardingViewModel onBoardingViewModel;
 
     public SplashFragment() {
         // Required empty public constructor
@@ -36,6 +39,8 @@ public class SplashFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_splash, container, false);
+
+        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
         new Handler().postDelayed(new Runnable() {
             @Override
