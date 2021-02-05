@@ -208,12 +208,12 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
         }
 
         onBoardingViewModel.setNome(editTextNome.getText().toString());
-        onBoardingViewModel.setShareLocationArtefactos(switchShareLocation.isChecked());
 
         if (!isExplorador) {
             onBoardingViewModel.setEscola(editTextEscola.getText().toString());
             onBoardingViewModel.setAnoEscolaridade(editTextAnoEscolaridade.getText().toString());
             onBoardingViewModel.setAnoLectivo(editTextAnoLectivo.getText().toString());
+            onBoardingViewModel.setShareLocationArtefactos(switchShareLocation.isChecked());
         }
 
         Toast.makeText(getActivity(), "Registo feito com sucesso!", Toast.LENGTH_SHORT).show();
