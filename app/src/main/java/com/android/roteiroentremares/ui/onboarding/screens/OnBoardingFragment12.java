@@ -85,7 +85,7 @@ public class OnBoardingFragment12 extends Fragment {
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>Porque é que as marés mais altas ocorrem quando a está lua nova ou lua cheia?</b>" +
+                "<b>Porque é que as marés mais altas ocorrem quando está lua nova ou lua cheia?</b>" +
                         "<br><br>" +
                         "Dizemos que está lua nova (escura) quando a lua está entre a Terra e o sol, e lua cheia quando a Terra está entre a lua e o sol. Em ambos os casos, a atração gravitacional do sol na Terra é adicionada à atração gravitacional da lua na Terra. Este trabalho em conjunto, faz com que as marés se tornem ainda mais altas – Marés vivas" +
                         "<br><br>" +

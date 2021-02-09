@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,7 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
     private FloatingActionButton fabNewAudio;
     private FloatingActionButton fabNewVideo;
     private LinearLayout linearLayoutIsEmpty;
+    private ProgressBar progressBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,16 +84,27 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setHasFixedSize(true);
 
-        adapter = new ArtefactoAdapter();
+        adapter = new ArtefactoAdapter(getContext());
         recyclerView.setAdapter(adapter);
 
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+
+                recyclerView.smoothScrollToPosition(0);
+            }
+        });
+
         linearLayoutIsEmpty = view.findViewById(R.id.linearlayout_isEmpty);
+        progressBar = view.findViewById(R.id.progress_bar);
 
         artefactosViewModel.getAllArtefactos().observe(getViewLifecycleOwner(), new Observer<List<Artefacto>>() {
             @Override
             public void onChanged(List<Artefacto> artefactos) {
                 //update recycler view
-                adapter.setArtefactos(artefactos);
+                adapter.submitList(artefactos);
+                progressBar.setVisibility(View.GONE);
 
                 if (artefactos.size() == 0) {
                     linearLayoutIsEmpty.setVisibility(View.VISIBLE);
@@ -164,6 +177,16 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
                 fabMenu.collapse();
                 Intent intent = new Intent(getActivity(), NewArtefactoActivity.class);
                 intent.putExtra("NEW_ARTEFACTO_TYPE", 0);
+                startActivityForResult(intent, 1);
+            }
+        });
+
+        fabNewImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fabMenu.collapse();
+                Intent intent = new Intent(getActivity(), NewArtefactoActivity.class);
+                intent.putExtra("NEW_ARTEFACTO_TYPE", 1);
                 startActivityForResult(intent, 1);
             }
         });
