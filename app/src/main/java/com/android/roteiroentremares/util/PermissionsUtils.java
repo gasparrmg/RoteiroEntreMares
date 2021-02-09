@@ -10,6 +10,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class PermissionsUtils {
     public static final int PERMISSIONS_REQUEST_CODE = 5;
+    public static final int PERMISSIONS_CAMERA_REQUEST_CODE = 101;
 
     private static final String[] permissionsNeededOld = {
             Manifest.permission.CAMERA,
@@ -39,6 +40,12 @@ public class PermissionsUtils {
             Manifest.permission.ACCESS_BACKGROUND_LOCATION
     };
 
+    private static final String[] cameraPermissionsNeeded = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
     public static String[] getPermissionList() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             return permissionsNeededOld;
@@ -53,5 +60,9 @@ public class PermissionsUtils {
         } else {
             return locationPermissionsNeededNew;
         }
+    }
+
+    public static String[] getCameraPermissionList() {
+        return cameraPermissionsNeeded;
     }
 }
