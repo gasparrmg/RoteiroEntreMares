@@ -34,7 +34,7 @@ public abstract class RoteiroDatabase extends RoomDatabase {
             super.onCreate(db);
 
             ArtefactoDao artefactoDao = roteiroDatabaseProvider.get().artefactoDao();
-            new PopulateDbAsyncTask(artefactoDao);
+            new PopulateDbAsyncTask(artefactoDao).execute();
         }
     }
 
@@ -51,17 +51,21 @@ public abstract class RoteiroDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
             // Add data when the Database is created
 
-            artefactoDao.insert(new Artefacto(
+            // Insert all necessary data into the DB
+
+            // Guia de Campo
+
+            /*artefactoDao.insert(new Artefacto(
                     "Title One",
                     "This is the content of Title One",
                     0,
-                    null,
+                    "",
                     "Today LUL",
                     "420",
                     "69",
                     "ABCDEFGH",
                     false
-            ));
+            ));*/
             return null;
         }
     }

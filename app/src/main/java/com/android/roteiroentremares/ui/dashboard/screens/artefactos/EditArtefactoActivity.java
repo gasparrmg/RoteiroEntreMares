@@ -5,10 +5,13 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Spannable;
@@ -21,6 +24,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +46,7 @@ import com.android.roteiroentremares.util.PermissionsUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -51,6 +56,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -82,8 +88,17 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private TextInputLayout textInputLayoutDescription;
     private TextInputEditText textInputEditTextDescription;
     private ImageView imageViewPicture;
-    private Button buttonTakePicture;
-    private Button buttonAddPicture;
+    private MaterialButton buttonTakePicture;
+    private MaterialButton buttonAddPicture;
+
+    // Audio
+    private LinearLayout linearLayoutMediaPlayer;
+    private ImageButton imageButtonPlay;
+    private ImageButton imageButtonPause;
+    private SeekBar seekBarAudio;
+    private MaterialButton buttonStartRecordingAudio;
+    private MaterialButton buttonStopRecordingAudio;
+    private TextView textViewRecording;
 
     // Variables
     private Artefacto artefactoToEdit;
@@ -99,8 +114,18 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private boolean artefactoShared;
 
     private String codigoTurma;
+
     private File currentPhotoFile;
     private String currentPhotoPath;
+
+    private String currentAudioPath;
+    private File currentAudioFile;
+    private MediaRecorder mediaRecorder;
+    private MediaPlayer mediaPlayer;
+    private Handler handlerSeekBar;
+    private Runnable updateSeekBar;
+    private boolean isPlayingAudio = false;
+    private boolean isRecordingAudio = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +139,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         if (artefactoType == 1) {
             setContentView(R.layout.activity_edit_image_artefacto);
         } else if (artefactoType == 2) {
-            // setContentView(R.layout.activity_edit_audio_artefacto);
+            setContentView(R.layout.activity_edit_audio_artefacto);
         } else if (artefactoType == 3) {
             // setContentView(R.layout.activity_edit_video_artefacto);
         } else {
@@ -137,8 +162,6 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         initViews();
         fillForm();
         setOnClickListeners();
-
-        Toast.makeText(this, artefactoLatitude + " ; " + artefactoLongitude, Toast.LENGTH_LONG).show();
     }
 
     private void getIntentData() {
@@ -154,9 +177,13 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         artefactoShared = getIntent().getBooleanExtra("EDIT_ARTEFACTO_SHARED", false);
 
         if (artefactoType == 1) {
-            Log.d("PATH CENAS", artefactoContent);
             currentPhotoPath = artefactoContent;
             currentPhotoFile = new File(artefactoContent);
+        }
+
+        if (artefactoType == 2) {
+            currentAudioPath = artefactoContent;
+            currentAudioFile = new File(currentAudioPath);
         }
     }
 
@@ -193,6 +220,20 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             textInputEditTextDescription.addTextChangedListener(artefactoTextWatcher);
         }
 
+        if (artefactoType == 2) {
+            textInputLayoutDescription = findViewById(R.id.textinputlayout_description);
+            textInputEditTextDescription = findViewById(R.id.textinputedittext_description);
+            linearLayoutMediaPlayer = findViewById(R.id.linearlayout_media_player);
+            imageButtonPlay = findViewById(R.id.imagebutton_play_audio);
+            imageButtonPause = findViewById(R.id.imagebutton_pause_audio);
+            seekBarAudio = findViewById(R.id.seekbar_audio);
+            buttonStartRecordingAudio = findViewById(R.id.btn_start_recording_audio);
+            buttonStopRecordingAudio = findViewById(R.id.btn_stop_recording_audio);
+            textViewRecording = findViewById(R.id.textview_isRecording);
+
+            textInputEditTextDescription.addTextChangedListener(artefactoTextWatcher);
+        }
+
         textInputLayoutTitle = findViewById(R.id.textinputlayout_title);
         textInputEditTextTitle = findViewById(R.id.textinputedittext_title);
         linearLayoutLocation = findViewById(R.id.linearlayout_location);
@@ -204,7 +245,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         switchMaterialShare = findViewById(R.id.switch_share);
         buttonSubmit = findViewById(R.id.button_submit);
 
-        if (artefactoLatitude == null || artefactoLongitude == null) {
+        if (artefactoLatitude.isEmpty() || artefactoLongitude.isEmpty()) {
             linearLayoutLocation.setVisibility(View.GONE);
         }
 
@@ -239,7 +280,17 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             switchMaterialShare.setChecked(artefactoShared);
             textViewLocation.setText(artefactoLatitude + "," + artefactoLongitude);
         } else if (artefactoType == 2) {
+            // Audio
+            textInputEditTextTitle.setText(artefactoTitle);
+            textInputEditTextDescription.setText(artefactoDescription);
 
+            if (!currentAudioFile.exists()) {
+                Toast.makeText(EditArtefactoActivity.this, "Não foi possível encontrar o ficheiro. Tente novemente mais tarde.", Toast.LENGTH_LONG).show();
+                linearLayoutMediaPlayer.setVisibility(View.GONE);
+            }
+
+            switchMaterialShare.setChecked(artefactoShared);
+            textViewLocation.setText(artefactoLatitude + "," + artefactoLongitude);
         } else {
 
         }
@@ -268,6 +319,61 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 @Override
                 public void onClick(View v) {
                     ImageUtils.createPhotoDialog(EditArtefactoActivity.this, Uri.fromFile(new File(currentPhotoPath)));
+                }
+            });
+        }
+
+        if (artefactoType == 2) {
+            // Audio
+            buttonStartRecordingAudio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    askMicrophonePermissions();
+                }
+            });
+
+            buttonStopRecordingAudio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    stopRecordingAudio();
+                }
+            });
+
+            imageButtonPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    playAudio();
+                }
+            });
+
+            imageButtonPause.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pauseAudio();
+                }
+            });
+
+            seekBarAudio.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    if (mediaPlayer != null) {
+                        pauseAudio();
+                    }
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    int progress = seekBar.getProgress();
+
+                    if (mediaPlayer != null) {
+                        mediaPlayer.seekTo(progress);
+                        resumeAudio();
+                    }
                 }
             });
         }
@@ -327,7 +433,19 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                     newImageArtefacto.setId(artefactoId);
                     artefactosViewModel.updateArtefacto(newImageArtefacto);
                 } else if (artefactoType == 2) {
-
+                    Artefacto newAudioArtefacto = new Artefacto(
+                            textInputEditTextTitle.getText().toString(),
+                            currentAudioPath,
+                            artefactoType,
+                            textInputEditTextDescription.getText().toString(),
+                            artefactoDate,
+                            artefactoLatitude,
+                            artefactoLongitude,
+                            codigoTurma,
+                            switchMaterialShare.isChecked()
+                    );
+                    newAudioArtefacto.setId(artefactoId);
+                    artefactosViewModel.updateArtefacto(newAudioArtefacto);
                 } else {
 
                 }
@@ -384,6 +502,139 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, Constants.CAMERA_REQUEST_CODE);
             }
+        }
+    }
+
+    private void setupMediaRecorder() {
+        // Setup Media Recorder
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.getDefault());
+        Date date = new Date();
+
+        currentAudioPath = getExternalFilesDir("/").getAbsolutePath() + "/" + simpleDateFormat.format(date) + "_ROTEIROENTREMARES_audio_record.3gp";
+        mediaRecorder.setOutputFile(currentAudioPath);
+
+        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+    }
+
+    private void startRecordingAudio() {
+        setupMediaRecorder();
+        try {
+            mediaRecorder.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mediaRecorder.start();
+
+        isRecordingAudio = true;
+
+        textViewRecording.setText("A gravar microfone...");
+        buttonStartRecordingAudio.setVisibility(View.GONE);
+        buttonStopRecordingAudio.setVisibility(View.VISIBLE);
+    }
+
+    private void stopRecordingAudio() {
+        mediaRecorder.stop();
+        mediaRecorder.release();
+        mediaRecorder = null;
+
+        isRecordingAudio = false;
+
+        if (!textInputEditTextTitle.getText().toString().equals("") &&
+                !textInputEditTextDescription.getText().toString().equals("") &&
+                currentAudioPath != null) {
+            buttonSubmit.setEnabled(true);
+        }
+
+        buttonStartRecordingAudio.setVisibility(View.VISIBLE);
+        buttonStopRecordingAudio.setVisibility(View.GONE);
+        textViewRecording.setText("Prime o botão para gravar...");
+
+        linearLayoutMediaPlayer.setVisibility(View.VISIBLE);
+    }
+
+    private void playAudio() {
+        imageButtonPause.setVisibility(View.VISIBLE);
+        imageButtonPlay.setVisibility(View.GONE);
+
+        if (!isPlayingAudio) {
+            isPlayingAudio = true;
+
+            mediaPlayer = new MediaPlayer();
+            try {
+                mediaPlayer.setDataSource(currentAudioPath);
+                mediaPlayer.prepare();
+                mediaPlayer.start();
+
+                seekBarAudio.setMax(mediaPlayer.getDuration());
+
+                handlerSeekBar = new Handler();
+                updateRunnable();
+                handlerSeekBar.postDelayed(updateSeekBar, 0);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    isPlayingAudio = false;
+
+                    seekBarAudio.setProgress(0);
+
+                    handlerSeekBar.removeCallbacks(updateSeekBar);
+
+                    imageButtonPause.setVisibility(View.GONE);
+                    imageButtonPlay.setVisibility(View.VISIBLE);
+                }
+            });
+        } else {
+            resumeAudio();
+        }
+    }
+
+    private void resumeAudio() {
+        imageButtonPause.setVisibility(View.VISIBLE);
+        imageButtonPlay.setVisibility(View.GONE);
+
+        mediaPlayer.start();
+
+        updateRunnable();
+        handlerSeekBar.postDelayed(updateSeekBar,0);
+    }
+
+    private void pauseAudio() {
+        imageButtonPause.setVisibility(View.GONE);
+        imageButtonPlay.setVisibility(View.VISIBLE);
+
+        mediaPlayer.pause();
+
+        handlerSeekBar.removeCallbacks(updateSeekBar);
+    }
+
+    private void updateRunnable() {
+        updateSeekBar = new Runnable() {
+            @Override
+            public void run() {
+                seekBarAudio.setProgress(mediaPlayer.getCurrentPosition());
+                handlerSeekBar.postDelayed(this, 500);
+            }
+        };
+    }
+
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_MICROPHONE_REQUEST_CODE)
+    private void askMicrophonePermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getMicrophonePermissionList())) {
+            // Open Camera
+            startRecordingAudio();
+        } else {
+            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+                    PermissionsUtils.PERMISSIONS_MICROPHONE_REQUEST_CODE, PermissionsUtils.getMicrophonePermissionList());
         }
     }
 
@@ -505,6 +756,16 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                     buttonSubmit.setEnabled(false);
                 }
             }
+
+            if (artefactoType == 2) {
+                if (!textInputEditTextTitle.getText().toString().equals("") &&
+                        !textInputEditTextDescription.getText().toString().equals("") &&
+                        currentAudioPath != null) {
+                    buttonSubmit.setEnabled(true);
+                } else {
+                    buttonSubmit.setEnabled(false);
+                }
+            }
         }
 
         @Override
@@ -512,4 +773,17 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
 
         }
     };
+
+    @Override
+    protected void onStop() {
+        if (isRecordingAudio) {
+            stopRecordingAudio();
+        }
+
+        if (isPlayingAudio) {
+            mediaPlayer.stop();
+        }
+
+        super.onStop();
+    }
 }

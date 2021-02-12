@@ -11,8 +11,10 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class PermissionsUtils {
     public static final int PERMISSIONS_REQUEST_CODE = 5;
     public static final int PERMISSIONS_CAMERA_REQUEST_CODE = 101;
+    public static final int PERMISSIONS_MICROPHONE_REQUEST_CODE = 102;
 
     private static final String[] permissionsNeededOld = {
+            Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -21,6 +23,7 @@ public class PermissionsUtils {
     };
 
     private static final String[] permissionsNeededNew = {
+            Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -46,6 +49,12 @@ public class PermissionsUtils {
             Manifest.permission.READ_EXTERNAL_STORAGE
     };
 
+    private static final String[] microphonePermissionsNeeded = {
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
     public static String[] getPermissionList() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             return permissionsNeededOld;
@@ -64,5 +73,9 @@ public class PermissionsUtils {
 
     public static String[] getCameraPermissionList() {
         return cameraPermissionsNeeded;
+    }
+
+    public static String[] getMicrophonePermissionList() {
+        return microphonePermissionsNeeded;
     }
 }
