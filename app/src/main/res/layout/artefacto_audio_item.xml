@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:visibility="visible">
 
                 <ImageButton
                     android:id="@+id/imagebutton_play_audio"
@@ -56,9 +57,18 @@
 
                 <SeekBar
                     android:id="@+id/seekbar_audio"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/textView_audio_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="00:00:00"
+                    android:visibility="invisible"/>
 
             </LinearLayout>
 

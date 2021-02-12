@@ -41,6 +41,10 @@ public class ArtefactosViewModel extends ViewModel {
         return dataRepository.getCodigoTurma();
     }
 
+    public int getTipoUtilizador() {
+        return dataRepository.getTipoUtilizador();
+    }
+
     public boolean getSharedLocationArtefactos() {
         return dataRepository.getShareLocationArtefactos();
     }

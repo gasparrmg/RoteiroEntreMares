@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -28,6 +29,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
@@ -35,17 +37,21 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.ui.common.MediaPlayerActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
 import com.android.roteiroentremares.util.Constants;
 import com.android.roteiroentremares.util.ImageFilePath;
 import com.android.roteiroentremares.util.ImageUtils;
 import com.android.roteiroentremares.util.PermissionsUtils;
+import com.android.roteiroentremares.util.TimeUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -57,6 +63,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.tooltip.Tooltip;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,6 +94,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     private LinearLayout linearLayoutShare;
     private TextView textViewShare;
     private SwitchMaterial switchMaterialShare;
+    private ImageButton imageButtonInfoShare;
     private Button buttonSubmit;
 
     private TextInputLayout textInputLayoutDescription;
@@ -101,9 +109,14 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     private ImageButton imageButtonPlay;
     private ImageButton imageButtonPause;
     private SeekBar seekBarAudio;
+    private TextView textViewAudioDuration;
     private MaterialButton buttonStartRecordingAudio;
     private MaterialButton buttonStopRecordingAudio;
     private TextView textViewRecording;
+
+    private VideoView videoView;
+    private MaterialButton buttonTakeVideo;
+    private MaterialButton buttonAddVideo;
 
     // Variables
     private int artefactoType;
@@ -114,6 +127,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     private String currentPhotoPath;
     private File newPhotoFile;
     private String currentAudioPath;
+    private String currentVideoPath;
     private boolean isPlayingAudio = false;
     private boolean isRecordingAudio = false;
 
@@ -141,7 +155,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         } else if (artefactoType == 2) {
             setContentView(R.layout.activity_new_audio_artefacto);
         } else if (artefactoType == 3) {
-            // setContentView(R.layout.activity_new_video_artefacto);
+            setContentView(R.layout.activity_new_video_artefacto);
         } else {
             setContentView(R.layout.activity_new_text_artefacto);
         }
@@ -199,9 +213,21 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             imageButtonPlay = findViewById(R.id.imagebutton_play_audio);
             imageButtonPause = findViewById(R.id.imagebutton_pause_audio);
             seekBarAudio = findViewById(R.id.seekbar_audio);
+            textViewAudioDuration = findViewById(R.id.textView_audio_duration);
             buttonStartRecordingAudio = findViewById(R.id.btn_start_recording_audio);
             buttonStopRecordingAudio = findViewById(R.id.btn_stop_recording_audio);
             textViewRecording = findViewById(R.id.textview_isRecording);
+
+            textInputEditTextDescription.addTextChangedListener(artefactoTextWatcher);
+        }
+
+        if (artefactoType == 3) {
+            textInputLayoutDescription = findViewById(R.id.textinputlayout_description);
+            textInputEditTextDescription = findViewById(R.id.textinputedittext_description);
+            videoView = findViewById(R.id.videoView_video);
+
+            buttonTakeVideo = findViewById(R.id.btn_take_video);
+            buttonAddVideo = findViewById(R.id.btn_add_video);
 
             textInputEditTextDescription.addTextChangedListener(artefactoTextWatcher);
         }
@@ -211,9 +237,31 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         linearLayoutShare = findViewById(R.id.linearlayout_share);
         textViewShare = findViewById(R.id.textview_share);
         switchMaterialShare = findViewById(R.id.switch_share);
+        imageButtonInfoShare = findViewById(R.id.imageButton_infoShare);
         buttonSubmit = findViewById(R.id.button_submit);
 
+        if (artefactosViewModel.getTipoUtilizador() == 2) {
+            // Explorador
+            linearLayoutShare.setVisibility(View.GONE);
+            switchMaterialShare.setEnabled(false);
+        }
+
         if (codigoTurma.equals("")) {
+            imageButtonInfoShare.setVisibility(View.VISIBLE);
+
+            imageButtonInfoShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Tooltip tooltip = new Tooltip.Builder(imageButtonInfoShare)
+                            .setText("Partilha não está disponível porque ainda não tens um código de turma associado")
+                            .setTextColor(Color.WHITE)
+                            .setGravity(Gravity.TOP)
+                            .setCornerRadius(8f)
+                            .setCancelable(true)
+                            .show();
+                }
+            });
+
             switchMaterialShare.setEnabled(false);
         }
 
@@ -301,6 +349,38 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             });
         }
 
+        if (artefactoType == 3) {
+            buttonTakeVideo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Ask for permissions
+                    Log.d("NEW_ARTEFACTO_ACTIVITY", "take video clicked");
+                    askCameraPermissions();
+                }
+            });
+
+            buttonAddVideo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setType("video/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent,"Select Video"), Constants.VIDEO_FROM_GALLERY_REQUEST_CODE);
+                }
+            });
+
+            videoView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (currentVideoPath != null) {
+                        Intent intentVideoPlayer = new Intent(NewArtefactoActivity.this, MediaPlayerActivity.class);
+                        intentVideoPlayer.putExtra("path", currentVideoPath);
+                        startActivityForResult(intentVideoPlayer, Constants.MEDIAPLAYER_REQUEST_CODE);
+                    }
+                }
+            });
+        }
+
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -379,12 +459,12 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                                 // Video
                                 newTextArtefacto = new Artefacto(
                                         textInputEditTextTitle.getText().toString(),
-                                        textInputEditTextContent.getText().toString(),
+                                        currentVideoPath,
                                         artefactoType,
-                                        null,
+                                        textInputEditTextDescription.getText().toString(),
                                         Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
-                                        latitude == 0 ? null : Double.toString(latitude),
-                                        longitude == 0 ? null : Double.toString(longitude),
+                                        latitude == 0 ? "" : Double.toString(latitude),
+                                        longitude == 0 ? "" : Double.toString(longitude),
                                         codigoTurma,
                                         switchMaterialShare.isChecked()
                                 );
@@ -438,6 +518,13 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
         return image;
+    }
+
+    private void dispatchTakeVideoIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, Constants.VIDEO_REQUEST_CODE);
+        }
     }
 
     private void dispatchTakePictureIntent() {
@@ -514,6 +601,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         buttonStopRecordingAudio.setVisibility(View.GONE);
         textViewRecording.setText("Prime o botão para gravar...");
 
+        textViewAudioDuration.setVisibility(View.INVISIBLE);
         linearLayoutMediaPlayer.setVisibility(View.VISIBLE);
     }
 
@@ -531,6 +619,8 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 mediaPlayer.start();
 
                 seekBarAudio.setMax(mediaPlayer.getDuration());
+                textViewAudioDuration.setText(TimeUtils.getTimeString(mediaPlayer.getDuration()));
+                textViewAudioDuration.setVisibility(View.VISIBLE);
 
                 handlerSeekBar = new Handler();
                 updateRunnable();
@@ -591,7 +681,11 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     private void askCameraPermissions() {
         if (EasyPermissions.hasPermissions(this, PermissionsUtils.getCameraPermissionList())) {
             // Open Camera
-            dispatchTakePictureIntent();
+            if (artefactoType == 3) {
+                dispatchTakeVideoIntent();
+            } else {
+                dispatchTakePictureIntent();
+            }
         } else {
             EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
                     PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
@@ -646,6 +740,8 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult");
+
         if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
             askForPermissions();
         }
@@ -689,6 +785,40 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 Toast.makeText(NewArtefactoActivity.this, "Houve um erro ao carregar o ficheiro. Tente novamente mais tarde.", Toast.LENGTH_LONG).show();
             }
         }
+
+        if (requestCode == Constants.VIDEO_REQUEST_CODE && resultCode == RESULT_OK) {
+            Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult");
+            Uri videoUri = data.getData();
+            currentVideoPath = videoUri.toString();
+            Log.d("NEW_ARTEFACTO_ACTIVITY", "videoUri.toString(): " + videoUri.toString());
+            videoView.setVisibility(View.VISIBLE);
+            videoView.setVideoURI(videoUri);
+            videoView.start();
+
+            if (!textInputEditTextTitle.getText().toString().equals("") &&
+                    !textInputEditTextDescription.getText().toString().equals("")) {
+                buttonSubmit.setEnabled(true);
+            }
+        }
+
+        if (requestCode == Constants.MEDIAPLAYER_REQUEST_CODE) {
+            Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult MediaPlayer");
+            videoView.start();
+        }
+
+        if (requestCode == Constants.VIDEO_FROM_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri videoUri = data.getData();
+            currentVideoPath = ImageFilePath.getPath(NewArtefactoActivity.this, videoUri);
+
+            videoView.setVisibility(View.VISIBLE);
+            videoView.setVideoURI(videoUri);
+            videoView.start();
+
+            if (!textInputEditTextTitle.getText().toString().equals("") &&
+                    !textInputEditTextDescription.getText().toString().equals("")) {
+                buttonSubmit.setEnabled(true);
+            }
+        }
     }
 
     private TextWatcher artefactoTextWatcher = new TextWatcher() {
@@ -723,7 +853,13 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                     buttonSubmit.setEnabled(false);
                 }
             } else {
-
+                if (!textInputEditTextTitle.getText().toString().equals("") &&
+                        !textInputEditTextDescription.getText().toString().equals("") &&
+                        currentVideoPath != null) {
+                    buttonSubmit.setEnabled(true);
+                } else {
+                    buttonSubmit.setEnabled(false);
+                }
             }
         }
 

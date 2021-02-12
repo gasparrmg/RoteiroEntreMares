@@ -23,6 +23,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.ui.dashboard.screens.artefactos.EditArtefactoActivity;
 import com.android.roteiroentremares.ui.dashboard.screens.artefactos.NewArtefactoActivity;
+import com.android.roteiroentremares.util.TimeUtils;
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 
@@ -80,6 +81,10 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 View audioItemView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.artefacto_audio_item, parent, false);
                 return new ViewHolderAudio(audioItemView);
+            case 3:
+                View videoItemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.artefacto_video_item, parent, false);
+                return new ViewHolderVideo(videoItemView);
             default:
                 View textItemView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.artefacto_text_item, parent, false);
@@ -93,13 +98,6 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
         Artefacto currentArtefacto = getItem(position);
 
         switch (holder.getItemViewType()) {
-            case 0:
-                // Text Artefact
-                ViewHolderText viewHolderText = (ViewHolderText) holder;
-                viewHolderText.textViewTitle.setText(currentArtefacto.getTitle());
-                viewHolderText.textViewContent.setText(currentArtefacto.getContent());
-                viewHolderText.textViewDate.setText(currentArtefacto.getDate());
-                break;
             case 1:
                 // Image Artefact
                 ViewHolderImage viewHolderImage = (ViewHolderImage) holder;
@@ -131,16 +129,30 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 break;
             case 3:
                 // Video Artefact
-                ViewHolderText viewHolderVideo = (ViewHolderText) holder;
+                ViewHolderVideo viewHolderVideo = (ViewHolderVideo) holder;
                 viewHolderVideo.textViewTitle.setText(currentArtefacto.getTitle());
-                viewHolderVideo.textViewContent.setText(currentArtefacto.getContent());
-                break;
+                viewHolderVideo.textViewDescription.setText(currentArtefacto.getDescription());
+                viewHolderVideo.textViewDate.setText(currentArtefacto.getDate());
 
+                File videoFile = new File(currentArtefacto.getContent());
+
+                if (videoFile.exists()) {
+                    //viewHolderImage.imageViewPhoto.setImageURI(Uri.fromFile(new File(currentArtefacto.getContent())));
+
+                    Glide.with(context)
+                            .load(videoFile)
+                            .placeholder(android.R.drawable.ic_media_play)
+                            .into(viewHolderVideo.imageViewThumbnail);
+                } else {
+                    Log.e("ARTEFACTO_ADAPTER", "Não foi possível encontrar o vídeo.");
+                }
+                break;
             default:
                 // Text Artefact
                 ViewHolderText viewHolderTextAlt = (ViewHolderText) holder;
                 viewHolderTextAlt.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderTextAlt.textViewContent.setText(currentArtefacto.getContent());
+                viewHolderTextAlt.textViewDate.setText(currentArtefacto.getDate());
         }
     }
 
@@ -239,6 +251,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
         private TextView textViewDate;
         private MaterialCardView cardView;
         private SeekBar seekBarAudio;
+        private TextView textViewAudioDuration;
         private ImageButton imageButtonPlay;
         private ImageButton imageButtonPause;
 
@@ -258,6 +271,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
             imageButtonPlay = itemView.findViewById(R.id.imagebutton_play_audio);
             imageButtonPause = itemView.findViewById(R.id.imagebutton_pause_audio);
             seekBarAudio = itemView.findViewById(R.id.seekbar_audio);
+            textViewAudioDuration = itemView.findViewById(R.id.textView_audio_duration);
 
             imageButtonPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -342,6 +356,8 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                     mediaPlayer.start();
 
                     seekBarAudio.setMax(mediaPlayer.getDuration());
+                    textViewAudioDuration.setText(TimeUtils.getTimeString(mediaPlayer.getDuration()));
+                    textViewAudioDuration.setVisibility(View.VISIBLE);
 
                     handlerSeekBar = new Handler();
                     updateRunnable();
@@ -396,6 +412,47 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                     handlerSeekBar.postDelayed(this, 500);
                 }
             };
+        }
+    }
+
+    private class ViewHolderVideo extends RecyclerView.ViewHolder {
+        private TextView textViewTitle;
+        private TextView textViewDescription;
+        private TextView textViewDate;
+        private ImageView imageViewThumbnail;
+        private MaterialCardView cardView;
+
+
+        public ViewHolderVideo(@NonNull View itemView) {
+            super(itemView);
+            textViewTitle = itemView.findViewById(R.id.textView_title);
+            textViewDescription = itemView.findViewById(R.id.textView_description);
+            textViewDate = itemView.findViewById(R.id.textView_date);
+            imageViewThumbnail = itemView.findViewById(R.id.imageview_thumbnail);
+            cardView = itemView.findViewById(R.id.cardview_artefacto);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(getItem(position));
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int position = getAdapterPosition();
+
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listenerLong.onLongItemClick(getItem(position), cardView);
+                    }
+                    return true;
+                }
+            });
         }
     }
 

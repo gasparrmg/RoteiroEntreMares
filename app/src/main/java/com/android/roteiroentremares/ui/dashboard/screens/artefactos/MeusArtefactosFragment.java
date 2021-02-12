@@ -200,6 +200,16 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
                 startActivityForResult(intent, 1);
             }
         });
+
+        fabNewVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fabMenu.collapse();
+                Intent intent = new Intent(getActivity(), NewArtefactoActivity.class);
+                intent.putExtra("NEW_ARTEFACTO_TYPE", 3);
+                startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
