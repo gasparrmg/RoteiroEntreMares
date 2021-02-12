@@ -1,12 +1,16 @@
 package com.android.roteiroentremares.ui.dashboard.adapters.artefactos;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +76,10 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 View imageItemView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.artefacto_image_item, parent, false);
                 return new ViewHolderImage(imageItemView);
+            case 2:
+                View audioItemView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.artefacto_audio_item, parent, false);
+                return new ViewHolderAudio(audioItemView);
             default:
                 View textItemView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.artefacto_text_item, parent, false);
@@ -113,9 +122,12 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 break;
             case 2:
                 // Audio Artefact
-                ViewHolderText viewHolderAudio = (ViewHolderText) holder;
+                ViewHolderAudio viewHolderAudio = (ViewHolderAudio) holder;
                 viewHolderAudio.textViewTitle.setText(currentArtefacto.getTitle());
-                viewHolderAudio.textViewContent.setText(currentArtefacto.getContent());
+                viewHolderAudio.textViewDescription.setText(currentArtefacto.getDescription());
+                viewHolderAudio.textViewDate.setText(currentArtefacto.getDate());
+
+                viewHolderAudio.currentAudioPath = currentArtefacto.getContent();
                 break;
             case 3:
                 // Video Artefact
@@ -137,19 +149,9 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
         return getItem(position).getType();
     }
 
-    /*@Override
-    public int getItemCount() {
-        return artefactos.size();
-    }*/
-
     public Artefacto getArtefactoAt(int position) {
         return getItem(position);
     }
-
-    /*public void setArtefactos(List<Artefacto> artefactos) {
-        this.artefactos = artefactos;
-        notifyDataSetChanged(); // SHOULD NOT USE, THERE'S MORE EFFICIENT WAYS
-    }*/
 
     private class ViewHolderText extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
@@ -228,6 +230,172 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                     return true;
                 }
             });
+        }
+    }
+
+    private class ViewHolderAudio extends RecyclerView.ViewHolder {
+        private TextView textViewTitle;
+        private TextView textViewDescription;
+        private TextView textViewDate;
+        private MaterialCardView cardView;
+        private SeekBar seekBarAudio;
+        private ImageButton imageButtonPlay;
+        private ImageButton imageButtonPause;
+
+        private MediaPlayer mediaPlayer;
+        private Handler handlerSeekBar;
+        private Runnable updateSeekBar;
+
+        private String currentAudioPath;
+        private boolean isPlayingAudio = false;
+
+        public ViewHolderAudio(@NonNull View itemView) {
+            super(itemView);
+            textViewTitle = itemView.findViewById(R.id.textView_title);
+            textViewDescription = itemView.findViewById(R.id.textView_description);
+            textViewDate = itemView.findViewById(R.id.textView_date);
+            cardView = itemView.findViewById(R.id.cardview_artefacto);
+            imageButtonPlay = itemView.findViewById(R.id.imagebutton_play_audio);
+            imageButtonPause = itemView.findViewById(R.id.imagebutton_pause_audio);
+            seekBarAudio = itemView.findViewById(R.id.seekbar_audio);
+
+            imageButtonPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "Play clicked", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(getItem(position));
+                    }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int position = getAdapterPosition();
+
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listenerLong.onLongItemClick(getItem(position), cardView);
+                    }
+                    return true;
+                }
+            });
+
+            imageButtonPlay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    playAudio();
+                }
+            });
+
+            imageButtonPause.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pauseAudio();
+                }
+            });
+
+            seekBarAudio.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    if (mediaPlayer != null) {
+                        pauseAudio();
+                    }
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    int progress = seekBar.getProgress();
+
+                    if (mediaPlayer != null) {
+                        mediaPlayer.seekTo(progress);
+                        resumeAudio();
+                    }
+                }
+            });
+        }
+
+        private void playAudio() {
+            imageButtonPause.setVisibility(View.VISIBLE);
+            imageButtonPlay.setVisibility(View.GONE);
+
+            if (!isPlayingAudio) {
+                isPlayingAudio = true;
+
+                mediaPlayer = new MediaPlayer();
+                try {
+                    mediaPlayer.setDataSource(currentAudioPath);
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+
+                    seekBarAudio.setMax(mediaPlayer.getDuration());
+
+                    handlerSeekBar = new Handler();
+                    updateRunnable();
+                    handlerSeekBar.postDelayed(updateSeekBar, 0);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        isPlayingAudio = false;
+
+                        seekBarAudio.setProgress(0);
+
+                        handlerSeekBar.removeCallbacks(updateSeekBar);
+
+                        imageButtonPause.setVisibility(View.GONE);
+                        imageButtonPlay.setVisibility(View.VISIBLE);
+                    }
+                });
+            } else {
+                resumeAudio();
+            }
+        }
+
+        private void resumeAudio() {
+            imageButtonPause.setVisibility(View.VISIBLE);
+            imageButtonPlay.setVisibility(View.GONE);
+
+            mediaPlayer.start();
+
+            updateRunnable();
+            handlerSeekBar.postDelayed(updateSeekBar,0);
+        }
+
+        private void pauseAudio() {
+            imageButtonPause.setVisibility(View.GONE);
+            imageButtonPlay.setVisibility(View.VISIBLE);
+
+            mediaPlayer.pause();
+
+            handlerSeekBar.removeCallbacks(updateSeekBar);
+        }
+
+        private void updateRunnable() {
+            updateSeekBar = new Runnable() {
+                @Override
+                public void run() {
+                    seekBarAudio.setProgress(mediaPlayer.getCurrentPosition());
+                    handlerSeekBar.postDelayed(this, 500);
+                }
+            };
         }
     }
 

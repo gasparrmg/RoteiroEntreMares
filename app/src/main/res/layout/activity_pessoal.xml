@@ -190,7 +190,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="Partilhar localização dos meus Artefactos"
+                    android:text="Mostrar localização dos meus Artefactos partilhados"
                     android:textSize="16sp"
                     android:fontFamily="@font/open_sans"
                     android:layout_marginEnd="8dp"/>
