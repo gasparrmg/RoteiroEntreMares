@@ -23,6 +23,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:layout_weight="1">
 
         <LinearLayout
@@ -63,12 +64,16 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/imageview_picture"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
+            <VideoView
+                android:id="@+id/videoView_video"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
+
         </LinearLayout>
     </ScrollView>
 
@@ -93,7 +98,7 @@
                 android:layout_weight="1">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_take_picture"
+                    android:id="@+id/btn_take_video"
                     style="@style/Widget.MaterialComponents.Button.Icon"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -103,7 +108,7 @@
                     android:insetBottom="0dp"
                     android:padding="0dp"
                     android:layout_marginBottom="8dp"
-                    app:icon="@drawable/ic_camera"
+                    app:icon="@drawable/ic_video"
                     app:iconGravity="textStart"
                     app:iconPadding="0dp"
                     app:iconSize="30dp"
@@ -113,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="Tirar fotografia"
+                    android:text="Gravar vídeo"
                     android:fontFamily="@font/open_sans"/>
 
             </LinearLayout>
@@ -126,7 +131,7 @@
                 android:layout_weight="1">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_add_picture"
+                    android:id="@+id/btn_add_video"
                     style="@style/Widget.MaterialComponents.Button.Icon"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -151,49 +156,6 @@
                     android:fontFamily="@font/open_sans"/>
 
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearlayout_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_location" />
-
-            <TextView
-                android:id="@+id/textview_location_coordinates"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginEnd="32dp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:fontFamily="@font/open_sans"
-                android:gravity="center_vertical"
-                android:paddingStart="8dp"
-                android:text="xxxx,xxxx"
-                android:textColor="@color/colorTitleText" />
-
-            <ImageButton
-                android:id="@+id/imagebutton_location_directions"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_directions"
-                android:layout_marginEnd="8dp"
-                android:background="@null"/>
-
-            <ImageButton
-                android:id="@+id/imagebutton_location_copy"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_copy"
-                android:background="@null"/>
 
         </LinearLayout>
 
@@ -248,8 +210,8 @@
             android:id="@+id/button_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
             android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins"
             android:text="Guardar"
             android:enabled="false"/>
     </LinearLayout>

@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
@@ -18,6 +19,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -27,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +39,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.ui.common.MediaPlayerActivity;
 import com.android.roteiroentremares.ui.dashboard.ArtefactosActivity;
 import com.android.roteiroentremares.ui.dashboard.PessoalActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
@@ -43,6 +47,7 @@ import com.android.roteiroentremares.util.Constants;
 import com.android.roteiroentremares.util.ImageFilePath;
 import com.android.roteiroentremares.util.ImageUtils;
 import com.android.roteiroentremares.util.PermissionsUtils;
+import com.android.roteiroentremares.util.TimeUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -50,6 +55,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.tooltip.Tooltip;
 
 import java.io.File;
 import java.io.IOException;
@@ -82,6 +88,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private ImageButton imageButtonLocationDirections;
     private ImageButton imageButtonLocationCopy;
     private SwitchMaterial switchMaterialShare;
+    private ImageButton imageButtonInfoShare;
     private Button buttonSubmit;
 
     // Image
@@ -96,9 +103,15 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private ImageButton imageButtonPlay;
     private ImageButton imageButtonPause;
     private SeekBar seekBarAudio;
+    private TextView textViewAudioDuration;
     private MaterialButton buttonStartRecordingAudio;
     private MaterialButton buttonStopRecordingAudio;
     private TextView textViewRecording;
+
+    // Video
+    private VideoView videoView;
+    private MaterialButton buttonTakeVideo;
+    private MaterialButton buttonAddVideo;
 
     // Variables
     private Artefacto artefactoToEdit;
@@ -117,6 +130,8 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
 
     private File currentPhotoFile;
     private String currentPhotoPath;
+    private File currentVideoFile;
+    private String currentVideoPath;
 
     private String currentAudioPath;
     private File currentAudioFile;
@@ -141,7 +156,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         } else if (artefactoType == 2) {
             setContentView(R.layout.activity_edit_audio_artefacto);
         } else if (artefactoType == 3) {
-            // setContentView(R.layout.activity_edit_video_artefacto);
+            setContentView(R.layout.activity_edit_video_artefacto);
         } else {
             setContentView(R.layout.activity_edit_text_artefacto);
         }
@@ -185,6 +200,11 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             currentAudioPath = artefactoContent;
             currentAudioFile = new File(currentAudioPath);
         }
+
+        if (artefactoType == 3) {
+            currentVideoPath = artefactoContent;
+            currentVideoFile = new File(currentVideoPath);
+        }
     }
 
     /**
@@ -227,9 +247,20 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             imageButtonPlay = findViewById(R.id.imagebutton_play_audio);
             imageButtonPause = findViewById(R.id.imagebutton_pause_audio);
             seekBarAudio = findViewById(R.id.seekbar_audio);
+            textViewAudioDuration = findViewById(R.id.textView_audio_duration);
             buttonStartRecordingAudio = findViewById(R.id.btn_start_recording_audio);
             buttonStopRecordingAudio = findViewById(R.id.btn_stop_recording_audio);
             textViewRecording = findViewById(R.id.textview_isRecording);
+
+            textInputEditTextDescription.addTextChangedListener(artefactoTextWatcher);
+        }
+
+        if (artefactoType == 3) {
+            textInputLayoutDescription = findViewById(R.id.textinputlayout_description);
+            textInputEditTextDescription = findViewById(R.id.textinputedittext_description);
+            videoView = findViewById(R.id.videoView_video);
+            buttonTakeVideo = findViewById(R.id.btn_take_video);
+            buttonAddVideo = findViewById(R.id.btn_add_video);
 
             textInputEditTextDescription.addTextChangedListener(artefactoTextWatcher);
         }
@@ -243,13 +274,35 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         imageButtonLocationDirections = findViewById(R.id.imagebutton_location_directions);
         imageButtonLocationCopy = findViewById(R.id.imagebutton_location_copy);
         switchMaterialShare = findViewById(R.id.switch_share);
+        imageButtonInfoShare = findViewById(R.id.imageButton_infoShare);
         buttonSubmit = findViewById(R.id.button_submit);
+
+        if (artefactosViewModel.getTipoUtilizador() == 2) {
+            // Explorador
+            linearLayoutShare.setVisibility(View.GONE);
+            switchMaterialShare.setEnabled(false);
+        }
 
         if (artefactoLatitude.isEmpty() || artefactoLongitude.isEmpty()) {
             linearLayoutLocation.setVisibility(View.GONE);
         }
 
         if (codigoTurma.equals("")) {
+            imageButtonInfoShare.setVisibility(View.VISIBLE);
+
+            imageButtonInfoShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Tooltip tooltip = new Tooltip.Builder(imageButtonInfoShare)
+                            .setText("Partilha não está disponível porque ainda não tens um código de turma associado")
+                            .setTextColor(Color.WHITE)
+                            .setGravity(Gravity.TOP)
+                            .setCornerRadius(8f)
+                            .setCancelable(true)
+                            .show();
+                }
+            });
+
             switchMaterialShare.setEnabled(false);
         }
 
@@ -292,7 +345,20 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             switchMaterialShare.setChecked(artefactoShared);
             textViewLocation.setText(artefactoLatitude + "," + artefactoLongitude);
         } else {
+            // Video
+            textInputEditTextTitle.setText(artefactoTitle);
+            textInputEditTextDescription.setText(artefactoDescription);
 
+            if (!currentVideoFile.exists()) {
+                Toast.makeText(EditArtefactoActivity.this, "Não foi possível encontrar o ficheiro. Tente novemente mais tarde.", Toast.LENGTH_LONG).show();
+                videoView.setVisibility(View.GONE);
+            } else {
+                videoView.setVideoURI(Uri.fromFile(currentVideoFile));
+                videoView.start();
+            }
+
+            switchMaterialShare.setChecked(artefactoShared);
+            textViewLocation.setText(artefactoLatitude + "," + artefactoLongitude);
         }
     }
 
@@ -378,6 +444,38 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             });
         }
 
+        if (artefactoType == 3) {
+            buttonTakeVideo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Ask for permissions
+                    Log.d("NEW_ARTEFACTO_ACTIVITY", "take video clicked");
+                    askCameraPermissions();
+                }
+            });
+
+            buttonAddVideo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setType("video/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent,"Escolhe um vídeo"), Constants.VIDEO_FROM_GALLERY_REQUEST_CODE);
+                }
+            });
+
+            videoView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (currentVideoPath != null) {
+                        Intent intentVideoPlayer = new Intent(EditArtefactoActivity.this, MediaPlayerActivity.class);
+                        intentVideoPlayer.putExtra("path", currentVideoPath);
+                        startActivityForResult(intentVideoPlayer, Constants.MEDIAPLAYER_REQUEST_CODE);
+                    }
+                }
+            });
+        }
+
         imageButtonLocationDirections.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -447,7 +545,19 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                     newAudioArtefacto.setId(artefactoId);
                     artefactosViewModel.updateArtefacto(newAudioArtefacto);
                 } else {
-
+                    Artefacto newVideoArtefacto = new Artefacto(
+                            textInputEditTextTitle.getText().toString(),
+                            currentVideoPath,
+                            artefactoType,
+                            textInputEditTextDescription.getText().toString(),
+                            artefactoDate,
+                            artefactoLatitude,
+                            artefactoLongitude,
+                            codigoTurma,
+                            switchMaterialShare.isChecked()
+                    );
+                    newVideoArtefacto.setId(artefactoId);
+                    artefactosViewModel.updateArtefacto(newVideoArtefacto);
                 }
 
                 if (switchMaterialShare.isChecked() != artefactoShared) {
@@ -505,6 +615,13 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         }
     }
 
+    private void dispatchTakeVideoIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, Constants.VIDEO_REQUEST_CODE);
+        }
+    }
+
     private void setupMediaRecorder() {
         // Setup Media Recorder
         mediaRecorder = new MediaRecorder();
@@ -555,6 +672,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         textViewRecording.setText("Prime o botão para gravar...");
 
         linearLayoutMediaPlayer.setVisibility(View.VISIBLE);
+        textViewAudioDuration.setVisibility(View.INVISIBLE);
     }
 
     private void playAudio() {
@@ -571,6 +689,8 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 mediaPlayer.start();
 
                 seekBarAudio.setMax(mediaPlayer.getDuration());
+                textViewAudioDuration.setText(TimeUtils.getTimeString(mediaPlayer.getDuration()));
+                textViewAudioDuration.setVisibility(View.VISIBLE);
 
                 handlerSeekBar = new Handler();
                 updateRunnable();
@@ -642,7 +762,11 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private void askCameraPermissions() {
         if (EasyPermissions.hasPermissions(this, PermissionsUtils.getCameraPermissionList())) {
             // Open Camera
-            dispatchTakePictureIntent();
+            if (artefactoType == 3) {
+                dispatchTakeVideoIntent();
+            } else {
+                dispatchTakePictureIntent();
+            }
         } else {
             EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
                     PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
@@ -714,12 +838,29 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             } else {
                 Toast.makeText(EditArtefactoActivity.this, "Houve um erro ao carregar o ficheiro. Tente novamente mais tarde.", Toast.LENGTH_LONG).show();
             }
+        } else if (requestCode == Constants.VIDEO_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri videoUri = data.getData();
+            currentVideoPath = videoUri.toString();
+            currentVideoFile = new File(currentVideoPath);
+
+            videoView.setVideoURI(videoUri);
+            videoView.start();
+        } else if (requestCode == Constants.MEDIAPLAYER_REQUEST_CODE) {
+            Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult MediaPlayer");
+            videoView.start();
+        } else if (requestCode == Constants.VIDEO_FROM_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Uri videoUri = data.getData();
+            currentVideoPath = ImageFilePath.getPath(EditArtefactoActivity.this, videoUri);
+            currentVideoFile = new File(currentVideoPath);
+
+            videoView.setVideoURI(videoUri);
+            videoView.start();
+        } else {
 
         }
     }
 
     private void scanFile(String path) {
-
         MediaScannerConnection.scanFile(EditArtefactoActivity.this,
                 new String[] { path }, null,
                 new MediaScannerConnection.OnScanCompletedListener() {
@@ -761,6 +902,16 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 if (!textInputEditTextTitle.getText().toString().equals("") &&
                         !textInputEditTextDescription.getText().toString().equals("") &&
                         currentAudioPath != null) {
+                    buttonSubmit.setEnabled(true);
+                } else {
+                    buttonSubmit.setEnabled(false);
+                }
+            }
+
+            if (artefactoType == 3) {
+                if (!textInputEditTextTitle.getText().toString().equals("") &&
+                        !textInputEditTextDescription.getText().toString().equals("") &&
+                        currentVideoPath != null) {
                     buttonSubmit.setEnabled(true);
                 } else {
                     buttonSubmit.setEnabled(false);
