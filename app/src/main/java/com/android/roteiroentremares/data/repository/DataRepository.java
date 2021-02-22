@@ -4,10 +4,13 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.sqlite.db.SupportSQLiteQuery;
 
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
+import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
 import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.data.model.EspecieAvencas;
 
 import java.util.List;
 
@@ -27,18 +30,24 @@ public class DataRepository {
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
+    private EspecieAvencasDao especieAvencasDao;
 
     private LiveData<List<Artefacto>> allArtefactos;
+    private LiveData<List<EspecieAvencas>> allEspecieAvencas;
+
 
     @Inject
     public DataRepository (
             SharedPreferences sharedPreferences,
-            ArtefactoDao artefactoDao
+            ArtefactoDao artefactoDao,
+            EspecieAvencasDao especieAvencasDao
     ) {
         this.sharedPreferences = sharedPreferences;
         this.artefactoDao = artefactoDao;
+        this.especieAvencasDao = especieAvencasDao;
 
         allArtefactos = artefactoDao.getAll();
+        allEspecieAvencas = especieAvencasDao.getAll();
     }
 
     /**
@@ -246,6 +255,19 @@ public class DataRepository {
      */
     public LiveData<List<Artefacto>> getAllArtefactos() {
         return allArtefactos;
+    }
+
+    /**
+     * Return all species from Avencas.
+     * Methods that return LiveData don't need AsyncTasks bc Room already does it behind the scenes
+     * @return
+     */
+    public LiveData<List<EspecieAvencas>> getAllEspecieAvencas() {
+        return allEspecieAvencas;
+    }
+
+    public LiveData<List<EspecieAvencas>> getFilteredEspecies(SupportSQLiteQuery query) {
+        return especieAvencasDao.getFilteredEspecies(query);
     }
 
     private static class InsertArtefactoAsyncTask extends AsyncTask<Artefacto, Void, Void> {
