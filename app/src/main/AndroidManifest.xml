@@ -24,6 +24,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.dashboard.screens.guiadecampo.EspecieFilterActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ui.dashboard.GuiaDeCampoActivity"/>
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.common.MediaPlayerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -36,7 +43,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.GuiaDeCampoActivity"
-            android:parentActivityName=".ui.dashboard.UserDashboardActivity" />
+            android:launchMode="singleTop"
+            android:parentActivityName=".ui.dashboard.UserDashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.ArtefactosActivity"
             android:launchMode="singleTop"

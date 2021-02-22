@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import androidx.room.Room;
 
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
+import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
 
 import javax.inject.Singleton;
@@ -39,7 +40,13 @@ public class AppModule {
 
     @Provides
     @Singleton
-    ArtefactoDao provideArtefactoDao(RoteiroDatabase personalFactDatabase) {
-        return personalFactDatabase.artefactoDao();
+    ArtefactoDao provideArtefactoDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.artefactoDao();
+    }
+
+    @Provides
+    @Singleton
+    EspecieAvencasDao provideEspecieAvencasDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.especieAvencasDao();
     }
 }

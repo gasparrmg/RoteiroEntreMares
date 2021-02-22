@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.dashboard.screens.guiadecampo.details.EspecieDetailsFragment">
+
+    <LinearLayout
+        android:id="@+id/linearlayout_sabiasque"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_sabiasque_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Sabias que..."
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_sabiasque_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tomate-do-mar"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_back"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
+        android:text="Voltar atrás"
+        android:textStyle="bold"/>
+
+</LinearLayout>

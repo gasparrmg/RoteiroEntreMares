@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.PermissionsUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
@@ -70,6 +73,13 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
         toggle.syncState();
 
         askForPermissions();
+
+        dashboardViewModel.getAllEspecieAvencas().observe(this, new Observer<List<EspecieAvencas>>() {
+            @Override
+            public void onChanged(List<EspecieAvencas> especieAvencas) {
+                Toast.makeText(UserDashboardActivity.this, "Size: " + especieAvencas.size(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -89,7 +99,7 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 startActivityForResult(intent, 1);
                 break;
             case R.id.nav_guiaDeCampo:
-                Intent intent2 = new Intent(this, PessoalActivity.class);
+                Intent intent2 = new Intent(this, GuiaDeCampoActivity.class);
                 startActivityForResult(intent2, 2);
                 break;
             case R.id.nav_pessoal:
@@ -105,7 +115,7 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
     private void askForPermissions() {
         if (EasyPermissions.hasPermissions(this, PermissionsUtils.getPermissionList())) {
-            Toast.makeText(this, "Already has permissions needed", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "Already has permissions needed", Toast.LENGTH_SHORT).show();
         } else {
             EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
                     PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getPermissionList());

@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.repository.DataRepository;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class DashboardViewModel extends ViewModel {
     private DataRepository dataRepository;
 
     private LiveData<List<Artefacto>> allArtefactos;
+    private LiveData<List<EspecieAvencas>> allEspecieAvencas;
 
     @Inject
     public DashboardViewModel (
@@ -30,6 +32,7 @@ public class DashboardViewModel extends ViewModel {
         this.dataRepository = dataRepository;
 
         allArtefactos = dataRepository.getAllArtefactos();
+        allEspecieAvencas = dataRepository.getAllEspecieAvencas();
     }
 
     /**
@@ -122,5 +125,9 @@ public class DashboardViewModel extends ViewModel {
 
     public LiveData<List<Artefacto>> getAllArtefactos() {
         return allArtefactos;
+    }
+
+    public LiveData<List<EspecieAvencas>> getAllEspecieAvencas() {
+        return allEspecieAvencas;
     }
 }

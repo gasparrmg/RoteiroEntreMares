@@ -23,6 +23,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -109,6 +110,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private TextView textViewRecording;
 
     // Video
+    private FrameLayout frameLayoutVideo;
     private VideoView videoView;
     private MaterialButton buttonTakeVideo;
     private MaterialButton buttonAddVideo;
@@ -258,6 +260,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         if (artefactoType == 3) {
             textInputLayoutDescription = findViewById(R.id.textinputlayout_description);
             textInputEditTextDescription = findViewById(R.id.textinputedittext_description);
+            frameLayoutVideo = findViewById(R.id.framelayout_video);
             videoView = findViewById(R.id.videoView_video);
             buttonTakeVideo = findViewById(R.id.btn_take_video);
             buttonAddVideo = findViewById(R.id.btn_add_video);
@@ -351,7 +354,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
 
             if (!currentVideoFile.exists()) {
                 Toast.makeText(EditArtefactoActivity.this, "Não foi possível encontrar o ficheiro. Tente novemente mais tarde.", Toast.LENGTH_LONG).show();
-                videoView.setVisibility(View.GONE);
+                frameLayoutVideo.setVisibility(View.GONE);
             } else {
                 videoView.setVideoURI(Uri.fromFile(currentVideoFile));
                 videoView.start();
@@ -464,7 +467,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 }
             });
 
-            videoView.setOnClickListener(new View.OnClickListener() {
+            frameLayoutVideo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (currentVideoPath != null) {
@@ -840,7 +843,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             }
         } else if (requestCode == Constants.VIDEO_REQUEST_CODE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
-            currentVideoPath = videoUri.toString();
+            currentVideoPath = ImageFilePath.getPath(EditArtefactoActivity.this, videoUri);
             currentVideoFile = new File(currentVideoPath);
 
             videoView.setVideoURI(videoUri);

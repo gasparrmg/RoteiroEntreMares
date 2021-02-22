@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -114,6 +115,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     private MaterialButton buttonStopRecordingAudio;
     private TextView textViewRecording;
 
+    private FrameLayout frameLayoutVideo;
     private VideoView videoView;
     private MaterialButton buttonTakeVideo;
     private MaterialButton buttonAddVideo;
@@ -225,6 +227,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             textInputLayoutDescription = findViewById(R.id.textinputlayout_description);
             textInputEditTextDescription = findViewById(R.id.textinputedittext_description);
             videoView = findViewById(R.id.videoView_video);
+            frameLayoutVideo = findViewById(R.id.framelayout_video);
 
             buttonTakeVideo = findViewById(R.id.btn_take_video);
             buttonAddVideo = findViewById(R.id.btn_add_video);
@@ -369,10 +372,12 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 }
             });
 
-            videoView.setOnClickListener(new View.OnClickListener() {
+            frameLayoutVideo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.d("TESTE_VID", "VID CLICKED");
                     if (currentVideoPath != null) {
+                        Log.d("TESTE_VID", "VID CLICKED AND PATH NOT NULL");
                         Intent intentVideoPlayer = new Intent(NewArtefactoActivity.this, MediaPlayerActivity.class);
                         intentVideoPlayer.putExtra("path", currentVideoPath);
                         startActivityForResult(intentVideoPlayer, Constants.MEDIAPLAYER_REQUEST_CODE);
@@ -786,18 +791,23 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             }
         }
 
-        if (requestCode == Constants.VIDEO_REQUEST_CODE && resultCode == RESULT_OK) {
-            Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult");
-            Uri videoUri = data.getData();
-            currentVideoPath = videoUri.toString();
-            Log.d("NEW_ARTEFACTO_ACTIVITY", "videoUri.toString(): " + videoUri.toString());
-            videoView.setVisibility(View.VISIBLE);
-            videoView.setVideoURI(videoUri);
-            videoView.start();
+        if (requestCode == Constants.VIDEO_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult");
+                Uri videoUri = data.getData();
+                //currentVideoPath = videoUri.toString();
+                currentVideoPath = ImageFilePath.getPath(NewArtefactoActivity.this, videoUri);
+                Log.d("NEW_ARTEFACTO_ACTIVITY", "videoUri.toString(): " + videoUri.toString());
+                frameLayoutVideo.setVisibility(View.VISIBLE);
+                videoView.setVideoURI(videoUri);
+                videoView.start();
 
-            if (!textInputEditTextTitle.getText().toString().equals("") &&
-                    !textInputEditTextDescription.getText().toString().equals("")) {
-                buttonSubmit.setEnabled(true);
+                if (!textInputEditTextTitle.getText().toString().equals("") &&
+                        !textInputEditTextDescription.getText().toString().equals("")) {
+                    buttonSubmit.setEnabled(true);
+                }
+            } else {
+                Log.d("NEW_ARTEFACTO_ACTIVITY", "VIDEO_RESULT_CODE -> NOT OKAY");
             }
         }
 
@@ -810,7 +820,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             Uri videoUri = data.getData();
             currentVideoPath = ImageFilePath.getPath(NewArtefactoActivity.this, videoUri);
 
-            videoView.setVisibility(View.VISIBLE);
+            frameLayoutVideo.setVisibility(View.VISIBLE);
             videoView.setVideoURI(videoUri);
             videoView.start();
 
