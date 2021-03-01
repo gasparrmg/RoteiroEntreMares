@@ -39,6 +39,14 @@ public class DashboardViewModel extends ViewModel {
      * -------------------------------- SHARED PREFERENCES METHODS -------------------------------------------------
      */
 
+    public boolean isHistoriasPassadoFinished() {
+        return dataRepository.isHistoriasPassadoFinished();
+    }
+
+    public void setHistoriasPassadoAsFinished() {
+        dataRepository.setHistoriasPassadoAsFinished();
+    }
+
     public boolean getOnBoarding() {
         return dataRepository.getOnBoarding();
     }

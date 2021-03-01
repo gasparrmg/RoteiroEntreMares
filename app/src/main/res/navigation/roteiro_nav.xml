@@ -12,23 +12,298 @@
         tools:layout="@layout/fragment_roteiro" >
         <action
             android:id="@+id/action_roteiroFragment_to_historiasPassadoFragment"
-            app:destination="@id/historiasPassadoFragment"
+            app:destination="@id/navigation_historiasPassado"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
-    <fragment
-        android:id="@+id/historiasPassadoFragment"
-        android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.HistoriasPassadoFragment"
-        android:label="fragment_historias_passado"
-        tools:layout="@layout/fragment_historias_passado" >
+    <navigation android:id="@+id/navigation_historiasPassado"
+        app:startDestination="@id/historiasPassadoFragment">
+        <fragment
+            android:id="@+id/historiasPassadoFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment"
+            android:label="fragment_historias_passado"
+            tools:layout="@layout/fragment_historias_passado" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment_to_historiasPassadoFragment2"
+                app:destination="@id/historiasPassadoFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
         <action
-            android:id="@+id/action_historiasPassadoFragment_to_roteiroFragment"
+            android:id="@+id/action_global_roteiroFragment"
             app:popUpTo="@id/roteiroFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <fragment
+            android:id="@+id/historiasPassadoFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment2"
+            android:label="HistoriasPassadoFragment2"
+            tools:layout="@layout/fragment_historias_passado2">
+            <action
+                android:id="@+id/action_historiasPassadoFragment2_to_historiasPassadoFragment3"
+                app:destination="@id/historiasPassadoFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment3"
+            android:label="fragment_historias_passado3"
+            tools:layout="@layout/fragment_historias_passado3" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment3_to_historiasPassadoFragment4"
+                app:destination="@id/historiasPassadoFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment4"
+            android:label="fragment_historias_passado4"
+            tools:layout="@layout/fragment_historias_passado4" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment4_to_historiasPassadoFragment5"
+                app:destination="@id/historiasPassadoFragment5"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment5"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment5"
+            android:label="fragment_historias_passado5"
+            tools:layout="@layout/fragment_historias_passado5" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment5_to_historiasPassadoFragment6"
+                app:destination="@id/historiasPassadoFragment6"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment6"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment6"
+            android:label="fragment_historias_passado6"
+            tools:layout="@layout/fragment_historias_passado6" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment6_to_historiasPassadoFragment7"
+                app:destination="@id/historiasPassadoFragment7"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment7"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment7"
+            android:label="HistoriasPassadoFragment7"
+            tools:layout="@layout/fragment_historias_passado7"
+            >
+            <action
+                android:id="@+id/action_historiasPassadoFragment7_to_historiasPassadoFragment8"
+                app:destination="@id/historiasPassadoFragment8"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment8"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment8"
+            android:label="HistoriasPassadoFragment8"
+            tools:layout="@layout/fragment_historias_passado8">
+            <action
+                android:id="@+id/action_historiasPassadoFragment8_to_historiasPassadoFragment9"
+                app:destination="@id/historiasPassadoFragment9"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment9"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment9"
+            android:label="HistoriasPassadoFragment9"
+            tools:layout="@layout/fragment_historias_passado9">
+            <action
+                android:id="@+id/action_historiasPassadoFragment9_to_historiasPassadoFragment10Puzzle"
+                app:destination="@id/historiasPassadoFragment10Puzzle"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment10Puzzle"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment10Puzzle"
+            android:label="HistoriasPassadoFragment10Puzzle" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment10Puzzle_to_historiasPassadoFragment11"
+                app:destination="@id/historiasPassadoFragment11"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment11"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment11"
+            android:label="HistoriasPassadoFragment11" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment11_to_historiasPassadoFragment12"
+                app:destination="@id/historiasPassadoFragment12"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment12"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment12"
+            android:label="HistoriasPassadoFragment12" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment12_to_historiasPassadoFragment13"
+                app:destination="@id/historiasPassadoFragment13"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment13"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment13"
+            android:label="HistoriasPassadoFragment13" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment13_to_historiasPassadoFragment14"
+                app:destination="@id/historiasPassadoFragment14"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment14"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment14"
+            android:label="HistoriasPassadoFragment14" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment14_to_historiasPassadoFragment15"
+                app:destination="@id/historiasPassadoFragment15"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment15"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment15"
+            android:label="HistoriasPassadoFragment15" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment15_to_historiasPassadoFragment16"
+                app:destination="@id/historiasPassadoFragment16"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment16"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment16"
+            android:label="HistoriasPassadoFragment16" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment16_to_historiasPassadoFragment17"
+                app:destination="@id/historiasPassadoFragment17"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment17"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment17"
+            android:label="HistoriasPassadoFragment17" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment17_to_historiasPassadoFragment18"
+                app:destination="@id/historiasPassadoFragment18"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment18"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment18"
+            android:label="HistoriasPassadoFragment18" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment18_to_historiasPassadoFragment19"
+                app:destination="@id/historiasPassadoFragment19"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment19"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment19"
+            android:label="HistoriasPassadoFragment19" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment19_to_historiasPassadoFragment20"
+                app:destination="@id/historiasPassadoFragment20"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment20"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment20"
+            android:label="HistoriasPassadoFragment20" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment20_to_historiasPassadoFragment21"
+                app:destination="@id/historiasPassadoFragment21"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment21"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment21"
+            android:label="HistoriasPassadoFragment21" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment21_to_historiasPassadoFragment22"
+                app:destination="@id/historiasPassadoFragment22"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment22"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment22"
+            android:label="HistoriasPassadoFragment22" >
+            <action
+                android:id="@+id/action_historiasPassadoFragment22_to_historiasPassadoFragment23"
+                app:destination="@id/historiasPassadoFragment23"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/historiasPassadoFragment23"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment23"
+            android:label="HistoriasPassadoFragment23" />
+    </navigation>
 </navigation>

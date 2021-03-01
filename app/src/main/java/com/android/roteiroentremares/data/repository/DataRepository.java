@@ -28,6 +28,8 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_CODIGOTURMA = "key_codigoturma";
     private static final String SHAREDPREF_KEY_SHARE_LOCATION_ARTEFACTOS = "key_share_location_artefactos";
 
+    private static final String SHAREDPREF_KEY_FINISHED_HISTORIAS_PASSADO = "key_finished_historias_passado";
+
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
     private EspecieAvencasDao especieAvencasDao;
@@ -53,6 +55,27 @@ public class DataRepository {
     /**
      * -------------------------------- SHARED PREFERENCES METHODS -------------------------------------------------
      */
+
+    /**
+     * Returns true if the User already completed the Historias do Passado sequence
+     * @return
+     */
+    public boolean isHistoriasPassadoFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_HISTORIAS_PASSADO,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Historias do Passado sequence
+     */
+    public void setHistoriasPassadoAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_HISTORIAS_PASSADO,
+                true
+        ).apply();
+    }
 
     /**
      * Returns true if the User already completed the OnBoarding sequence

@@ -52,6 +52,12 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
+        initToolbar();
+
+        askForPermissions();
+    }
+
+    private void initToolbar() {
         // Init Toolbar (extended version of an ActionBar)
         toolbar = findViewById(R.id.toolbar);
 
@@ -71,15 +77,6 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        askForPermissions();
-
-        dashboardViewModel.getAllEspecieAvencas().observe(this, new Observer<List<EspecieAvencas>>() {
-            @Override
-            public void onChanged(List<EspecieAvencas> especieAvencas) {
-                Toast.makeText(UserDashboardActivity.this, "Size: " + especieAvencas.size(), Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
     @Override
