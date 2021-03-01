@@ -17,6 +17,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_roteiroFragment_to_naoFiquesPorAquiFragment"
+            app:destination="@id/navigation_nao_fiques_por_aqui"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <navigation android:id="@+id/navigation_historiasPassado"
         app:startDestination="@id/historiasPassadoFragment">
@@ -305,5 +312,60 @@
             android:id="@+id/historiasPassadoFragment23"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment23"
             android:label="HistoriasPassadoFragment23" />
+    </navigation>
+    <navigation android:id="@+id/navigation_nao_fiques_por_aqui"
+        app:startDestination="@id/naoFiquesPorAquiFragment">
+        <fragment
+            android:id="@+id/naoFiquesPorAquiFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment"
+            android:label="NaoFiquesPorAquiFragment" >
+            <action
+                android:id="@+id/action_naoFiquesPorAquiFragment_to_naoFiquesPorAquiFragment2"
+                app:destination="@id/naoFiquesPorAquiFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/naoFiquesPorAquiFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment2"
+            android:label="NaoFiquesPorAquiFragment2" >
+            <action
+                android:id="@+id/action_naoFiquesPorAquiFragment2_to_naoFiquesPorAquiFragment3"
+                app:destination="@id/naoFiquesPorAquiFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/naoFiquesPorAquiFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment3"
+            android:label="NaoFiquesPorAquiFragment3" >
+            <action
+                android:id="@+id/action_naoFiquesPorAquiFragment3_to_naoFiquesPorAquiFragment4"
+                app:destination="@id/naoFiquesPorAquiFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/naoFiquesPorAquiFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment4"
+            android:label="NaoFiquesPorAquiFragment4" >
+            <action
+                android:id="@+id/action_naoFiquesPorAquiFragment4_to_naoFiquesPorAquiFragment5"
+                app:destination="@id/naoFiquesPorAquiFragment5"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/naoFiquesPorAquiFragment5"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment5"
+            android:label="NaoFiquesPorAquiFragment5" />
     </navigation>
 </navigation>
