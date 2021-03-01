@@ -24,9 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.common.ImageFullscreenActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.dashboard.screens.guiadecampo.EspecieFilterActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".ui.dashboard.GuiaDeCampoActivity"/>
+            android:parentActivityName=".ui.dashboard.GuiaDeCampoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />

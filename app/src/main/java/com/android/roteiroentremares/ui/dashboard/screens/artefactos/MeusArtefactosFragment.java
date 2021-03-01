@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
@@ -124,15 +125,16 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
-                materialAlertDialogBuilder.setMessage(R.string.confirm_delete_message);
-                materialAlertDialogBuilder.setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
+                materialAlertDialogBuilder.setTitle("Apagar artefacto?");
+                materialAlertDialogBuilder.setMessage("Tens a certeza que queres apagar este artefacto?");
+                materialAlertDialogBuilder.setPositiveButton("Sim, apagar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         artefactosViewModel.deleteArtefacto(adapter.getArtefactoAt(viewHolder.getAdapterPosition()));
                         Snackbar.make(recyclerView, "O teu Artefacto foi apagado!", Snackbar.LENGTH_SHORT).show();
                     }
                 });
-                materialAlertDialogBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // DISMISS DIALOG
@@ -144,7 +146,8 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
                         adapter.notifyDataSetChanged();
                     }
                 });
-                materialAlertDialogBuilder.show();
+                AlertDialog alertDialog = materialAlertDialogBuilder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
             }
 
             @Override
@@ -236,15 +239,16 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
         view.setStrokeWidth(4);
 
         MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
-        materialAlertDialogBuilder.setMessage(R.string.confirm_delete_message);
-        materialAlertDialogBuilder.setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
+        materialAlertDialogBuilder.setTitle("Apagar artefacto?");
+        materialAlertDialogBuilder.setMessage("Tens a certeza que queres apagar este artefacto?");
+        materialAlertDialogBuilder.setPositiveButton("Sim, apagar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 artefactosViewModel.deleteArtefacto(artefacto);
                 Snackbar.make(recyclerView, "O teu Artefacto foi apagado!", Snackbar.LENGTH_SHORT).show();
             }
         });
-        materialAlertDialogBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // DISMISS DIALOG
@@ -257,6 +261,7 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
                 adapter.notifyDataSetChanged();
             }
         });
-        materialAlertDialogBuilder.show();
+        AlertDialog alertDialog = materialAlertDialogBuilder.show();
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
     }
 }

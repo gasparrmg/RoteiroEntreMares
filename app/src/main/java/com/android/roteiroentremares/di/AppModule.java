@@ -3,12 +3,16 @@ package com.android.roteiroentremares.di;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 
 import androidx.room.Room;
 
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
+
+import java.util.Locale;
 
 import javax.inject.Singleton;
 

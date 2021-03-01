@@ -3,27 +3,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.dashboard.screens.roteiro.RoteiroFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Roteiro Fragment" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click to next"/>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_historiaspassado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardForegroundColor="@android:color/transparent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageview_historiaspassado"
+                        android:layout_width="match_parent"
+                        android:layout_height="194dp"
+                        app:srcCompat="@android:drawable/ic_media_play"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagem da espécie"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textView_historiaspassado_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center_vertical"
+                            android:text="Histórias do Passado"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/textView_historiaspassado_is_finished"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical|end"
+                            android:text="TERMINADO"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_biodiversidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardForegroundColor="@android:color/transparent">
+
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageview_biodiversidade"
+                        android:layout_width="match_parent"
+                        android:layout_height="194dp"
+                        app:srcCompat="@android:drawable/ic_media_play"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagem da espécie"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textView_biodiversidade_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center_vertical"
+                            android:text="Biodiversidade"
+                            android:textColor="@color/colorTitleText" />
+
+                    </LinearLayout>
+                </LinearLayout>-->
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -53,6 +53,7 @@ import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -78,6 +79,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
 
     // Views
     private MaterialToolbar toolbar;
+    private LinearProgressIndicator linearProgressIndicator;
     private TextInputLayout textInputLayoutTitle;
     private TextInputLayout textInputLayoutContent;
     private TextInputEditText textInputEditTextTitle;
@@ -214,6 +216,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
      */
     private void initToolbar() {
         toolbar = findViewById(R.id.toolbar);
+        linearProgressIndicator = findViewById(R.id.linearprogressindicator);
 
         SpannableString s = new SpannableString(getResources().getString(R.string.title_edit_artefacto));
         s.setSpan(new TypefaceSpan(this, "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
@@ -503,6 +506,8 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                linearProgressIndicator.setVisibility(View.VISIBLE);
+
                 if (artefactoType == 0) {
                     Artefacto newTextArtefacto = new Artefacto(
                             textInputEditTextTitle.getText().toString(),

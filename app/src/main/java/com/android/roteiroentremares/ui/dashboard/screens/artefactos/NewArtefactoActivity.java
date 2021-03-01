@@ -61,6 +61,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -88,6 +89,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
 
     // Views
     private MaterialToolbar toolbar;
+    private LinearProgressIndicator linearProgressIndicator;
     private TextInputLayout textInputLayoutTitle;
     private TextInputLayout textInputLayoutContent;
     private TextInputEditText textInputEditTextTitle;
@@ -180,6 +182,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
      */
     private void initToolbar() {
         toolbar = findViewById(R.id.toolbar);
+        linearProgressIndicator = findViewById(R.id.linearprogressindicator);
 
         SpannableString s = new SpannableString(getResources().getString(R.string.title_new_artefacto));
         s.setSpan(new TypefaceSpan(this, "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
@@ -389,6 +392,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                linearProgressIndicator.setVisibility(View.VISIBLE);
 
                 // Get location
                 fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(NewArtefactoActivity.this);
