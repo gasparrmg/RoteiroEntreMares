@@ -29,6 +29,7 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_SHARE_LOCATION_ARTEFACTOS = "key_share_location_artefactos";
 
     private static final String SHAREDPREF_KEY_FINISHED_HISTORIAS_PASSADO = "key_finished_historias_passado";
+    private static final String SHAREDPREF_KEY_FINISHED_NAO_FIQUES_POR_AQUI = "key_finished_nao_fiques_por_aqui";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
@@ -73,6 +74,27 @@ public class DataRepository {
     public void setHistoriasPassadoAsFinished() {
         sharedPreferences.edit().putBoolean(
                 SHAREDPREF_KEY_FINISHED_HISTORIAS_PASSADO,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Não Fiques Por Aqui sequence
+     * @return
+     */
+    public boolean isNaoFiquesPorAquiFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_NAO_FIQUES_POR_AQUI,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Não Fiques Por Aqui sequence
+     */
+    public void setNaoFiquesPorAquiAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_NAO_FIQUES_POR_AQUI,
                 true
         ).apply();
     }

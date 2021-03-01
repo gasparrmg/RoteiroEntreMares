@@ -38,9 +38,14 @@ public class RoteiroFragment extends Fragment {
     private ImageView imageViewHistoriasPassado;
     private TextView textViewHistoriasPassadoIsFinished;
 
+    private MaterialCardView cardViewNaoFiquesPorAqui;
+    private ImageView imageViewNaoFiquesPorAqui;
+    private TextView textViewNaoFiquesPorAquiIsFinished;
+
     // private MaterialCardView cardViewBiodiversidade;
 
     private boolean isHistoriasPassadoFinished;
+    private boolean isNaoFiquesPorAquiFinished;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,15 +57,12 @@ public class RoteiroFragment extends Fragment {
 
         initViews(view);
 
-        Log.d("NAVIGATION_TEST", "RoteiroFragment created");
-
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("NAVIGATION_TEST", "RoteiroFragment resumed");
         initToolbar();
     }
 
@@ -77,12 +79,21 @@ public class RoteiroFragment extends Fragment {
         imageViewHistoriasPassado = view.findViewById(R.id.imageview_historiaspassado);
         textViewHistoriasPassadoIsFinished = view.findViewById(R.id.textView_historiaspassado_is_finished);
 
+        cardViewNaoFiquesPorAqui = view.findViewById(R.id.cardview_naofiquesporaqui);
+        imageViewNaoFiquesPorAqui = view.findViewById(R.id.imageview_naofiquesporaqui);
+        textViewNaoFiquesPorAquiIsFinished = view.findViewById(R.id.textView_naofiquesporaqui_is_finished);
+
         // cardViewBiodiversidade = view.findViewById(R.id.cardview_biodiversidade);
 
         isHistoriasPassadoFinished = dashboardViewModel.isHistoriasPassadoFinished();
+        isNaoFiquesPorAquiFinished = dashboardViewModel.isNaoFiquesPorAquiFinished();
 
         if (isHistoriasPassadoFinished) {
             textViewHistoriasPassadoIsFinished.setVisibility(View.VISIBLE);
+        }
+
+        if (isNaoFiquesPorAquiFinished) {
+            textViewNaoFiquesPorAquiIsFinished.setVisibility(View.VISIBLE);
         }
 
         cardViewHistoriasPassado.setOnClickListener(new View.OnClickListener() {
@@ -111,9 +122,40 @@ public class RoteiroFragment extends Fragment {
             }
         });
 
+        cardViewNaoFiquesPorAqui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isNaoFiquesPorAquiFinished) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Percurso terminado!");
+                    materialAlertDialogBuilder.setMessage("Este percurso já foi terminado. Tens a certeza que o queres repetir?");
+                    materialAlertDialogBuilder.setPositiveButton("Repetir", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_naoFiquesPorAquiFragment);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_naoFiquesPorAquiFragment);
+                }
+            }
+        });
+
         Glide.with(getActivity())
                 .load(R.drawable.img_historiaspassado_falha)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewHistoriasPassado);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_naofiquesporaqui_mapa)
+                .placeholder(android.R.drawable.ic_media_play)
+                .into(imageViewNaoFiquesPorAqui);
     }
 }

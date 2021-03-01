@@ -47,6 +47,14 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setHistoriasPassadoAsFinished();
     }
 
+    public boolean isNaoFiquesPorAquiFinished() {
+        return dataRepository.isNaoFiquesPorAquiFinished();
+    }
+
+    public void setNaoFiquesPorAquiAsFinished() {
+        dataRepository.setNaoFiquesPorAquiAsFinished();
+    }
+
     public boolean getOnBoarding() {
         return dataRepository.getOnBoarding();
     }
