@@ -47,6 +47,14 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setHistoriasPassadoAsFinished();
     }
 
+    public boolean isEQuandoAMareSobeFinished() {
+        return dataRepository.isEQuandoAMareSobeFinished();
+    }
+
+    public void setEQuandoAMareSobeAsFinished() {
+        dataRepository.setEQuandoAMareSobeAsFinished();
+    }
+
     public boolean isNaoFiquesPorAquiFinished() {
         return dataRepository.isNaoFiquesPorAquiFinished();
     }
@@ -54,6 +62,11 @@ public class DashboardViewModel extends ViewModel {
     public void setNaoFiquesPorAquiAsFinished() {
         dataRepository.setNaoFiquesPorAquiAsFinished();
     }
+
+
+
+
+
 
     public boolean getOnBoarding() {
         return dataRepository.getOnBoarding();

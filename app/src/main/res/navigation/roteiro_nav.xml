@@ -24,6 +24,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_roteiroFragment_to_EQuandoAMareSobeFragment"
+            app:destination="@id/navigation_e_quando_a_mare_sobe"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <navigation android:id="@+id/navigation_historiasPassado"
         app:startDestination="@id/historiasPassadoFragment">
@@ -367,5 +374,50 @@
             android:id="@+id/naoFiquesPorAquiFragment5"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment5"
             android:label="NaoFiquesPorAquiFragment5" />
+    </navigation>
+    <navigation android:id="@+id/navigation_e_quando_a_mare_sobe"
+        app:startDestination="@id/EQuandoAMareSobeFragment">
+        <fragment
+            android:id="@+id/EQuandoAMareSobeFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment"
+            android:label="EQuandoAMareSobeFragment" >
+            <action
+                android:id="@+id/action_EQuandoAMareSobeFragment_to_EQuandoAMareSobeFragment2"
+                app:destination="@id/EQuandoAMareSobeFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/EQuandoAMareSobeFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment2"
+            android:label="EQuandoAMareSobeFragment2" >
+            <action
+                android:id="@+id/action_EQuandoAMareSobeFragment2_to_EQuandoAMareSobeDetailsFragment"
+                app:destination="@id/EQuandoAMareSobeDetailsFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/EQuandoAMareSobeDetailsFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeDetailsFragment"
+            android:label="EQuandoAMareSobeDetailsFragment" >
+            <argument
+                android:name="title"
+                app:argType="string" />
+            <argument
+                android:name="content"
+                app:argType="string" />
+            <argument
+                android:name="imageResourceId"
+                app:argType="integer" />
+            <argument
+                android:name="isFromGuiaCampo"
+                app:argType="boolean"
+                android:defaultValue="false" />
+        </fragment>
     </navigation>
 </navigation>
