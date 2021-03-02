@@ -74,6 +74,63 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_equandoamaresobe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardForegroundColor="@android:color/transparent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageview_equandoamaresobe"
+                        android:layout_width="match_parent"
+                        android:layout_height="194dp"
+                        app:srcCompat="@android:drawable/ic_media_play"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Imagem da espécie"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textView_equandoamaresobe_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center_vertical"
+                            android:text="E quando a maré sobe?"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/textView_equandoamaresobe_is_finished"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical|end"
+                            android:text="TERMINADO"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardview_naofiquesporaqui"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

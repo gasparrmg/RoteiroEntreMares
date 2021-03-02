@@ -38,6 +38,10 @@ public class RoteiroFragment extends Fragment {
     private ImageView imageViewHistoriasPassado;
     private TextView textViewHistoriasPassadoIsFinished;
 
+    private MaterialCardView cardViewEQuandoAMareSobe;
+    private ImageView imageViewEQuandoAMareSobe;
+    private TextView textViewEQuandoAMareSobeIsFinished;
+
     private MaterialCardView cardViewNaoFiquesPorAqui;
     private ImageView imageViewNaoFiquesPorAqui;
     private TextView textViewNaoFiquesPorAquiIsFinished;
@@ -46,6 +50,7 @@ public class RoteiroFragment extends Fragment {
 
     private boolean isHistoriasPassadoFinished;
     private boolean isNaoFiquesPorAquiFinished;
+    private boolean isEQuandoAMareSobeFinished;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,6 +84,10 @@ public class RoteiroFragment extends Fragment {
         imageViewHistoriasPassado = view.findViewById(R.id.imageview_historiaspassado);
         textViewHistoriasPassadoIsFinished = view.findViewById(R.id.textView_historiaspassado_is_finished);
 
+        cardViewEQuandoAMareSobe = view.findViewById(R.id.cardview_equandoamaresobe);
+        imageViewEQuandoAMareSobe = view.findViewById(R.id.imageview_equandoamaresobe);
+        textViewEQuandoAMareSobeIsFinished = view.findViewById(R.id.textView_equandoamaresobe_is_finished);
+
         cardViewNaoFiquesPorAqui = view.findViewById(R.id.cardview_naofiquesporaqui);
         imageViewNaoFiquesPorAqui = view.findViewById(R.id.imageview_naofiquesporaqui);
         textViewNaoFiquesPorAquiIsFinished = view.findViewById(R.id.textView_naofiquesporaqui_is_finished);
@@ -87,6 +96,7 @@ public class RoteiroFragment extends Fragment {
 
         isHistoriasPassadoFinished = dashboardViewModel.isHistoriasPassadoFinished();
         isNaoFiquesPorAquiFinished = dashboardViewModel.isNaoFiquesPorAquiFinished();
+        isEQuandoAMareSobeFinished = dashboardViewModel.isEQuandoAMareSobeFinished();
 
         if (isHistoriasPassadoFinished) {
             textViewHistoriasPassadoIsFinished.setVisibility(View.VISIBLE);
@@ -94,6 +104,10 @@ public class RoteiroFragment extends Fragment {
 
         if (isNaoFiquesPorAquiFinished) {
             textViewNaoFiquesPorAquiIsFinished.setVisibility(View.VISIBLE);
+        }
+
+        if (isEQuandoAMareSobeFinished) {
+            textViewEQuandoAMareSobeIsFinished.setVisibility(View.VISIBLE);
         }
 
         cardViewHistoriasPassado.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +132,32 @@ public class RoteiroFragment extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_historiasPassadoFragment);
+                }
+            }
+        });
+
+        cardViewEQuandoAMareSobe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isEQuandoAMareSobeFinished) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Percurso terminado!");
+                    materialAlertDialogBuilder.setMessage("Este percurso já foi terminado. Tens a certeza que o queres repetir?");
+                    materialAlertDialogBuilder.setPositiveButton("Repetir", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_EQuandoAMareSobeFragment);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_EQuandoAMareSobeFragment);
                 }
             }
         });
@@ -152,6 +192,11 @@ public class RoteiroFragment extends Fragment {
                 .load(R.drawable.img_historiaspassado_falha)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewHistoriasPassado);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_equandoamaresobe_background)
+                .placeholder(android.R.drawable.ic_media_play)
+                .into(imageViewEQuandoAMareSobe);
 
         Glide.with(getActivity())
                 .load(R.drawable.img_naofiquesporaqui_mapa)
