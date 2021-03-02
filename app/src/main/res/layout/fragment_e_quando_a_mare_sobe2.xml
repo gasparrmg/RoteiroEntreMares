@@ -11,9 +11,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="110dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,6 +29,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
