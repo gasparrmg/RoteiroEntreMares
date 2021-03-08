@@ -25,18 +25,23 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="110dp"
         android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:padding="8dp"
             android:id="@+id/text_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_bold"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textColor="@color/colorBodyText"
+            android:background="@color/colorBackground"
+            android:textSize="16sp"
             android:gravity="center"
             android:textAlignment="center"
             android:text="Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem?"/>

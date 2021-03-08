@@ -34,13 +34,17 @@ public class RoteiroFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
 
-    private MaterialCardView cardViewHistoriasPassado;
-    private ImageView imageViewHistoriasPassado;
-    private TextView textViewHistoriasPassadoIsFinished;
-
     private MaterialCardView cardViewEQuandoAMareSobe;
     private ImageView imageViewEQuandoAMareSobe;
     private TextView textViewEQuandoAMareSobeIsFinished;
+
+    private MaterialCardView cardViewImpactos;
+    private ImageView imageViewImpactos;
+    private TextView textViewImpactosIsFinished;
+
+    private MaterialCardView cardViewHistoriasPassado;
+    private ImageView imageViewHistoriasPassado;
+    private TextView textViewHistoriasPassadoIsFinished;
 
     private MaterialCardView cardViewNaoFiquesPorAqui;
     private ImageView imageViewNaoFiquesPorAqui;
@@ -51,6 +55,7 @@ public class RoteiroFragment extends Fragment {
     private boolean isHistoriasPassadoFinished;
     private boolean isNaoFiquesPorAquiFinished;
     private boolean isEQuandoAMareSobeFinished;
+    private boolean isImpactosFinished;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +89,10 @@ public class RoteiroFragment extends Fragment {
         imageViewHistoriasPassado = view.findViewById(R.id.imageview_historiaspassado);
         textViewHistoriasPassadoIsFinished = view.findViewById(R.id.textView_historiaspassado_is_finished);
 
+        cardViewImpactos = view.findViewById(R.id.cardview_impactos);
+        imageViewImpactos = view.findViewById(R.id.imageview_impactos);
+        textViewImpactosIsFinished = view.findViewById(R.id.textView_impactos_is_finished);
+
         cardViewEQuandoAMareSobe = view.findViewById(R.id.cardview_equandoamaresobe);
         imageViewEQuandoAMareSobe = view.findViewById(R.id.imageview_equandoamaresobe);
         textViewEQuandoAMareSobeIsFinished = view.findViewById(R.id.textView_equandoamaresobe_is_finished);
@@ -97,6 +106,7 @@ public class RoteiroFragment extends Fragment {
         isHistoriasPassadoFinished = dashboardViewModel.isHistoriasPassadoFinished();
         isNaoFiquesPorAquiFinished = dashboardViewModel.isNaoFiquesPorAquiFinished();
         isEQuandoAMareSobeFinished = dashboardViewModel.isEQuandoAMareSobeFinished();
+        isImpactosFinished = dashboardViewModel.isImpactosFinished();
 
         if (isHistoriasPassadoFinished) {
             textViewHistoriasPassadoIsFinished.setVisibility(View.VISIBLE);
@@ -108,6 +118,9 @@ public class RoteiroFragment extends Fragment {
 
         if (isEQuandoAMareSobeFinished) {
             textViewEQuandoAMareSobeIsFinished.setVisibility(View.VISIBLE);
+        }
+        if (isImpactosFinished) {
+            textViewImpactosIsFinished.setVisibility(View.VISIBLE);
         }
 
         cardViewHistoriasPassado.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +145,32 @@ public class RoteiroFragment extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_historiasPassadoFragment);
+                }
+            }
+        });
+
+        cardViewImpactos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isImpactosFinished) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Percurso terminado!");
+                    materialAlertDialogBuilder.setMessage("Este percurso já foi terminado. Tens a certeza que o queres repetir?");
+                    materialAlertDialogBuilder.setPositiveButton("Repetir", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_impactosFragment);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_impactosFragment);
                 }
             }
         });
@@ -192,6 +231,11 @@ public class RoteiroFragment extends Fragment {
                 .load(R.drawable.img_historiaspassado_falha)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewHistoriasPassado);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_impactos_2)
+                .placeholder(android.R.drawable.ic_media_play)
+                .into(imageViewImpactos);
 
         Glide.with(getActivity())
                 .load(R.drawable.img_equandoamaresobe_background)

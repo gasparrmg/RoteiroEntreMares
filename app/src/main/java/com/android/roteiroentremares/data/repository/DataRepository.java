@@ -31,6 +31,13 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_FINISHED_HISTORIAS_PASSADO = "key_finished_historias_passado";
     private static final String SHAREDPREF_KEY_FINISHED_E_QUANDO_A_MARE_SOBE = "key_finished_e_quando_a_mare_sobe";
     private static final String SHAREDPREF_KEY_FINISHED_NAO_FIQUES_POR_AQUI = "key_finished_nao_fiques_por_aqui";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS = "key_finished_impactos";
+
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_CAPTURA_EXCESSIVA = "key_finished_impactos_captura_excessiva";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_PISOTEIO = "key_finished_impactos_pisoteio";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_POLUICAO = "key_finished_impactos_poluicao";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_TEMP_AGUA = "key_finished_impactos_temp_agua";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_OCUPACAO_HUMANA = "key_finished_impactos_ocupacao_humana";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
@@ -117,6 +124,132 @@ public class DataRepository {
     public void setNaoFiquesPorAquiAsFinished() {
         sharedPreferences.edit().putBoolean(
                 SHAREDPREF_KEY_FINISHED_NAO_FIQUES_POR_AQUI,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Impactos sequence
+     * @return
+     */
+    public boolean isImpactosFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Impactos sequence
+     */
+    public void setImpactosAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Impactos -> Captura Excessiva sequence
+     * @return
+     */
+    public boolean isImpactosCapturaExcessivaFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_CAPTURA_EXCESSIVA,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Impactos -> Captura Excessiva sequence
+     */
+    public void setImpactosCapturaExcessivaAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_CAPTURA_EXCESSIVA,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Impactos -> Pisoteio sequence
+     * @return
+     */
+    public boolean isImpactosPisoteioFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_PISOTEIO,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Impactos -> Pisoteio sequence
+     */
+    public void setImpactosPisoteioAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_PISOTEIO,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Impactos -> Poluicao sequence
+     * @return
+     */
+    public boolean isImpactosPoluicaoFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_POLUICAO,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Impactos -> Poluicao sequence
+     */
+    public void setImpactosPoluicaoAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_POLUICAO,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Impactos -> Temp Agua sequence
+     * @return
+     */
+    public boolean isImpactosTempAguaFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_TEMP_AGUA,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Impactos -> Temp Agua sequence
+     */
+    public void setImpactosTempAguaAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_TEMP_AGUA,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Impactos -> Temp Agua sequence
+     * @return
+     */
+    public boolean isImpactosOcupacaoHumanaFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_OCUPACAO_HUMANA,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Impactos -> Temp Agua sequence
+     */
+    public void setImpactosOcupacaoHumanaAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_OCUPACAO_HUMANA,
                 true
         ).apply();
     }

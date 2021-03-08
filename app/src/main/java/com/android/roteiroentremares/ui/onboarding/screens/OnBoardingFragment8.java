@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.ImageUtils;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -102,7 +103,10 @@ public class OnBoardingFragment8 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                ImageUtils.createImageDialog(getContext(), R.drawable.img_tipos_mares);
+                //ImageUtils.createImageDialog(getContext(), R.drawable.img_tipos_mares);
+                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
+                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, R.drawable.img_tipos_mares);
+                startActivity(intent);
             }
         });
 

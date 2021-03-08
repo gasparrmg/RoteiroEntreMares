@@ -36,6 +36,7 @@
                 app:sliderIndicatorGravity="center_horizontal|top"
                 app:sliderIndicatorMarginTop="16dp"
                 android:scrollIndicators="none"
+                android:foreground="@drawable/inner_shadow"
                 />
 
             <com.google.android.material.appbar.MaterialToolbar
