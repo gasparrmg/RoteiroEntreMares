@@ -63,6 +63,55 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setNaoFiquesPorAquiAsFinished();
     }
 
+    public boolean isImpactosFinished() {
+        return dataRepository.isImpactosFinished();
+    }
+
+    public void setImpactosAsFinished() {
+        dataRepository.setImpactosAsFinished();
+    }
+
+    public boolean isImpactosCapturaExcessivaFinished() {
+        return dataRepository.isImpactosCapturaExcessivaFinished();
+    }
+
+    public void setImpactosCapturaExcessivaAsFinished() {
+        dataRepository.setImpactosCapturaExcessivaAsFinished();
+    }
+
+    public boolean isImpactosPisoteioFinished() {
+        return dataRepository.isImpactosPisoteioFinished();
+    }
+
+    public void setImpactosPisoteioAsFinished() {
+        dataRepository.setImpactosPisoteioAsFinished();
+    }
+
+    public boolean isImpactosPoluicaoFinished() {
+        return dataRepository.isImpactosPoluicaoFinished();
+    }
+
+    public void setImpactosPoluicaoAsFinished() {
+        dataRepository.setImpactosPoluicaoAsFinished();
+    }
+
+    public boolean isImpactosTempAguaFinished() {
+        return dataRepository.isImpactosTempAguaFinished();
+    }
+
+    public void setImpactosTempAguaAsFinished() {
+        dataRepository.setImpactosTempAguaAsFinished();
+    }
+
+    public boolean isImpactosOcupacaoHumanaFinished() {
+        return dataRepository.isImpactosOcupacaoHumanaFinished();
+    }
+
+    public void setImpactosOcupacaoHumanaAsFinished() {
+        dataRepository.setImpactosOcupacaoHumanaAsFinished();
+    }
+
+
 
 
 

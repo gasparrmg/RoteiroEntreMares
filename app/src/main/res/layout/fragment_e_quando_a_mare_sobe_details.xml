@@ -124,6 +124,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryDark"
         android:text="Para\nsaberes\nmais..."
+        android:backgroundTint="@color/colorTitleText"
         app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_fabNext"

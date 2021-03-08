@@ -101,10 +101,14 @@ public class OnBoardingFragment17 extends Fragment {
         });
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Agora que já sabes o que é uma maré e como se forma está na altura de explorares a zona entre marés. Pega numas galochas, consulta a meteorologia, a altura das ondas e a ",
+                "Agora que já sabes o que é uma maré e como se forma está na altura de explorares a zona entre marés. Pega numas galochas, consulta a meteorologia, a altura das ondas e a <b>",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
         textViewContent.append(link);
+        textViewContent.append(HtmlCompat.fromHtml(
+                "</b>",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
         ClickableString.makeLinksFocusable(textViewContent);
     }
 }
