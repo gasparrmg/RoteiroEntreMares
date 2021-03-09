@@ -228,22 +228,22 @@ public class RoteiroFragment extends Fragment {
         });
 
         Glide.with(getActivity())
-                .load(R.drawable.img_historiaspassado_falha)
+                .load(R.drawable.img_menu_historiaspassado)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewHistoriasPassado);
 
         Glide.with(getActivity())
-                .load(R.drawable.img_impactos_2)
+                .load(R.drawable.img_menu_impactos)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewImpactos);
 
         Glide.with(getActivity())
-                .load(R.drawable.img_equandoamaresobe_background)
+                .load(R.drawable.img_menu_equandoamaresobe)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewEQuandoAMareSobe);
 
         Glide.with(getActivity())
-                .load(R.drawable.img_naofiquesporaqui_mapa)
+                .load(R.drawable.img_menu_naofiquesporaqui)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewNaoFiquesPorAqui);
     }
