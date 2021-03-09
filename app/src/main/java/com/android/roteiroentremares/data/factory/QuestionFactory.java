@@ -12,7 +12,7 @@ import com.android.roteiroentremares.data.model.Question;
 import java.util.ArrayList;
 
 /**
- * This class is used to generate all the quizzes
+ * This class is used to generate all the text quizzes
  */
 public class QuestionFactory {
     public static ArrayList<Question> onBoardingQuestions;

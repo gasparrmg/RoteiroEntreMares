@@ -36,10 +36,7 @@ import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-@AndroidEntryPoint
 public class EQuandoAMareSobeFragment2 extends Fragment {
-
-    private DashboardViewModel dashboardViewModel;
 
     // Views
     private MaterialCardView cardViewSargo;
@@ -60,7 +57,7 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
     private MaterialCardView cardViewLapas;
     private ImageView imageViewLapas;
 
-    private ExtendedFloatingActionButton buttonFabNext;
+    private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
 
     @Override
@@ -68,8 +65,6 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_e_quando_a_mare_sobe2, container, false);
-
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         initViews(view);
         insertContent();
@@ -233,8 +228,7 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboardViewModel.setEQuandoAMareSobeAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.roteiroFragment ,false);
+                Navigation.findNavController(view).navigate(R.id.action_EQuandoAMareSobeFragment2_to_EQuandoAMareSobeFragmentExercicio);
             }
         });
     }
