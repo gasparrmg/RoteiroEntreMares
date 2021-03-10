@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#EFF6FA"
     android:orientation="vertical"
-    tools:context=".ui.onboarding.SplashFragment">
+    tools:context=".ui.onboarding.SplashFragment"
+    android:backgroundTint="@color/colorPrimary">
 
     <TextView
         android:id="@+id/text_appName"
@@ -17,8 +18,36 @@
         android:text="Roteiro\nEntre-Marés"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorBackground"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_weight="4"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="5">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/anim_waves"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/moving_sea" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="@font/open_sans"
+            android:text="Um projecto do IA\nem parceria com a FCUL"
+            android:textColor="@color/colorTitleText"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
