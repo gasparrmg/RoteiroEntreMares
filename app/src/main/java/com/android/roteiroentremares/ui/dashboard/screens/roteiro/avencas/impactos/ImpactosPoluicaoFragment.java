@@ -90,10 +90,9 @@ public class ImpactosPoluicaoFragment extends Fragment {
                     item.setIcon(R.drawable.ic_volume);
                 } else {
                     String text = HtmlCompat.fromHtml(
-                            "Ao visitar a praia das Avencas, é visível um enorme impacto ambiental causado pela poluição.<br>" +
+                            "Ao visitar a praia das Avencas, é visível o impacto ambiental causado pela poluição.<br>" +
                                     "<br>" +
-                                    "Para além do lixo deixado pelas pessoas que utilizam a praia, o plástico, transportado pelas tempestades,  é o agente poluente mais visível neste local e também o principal responsável pela poluição de todos os oceanos, pois este pode danificar a biodiversidade de diferentes modos, como por exemplo, a partir da intoxicação pelos microplásticos.<br>" +
-                                    "<br><b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte.</b>",
+                                    "Para além do lixo deixado pelas pessoas que utilizam a praia, o plástico, transportado pelas tempestades, é o agente poluente mais visível neste local e também o principal responsável pela poluição de todos os oceanos, pois pode diminuir a diversidade marinha, por exemplo, a partir da intoxicação pelos microplásticos. Se este factor não for controlado, observa o cenário possível no ecrã seguinte.",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -160,9 +159,9 @@ public class ImpactosPoluicaoFragment extends Fragment {
         });
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Ao visitar a praia das Avencas, é visível um enorme impacto ambiental causado pela poluição.<br>" +
+                "Ao visitar a praia das Avencas, é visível o impacto ambiental causado pela poluição.<br>" +
                         "<br>" +
-                        "Para além do lixo deixado pelas pessoas que utilizam a praia, o plástico, transportado pelas tempestades,  é o agente poluente mais visível neste local e também o principal responsável pela poluição de todos os oceanos, pois este pode danificar a biodiversidade de diferentes modos, como por exemplo, a partir da intoxicação pelos ",
+                        "Para além do lixo deixado pelas pessoas que utilizam a praia, o plástico, transportado pelas tempestades, é o agente poluente mais visível neste local e também o principal responsável pela poluição de todos os oceanos, pois pode diminuir a diversidade marinha, por exemplo, a partir da intoxicação pelos ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 

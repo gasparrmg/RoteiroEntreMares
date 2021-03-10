@@ -1,6 +1,5 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,44 +21,29 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
-import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapter;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
 
 import java.util.Locale;
 
-public class ImpactosFragment extends Fragment {
+public class ImpactosFragment3Text extends Fragment {
 
     // Views
-    private TextView textViewTitle;
-    private SliderView sliderView;
-    private SliderAdapter sliderAdapter;
     private TextView textViewContent;
-    private FloatingActionButton fabFullscreen;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
 
-    private final int[] imageResourceIds = {
-            R.drawable.img_impactos_3,
-            R.drawable.img_impactos_6,
-            R.drawable.img_impactos_2
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_impactos, container, false);
+        View view = inflater.inflate(R.layout.fragment_impactos3_text, container, false);
 
         initViews(view);
-        insertContent();
         setOnClickListeners(view);
+        insertContent();
 
         return view;
     }
@@ -105,8 +88,9 @@ public class ImpactosFragment extends Fragment {
                     item.setIcon(R.drawable.ic_volume);
                 } else {
                     String text = HtmlCompat.fromHtml(
-                            "Independentemente do local onde vivamos no planeta, todos sofremos a influência do Oceano e as nossas ações também o influenciam.<br>" +
-                                    "O oceano fornece-nos recursos básicos, como o oxigénio, a água doce e muito do nosso alimento. Também possui recursos minerais, energéticos e medicamentos. Por outro lado, está relacionado com muitas atividades socioeconómicas: a pesca, o comércio, a navegação, turismo e viagens.",
+                            "As zonas costeiras, em particular a zona entre marés, são zonas de interface entre o ambiente terrestre e o ambiente marinho, constituindo-se como um ecossistema frágil e delicado.<br>" +
+                                    "<br>" +
+                                    "No entanto, o facto de serem zonas de fácil acesso, leva a que estes locais estejam sujeitos a diferentes e fortes pressões causadas pela ação humana.",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -117,55 +101,12 @@ public class ImpactosFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
-        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-
-        initSliderView(view);
-    }
-
-    private void initSliderView(View view) {
-        sliderView = view.findViewById(R.id.imageSlider);
-
-        sliderAdapter = new SliderAdapter(getActivity(), imageResourceIds);
-        sliderView.setSliderAdapter(sliderAdapter);
-
-        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
-        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        sliderView.startAutoCycle();
-    }
-
-    /**
-     * Inserts all the content text into the proper Views
-     */
-    private void insertContent() {
-        textViewTitle.setText(HtmlCompat.fromHtml(
-                "Relação entre o Homem e o Oceano",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
-
-        textViewContent.setText(HtmlCompat.fromHtml(
-                "Independentemente do local onde vivamos no planeta, todos sofremos a influência do Oceano e as nossas ações também o influenciam.<br>" +
-                        "O oceano fornece-nos recursos básicos, como o oxigénio, a água doce e muito do nosso alimento. Também possui recursos minerais, energéticos e medicamentos. Por outro lado, está relacionado com muitas atividades socioeconómicas: a pesca, o comércio, a navegação, turismo e viagens.",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
     }
 
     private void setOnClickListeners(View view) {
-        fabFullscreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open Image Activity
-                int currentImageResource = imageResourceIds[sliderView.getCurrentPagePosition()];
-
-                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
-                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, currentImageResource);
-                startActivity(intent);
-            }
-        });
-
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +117,7 @@ public class ImpactosFragment extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_impactosFragment_to_impactosFragment3Text);
+                Navigation.findNavController(view).navigate(R.id.action_impactosFragment3Text_to_impactosFragment3);
             }
         });
 
@@ -195,5 +136,18 @@ public class ImpactosFragment extends Fragment {
                 }
             }
         });
+    }
+
+    /**
+     * Inserts all the content text into the proper Views
+     */
+    private void insertContent() {
+
+        textViewContent.setText(HtmlCompat.fromHtml(
+                "As zonas costeiras, em particular a zona entre marés, são zonas de interface entre o ambiente terrestre e o ambiente marinho, constituindo-se como um ecossistema frágil e delicado.<br>" +
+                        "<br>" +
+                        "No entanto, o facto de serem zonas de fácil acesso, leva a que estes locais estejam sujeitos a diferentes e fortes pressões causadas pela ação humana.",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
     }
 }

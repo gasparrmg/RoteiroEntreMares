@@ -103,6 +103,30 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setImpactosTempAguaAsFinished();
     }
 
+    public boolean isImpactos2Answered() {
+        return dataRepository.isImpactos2Answered();
+    }
+
+    public void setImpactos2AsAnswered() {
+        dataRepository.setImpactos2AsAnswered();
+    }
+
+    public boolean isImpactos3Answered() {
+        return dataRepository.isImpactos3Answered();
+    }
+
+    public void setImpactos3AsAnswered() {
+        dataRepository.setImpactos3AsAnswered();
+    }
+
+    public boolean isImpactos6Answered() {
+        return dataRepository.isImpactos6Answered();
+    }
+
+    public void setImpactos6AsAnswered() {
+        dataRepository.setImpactos6AsAnswered();
+    }
+
     public boolean isImpactosOcupacaoHumanaFinished() {
         return dataRepository.isImpactosOcupacaoHumanaFinished();
     }

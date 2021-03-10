@@ -1,10 +1,12 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,55 +14,54 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
-import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapter;
+import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
+import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.Calendar;
 import java.util.Locale;
 
-public class ImpactosFragment extends Fragment {
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+public class ImpactosOcupacaoHumanaFragmentExercicio1 extends Fragment {
+
+    private ArtefactosViewModel artefactosViewModel;
 
     // Views
     private TextView textViewTitle;
-    private SliderView sliderView;
-    private SliderAdapter sliderAdapter;
     private TextView textViewContent;
-    private FloatingActionButton fabFullscreen;
+    private TextInputEditText textInputEditTextResposta;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
 
-    private final int[] imageResourceIds = {
-            R.drawable.img_impactos_3,
-            R.drawable.img_impactos_6,
-            R.drawable.img_impactos_2
-    };
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_impactos, container, false);
+        View view = inflater.inflate(R.layout.fragment_impactos_ocupacao_humana_exercicio1, container, false);
+
+        artefactosViewModel = new ViewModelProvider(this).get(ArtefactosViewModel.class);
 
         initViews(view);
-        insertContent();
         setOnClickListeners(view);
+        insertContent();
 
         return view;
     }
@@ -105,8 +106,7 @@ public class ImpactosFragment extends Fragment {
                     item.setIcon(R.drawable.ic_volume);
                 } else {
                     String text = HtmlCompat.fromHtml(
-                            "Independentemente do local onde vivamos no planeta, todos sofremos a influência do Oceano e as nossas ações também o influenciam.<br>" +
-                                    "O oceano fornece-nos recursos básicos, como o oxigénio, a água doce e muito do nosso alimento. Também possui recursos minerais, energéticos e medicamentos. Por outro lado, está relacionado com muitas atividades socioeconómicas: a pesca, o comércio, a navegação, turismo e viagens.",
+                            "<b>TAREFA:</b><br><br><b>1.</b> Observa bem as arribas que rodeiam esta praia e procura exemplos de ocupação, ou intervenção, humana nestas arribas. Escreve aqui os problemas que identificaste.",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -119,53 +119,35 @@ public class ImpactosFragment extends Fragment {
     private void initViews(View view) {
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
-        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
+        textInputEditTextResposta = view.findViewById(R.id.textinputedittext_resposta);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
 
-        initSliderView(view);
-    }
+        textInputEditTextResposta.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-    private void initSliderView(View view) {
-        sliderView = view.findViewById(R.id.imageSlider);
+            }
 
-        sliderAdapter = new SliderAdapter(getActivity(), imageResourceIds);
-        sliderView.setSliderAdapter(sliderAdapter);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    buttonFabNext.setVisibility(View.VISIBLE);
+                    buttonFabNext.setEnabled(true);
+                } else {
+                    buttonFabNext.setVisibility(View.INVISIBLE);
+                    buttonFabNext.setEnabled(false);
+                }
+            }
 
-        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
-        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        sliderView.startAutoCycle();
-    }
+            @Override
+            public void afterTextChanged(Editable s) {
 
-    /**
-     * Inserts all the content text into the proper Views
-     */
-    private void insertContent() {
-        textViewTitle.setText(HtmlCompat.fromHtml(
-                "Relação entre o Homem e o Oceano",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
-
-        textViewContent.setText(HtmlCompat.fromHtml(
-                "Independentemente do local onde vivamos no planeta, todos sofremos a influência do Oceano e as nossas ações também o influenciam.<br>" +
-                        "O oceano fornece-nos recursos básicos, como o oxigénio, a água doce e muito do nosso alimento. Também possui recursos minerais, energéticos e medicamentos. Por outro lado, está relacionado com muitas atividades socioeconómicas: a pesca, o comércio, a navegação, turismo e viagens.",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
+            }
+        });
     }
 
     private void setOnClickListeners(View view) {
-        fabFullscreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open Image Activity
-                int currentImageResource = imageResourceIds[sliderView.getCurrentPagePosition()];
-
-                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
-                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, currentImageResource);
-                startActivity(intent);
-            }
-        });
-
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +158,33 @@ public class ImpactosFragment extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_impactosFragment_to_impactosFragment3Text);
+                // Guardar nos Artefactos
+                    // If !Explorador -> Partilhar
+
+                Artefacto newTextArtefacto = new Artefacto(
+                        "Impactos da ação humana (ocupação humana das arribas) - Observa bem as arribas que rodeiam esta praia e procura exemplos de ocupação, ou intervenção, humana nestas arribas. Escreve aqui os problemas que identificaste.",
+                        textInputEditTextResposta.getText().toString(),
+                        0,
+                        "",
+                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                        "",
+                        "",
+                        artefactosViewModel.getCodigoTurma(),
+                        false
+                );
+
+                artefactosViewModel.insertArtefacto(newTextArtefacto);
+
+                Toast.makeText(getActivity(), "A tua resposta foi guardada nos teus Artefactos!", Toast.LENGTH_LONG).show();
+
+                InputMethodManager inputManager = (InputMethodManager)
+                        getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                //inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                Navigation.findNavController(view).navigate(R.id.action_impactosOcupacaoHumanaFragmentExercicio1_to_impactosOcupacaoHumanaFragmentExercicio2);
             }
         });
 
@@ -195,5 +203,20 @@ public class ImpactosFragment extends Fragment {
                 }
             }
         });
+    }
+
+    /**
+     * Inserts all the content text into the proper Views
+     */
+    private void insertContent() {
+        textViewTitle.setText(HtmlCompat.fromHtml(
+                "Ocupação humana das arribas",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
+
+        textViewContent.setText(HtmlCompat.fromHtml(
+                "<b>TAREFA:</b><br><br><b>1.</b> Observa bem as arribas que rodeiam esta praia e procura exemplos de ocupação, ou intervenção, humana nestas arribas. Escreve aqui os problemas que identificaste.",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
     }
 }

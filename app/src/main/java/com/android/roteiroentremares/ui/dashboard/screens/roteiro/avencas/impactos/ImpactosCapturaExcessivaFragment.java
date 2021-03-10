@@ -91,8 +91,7 @@ public class ImpactosCapturaExcessivaFragment extends Fragment {
                     String text = HtmlCompat.fromHtml(
                             "Na plataforma rochosa das Avencas, ocorre a captura de inúmeras espécies, seja através da pesca (pesca à linha e caça submarina), seja pela apanha de minhocas (para isco), gastrópodes e crustáceos.<br>" +
                                     "<br>" +
-                                    "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios) (Almaça, 1971, Hidroprojeto, 2008).<br>" +
-                                    "<br>" +
+                                    "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios)." +
                                     "Atualmente a  captura de polvos e navalheiras é a arte mais praticada.<br>" +
                                     "<br><b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte.</b>",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
@@ -155,8 +154,7 @@ public class ImpactosCapturaExcessivaFragment extends Fragment {
         textViewContent.setText(HtmlCompat.fromHtml(
                 "Na plataforma rochosa das Avencas, ocorre a captura de inúmeras espécies, seja através da pesca (pesca à linha e caça submarina), seja pela apanha de minhocas (para isco), gastrópodes e crustáceos.<br>" +
                         "<br>" +
-                        "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios) (Almaça, 1971, Hidroprojeto, 2008).<br>" +
-                        "<br>" +
+                        "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios)." +
                         "Atualmente a  captura de polvos e navalheiras é a arte mais praticada.<br>" +
                         "<br><b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte.</b>",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
