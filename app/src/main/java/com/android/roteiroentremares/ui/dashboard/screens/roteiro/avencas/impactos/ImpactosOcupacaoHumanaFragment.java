@@ -30,10 +30,7 @@ import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-@AndroidEntryPoint
 public class ImpactosOcupacaoHumanaFragment extends Fragment {
-
-    private DashboardViewModel dashboardViewModel;
 
     // Views
     private TextView textViewTitle;
@@ -48,8 +45,6 @@ public class ImpactosOcupacaoHumanaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos_ocupacao_humana, container, false);
-
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         initViews(view);
         setOnClickListeners(view);
@@ -101,10 +96,7 @@ public class ImpactosOcupacaoHumanaFragment extends Fragment {
                             "<b>Para investigar:<b><br><br>" +
                                     "A ocupação humana das zonas costeiras em áreas de maior vulnerabilidade é o principal fator responsável pela aceleração dos fenómenos erosivos, ao alterar a dinâmica dos processos naturais. As arribas deste local (entre a Praia da Bafureira e a praia das Avencas) apresentam sinais evidentes  de grande instabilidade geológica.<br>" +
                                     "<br>" +
-                                    "No entanto, este local é um dos setores costeiros da linha de Cascais onde a ocupação humana é mais intensa, sendo muitos os casos de edificações situadas junto ao bordo superior das arribas.<br>" +
-                                    "<br>" +
-                                    "<b>1.</b> Observa bem e procura exemplos de problemas de ocupação humana das arribas.<br>" +
-                                    "<b>2.</b> Investiga, e discute com os teus colegas, quais os riscos naturais que podem ser agravados por uma intervenção antrópica (ações realizadas pelo ser humano) desadequada na área envolvente a estas praias.",
+                                    "No entanto, este local é um dos setores costeiros da linha de Cascais onde a ocupação humana é mais intensa, sendo muitos os casos de edificações situadas junto ao bordo superior das arribas.",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -132,9 +124,7 @@ public class ImpactosOcupacaoHumanaFragment extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // set path as done
-                dashboardViewModel.setImpactosOcupacaoHumanaAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.impactosFragment3 ,false);
+                Navigation.findNavController(view).navigate(R.id.action_impactosOcupacaoHumanaFragment_to_impactosOcupacaoHumanaFragmentExercicio1);
             }
         });
 
@@ -168,10 +158,7 @@ public class ImpactosOcupacaoHumanaFragment extends Fragment {
                 "<b>Para investigar:</b><br><br>" +
                         "A ocupação humana das zonas costeiras em áreas de maior vulnerabilidade é o principal fator responsável pela aceleração dos fenómenos erosivos, ao alterar a dinâmica dos processos naturais. As arribas deste local (entre a Praia da Bafureira e a praia das Avencas) apresentam sinais evidentes  de grande instabilidade geológica.<br>" +
                         "<br>" +
-                        "No entanto, este local é um dos setores costeiros da linha de Cascais onde a ocupação humana é mais intensa, sendo muitos os casos de edificações situadas junto ao bordo superior das arribas.<br>" +
-                        "<br>" +
-                        "<b>1.</b> Observa bem e procura exemplos de problemas de ocupação humana das arribas.<br>" +
-                        "<b>2.</b> Investiga, e discute com os teus colegas, quais os riscos naturais que podem ser agravados por uma intervenção antrópica (ações realizadas pelo ser humano) desadequada na área envolvente a estas praias.",
+                        "No entanto, este local é um dos setores costeiros da linha de Cascais onde a ocupação humana é mais intensa, sendo muitos os casos de edificações situadas junto ao bordo superior das arribas.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

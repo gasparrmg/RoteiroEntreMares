@@ -50,7 +50,9 @@ public class RoteiroFragment extends Fragment {
     private ImageView imageViewNaoFiquesPorAqui;
     private TextView textViewNaoFiquesPorAquiIsFinished;
 
-    // private MaterialCardView cardViewBiodiversidade;
+    private MaterialCardView cardViewBiodiversidade;
+    private ImageView imageViewBiodiversidade;
+    private TextView textViewBiodiversidade;
 
     private boolean isHistoriasPassadoFinished;
     private boolean isNaoFiquesPorAquiFinished;
@@ -101,7 +103,7 @@ public class RoteiroFragment extends Fragment {
         imageViewNaoFiquesPorAqui = view.findViewById(R.id.imageview_naofiquesporaqui);
         textViewNaoFiquesPorAquiIsFinished = view.findViewById(R.id.textView_naofiquesporaqui_is_finished);
 
-        // cardViewBiodiversidade = view.findViewById(R.id.cardview_biodiversidade);
+        imageViewBiodiversidade = view.findViewById(R.id.imageview_biodiversidade);
 
         isHistoriasPassadoFinished = dashboardViewModel.isHistoriasPassadoFinished();
         isNaoFiquesPorAquiFinished = dashboardViewModel.isNaoFiquesPorAquiFinished();
@@ -226,6 +228,11 @@ public class RoteiroFragment extends Fragment {
                 }
             }
         });
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_guiadecampo_estreladomar_1)
+                .placeholder(android.R.drawable.ic_media_play)
+                .into(imageViewBiodiversidade);
 
         Glide.with(getActivity())
                 .load(R.drawable.img_menu_historiaspassado)

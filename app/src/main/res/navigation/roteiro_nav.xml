@@ -445,24 +445,8 @@
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment"
             android:label="ImpactosFragment" >
             <action
-                android:id="@+id/action_impactosFragment_to_impactosFragment2"
-                app:destination="@id/impactosFragment2"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-        </fragment>
-        <fragment
-            android:id="@+id/impactosFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment2"
-            android:label="ImpactosFragment2" >
-            <action
-                android:id="@+id/action_impactosFragment2_to_impactosFragment3"
-                app:destination="@id/impactosFragment3"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+                android:id="@+id/action_impactosFragment_to_impactosFragment3Text"
+                app:destination="@id/impactosFragment3Text" />
         </fragment>
         <fragment
             android:id="@+id/impactosFragment3"
@@ -497,15 +481,8 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
             <action
-                android:id="@+id/action_impactosFragment3_to_impactosOcupacaoHumanaFragment"
-                app:destination="@id/impactosOcupacaoHumanaFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-            <action
-                android:id="@+id/action_impactosFragment3_to_impactosFragment4"
-                app:destination="@id/impactosFragment4"
+                android:id="@+id/action_impactosFragment3_to_impactosOcupacaoHumanaFragmentText"
+                app:destination="@id/impactosOcupacaoHumanaFragmentText"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -601,7 +578,15 @@
         <fragment
             android:id="@+id/impactosOcupacaoHumanaFragment"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragment"
-            android:label="ImpactosOcupacaoHumanaFragment" />
+            android:label="ImpactosOcupacaoHumanaFragment" >
+            <action
+                android:id="@+id/action_impactosOcupacaoHumanaFragment_to_impactosOcupacaoHumanaFragmentExercicio1"
+                app:destination="@id/impactosOcupacaoHumanaFragmentExercicio1"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
         <fragment
             android:id="@+id/impactosFragment4"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment4"
@@ -630,5 +615,54 @@
             android:id="@+id/impactosFragment6"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment6"
             android:label="ImpactosFragment6" />
+        <fragment
+            android:id="@+id/impactosFragment3Text"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment3Text"
+            android:label="ImpactosFragment3Text" >
+
+            <action
+                android:id="@+id/action_impactosFragment3Text_to_impactosFragment3"
+                app:destination="@id/impactosFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/impactosOcupacaoHumanaFragmentText"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentText"
+            android:label="ImpactosOcupacaoHumanaFragmentText" >
+            <action
+                android:id="@+id/action_impactosOcupacaoHumanaFragmentText_to_impactosOcupacaoHumanaFragment"
+                app:destination="@id/impactosOcupacaoHumanaFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/impactosOcupacaoHumanaFragmentExercicio1"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentExercicio1"
+            android:label="ImpactosOcupacaoHumanaFragmentExercicio1" >
+            <action
+                android:id="@+id/action_impactosOcupacaoHumanaFragmentExercicio1_to_impactosOcupacaoHumanaFragmentExercicio2"
+                app:destination="@id/impactosOcupacaoHumanaFragmentExercicio2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/impactosOcupacaoHumanaFragmentExercicio2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentExercicio2"
+            android:label="ImpactosOcupacaoHumanaFragmentExercicio2" >
+            <action
+                android:id="@+id/action_impactosOcupacaoHumanaFragmentExercicio2_to_impactosFragment4"
+                app:destination="@id/impactosFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
     </navigation>
 </navigation>

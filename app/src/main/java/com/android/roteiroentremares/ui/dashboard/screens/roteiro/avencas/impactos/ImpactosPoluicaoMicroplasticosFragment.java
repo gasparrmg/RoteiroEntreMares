@@ -89,13 +89,11 @@ public class ImpactosPoluicaoMicroplasticosFragment extends Fragment {
                     item.setIcon(R.drawable.ic_volume);
                 } else {
                     String text = HtmlCompat.fromHtml(
-                            "Os microplásticos são um dos principais poluentes dos oceanos. Resultam da degradação progressiva dos plásticos, que acabam por ser convertidos em partículas de muito pequena dimensão (<5mm).<br>" +
-                                    "<br>" +
-                                    "Os microplásticos acabam por ser ingeridos pelos seres vivos que habitam os oceanos e entram na cadeia alimentar, prejudicando diversos organismos, inclusive os humanos. Este tipo de material tem a capacidade de absorver produtos tóxicos presentes nos oceanos, como pesticidas e metais pesados.<br>" +
+                            "Os microplásticos são um dos principais poluentes dos oceanos. Resultam da degradação progressiva dos plásticos, que acabam por ser convertidos em partículas de muito pequena dimensão (<5mm). Este tipo de material tem a capacidade de absorver produtos tóxicos, como pesticidas e metais pesados.<br>" +
                                     "<br>" +
                                     "Sendo partículas tão pequenas, são consumidas pelos organismos presentes no plâncton, que por sua vez são consumidos por organismos um pouco maiores, e assim sucessivamente, chegando aos peixes de maiores dimensões, e finalmente ao ser humano (Bioacumulação).<br>" +
                                     "<br>" +
-                                    "No fim desta cadeia alimentar, quando o ser humano, e outros grandes predadores marinhos, se alimentam destes peixes maiores, ingerem também grandes concentrações de microplástico e dos poluentes que se acumularam ao longo da cadeia. Entre os problemas relacionados com esta intoxicação, estão diversos tipos de disfunções hormonais, imunológicas, neurológicas e reprodutivas.",
+                                    "Entre os problemas relacionados com esta intoxicação, estão diversos tipos de disfunções hormonais, imunológicas, neurológicas e reprodutivas.",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -146,13 +144,11 @@ public class ImpactosPoluicaoMicroplasticosFragment extends Fragment {
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Os microplásticos são um dos principais poluentes dos oceanos. Resultam da degradação progressiva dos plásticos, que acabam por ser convertidos em partículas de muito pequena dimensão (<5mm).<br>" +
-                        "<br>" +
-                        "Os microplásticos acabam por ser ingeridos pelos seres vivos que habitam os oceanos e entram na cadeia alimentar, prejudicando diversos organismos, inclusive os humanos. Este tipo de material tem a capacidade de absorver produtos tóxicos presentes nos oceanos, como pesticidas e metais pesados.<br>" +
+                "Os microplásticos são um dos principais poluentes dos oceanos. Resultam da degradação progressiva dos plásticos, que acabam por ser convertidos em partículas de muito pequena dimensão (<5mm). Este tipo de material tem a capacidade de absorver produtos tóxicos, como pesticidas e metais pesados.<br>" +
                         "<br>" +
                         "Sendo partículas tão pequenas, são consumidas pelos organismos presentes no plâncton, que por sua vez são consumidos por organismos um pouco maiores, e assim sucessivamente, chegando aos peixes de maiores dimensões, e finalmente ao ser humano (Bioacumulação).<br>" +
                         "<br>" +
-                        "No fim desta cadeia alimentar, quando o ser humano, e outros grandes predadores marinhos, se alimentam destes peixes maiores, ingerem também grandes concentrações de microplástico e dos poluentes que se acumularam ao longo da cadeia. Entre os problemas relacionados com esta intoxicação, estão diversos tipos de disfunções hormonais, imunológicas, neurológicas e reprodutivas.",
+                        "Entre os problemas relacionados com esta intoxicação, estão diversos tipos de disfunções hormonais, imunológicas, neurológicas e reprodutivas.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

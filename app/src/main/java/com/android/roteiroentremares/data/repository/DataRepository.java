@@ -37,6 +37,9 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_PISOTEIO = "key_finished_impactos_pisoteio";
     private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_POLUICAO = "key_finished_impactos_poluicao";
     private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_TEMP_AGUA = "key_finished_impactos_temp_agua";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_2 = "key_finished_impactos_2";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_3 = "key_finished_impactos_3";
+    private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_6 = "key_finished_impactos_6";
     private static final String SHAREDPREF_KEY_FINISHED_IMPACTOS_OCUPACAO_HUMANA = "key_finished_impactos_ocupacao_humana";
 
     private SharedPreferences sharedPreferences;
@@ -250,6 +253,69 @@ public class DataRepository {
     public void setImpactosOcupacaoHumanaAsFinished() {
         sharedPreferences.edit().putBoolean(
                 SHAREDPREF_KEY_FINISHED_IMPACTOS_OCUPACAO_HUMANA,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already answered the Impactos 2
+     * @return
+     */
+    public boolean isImpactos2Answered() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_2,
+                false
+        );
+    }
+
+    /**
+     * Sets as ANSWERED the Impactos 2
+     */
+    public void setImpactos2AsAnswered() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_2,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already answered the Impactos 3
+     * @return
+     */
+    public boolean isImpactos3Answered() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_3,
+                false
+        );
+    }
+
+    /**
+     * Sets as ANSWERED the Impactos 3
+     */
+    public void setImpactos3AsAnswered() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_3,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already answered the Impactos 6
+     * @return
+     */
+    public boolean isImpactos6Answered() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_6,
+                false
+        );
+    }
+
+    /**
+     * Sets as ANSWERED the Impactos 6
+     */
+    public void setImpactos6AsAnswered() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_IMPACTOS_6,
                 true
         ).apply();
     }

@@ -1,12 +1,9 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
-import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,10 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +25,8 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
-import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -48,18 +41,35 @@ public class ImpactosFragment3 extends Fragment {
     // Views
     private TextView textViewTitle;
     private TextView textViewContent;
-    private TextView textViewContent2;
+
+    // Cards corretas
 
     private MaterialCardView cardViewCapturaExcessiva;
+    private TextView textViewCapturaExcessiva;
     private ImageView imageViewCapturaExcessivaIcon;
+
     private MaterialCardView cardViewPisoteio;
+    private TextView textViewPisoteio;
     private ImageView imageViewPisoteioIcon;
+
     private MaterialCardView cardViewPoluicao;
+    private TextView textViewPoluicao;
     private ImageView imageViewPoluicaoIcon;
+
     private MaterialCardView cardViewTempAgua;
+    private TextView textViewCapturaTempAgua;
     private ImageView imageViewTempAguaIcon;
-    private MaterialCardView cardViewOcupacaoHumana;
-    private ImageView imageViewOcupacaoHumanaIcon;
+
+    // Cards incorretas
+    private MaterialCardView cardView2;
+    private TextView textView2;
+    private ImageView imageView2;
+    private MaterialCardView cardView3;
+    private TextView textView3;
+    private ImageView imageView3;
+    private MaterialCardView cardView6;
+    private TextView textView6;
+    private ImageView imageView6;
 
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
@@ -70,13 +80,12 @@ public class ImpactosFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_impactos3, container, false);
+        View view = inflater.inflate(R.layout.fragment_impactos3_exercicio, container, false);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         initViews(view);
         setOnClickListeners(view);
-        insertContent(view);
 
         return view;
     }
@@ -94,42 +103,67 @@ public class ImpactosFragment3 extends Fragment {
         boolean isPisoteioFinished = dashboardViewModel.isImpactosPisoteioFinished();
         boolean isPoluicaoFinished = dashboardViewModel.isImpactosPoluicaoFinished();
         boolean isTempAguaFinished = dashboardViewModel.isImpactosTempAguaFinished();
-        boolean isOcupacaoHumanaFinished = dashboardViewModel.isImpactosOcupacaoHumanaFinished();
+
+        boolean was2Answered = dashboardViewModel.isImpactos2Answered();
+        boolean was3Answered = dashboardViewModel.isImpactos3Answered();
+        boolean was6Answered = dashboardViewModel.isImpactos6Answered();
+
 
         if (isCapturaExcessivaFinished) {
-            imageViewCapturaExcessivaIcon.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorCorrect), android.graphics.PorterDuff.Mode.SRC_IN);
-            imageViewCapturaExcessivaIcon.setImageResource(R.drawable.ic_check);
+            setCorrect(imageViewCapturaExcessivaIcon);
         }
 
         if (isPisoteioFinished) {
-            imageViewPisoteioIcon.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorCorrect), android.graphics.PorterDuff.Mode.SRC_IN);
-            imageViewPisoteioIcon.setImageResource(R.drawable.ic_check);
+            setCorrect(imageViewPisoteioIcon);
         }
 
         if (isPoluicaoFinished) {
-            imageViewPoluicaoIcon.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorCorrect), android.graphics.PorterDuff.Mode.SRC_IN);
-            imageViewPoluicaoIcon.setImageResource(R.drawable.ic_check);
+            setCorrect(imageViewPoluicaoIcon);
         }
 
         if (isTempAguaFinished) {
-            imageViewTempAguaIcon.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorCorrect), android.graphics.PorterDuff.Mode.SRC_IN);
-            imageViewTempAguaIcon.setImageResource(R.drawable.ic_check);
+            setCorrect(imageViewTempAguaIcon);
         }
 
-        if (isOcupacaoHumanaFinished) {
-            imageViewOcupacaoHumanaIcon.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorCorrect), android.graphics.PorterDuff.Mode.SRC_IN);
-            imageViewOcupacaoHumanaIcon.setImageResource(R.drawable.ic_check);
+        if (was2Answered) {
+            setIncorrect(imageView2);
+        }
+
+        if (was3Answered) {
+            setIncorrect(imageView3);
+        }
+
+        if (was6Answered) {
+            setIncorrect(imageView6);
         }
 
         if (isCapturaExcessivaFinished &&
                 isPisoteioFinished &&
                 isPoluicaoFinished &&
-                isTempAguaFinished &&
-                isOcupacaoHumanaFinished) {
+                isTempAguaFinished) {
+
+            setIncorrect(imageView2);
+            setIncorrect(imageView3);
+            setIncorrect(imageView6);
+
             buttonFabNext.setVisibility(View.VISIBLE);
             buttonFabNext.setEnabled(true);
+
+            Toast.makeText(getActivity(), "Selecionaste todas as opções corretas. Podes passar para o próximo ecrã!", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void setCorrect(ImageView imageView) {
+        imageView.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorCorrect), android.graphics.PorterDuff.Mode.SRC_IN);
+        imageView.setImageResource(R.drawable.ic_check);
+        imageView.setVisibility(View.VISIBLE);
+    }
+
+    private void setIncorrect(ImageView imageView) {
+        imageView.setColorFilter(ContextCompat.getColor(getActivity(), R.color.colorError), android.graphics.PorterDuff.Mode.SRC_IN);
+        imageView.setImageResource(R.drawable.ic_close);
+        imageView.setVisibility(View.VISIBLE);
     }
 
     private void initToolbar() {
@@ -166,13 +200,7 @@ public class ImpactosFragment3 extends Fragment {
                     item.setIcon(R.drawable.ic_volume);
                 } else {
                     String text = HtmlCompat.fromHtml(
-                            "As zonas costeiras, em particular a zona entre marés, são zonas de interface entre o ambiente terrestre e o ambiente marinho, constituindo-se como um ecossistema frágil e delicado." +
-                                    "No entanto, o facto de serem zonas de fácil acesso, leva a que estes locais estejam sujeitos a diferentes e fortes pressões causadas pela ação humana. De entre as principais pressões, salienta-se a: " +
-                                    "- Captura excessiva de invertebrados;" +
-                                    "- Pisoteio;" +
-                                    "- Poluição (plástico e microplástico);" +
-                                    "- Aumento da temperatura da água (espécies exóticas)" +
-                                    "- Ocupação humana das arribas.",
+                            "Na tua opinião, quais serão as pressões a que estes locais estão sujeitos? Seleciona as opções que consideras corretas.",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -184,26 +212,45 @@ public class ImpactosFragment3 extends Fragment {
 
     private void initViews(View view) {
         textViewTitle = view.findViewById(R.id.text_title);
-        textViewContent = view.findViewById(R.id.text_content);
-        textViewContent2 = view.findViewById(R.id.text_content2);
-
-        cardViewCapturaExcessiva = view.findViewById(R.id.cardview_capturaexcessiva);
-        imageViewCapturaExcessivaIcon = view.findViewById(R.id.imageview_capturaexcessiva_ic);
-
-        cardViewPisoteio = view.findViewById(R.id.cardview_pisoteio);
-        imageViewPisoteioIcon = view.findViewById(R.id.imageview_pisoteio_ic);
-
-        cardViewPoluicao = view.findViewById(R.id.cardview_poluicao);
-        imageViewPoluicaoIcon = view.findViewById(R.id.imageview_poluicao_ic);
-
-        cardViewTempAgua = view.findViewById(R.id.cardview_tempagua);
-        imageViewTempAguaIcon = view.findViewById(R.id.imageview_tempagua_ic);
-
-        cardViewOcupacaoHumana = view.findViewById(R.id.cardview_ocupacaohumana);
-        imageViewOcupacaoHumanaIcon = view.findViewById(R.id.imageview_ocupacaohumana_ic);
-
+        textViewContent = view.findViewById(R.id.text_question);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+
+        // Cards corretas
+
+        cardViewCapturaExcessiva = view.findViewById(R.id.cardview_answer1);
+        textViewCapturaExcessiva = view.findViewById(R.id.textview_answer1);
+        imageViewCapturaExcessivaIcon = view.findViewById(R.id.imageview_ic1);
+
+        cardViewPisoteio = view.findViewById(R.id.cardview_answer4);
+        textViewPisoteio = view.findViewById(R.id.textview_answer4);
+        imageViewPisoteioIcon = view.findViewById(R.id.imageview_ic4);
+
+        cardViewPoluicao = view.findViewById(R.id.cardview_answer5);
+        textViewPoluicao = view.findViewById(R.id.textview_answer5);
+        imageViewPoluicaoIcon = view.findViewById(R.id.imageview_ic5);
+
+        cardViewTempAgua = view.findViewById(R.id.cardview_answer7);
+        textViewCapturaTempAgua = view.findViewById(R.id.textview_answer7);
+        imageViewTempAguaIcon = view.findViewById(R.id.imageview_ic7);
+
+        // Cards incorretas
+
+        cardView2 = view.findViewById(R.id.cardview_answer2);
+        textView2 = view.findViewById(R.id.textview_answer2);
+        imageView2 = view.findViewById(R.id.imageview_ic2);
+
+        cardView3 = view.findViewById(R.id.cardview_answer3);
+        textView3 = view.findViewById(R.id.textview_answer3);
+        imageView3 = view.findViewById(R.id.imageview_ic3);
+
+        cardView6 = view.findViewById(R.id.cardview_answer6);
+        textView6 = view.findViewById(R.id.textview_answer6);
+        imageView6 = view.findViewById(R.id.imageview_ic6);
+
+        cardView2.setOnClickListener(incorrectListener);
+        cardView3.setOnClickListener(incorrectListener);
+        cardView6.setOnClickListener(incorrectListener);
     }
 
     private void setOnClickListeners(View view) {
@@ -235,13 +282,6 @@ public class ImpactosFragment3 extends Fragment {
             }
         });
 
-        cardViewOcupacaoHumana.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_impactosFragment3_to_impactosOcupacaoHumanaFragment);
-            }
-        });
-
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,7 +292,7 @@ public class ImpactosFragment3 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_impactosFragment3_to_impactosFragment4);
+                Navigation.findNavController(view).navigate(R.id.action_impactosFragment3_to_impactosOcupacaoHumanaFragmentText);
             }
         });
 
@@ -273,22 +313,25 @@ public class ImpactosFragment3 extends Fragment {
         });
     }
 
-    /**
-     * Inserts all the content text into the proper Views
-     */
-    private void insertContent(View view) {
-        textViewTitle.setText(HtmlCompat.fromHtml(
-                "Impacto da ação humana",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
-
-        textViewContent.setText(HtmlCompat.fromHtml(
-                "As zonas costeiras, em particular a zona entre marés, são zonas de interface entre o ambiente terrestre e o ambiente marinho, constituindo-se como um ecossistema frágil e delicado.<br>" +
-                        "<br>" +
-                        "No entanto, o facto de serem zonas de fácil acesso, leva a que estes locais estejam sujeitos a diferentes e fortes pressões causadas pela ação humana.<br><br>De entre as principais pressões, salientam-se:",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
-
-        textViewContent2.setText("Poderás aceder aos próximos ecrãs assim que assim que ficares a saber mais sobre estes problemas.");
-    }
+    private View.OnClickListener incorrectListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.cardview_answer2:
+                    dashboardViewModel.setImpactos2AsAnswered();
+                    setIncorrect(imageView2);
+                    break;
+                case R.id.cardview_answer3:
+                    dashboardViewModel.setImpactos3AsAnswered();
+                    setIncorrect(imageView3);
+                    break;
+                case R.id.cardview_answer6:
+                    dashboardViewModel.setImpactos6AsAnswered();
+                    setIncorrect(imageView6);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 }

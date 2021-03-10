@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment3">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="110dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textAlignment="center"
+            android:textColor="@color/colorTitleText"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:text="Pergunta"
+            app:layout_constraintBottom_toTopOf="@+id/btn_fabNext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Na tua opinião, quais serão as pressões a que estes locais estão sujeitos? Seleciona as opções que consideras corretas."
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_answer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardForegroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textview_answer1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Apanha de invertebrados"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/imageview_ic1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_next_24"
+                            app:tint="@color/colorAccent"
+                            android:layout_marginStart="8dp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_answer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardForegroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textview_answer2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Destruição da zona dunar"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/imageview_ic2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_next_24"
+                            app:tint="@color/colorAccent"
+                            android:layout_marginStart="8dp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_answer3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardForegroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textview_answer3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ruído"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/imageview_ic3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_next_24"
+                            app:tint="@color/colorAccent"
+                            android:layout_marginStart="8dp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_answer4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardForegroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textview_answer4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pisoteio"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/imageview_ic4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_next_24"
+                            app:tint="@color/colorAccent"
+                            android:layout_marginStart="8dp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_answer5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardForegroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textview_answer5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Poluição por plásticos"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/imageview_ic5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_next_24"
+                            app:tint="@color/colorAccent"
+                            android:layout_marginStart="8dp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_answer6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardForegroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textview_answer6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Aumento da temperatura do ar"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/imageview_ic6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_next_24"
+                            app:tint="@color/colorAccent"
+                            android:layout_marginStart="8dp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_answer7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardForegroundColor="@android:color/transparent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/textview_answer7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Aumento da temperatura da água"
+                            android:fontFamily="@font/open_sans"
+                            android:textColor="@color/colorTitleText"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:id="@+id/imageview_ic7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_next_24"
+                            app:tint="@color/colorAccent"
+                            android:layout_marginStart="8dp"
+                            android:visibility="invisible"/>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_fabNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_next"
+        android:backgroundTint="@color/colorPrimaryDark"
+        app:tint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        android:enabled="false"/>
+
+    <ImageButton
+        android:id="@+id/btn_prev"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_prev"
+        android:tint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
+        app:layout_constraintEnd_toStartOf="@+id/btn_fabNext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
