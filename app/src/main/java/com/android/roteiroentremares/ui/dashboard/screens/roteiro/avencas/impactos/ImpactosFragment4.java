@@ -94,6 +94,8 @@ public class ImpactosFragment4 extends Fragment {
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 }
                 return true;
+            case R.id.item_back_to_main_menu:
+                Navigation.findNavController(getView()).popBackStack(R.id.roteiroFragment ,false);
         }
         return false;
     }

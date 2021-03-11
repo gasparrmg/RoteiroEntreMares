@@ -35,10 +35,7 @@ import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-@AndroidEntryPoint
 public class EQuandoAMareSobeFragmentExercicio extends Fragment implements View.OnClickListener {
-
-    private DashboardViewModel dashboardViewModel;
 
     // Views
     private TextView textViewTitle;
@@ -56,7 +53,7 @@ public class EQuandoAMareSobeFragmentExercicio extends Fragment implements View.
     private ImageView imageViewAnswer3;
     private TextView textViewAnswer3;
 
-    private ExtendedFloatingActionButton buttonFabNext;
+    private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
@@ -68,8 +65,6 @@ public class EQuandoAMareSobeFragmentExercicio extends Fragment implements View.
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_e_quando_a_mare_sobe_exercicio, container, false);
-
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         isCorrect = false;
 
@@ -87,7 +82,7 @@ public class EQuandoAMareSobeFragmentExercicio extends Fragment implements View.
     }
 
     private void initToolbar() {
-        SpannableString s = new SpannableString("Histórias do Passado");
+        SpannableString s = new SpannableString("E quando a maré sobe?");
         s.setSpan(new TypefaceSpan(getActivity(), "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -122,6 +117,8 @@ public class EQuandoAMareSobeFragmentExercicio extends Fragment implements View.
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 }
                 return true;
+            case R.id.item_back_to_main_menu:
+                Navigation.findNavController(getView()).popBackStack(R.id.roteiroFragment ,false);
         }
         return false;
     }
@@ -161,8 +158,7 @@ public class EQuandoAMareSobeFragmentExercicio extends Fragment implements View.
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboardViewModel.setEQuandoAMareSobeAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.roteiroFragment ,false);
+                Navigation.findNavController(view).navigate(R.id.action_EQuandoAMareSobeFragmentExercicio_to_EQuandoAMareSobeFragment3);
             }
         });
     }

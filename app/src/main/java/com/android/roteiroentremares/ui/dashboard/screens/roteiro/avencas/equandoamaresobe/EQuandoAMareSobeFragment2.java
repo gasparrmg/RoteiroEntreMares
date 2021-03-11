@@ -151,7 +151,7 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
             public void onClick(View v) {
                 EQuandoAMareSobeFragment2Directions.ActionEQuandoAMareSobeFragment2ToEQuandoAMareSobeDetailsFragment action = EQuandoAMareSobeFragment2Directions.actionEQuandoAMareSobeFragment2ToEQuandoAMareSobeDetailsFragment(
                         "Sargos/Safias (Diplodus sargus)",
-                        "Espécie de peixe explorada comercialmente. Ocorre em pequenos cardumes ou solitário. Vive em fundos rochosos ou arenosos, até 160m de profundidade. Durante a maré-cheia, estas animais utilizam a plataforma rochosa para se alimentar . Alimenta-se de crustáceos, vermes e moluscos (espécie “visitante de maré”)",
+                        "Espécie de peixe explorada comercialmente. Ocorre em pequenos cardumes ou solitário. Vive em fundos rochosos ou arenosos, até 160m de profundidade. Durante a maré-cheia, estes animais utilizam a plataforma rochosa para se alimentar . Alimenta-se de crustáceos, vermes e moluscos (espécie “visitante de maré”)",
                         R.drawable.img_equandoamaresobe_sargo
                 );
                 Navigation.findNavController(view).navigate(action);
@@ -163,7 +163,7 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
             public void onClick(View v) {
                 EQuandoAMareSobeFragment2Directions.ActionEQuandoAMareSobeFragment2ToEQuandoAMareSobeDetailsFragment action = EQuandoAMareSobeFragment2Directions.actionEQuandoAMareSobeFragment2ToEQuandoAMareSobeDetailsFragment(
                         "Bodião (Symphodus sp)",
-                        "Espécie de peixe explorada comercialmente. Vive em costas rochosas, cobertas de algas, até profundidades de 30-50m. Durante a maré-cheia, estas animais utilizam a plataforma rochosa para se alimentarem. Alimenta-se de moluscos, vermes e crustáceos (espécie “visitante de maré”)",
+                        "Espécie de peixe explorada comercialmente. Vive em costas rochosas, cobertas de algas, até profundidades de 30-50m. Durante a maré-cheia, estes animais utilizam a plataforma rochosa para se alimentarem. Alimenta-se de moluscos, vermes e crustáceos (espécie “visitante de maré”)",
                         R.drawable.img_equandoamaresobe_bodiao
                 );
                 Navigation.findNavController(view).navigate(action);
@@ -175,7 +175,7 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
             public void onClick(View v) {
                 EQuandoAMareSobeFragment2Directions.ActionEQuandoAMareSobeFragment2ToEQuandoAMareSobeDetailsFragment action = EQuandoAMareSobeFragment2Directions.actionEQuandoAMareSobeFragment2ToEQuandoAMareSobeDetailsFragment(
                         "Peixe-Rei (Atherina presbyter)",
-                        "Espécie de peixe explorada comercialmente. Ocorre em cardumes. Vive em água salina ou salobra. Durante a maré-cheia, estas animais utilizam a plataforma rochosa para se alimentar. Alimenta-se de pequenos crustáceos, moluscos, larvas de insetos (visitante de maré)",
+                        "Espécie de peixe explorada comercialmente. Ocorre em cardumes. Vive em água salina ou salobra. Durante a maré-cheia, estes animais utilizam a plataforma rochosa para se alimentar. Alimenta-se de pequenos crustáceos, moluscos, larvas de insetos (visitante de maré)",
                         R.drawable.img_equandoamaresobe_peixerei
                 );
                 Navigation.findNavController(view).navigate(action);

@@ -80,14 +80,12 @@ public class OnBoardingFragment14 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "O que é uma maré e porque é que ocorre?",
+                "O que causa as marés mortas?",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>O que causa as marés mortas?</b>" +
-                        "<br><br>" +
-                        "As marés mortas são as mais fracas, quando a maré alta não está muito alta. Estas marés ocorrem quando a lua está no primeiro ou último quarto (quando vemos metade de sua face), e as forças gravitacionais da lua e do sol estão num ângulo de 90 graus, praticamente a anularem-se uma a outra.",
+                "As marés mortas são as mais fracas, quando a maré alta não está muito alta. Estas marés ocorrem quando a lua está no primeiro ou último quarto (quando vemos metade da sua face), e as forças gravitacionais da lua e do sol estão num ângulo de 90 graus, praticamente a anularem-se uma a outra.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

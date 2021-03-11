@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/item_text_to_speech"
-        android:title="Ouvir"
-        android:icon="@drawable/ic_volume"
-        app:showAsAction="ifRoom"/>
+        android:title="Ouvir conteúdo"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/item_back_to_main_menu"
+        android:title="Voltar para o menu principal"
+        app:showAsAction="never"/>
 </menu>

@@ -93,17 +93,15 @@ public class OnBoardingFragment8 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "O que é uma maré e porque é que ocorre?",
+                "Mais alguma coisa afeta as marés?",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         // TextView with a Clickable Span
 
-        SpannableString link = ClickableString.makeLinkSpan("Clica aqui", new View.OnClickListener() {
+        SpannableString link = ClickableString.makeLinkSpan("Vê a imagem seguinte", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //ImageUtils.createImageDialog(getContext(), R.drawable.img_tipos_mares);
                 Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
                 intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, R.drawable.img_tipos_mares);
                 startActivity(intent);
@@ -111,8 +109,6 @@ public class OnBoardingFragment8 extends Fragment {
         });
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>Mais alguma coisa afeta as marés?</b>" +
-                        "<br><br>" +
                         "<b>Marés vivas</b> - ocorrem nos períodos de Lua Nova e Lua Cheia, quando o Sol e a Lua se encontram em conjuntura (i.e. quando estão diretamente alinhados). As forças gravitacionais estão no seu máximo originando marés de grande amplitude;" +
                         "<br><br>" +
                         "<b>Marés mortas</b> - ocorrem nos períodos de Quarto Crescente e Minguante, quando o Sol e a Lua se encontram em quadratura (i.e. quando formam um ângulo de 90º com a Terra). As forças gravitacionais atuam em oposição e estão no seu mínimo originando marés de fraca amplitude." +
@@ -120,7 +116,6 @@ public class OnBoardingFragment8 extends Fragment {
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
         textViewContent.append(link);
-        textViewContent.append(" para veres a imagem.");
         ClickableString.makeLinksFocusable(textViewContent);
     }
 

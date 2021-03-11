@@ -50,7 +50,7 @@ public class QuestionFactory {
         onBoardingQuestions.add(new Question(
                 3,
                 "Em alguns lugares ocorre apenas uma maré alta e uma maré baixa por dia, isto deve-se:",
-                "À inclinação do eixo de rotação da terra em relação ao plano da sua órbita ao redor do sol em conjunto com a inclinação da órbita da lua em torno da Terra.",
+                "À inclinação do eixo de rotação da terra ao redor do sol, em conjunto com a inclinação da órbita da lua em torno da Terra.",
                 "À inclinação do eixo de rotação da terra em relação ao plano da sua órbita ao redor do sol.",
                 "À inclinação da órbita da lua em torno da Terra.",
                 null,

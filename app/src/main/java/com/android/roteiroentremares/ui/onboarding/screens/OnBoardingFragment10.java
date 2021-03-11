@@ -85,7 +85,7 @@ public class OnBoardingFragment10 extends Fragment {
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>Há outros fatores que também podem afetar as marés. Clica no botão abaixo e tenta descobrir quais são.</b>",
+                "<b>Há outros fatores que também podem afetar as marés. Carrega no botão abaixo e tenta descobrir quais são.</b>",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

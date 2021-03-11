@@ -84,11 +84,8 @@ public class OnBoardingFragment6 extends Fragment {
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Mas esta é apenas uma explicação da força de maré - não das marés reais. De facto, a Terra não está coberta na totalidade por oceanos. Existem os continentes, e essa terra “atrapalha”. Os continentes impedem que a água siga perfeitamente a força exercida pela lua. É por isso que em alguns lugares a diferença entre a maré alta e a baixa não é muito grande e, noutros lugares, a diferença é drástica." +
-                        "<br><br>" +
-                        "Isso explica a primeira maré alta de cada dia mas e a segunda maré alta? O oceano também é projetado no lado da Terra oposto à lua. Mas como?!" +
-                        "<br><br>" +
-                        "Se a gravidade da Lua puxa os oceanos na sua direção, como é que o oceano também pode aumentar no lado da Terra que fica longe da Lua?",
+                "Mas esta é penas uma explicação da força de maré - não das marés reais. De facto, a Terra não está coberta na totalidade por oceanos. Existem os continentes, e essa terra “atrapalha”. Os continentes impedem que a água siga perfeitamente a força exercida pela lua. É por isso que em alguns lugares a diferença entre a maré alta e a baixa não é muito grande e, noutros lugares, a diferença é drástica.<br><br>" +
+                "Isso explica a primeira maré alta de cada dia mas e a segunda maré alta? O oceano também é projetado no lado da Terra oposto à lua. <b>Mas como?!</b>",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }
