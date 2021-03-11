@@ -3,11 +3,6 @@ package com.android.roteiroentremares.ui.onboarding.screens;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.core.text.HtmlCompat;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,24 +10,35 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
+import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.android.roteiroentremares.util.ClickableString;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 
-public class OnBoardingFragment5 extends Fragment {
+import dagger.hilt.android.AndroidEntryPoint;
 
-    private static final int SEQUENCE_NUMBER = 4;
+@AndroidEntryPoint
+public class AvencasOnBoardingFragment3 extends Fragment {
+
+    private static final int SEQUENCE_NUMBER = 3;
+
+    // ViewModel
+    private OnBoardingViewModel onBoardingViewModel;
 
     // Views
     private TextView textViewTitle;
     private TextView textViewContent;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
-    private CircularProgressIndicator progressBar;
     private ViewPager2 viewPager;
 
-    public OnBoardingFragment5() {
+    public AvencasOnBoardingFragment3() {
         // Required empty public constructor
     }
 
@@ -40,21 +46,18 @@ public class OnBoardingFragment5 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_on_boarding5, container, false);
+        View view = inflater.inflate(R.layout.fragment_avencas_on_boarding2, container, false);
+
+        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        progressBar = view.findViewById(R.id.progressBar);
-        viewPager = getActivity().findViewById(R.id.viewPager);
+        viewPager = getActivity().findViewById(R.id.viewPager_avencas);
 
         setOnClickListeners();
         insertContent();
-
-        // Progress Bar update
-        progressBar.setMax(viewPager.getAdapter().getItemCount());
-        progressBar.setProgress(SEQUENCE_NUMBER);
 
         return view;
     }
@@ -66,7 +69,12 @@ public class OnBoardingFragment5 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(SEQUENCE_NUMBER);
+                // User finished onBoarding sequence
+                onBoardingViewModel.setOnBoarding(true);
+
+                Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -83,14 +91,17 @@ public class OnBoardingFragment5 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "O que é uma maré e porque é que ocorre?",
+                "Área Marinha Protegida das Avencas",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Conforme a rotação da Terra, cada região passa por duas marés em cada dia. Podemos dizer, então, que em pontos opostos temos duas marés altas e duas marés baixas, alternado a cada 6 horas aproximadamente.<br>" +
-                        "<br>" +
-                        "Este ciclo de duas marés altas e duas marés baixas ocorre quase todos os dias na maior parte das zonas costeiras do globo.",
+                "Antes de começares a explorar esta zona, lembra-te que é uma <b>Zona Protegida</b>.<br><br>" +
+                        "Evita a interferência com os organismos marinhos, nomeadamente:<br>" +
+                        "- Reduz ao mínimo possível o pisoteio (procura andar apenas pelos locais assinalados)<br>" +
+                        "- Sempre que levantares uma rocha, volta a colocá-la tal como estava (não deixes a face interior exposta)<br>" +
+                        "- Não faças recolhas de nenhum organismo (podes sempre fotografá-los)<br>" +
+                        "- Não deixes o teu lixo para trás.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

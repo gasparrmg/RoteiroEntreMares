@@ -436,7 +436,19 @@
         <fragment
             android:id="@+id/EQuandoAMareSobeFragmentExercicio"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragmentExercicio"
-            android:label="EQuandoAMareSobeFragmentExercicio" />
+            android:label="EQuandoAMareSobeFragmentExercicio" >
+            <action
+                android:id="@+id/action_EQuandoAMareSobeFragmentExercicio_to_EQuandoAMareSobeFragment3"
+                app:destination="@id/EQuandoAMareSobeFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/EQuandoAMareSobeFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment3"
+            android:label="EQuandoAMareSobeFragment3" />
     </navigation>
     <navigation android:id="@+id/navigation_impactos"
         app:startDestination="@id/impactosFragment">
@@ -446,7 +458,11 @@
             android:label="ImpactosFragment" >
             <action
                 android:id="@+id/action_impactosFragment_to_impactosFragment3Text"
-                app:destination="@id/impactosFragment3Text" />
+                app:destination="@id/impactosFragment3Text"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
         <fragment
             android:id="@+id/impactosFragment3"

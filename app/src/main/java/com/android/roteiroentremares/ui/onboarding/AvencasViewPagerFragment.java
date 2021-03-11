@@ -13,6 +13,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.onboarding.adapters.ViewPagerAdapter;
 import com.android.roteiroentremares.ui.onboarding.screens.AvencasOnBoardingFragment1;
 import com.android.roteiroentremares.ui.onboarding.screens.AvencasOnBoardingFragment2;
+import com.android.roteiroentremares.ui.onboarding.screens.AvencasOnBoardingFragment3;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment1;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class AvencasViewPagerFragment extends Fragment {
         ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(new AvencasOnBoardingFragment1());
         fragmentList.add(new AvencasOnBoardingFragment2());
+        fragmentList.add(new AvencasOnBoardingFragment3());
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(
                 fragmentList,

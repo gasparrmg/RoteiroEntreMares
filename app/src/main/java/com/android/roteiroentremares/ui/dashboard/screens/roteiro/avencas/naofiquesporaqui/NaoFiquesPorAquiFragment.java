@@ -97,10 +97,12 @@ public class NaoFiquesPorAquiFragment extends Fragment {
                 if (tts.isSpeaking()) {
                     tts.stop();
                 } else {
-                    String text = "Entre as praias da Bafureira e da Parede encontramos a praia das Avencas de dimensão pequena mas muito especial. As características geológicas e biológicas desta praia levaram à sua classificação em 1998 como Zona de Interesse Biofísico das Avencas (ZIBA). Os trabalhos realizados desde então, monitorizações regulares e algumas consultas públicas, levaram à proposta de reclassificação desta área. O objetivo desta reclassificação foi incluir toda a plataforma rochosa nas medidas de proteção e preservação do habitat entre-marés e respetiva biodiversidade. A Resolução de Conselho de Ministros nº 64/2016 aprova a Área Marinha Protegida das Avencas (AMP das Avencas).";
+                    String text = "Entre as praias da Bafureira e da Parede encontramos a praia das Avencas de dimensão pequena mas muito especial. As características geológicas e biológicas desta praia levaram à sua classificação como Área Marinha Protegida das Avencas (AMP das Avencas), com o objetivo de proteger e preservar do habitat entre-marés e respetiva biodiversidade.";
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 }
                 return true;
+            case R.id.item_back_to_main_menu:
+                Navigation.findNavController(getView()).popBackStack(R.id.roteiroFragment ,false);
         }
         return false;
     }
@@ -168,12 +170,12 @@ public class NaoFiquesPorAquiFragment extends Fragment {
         });
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Entre as praias da Bafureira e da Parede encontramos a praia das Avencas de dimensão pequena mas muito especial. As características geológicas e biológicas desta praia levaram à sua classificação em 1998 como Zona de Interesse Biofísico das Avencas (ZIBA). Os trabalhos realizados desde então, monitorizações regulares e algumas consultas públicas, levaram à proposta de reclassificação desta área. O objetivo desta reclassificação foi incluir toda a plataforma rochosa nas medidas de proteção e preservação do habitat entre-marés e respetiva biodiversidade. A Resolução de Conselho de Ministros nº 64/2016 aprova a ",
+                "Entre as praias da Bafureira e da Parede encontramos a praia das Avencas de dimensão pequena mas muito especial. As características geológicas e biológicas desta praia levaram à sua classificação como ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.append(linkAvencas);
-        textViewContent.append(" (AMP das Avencas).");
+        textViewContent.append(" (AMP das Avencas), com o objetivo de proteger e preservar do habitat entre-marés e respetiva biodiversidade.");
         ClickableString.makeLinksFocusable(textViewContent);
 
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {

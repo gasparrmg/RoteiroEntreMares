@@ -76,7 +76,7 @@ public class NaoFiquesPorAquiFragment3 extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.roteiro_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -88,13 +88,15 @@ public class NaoFiquesPorAquiFragment3 extends Fragment {
                     tts.stop();
                 } else {
                     String text = HtmlCompat.fromHtml(
-                            "Pelo facto de ser uma área protegida, neste local é interdita a apanha de exemplares de fauna e flora, exceto para estudos científicos, a ancoragem de qualquer tipo de embarcação, exceto as inseridas em projetos de investigação científica ou de conservação da natureza, a instalação de unidades de aquacultura e a prática de desportos náuticos motorizados. São permitidos alguns tipos de pesca lúdica, mediante alguns condicionalismos, como a pesca submarina e a pesca à linha (ambos os tipos de pesca apenas são permitidos mediante a apresentação do cartão de pescador sustentável). A deslocação sobre as plataformas rochosas, aquando da maré baixa, deve seguir os caminhos demarcados e/ou as demais orientações existentes para o efeito." +
+                            "Pelo facto de ser uma área protegida, neste local é interdita a apanha de exemplares de fauna e flora, exceto para estudos científicos. São permitidos alguns tipos de pesca lúdica, como a pesca submarina e a pesca à linha (mediante a apresentação do <b>cartão de pescador sustentável</b>). A deslocação sobre as plataformas rochosas, aquando da maré baixa, deve seguir os caminhos demarcados." +
                                     "<br><br><b>O que será um “pescador sustentável”? Esta questão fica para investigares em casa, ou na escola.</b>",
                             HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 }
                 return true;
+            case R.id.item_back_to_main_menu:
+                Navigation.findNavController(getView()).popBackStack(R.id.roteiroFragment ,false);
         }
         return false;
     }
@@ -133,8 +135,8 @@ public class NaoFiquesPorAquiFragment3 extends Fragment {
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Pelo facto de ser uma área protegida, neste local é interdita a apanha de exemplares de fauna e flora, exceto para estudos científicos, a ancoragem de qualquer tipo de embarcação, exceto as inseridas em projetos de investigação científica ou de conservação da natureza, a instalação de unidades de aquacultura e a prática de desportos náuticos motorizados. São permitidos alguns tipos de pesca lúdica, mediante alguns condicionalismos, como a pesca submarina e a pesca à linha (ambos os tipos de pesca apenas são permitidos mediante a apresentação do cartão de pescador sustentável). A deslocação sobre as plataformas rochosas, aquando da maré baixa, deve seguir os caminhos demarcados e/ou as demais orientações existentes para o efeito." +
-                "<br><br><b>O que será um “pescador sustentável”? Esta questão fica para investigares em casa, ou na escola.</b>",
+                "Pelo facto de ser uma área protegida, neste local é interdita a apanha de exemplares de fauna e flora, exceto para estudos científicos. São permitidos alguns tipos de pesca lúdica, como a pesca submarina e a pesca à linha (mediante a apresentação do <b>cartão de pescador sustentável</b>). A deslocação sobre as plataformas rochosas, aquando da maré baixa, deve seguir os caminhos demarcados." +
+                        "<br><br><b>O que será um “pescador sustentável”? Esta questão fica para investigares em casa, ou na escola.</b>",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 

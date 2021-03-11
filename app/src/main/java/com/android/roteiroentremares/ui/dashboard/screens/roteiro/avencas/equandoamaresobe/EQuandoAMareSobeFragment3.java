@@ -1,15 +1,6 @@
-package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado;
+package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.text.HtmlCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -20,27 +11,35 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
-import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 
 import java.util.Locale;
 
-public class HistoriasPassadoFragment extends Fragment {
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+public class EQuandoAMareSobeFragment3 extends Fragment {
+
+    private DashboardViewModel dashboardViewModel;
 
     // Views
-    private TextView textViewTitle;
     private TextView textViewContent;
-    private FloatingActionButton buttonFabNext;
+    private ExtendedFloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
-    private Button buttonParaSaberesMais;
 
     private TextToSpeech tts;
 
@@ -48,7 +47,9 @@ public class HistoriasPassadoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_historias_passado, container, false);
+        View view = inflater.inflate(R.layout.fragment_e_quando_a_mare_sobe3, container, false);
+
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         initViews(view);
         setOnClickListeners(view);
@@ -64,7 +65,7 @@ public class HistoriasPassadoFragment extends Fragment {
     }
 
     private void initToolbar() {
-        SpannableString s = new SpannableString("Histórias do Passado");
+        SpannableString s = new SpannableString("E quando a maré sobe?");
         s.setSpan(new TypefaceSpan(getActivity(), "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -95,7 +96,12 @@ public class HistoriasPassadoFragment extends Fragment {
                 if (tts.isSpeaking()) {
                     tts.stop();
                 } else {
-                    String text = "Sabes o que é um fóssil? Os fósseis são restos de seres vivos (ex. ossos, conchas, dentes) ou de evidências de suas atividades biológicas, preservados em materiais geológicos, fundamentalmente nas rochas sedimentares. Os fósseis são entidades geológicas portadoras de informação paleobiológica e, inseridos nos materiais geológicos (por exemplo, gelo de glaciares, âmbar, camadas sedimentares) constituem o registo fóssil, o qual contém inúmeros restos e vestígios dos mais variados seres do passado geológico da Terra.";
+                    String text = HtmlCompat.fromHtml(
+                            "De facto, com a chegada da maré, estas plataformas são visitadas por muitas outras espécies de peixes (para além das 3 espécies assinaladas), muitas delas importantes para a nossa alimentação, que aproveitam a riqueza e diversidade destes locais para se alimentar.<br>" +
+                                    "<br>" +
+                                    "Esta é uma das razões pelas quais estes locais devem ser protegidos.",
+                            HtmlCompat.FROM_HTML_MODE_LEGACY
+                    ).toString();
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 }
                 return true;
@@ -106,33 +112,24 @@ public class HistoriasPassadoFragment extends Fragment {
     }
 
     private void initViews(View view) {
-        textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        buttonParaSaberesMais = view.findViewById(R.id.button_parasaberesmais);
     }
 
     private void setOnClickListeners(View view) {
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_global_roteiroFragment);
+                Navigation.findNavController(view).popBackStack();
             }
         });
 
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment_to_historiasPassadoFragment2);
-            }
-        });
-
-        buttonParaSaberesMais.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=nSGQ-D5AaXc&t=526s"));
-                startActivity(browserIntent);
+                dashboardViewModel.setEQuandoAMareSobeAsFinished();
+                Navigation.findNavController(view).popBackStack(R.id.roteiroFragment,false);
             }
         });
     }
@@ -141,16 +138,10 @@ public class HistoriasPassadoFragment extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        textViewTitle.setText(HtmlCompat.fromHtml(
-                "Que história nos contam os fósseis?",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
-
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>Sabes o que é um fóssil?</b>" +
-                        "<br><br>" +
-                        "Os fósseis são restos de seres vivos (ex. ossos, conchas, dentes) ou de evidências de suas atividades biológicas, preservados em materiais geológicos, fundamentalmente nas rochas sedimentares. \n" +
-                        "Os fósseis são entidades geológicas portadoras de informação paleobiológica e, inseridos nos materiais geológicos (por exemplo, gelo de glaciares, âmbar, camadas sedimentares) constituem o registo fóssil, o qual contém inúmeros restos e vestígios dos mais variados seres do passado geológico da Terra.",
+                "De facto, com a chegada da maré, estas plataformas são visitadas por muitas outras espécies de peixes (para além das 3 espécies assinaladas), muitas delas importantes para a nossa alimentação, que aproveitam a riqueza e diversidade destes locais para se alimentar.<br>" +
+                        "<br>" +
+                        "Esta é uma das razões pelas quais estes locais devem ser protegidos.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 

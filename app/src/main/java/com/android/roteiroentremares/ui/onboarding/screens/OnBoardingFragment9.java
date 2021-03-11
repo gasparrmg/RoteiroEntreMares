@@ -80,12 +80,13 @@ public class OnBoardingFragment9 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "O que é uma maré e porque é que ocorre?",
+                "Porque é que um ciclo de marés leva 24 horas e 50 minutos?",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>Porque é que um ciclo de marés leva 24 horas e 50 minutos?</b><br><br>Na medida em que a rotação da Terra ocorre num período de 24 horas, a lua faz a sua viagem de 27,3 dias em redor da Terra. Em 24 horas, a lua moveu-se o suficiente, para levar mais 50 minutos para que qualquer ponto específico da Terra alcance a lua.<br><br>Cada preia-mar ocorrerá a cada 12 horas e 25 minutos e o tempo decorrido entre a baixa-mar e preia-mar é de aproximadamente 6 horas e 14 minutos.",
+                "Enquanto que a rotação da Terra ocorre num período de 24 horas, a lua faz a sua viagem em redor da Terra em 27,3 dias. Em 24 horas, a lua moveu-se o suficiente, para levar mais 50 minutos para que qualquer ponto específico da Terra “alcance” a lua.<br><br>" +
+                        "Cada preia-mar ocorrerá a cada 12 horas e 25 minutos e o tempo decorrido entre a baixa-mar e a preia-mar é de aproximadamente 6 horas e 14 minutos.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

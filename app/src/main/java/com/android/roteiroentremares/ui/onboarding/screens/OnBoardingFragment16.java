@@ -80,15 +80,12 @@ public class OnBoardingFragment16 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "O que é uma maré e porque é que ocorre?",
+                "Porque é que em alguns lugares ocorre apenas uma maré alta e uma maré baixa por dia?",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>Porque é que em alguns lugares ocorre apenas uma maré alta e uma maré baixa por dia?</b>" +
-                        "<br><br>" +
-                        "É aqui que prever as marés fica mais complicado. A lua não orbita a Terra diretamente ao redor do equador. Por um lado, vamos recordar que o eixo de rotação da Terra é inclinado cerca de 23,5 graus em relação ao plano da sua órbita ao redor do sol. Essa inclinação é o que causa as estações do ano. Além disso, a órbita da lua em torno da Terra é inclinada cerca de 5 graus em relação ao plano da órbita da Terra em torno do sol." +
-                        "<br><br>" +
+                "É aqui que prever as marés fica mais complicado. A lua não orbita a Terra diretamente ao redor do equador. Por um lado, vamos recordar que o eixo de rotação da Terra é inclinado cerca de 23,5 graus em relação ao plano da sua órbita ao redor do sol. Essa inclinação é o que causa as estações do ano. Além disso, a órbita da lua em torno da Terra é inclinada cerca de 5 graus em relação ao plano da órbita da Terra em torno do sol.<br><br>" +
                         "Assim, a saliência máxima da maré está geralmente acima ou abaixo do equador.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));

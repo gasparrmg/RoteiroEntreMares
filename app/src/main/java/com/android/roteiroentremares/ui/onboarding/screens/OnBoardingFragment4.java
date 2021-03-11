@@ -101,7 +101,7 @@ public class OnBoardingFragment4 extends Fragment {
         });
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "As marés são movimentos periódicos e previsíveis da subida e descida do nível das águas (que equivalem a uma onda de grande comprimento de onda).<br><br>As marés altas e as marés baixas são causadas pela ação conjunta da lua e do sol, no entanto, a força gravitacional da lua é mais forte devido à sua maior proximidade. A atração gravitacional da Lua gera o que podemos chamar a força de maré.<br><br>A força de atração da lua sobre a Terra faz com que a Terra - e a água - seja projetada no lado mais próximo da Lua e também no lado mais distante dela.<br><br>Para compreenderes melhor este fenómeno vê o ",
+                "As marés são movimentos periódicos e previsíveis da subida e descida do nível das águas, que são causadas pela ação conjunta da lua e do sol, no entanto, a força gravitacional da lua é mais forte devido à sua maior proximidade.<br><br>A força de atração da lua sobre a Terra faz com que a Terra - e a água - seja projetada no lado mais próximo da Lua e também no lado mais distante dela.<br><br>Para compreenderes melhor este fenómeno vê o ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
         textViewContent.append(link);

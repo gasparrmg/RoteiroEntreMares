@@ -80,16 +80,13 @@ public class OnBoardingFragment12 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "O que é uma maré e porque é que ocorre?",
+                "Porque é que as marés mais altas ocorrem quando está lua nova ou cheia?",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "<b>Porque é que as marés mais altas ocorrem quando está lua nova ou lua cheia?</b>" +
-                        "<br><br>" +
-                        "Dizemos que está lua nova (escura) quando a lua está entre a Terra e o sol, e lua cheia quando a Terra está entre a lua e o sol. Em ambos os casos, a atração gravitacional do sol na Terra é adicionada à atração gravitacional da lua na Terra. Este trabalho em conjunto, faz com que as marés se tornem ainda mais altas – Marés vivas" +
-                        "<br><br>" +
-                        "Em grande parte dos lugares, as marés mais altas costumam ocorrer um ou dois dias após a lua nova ou cheia. Isso ocorre porque as ondas gigantes sofrem algum atrito no oceano, levando a que a maré leve um ou dois dias para atingir a sua altura máxima.",
+                "A lua surge Nova (escura) quando está entre a Terra e o sol e Cheia quando é a Terra que está entre a lua e o sol. Em ambos os casos, a atração gravitacional do sol na Terra é adicionada à atração gravitacional da lua na Terra., o que faz com que as marés se tornem ainda mais altas – <b>Marés vivas</b><br><br>" +
+                "Em grande parte dos lugares, as marés mais altas costumam ocorrer em um ou dois dias após a lua nova ou cheia. Isso ocorre porque as ondas gigantes sofrem algum atrito no oceano, levando a que a maré leve um ou dois dias para atingir a sua altura máxima.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

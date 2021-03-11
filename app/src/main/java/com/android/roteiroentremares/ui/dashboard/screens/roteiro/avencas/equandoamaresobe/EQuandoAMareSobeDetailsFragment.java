@@ -120,6 +120,8 @@ public class EQuandoAMareSobeDetailsFragment extends Fragment {
                     tts.speak(content, TextToSpeech.QUEUE_FLUSH, null, null);
                 }
                 return true;
+            case R.id.item_back_to_main_menu:
+                Navigation.findNavController(getView()).popBackStack(R.id.roteiroFragment ,false);
         }
         return false;
     }

@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.onboarding.screens;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,21 +19,16 @@ import android.widget.TextView;
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
 import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
+import com.android.roteiroentremares.util.ClickableString;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-@AndroidEntryPoint
 public class AvencasOnBoardingFragment2 extends Fragment {
 
     private static final int SEQUENCE_NUMBER = 2;
-
-    // ViewModel
-    /*@Inject
-    OnBoardingViewModel onBoardingViewModel;*/
-    private OnBoardingViewModel onBoardingViewModel;
 
     // Views
     private TextView textViewTitle;
@@ -49,8 +46,6 @@ public class AvencasOnBoardingFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_avencas_on_boarding2, container, false);
-
-        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
@@ -72,11 +67,7 @@ public class AvencasOnBoardingFragment2 extends Fragment {
             @Override
             public void onClick(View v) {
                 // User finished onBoarding sequence
-                onBoardingViewModel.setOnBoarding(true);
-
-                Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
 
@@ -97,19 +88,28 @@ public class AvencasOnBoardingFragment2 extends Fragment {
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
+        SpannableString link = ClickableString.makeLinkSpan("tabela de marés", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.hidrografico.pt/m.mare"));
+                startActivity(browserIntent);
+            }
+        });
+
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Antes de começares a explorar esta zona, lembra-te que é uma Zona Protegida." +
-                        "<br><br>" +
-                        "Evita a interferência com os organismos marinhos, nomeadamente:" +
-                        "<br>" +
-                        "- Reduz ao mínimo possível o pisoteio (procura andar apenas pelos locais assinalados)" +
-                        "<br>" +
-                        "- Sempre que levantares uma rocha, volta a colocá-la tal como estava (não deixes a face interior exposta)" +
-                        "<br>" +
-                        "- Não faças recolhas de nenhum organismo (podes sempre fotografá-los)" +
-                        "<br>" +
-                        "- Não deixes o teu lixo para trás.",
+                "<b>Atenção:</b><br><br>" +
+                        "Tal como referido no início desta App, para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
+        textViewContent.append(link);
+        textViewContent.append(HtmlCompat.fromHtml(
+                ". No caso da plataforma rochosa das Avencas, tens de selecionar o <b>Porto de Cascais</b>, tem em atenção o seguinte:<br>" +
+                        "- Altura da maré-baixa: <b>tem de ser inferior a 0.9m</b><br>" +
+                        "- Intervalo de tempo com acesso seguro à zona: 2h antes até 2h depois da hora da maré-baixa<br>" +
+                        "<br>" +
+                        "Confirma sempre o estado do mar, antes de ires visitar estes locais. A ondulação deve estar abaixo dos 2m.",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
+        ClickableString.makeLinksFocusable(textViewContent);
     }
 }

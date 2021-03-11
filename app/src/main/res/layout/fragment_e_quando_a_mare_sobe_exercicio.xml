@@ -173,18 +173,16 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_fabNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Acabar"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/poppins"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_next"
         android:backgroundTint="@color/colorPrimaryDark"
-        app:iconTint="@android:color/white"
-        app:iconPadding="8dp"
-        app:icon="@drawable/ic_next"
+        app:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
