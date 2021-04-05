@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -51,6 +52,8 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
         setContentView(R.layout.activity_user_dashboard);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         initToolbar();
 

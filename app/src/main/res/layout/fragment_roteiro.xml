@@ -23,7 +23,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="24dp"
-                android:textSize="22dp"
+                android:textSize="20sp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/colorTitleText"
                 android:text="Percurso principal"/>
@@ -55,7 +55,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:padding="16dp">
 
                         <TextView
@@ -65,7 +65,19 @@
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="center_vertical"
                             android:text="Biodiversidade"
-                            android:textColor="@color/colorTitleText" />
+                            android:textColor="@color/colorTitleText"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/textView_biodiversidade_is_finished"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center_vertical|end"
+                            android:text="TERMINADO"
+                            android:textColor="@android:color/holo_green_dark"
+                            android:visibility="invisible"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -79,7 +91,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="24dp"
-                android:textSize="22dp"
+                android:textSize="20sp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/colorTitleText"
                 android:text="Percursos complementares"/>
@@ -102,7 +114,7 @@
                     <ImageView
                         android:id="@+id/imageview_equandoamaresobe"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"
@@ -159,7 +171,7 @@
                     <ImageView
                         android:id="@+id/imageview_impactos"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"
@@ -216,7 +228,7 @@
                     <ImageView
                         android:id="@+id/imageview_historiaspassado"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"
@@ -273,7 +285,7 @@
                     <ImageView
                         android:id="@+id/imageview_naofiquesporaqui"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"

@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".RoteiroEntreMaresApplication"
@@ -24,44 +25,72 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoPocasDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoZonacaoDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity
+            android:name=".ui.common.ImageFullscreenFileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.common.ImageFullscreenActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.EspecieFilterActivity"
             android:parentActivityName=".ui.dashboard.GuiaDeCampoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.common.MediaPlayerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.common.MediaPlayerResourceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ui.dashboard.screens.artefactos.NewArtefactoActivity"
             android:parentActivityName=".ui.dashboard.ArtefactosActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.screens.artefactos.EditArtefactoActivity"
             android:parentActivityName=".ui.dashboard.ArtefactosActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.GuiaDeCampoActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".ui.dashboard.UserDashboardActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.ArtefactosActivity"
             android:launchMode="singleTop"
             android:parentActivityName=".ui.dashboard.UserDashboardActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.dashboard.PessoalActivity"
-            android:parentActivityName=".ui.dashboard.UserDashboardActivity" />
+            android:parentActivityName=".ui.dashboard.UserDashboardActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.dashboard.UserDashboardActivity"
+            android:configChanges="orientation|screenSize"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.onboarding.MainActivity">
+        <activity
+            android:name=".ui.onboarding.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
