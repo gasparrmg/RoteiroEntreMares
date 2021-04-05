@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
@@ -33,6 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class RoteiroFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
+    private GuiaDeCampoViewModel guiaDeCampoViewModel;
 
     private MaterialCardView cardViewEQuandoAMareSobe;
     private ImageView imageViewEQuandoAMareSobe;
@@ -66,6 +68,7 @@ public class RoteiroFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_roteiro, container, false);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        guiaDeCampoViewModel = new ViewModelProvider(this).get(GuiaDeCampoViewModel.class);
 
         initViews(view);
 
@@ -103,6 +106,7 @@ public class RoteiroFragment extends Fragment {
         imageViewNaoFiquesPorAqui = view.findViewById(R.id.imageview_naofiquesporaqui);
         textViewNaoFiquesPorAquiIsFinished = view.findViewById(R.id.textView_naofiquesporaqui_is_finished);
 
+        cardViewBiodiversidade = view.findViewById(R.id.cardview_biodiversidade);
         imageViewBiodiversidade = view.findViewById(R.id.imageview_biodiversidade);
 
         isHistoriasPassadoFinished = dashboardViewModel.isHistoriasPassadoFinished();
@@ -124,6 +128,36 @@ public class RoteiroFragment extends Fragment {
         if (isImpactosFinished) {
             textViewImpactosIsFinished.setVisibility(View.VISIBLE);
         }
+
+        cardViewBiodiversidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*if (isHistoriasPassadoFinished) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Percurso terminado!");
+                    materialAlertDialogBuilder.setMessage("Este percurso já foi terminado. Tens a certeza que o queres repetir?");
+                    materialAlertDialogBuilder.setPositiveButton("Repetir", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_historiasPassadoFragment);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_historiasPassadoFragment);
+                }*/
+
+                resetBiodiversidade();
+
+                Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_biodiversidadeFragment);
+            }
+        });
 
         cardViewHistoriasPassado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,5 +287,12 @@ public class RoteiroFragment extends Fragment {
                 .load(R.drawable.img_menu_naofiquesporaqui)
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(imageViewNaoFiquesPorAqui);
+    }
+
+    private void resetBiodiversidade() {
+        // Reset shared preferences variables
+        // Delete DB entries regarding tasks
+        // guiaDeCampoViewModel.deleteAllAvistamentoPocasAvencas();
+        // guiaDeCampoViewModel.deleteAllAvistamentoZonacaoAvencas();
     }
 }

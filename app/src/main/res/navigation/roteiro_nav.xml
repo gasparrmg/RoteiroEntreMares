@@ -38,6 +38,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_roteiroFragment_to_biodiversidadeFragment"
+            app:destination="@id/navigation_biodiversidade"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <navigation android:id="@+id/navigation_historiasPassado"
         app:startDestination="@id/historiasPassadoFragment">
@@ -680,5 +687,731 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
+    </navigation>
+    <navigation android:id="@+id/navigation_biodiversidade"
+        app:startDestination="@id/biodiversidadeFragment">
+        <fragment
+            android:id="@+id/biodiversidadeFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeFragment"
+            android:label="BiodiversidadeFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeFragment_to_biodiversidadeMenuFragment"
+                app:destination="@id/biodiversidadeMenuFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMenuFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMenuFragment"
+            android:label="BiodiversidadeMenuFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeMenuFragment_to_biodiversidadeMicrohabitatsFragment"
+                app:destination="@id/biodiversidadeMicrohabitatsFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeMenuFragment_to_biodiversidadeZonacaoFragment"
+                app:destination="@id/biodiversidadeZonacaoFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeMenuFragment_to_biodiversidadeInteracoesFragment"
+                app:destination="@id/biodiversidadeInteracoesFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsFragment"
+            android:label="BiodiversidadeMicrohabitatsFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsFragment_to_biodiversidadeMicrohabitatsCanaisFragment"
+                app:destination="@id/biodiversidadeMicrohabitatsCanaisFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsFragment_to_biodiversidadeMicrohabitatsFendasFragment"
+                app:destination="@id/biodiversidadeMicrohabitatsFendasFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsFragment_to_biodiversidadeMicrohabitatsPocasFragment"
+                app:destination="@id/biodiversidadeMicrohabitatsPocasFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsCanaisFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsCanaisFragment"
+            android:label="BiodiversidadeMicrohabitatsCanaisFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsCanaisFragment_to_biodiversidadeMicrohabitatsCanaisFragment2"
+                app:destination="@id/biodiversidadeMicrohabitatsCanaisFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsCanaisFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsCanaisFragment2"
+            android:label="BiodiversidadeMicrohabitatsCanaisFragment2" />
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsFendasFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsFendasFragment"
+            android:label="BiodiversidadeMicrohabitatsFendasFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsFendasFragment_to_biodiversidadeMicrohabitatsNinhosFragment"
+                app:destination="@id/biodiversidadeMicrohabitatsNinhosFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsNinhosFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsNinhosFragment"
+            android:label="BiodiversidadeMicrohabitatsNinhosFragment" />
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsPocasFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment"
+            android:label="BiodiversidadeMicrohabitatsPocasFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment_to_biodiversidadeMicrohabitatsPocasFragment2"
+                app:destination="@id/biodiversidadeMicrohabitatsPocasFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsPocasFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment2"
+            android:label="BiodiversidadeMicrohabitatsPocasFragment2" >
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment2_to_biodiversidadeMicrohabitatsPocasFragment3"
+                app:destination="@id/biodiversidadeMicrohabitatsPocasFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsPocasFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment3"
+            android:label="BiodiversidadeMicrohabitatsPocasFragment3" >
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment3_to_biodiversidadeMicrohabitatsPocasFragment4Tarefa"
+                app:destination="@id/biodiversidadeMicrohabitatsPocasFragment4Tarefa"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsPocasFragment4Tarefa"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment4Tarefa"
+            android:label="BiodiversidadeMicrohabitatsPocasFragment4Tarefa" >
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment4Tarefa_to_biodiversidadeMicrohabitatsPocasFragment5SopaLetras"
+                app:destination="@id/biodiversidadeMicrohabitatsPocasFragment5SopaLetras"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment4Tarefa_to_newEditAvistamentoPocasFragment"
+                app:destination="@id/newEditAvistamentoPocasFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeMicrohabitatsPocasFragment5SopaLetras"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment5SopaLetras"
+            android:label="BiodiversidadeMicrohabitatsPocasFragment5SopaLetras" />
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment"
+            android:label="BiodiversidadeZonacaoFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoSupralitoralFragment"
+                app:destination="@id/biodiversidadeZonacaoSupralitoralFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoMediolitoralSuperiorFragment"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralSuperiorFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoInfralitoralFragment"
+                app:destination="@id/biodiversidadeZonacaoInfralitoralFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoFragment2PerguntasIntro"
+                app:destination="@id/biodiversidadeZonacaoFragment2PerguntasIntro"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoSupralitoralFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment"
+            android:label="BiodiversidadeZonacaoSupralitoralFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment_to_biodiversidadeZonacaoSupralitoralFragment2"
+                app:destination="@id/biodiversidadeZonacaoSupralitoralFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoSupralitoralFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment2"
+            android:label="BiodiversidadeZonacaoSupralitoralFragment2" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment2_to_biodiversidadeZonacaoSupralitoralFragment3"
+                app:destination="@id/biodiversidadeZonacaoSupralitoralFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoSupralitoralFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment3"
+            android:label="BiodiversidadeZonacaoSupralitoralFragment3" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment3_to_biodiversidadeZonacaoSupralitoralFragment4"
+                app:destination="@id/biodiversidadeZonacaoSupralitoralFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment"
+            android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment_to_biodiversidadeZonacaoMediolitoralSuperiorFragment2"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralSuperiorFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment2"
+            android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment2" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment2_to_biodiversidadeZonacaoMediolitoralSuperiorFragment3"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralSuperiorFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment3"
+            android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment3" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment3_to_biodiversidadeZonacaoMediolitoralSuperiorFragment4"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralSuperiorFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoInfralitoralFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment"
+            android:label="BiodiversidadeZonacaoInfralitoralFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment_to_biodiversidadeZonacaoInfralitoralFragment2"
+                app:destination="@id/biodiversidadeZonacaoInfralitoralFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoInfralitoralFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment2"
+            android:label="BiodiversidadeZonacaoInfralitoralFragment2" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment2_to_biodiversidadeZonacaoInfralitoralFragment3"
+                app:destination="@id/biodiversidadeZonacaoInfralitoralFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoInfralitoralFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment3"
+            android:label="BiodiversidadeZonacaoInfralitoralFragment3" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment3_to_biodiversidadeZonacaoInfralitoralFragment422"
+                app:destination="@id/biodiversidadeZonacaoInfralitoralFragment42"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/newEditAvistamentoPocasFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.tarefas.NewEditAvistamentoPocasFragment"
+            android:label="NewEditAvistamentoPocasFragment" >
+            <argument
+                android:name="nrPoca"
+                app:argType="integer" />
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoSupralitoralFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment4"
+            android:label="BiodiversidadeZonacaoSupralitoralFragment4" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment4_to_biodiversidadeZonacaoSupralitoralFragment5Tarefa"
+                app:destination="@id/biodiversidadeZonacaoSupralitoralFragment5Tarefa"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoSupralitoralFragment5Tarefa"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment5Tarefa"
+            android:label="BiodiversidadeZonacaoSupralitoralFragment5Tarefa" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
+                app:destination="@id/newEditAvistamentoZonacaoFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/newEditAvistamentoZonacaoFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.tarefas.NewEditAvistamentoZonacaoFragment"
+            android:label="NewEditAvistamentoZonacaoFragment" >
+            <argument
+                android:name="zona"
+                app:argType="string" />
+            <argument
+                android:name="iteracao"
+                app:argType="integer" />
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoInfralitoralFragment42"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment4"
+            android:label="BiodiversidadeZonacaoInfralitoralFragment4" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment42_to_biodiversidadeZonacaoInfralitoralFragment5Tarefa"
+                app:destination="@id/biodiversidadeZonacaoInfralitoralFragment5Tarefa"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoInfralitoralFragment5Tarefa"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment5Tarefa"
+            android:label="BiodiversidadeZonacaoInfralitoralFragment5Tarefa" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
+                app:destination="@id/newEditAvistamentoZonacaoFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment4"
+            android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment4" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment4_to_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
+            android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
+                app:destination="@id/newEditAvistamentoZonacaoFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa_to_biodiversidadeZonacaoMediolitoralInferiorFragment"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralInferiorFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment"
+            android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment_to_biodiversidadeZonacaoMediolitoralInferiorFragment2"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralInferiorFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment2"
+            android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment2" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment2_to_biodiversidadeZonacaoMediolitoralInferiorFragment3"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralInferiorFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment3"
+            android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment3" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment3_to_biodiversidadeZonacaoMediolitoralInferiorFragment4"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralInferiorFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment4"
+            android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment4" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment4_to_biodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
+                app:destination="@id/biodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
+            android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
+                app:destination="@id/newEditAvistamentoZonacaoFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment2PerguntasIntro"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment2PerguntasIntro"
+            android:label="BiodiversidadeZonacaoFragment2PerguntasIntro" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment2PerguntasIntro_to_biodiversidadeZonacaoFragment3Pergunta12"
+                app:destination="@id/biodiversidadeZonacaoFragment3Pergunta12"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment3Pergunta12"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment3Pergunta1"
+            android:label="BiodiversidadeZonacaoFragment3Pergunta1" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment3Pergunta12_to_biodiversidadeZonacaoFragment4Pergunta21"
+                app:destination="@id/biodiversidadeZonacaoFragment4Pergunta21"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment4Pergunta21"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta21"
+            android:label="BiodiversidadeZonacaoFragment4Pergunta21" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta21_to_biodiversidadeZonacaoFragment4Pergunta22"
+                app:destination="@id/biodiversidadeZonacaoFragment4Pergunta22"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment4Pergunta22"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta22"
+            android:label="BiodiversidadeZonacaoFragment4Pergunta22" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta22_to_biodiversidadeZonacaoFragment4Pergunta23"
+                app:destination="@id/biodiversidadeZonacaoFragment4Pergunta23"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment4Pergunta23"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta23"
+            android:label="BiodiversidadeZonacaoFragment4Pergunta23" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta23_to_biodiversidadeZonacaoFragment4Pergunta24"
+                app:destination="@id/biodiversidadeZonacaoFragment4Pergunta24"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment4Pergunta24"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta24"
+            android:label="BiodiversidadeZonacaoFragment4Pergunta24" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta24_to_biodiversidadeZonacaoFragment5Pergunta3"
+                app:destination="@id/biodiversidadeZonacaoFragment5Pergunta3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment5Pergunta3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment5Pergunta3"
+            android:label="BiodiversidadeZonacaoFragment5Pergunta3" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment5Pergunta3_to_biodiversidadeZonacaoFragment6Pergunta4"
+                app:destination="@id/biodiversidadeZonacaoFragment6Pergunta4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment6Pergunta4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment6Pergunta4"
+            android:label="BiodiversidadeZonacaoFragment6Pergunta4" >
+            <action
+                android:id="@+id/action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7Words"
+                app:destination="@id/biodiversidadeZonacaoFragment7Words"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment7Words"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment7Words"
+            android:label="BiodiversidadeZonacaoFragment7Words" />
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment"
+            android:label="BiodiversidadeInteracoesFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesFragment_to_biodiversidadeInteracoesFragment2Menu"
+                app:destination="@id/biodiversidadeInteracoesFragment2Menu"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesFragment2Menu"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment2Menu"
+            android:label="BiodiversidadeInteracoesFragment2Menu" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesPredacaoFragment"
+                app:destination="@id/biodiversidadeInteracoesPredacaoFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesHerbivoriaFragment"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesCompeticaoFragment"
+                app:destination="@id/biodiversidadeInteracoesCompeticaoFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment4RedeTrofica"
+                app:destination="@id/biodiversidadeInteracoesFragment4RedeTrofica"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesPredacaoFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesPredacaoFragment"
+            android:label="BiodiversidadeInteracoesPredacaoFragment" />
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment_to_biodiversidadeInteracoesHerbivoriaFragment2"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment2"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment2" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment2_to_biodiversidadeInteracoesHerbivoriaFragment3"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment3"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment3" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment3_to_biodiversidadeInteracoesHerbivoriaFragment4"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment4"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment4" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment4_to_biodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment5Pergunta1" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment5Pergunta1_to_biodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment6Pergunta2" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment6Pergunta2_to_biodiversidadeInteracoesHerbivoriaFragment7"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment7"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment7"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment7"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment7" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment7_to_biodiversidadeInteracoesHerbivoriaFragment8"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment8"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment8"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment8"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment8" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment8_to_biodiversidadeInteracoesHerbivoriaFragment9Words"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment9Words"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment9Words"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment9Words"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment9Words" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment9Words_to_biodiversidadeInteracoesHerbivoriaFragment10"
+                app:destination="@id/biodiversidadeInteracoesHerbivoriaFragment10"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment10"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment10"
+            android:label="BiodiversidadeInteracoesHerbivoriaFragment10" />
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesCompeticaoFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesCompeticaoFragment"
+            android:label="BiodiversidadeInteracoesCompeticaoFragment" />
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesFragment4RedeTrofica"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment4RedeTrofica"
+            android:label="BiodiversidadeInteracoesFragment4RedeTrofica" />
     </navigation>
 </navigation>

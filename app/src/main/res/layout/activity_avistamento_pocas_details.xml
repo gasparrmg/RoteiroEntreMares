@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBodyText"
+                android:padding="16dp"
+                android:fontFamily="@font/open_sans"
+                android:textSize="16sp"
+                android:text="Tipo de fundo"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/textView_tipoFundo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBodyText"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:text="Tipo de fundo"
+                android:gravity="end"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBodyText"
+                android:padding="16dp"
+                android:fontFamily="@font/open_sans"
+                android:textSize="16sp"
+                android:text="Profundidade"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/textView_profundidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBodyText"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:text="100cm"
+                android:gravity="end"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBodyText"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans"
+                android:text="Área superfície"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/textView_area_superficie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBodyText"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:text="100cm"
+                android:gravity="end"
+                android:layout_weight="2"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBodyText"
+                android:padding="16dp"
+                android:textSize="16sp"
+                android:text="Fotografia"
+                android:fontFamily="@font/open_sans"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/imageview_picture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@android:drawable/ic_media_play"
+                android:scaleType="centerCrop"
+                android:contentDescription="Imagem da espécie"
+                android:layout_weight="4"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"
+            android:layout_marginBottom="16dp"
+            android:text="Estes foram os organismos que registaste:"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_especies"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            tools:listitem="@layout/avistamentos_especie_item"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

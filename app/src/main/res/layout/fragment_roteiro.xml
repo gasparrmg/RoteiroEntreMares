@@ -102,7 +102,7 @@
                     <ImageView
                         android:id="@+id/imageview_equandoamaresobe"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"
@@ -159,7 +159,7 @@
                     <ImageView
                         android:id="@+id/imageview_impactos"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"
@@ -216,7 +216,7 @@
                     <ImageView
                         android:id="@+id/imageview_historiaspassado"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"
@@ -273,7 +273,7 @@
                     <ImageView
                         android:id="@+id/imageview_naofiquesporaqui"
                         android:layout_width="match_parent"
-                        android:layout_height="194dp"
+                        android:layout_height="130dp"
                         app:srcCompat="@android:drawable/ic_media_play"
                         android:scaleType="centerCrop"
                         android:contentDescription="Imagem da espécie"

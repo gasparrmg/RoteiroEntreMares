@@ -127,18 +127,102 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setImpactos6AsAnswered();
     }
 
-    public boolean isImpactosOcupacaoHumanaFinished() {
-        return dataRepository.isImpactosOcupacaoHumanaFinished();
+    public void setBiodiversidadeMicrohabitatsAsFinished() {
+        dataRepository.setBiodiversidadeMicrohabitatsAsFinished();
     }
 
-    public void setImpactosOcupacaoHumanaAsFinished() {
-        dataRepository.setImpactosOcupacaoHumanaAsFinished();
+    public boolean isBiodiversidadeMicrohabitatsFinished() {
+        return dataRepository.isBiodiversidadeMicrohabitatsFinished();
     }
 
 
+    public void setBiodiversidadeMicrohabitatsCanaisAsFinished() {
+        dataRepository.setBiodiversidadeMicrohabitatsCanaisAsFinished();
+    }
 
+    public boolean isBiodiversidadeMicrohabitatsCanaisFinished() {
+        return dataRepository.isBiodiversidadeMicrohabitatsCanaisFinished();
+    }
 
+    public void setBiodiversidadeMicrohabitatsFendasAsFinished() {
+        dataRepository.setBiodiversidadeMicrohabitatsFendasAsFinished();
+    }
 
+    public boolean isBiodiversidadeMicrohabitatsFendasFinished() {
+        return dataRepository.isBiodiversidadeMicrohabitatsFendasFinished();
+    }
+
+    public void setBiodiversidadeMicrohabitatsPocasAsFinished() {
+        dataRepository.setBiodiversidadeMicrohabitatsPocasAsFinished();
+    }
+
+    public boolean isBiodiversidadeMicrohabitatsPocasFinished() {
+        return dataRepository.isBiodiversidadeMicrohabitatsPocasFinished();
+    }
+
+    public void setBiodiversidadeZonacaoAsFinished() {
+        dataRepository.setBiodiversidadeZonacaoAsFinished();
+    }
+
+    public boolean isBiodiversidadeZonacaoFinished() {
+        return dataRepository.isBiodiversidadeZonacaoFinished();
+    }
+
+    public void setBiodiversidadeZonacaoSupralitoralAsFinished() {
+        dataRepository.setBiodiversidadeZonacaoSupralitoralAsFinished();
+    }
+
+    public boolean isBiodiversidadeZonacaoSupralitoralFinished() {
+        return dataRepository.isBiodiversidadeZonacaoSupralitoralFinished();
+    }
+
+    public void setBiodiversidadeZonacaoMediolitoralAsFinished() {
+        dataRepository.setBiodiversidadeZonacaoMediolitoralAsFinished();
+    }
+
+    public boolean isBiodiversidadeZonacaoMediolitoralFinished() {
+        return dataRepository.isBiodiversidadeZonacaoMediolitoralFinished();
+    }
+
+    public void setBiodiversidadeZonacaoInfralitoralAsFinished() {
+        dataRepository.setBiodiversidadeZonacaoInfralitoralAsFinished();
+    }
+
+    public boolean isBiodiversidadeZonacaoInfralitoralFinished() {
+        return dataRepository.isBiodiversidadeZonacaoInfralitoralFinished();
+    }
+
+    public void setBiodiversidadeInteracoesPredacaoAsFinished() {
+        dataRepository.setBiodiversidadeInteracoesPredacaoAsFinished();
+    }
+
+    public boolean isBiodiversidadeInteracoesPredacaoFinished() {
+        return dataRepository.isBiodiversidadeInteracoesPredacaoFinished();
+    }
+
+    public void setBiodiversidadeInteracoesHerbivoriaAsFinished() {
+        dataRepository.setBiodiversidadeInteracoesHerbivoriaAsFinished();
+    }
+
+    public boolean isBiodiversidadeInteracoesHerbivoriaFinished() {
+        return dataRepository.isBiodiversidadeInteracoesHerbivoriaFinished();
+    }
+
+    public void setBiodiversidadeInteracoesCompeticaoAsFinished() {
+        dataRepository.setBiodiversidadeInteracoesCompeticaoAsFinished();
+    }
+
+    public boolean isBiodiversidadeInteracoesCompeticaoFinished() {
+        return dataRepository.isBiodiversidadeInteracoesCompeticaoFinished();
+    }
+
+    public void setBiodiversidadeInteracoesAsFinished() {
+        dataRepository.setBiodiversidadeInteracoesAsFinished();
+    }
+
+    public boolean isBiodiversidadeInteracoesFinished() {
+        return dataRepository.isBiodiversidadeInteracoesFinished();
+    }
 
 
     public boolean getOnBoarding() {

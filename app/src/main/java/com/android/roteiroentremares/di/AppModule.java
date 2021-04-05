@@ -9,6 +9,8 @@ import android.util.Log;
 import androidx.room.Room;
 
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
+import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
+import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
 
@@ -52,5 +54,17 @@ public class AppModule {
     @Singleton
     EspecieAvencasDao provideEspecieAvencasDao(RoteiroDatabase roteiroDatabase) {
         return roteiroDatabase.especieAvencasDao();
+    }
+
+    @Provides
+    @Singleton
+    AvistamentoPocasAvencasDao provideAvistamentoPocasAvencasDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.avistamentoPocasAvencasDao();
+    }
+
+    @Provides
+    @Singleton
+    AvistamentoZonacaoAvencasDao provideAvistamentoZonacaoAvencasDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.avistamentoZonacaoAvencasDao();
     }
 }

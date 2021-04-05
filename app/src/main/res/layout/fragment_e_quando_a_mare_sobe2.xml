@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img_equandoamaresobe_background"
+    android:background="@drawable/img_equandoamaresobe_background_cropped"
     tools:context=".ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment6">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="110dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,22 +18,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+        <HorizontalScrollView
+            android:id="@+id/horizontalscrollview1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fadeScrollbars="false">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scrollbars="none
+">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_sargo"
-                    android:layout_width="match_parent"
+                    android:layout_width="194dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardForegroundColor="@android:color/transparent">
 
@@ -64,11 +67,11 @@
                                 android:id="@+id/textView_sargo_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="Sargo"
-                                android:textColor="@color/colorTitleText"
-                                android:layout_weight="1"/>
+                                android:textColor="@color/colorTitleText" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -77,9 +80,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_peixerei"
-                    android:layout_width="match_parent"
+                    android:layout_width="194dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardForegroundColor="@android:color/transparent">
 
@@ -108,7 +112,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="Peixe-Rei"
                                 android:textColor="@color/colorTitleText"
                                 android:layout_weight="1"/>
@@ -120,9 +124,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_bodiao"
-                    android:layout_width="match_parent"
+                    android:layout_width="194dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardForegroundColor="@android:color/transparent">
 
@@ -151,7 +156,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="Bodião"
                                 android:textColor="@color/colorTitleText"
                                 android:layout_weight="1"/>
@@ -161,11 +166,32 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <HorizontalScrollView
+            android:id="@+id/horizontalscrollview2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="16dp"
+                android:gravity="center"
+                android:paddingEnd="16dp"
+                android:orientation="horizontal">
+
+
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_cracas"
-                    android:layout_width="match_parent"
+                    android:layout_width="194dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardForegroundColor="@android:color/transparent">
 
@@ -194,7 +220,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="Cracas"
                                 android:textColor="@color/colorTitleText"
                                 android:layout_weight="1"/>
@@ -206,9 +232,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_marachomba"
-                    android:layout_width="match_parent"
+                    android:layout_width="194dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardForegroundColor="@android:color/transparent">
 
@@ -237,7 +264,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="Marachomba"
                                 android:textColor="@color/colorTitleText"
                                 android:layout_weight="1"/>
@@ -249,9 +276,10 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_lapas"
-                    android:layout_width="match_parent"
+                    android:layout_width="194dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardForegroundColor="@android:color/transparent">
 
@@ -280,7 +308,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:gravity="center_vertical"
+                                android:gravity="center"
                                 android:text="Lapas"
                                 android:textColor="@color/colorTitleText"
                                 android:layout_weight="1"/>
@@ -291,7 +319,9 @@
                 </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
-        </ScrollView>
+        </HorizontalScrollView>
+
+
 
     </LinearLayout>
 

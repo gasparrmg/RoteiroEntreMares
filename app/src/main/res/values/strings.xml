@@ -15,4 +15,15 @@
 
     <string name="navigation_drawer_open">Abrir menu de navegação</string>
     <string name="navigation_drawer_close">Fechar menu de navegação</string>
+
+
+    <string name="avencas_biodiversidade_title">Biodiversidade</string>
+
+    <string name="avencas_biodiversidade_interacoes_title">Interações</string>
+    <string name="novo_avistamento_title">Novo avistamento</string>
+
+    <!--ERROR MESSAGES-->
+
+    <string name="file_not_found_error_message">Não foi possível encontrar o ficheiro. Tente novamente mais tarde.</string>
+
 </resources>

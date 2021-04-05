@@ -12,6 +12,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +41,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class EQuandoAMareSobeFragment2 extends Fragment {
 
     // Views
+    private HorizontalScrollView horizontalScrollView1;
+    private HorizontalScrollView horizontalScrollView2;
+
     private MaterialCardView cardViewSargo;
     private ImageView imageViewSargo;
 
@@ -88,6 +93,9 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
     }
 
     private void initViews(View view) {
+        horizontalScrollView1 = view.findViewById(R.id.horizontalscrollview1);
+        horizontalScrollView2 = view.findViewById(R.id.horizontalscrollview2);
+
         cardViewSargo = view.findViewById(R.id.cardview_sargo);
         imageViewSargo = view.findViewById(R.id.imageview_sargo);
 
@@ -108,6 +116,22 @@ public class EQuandoAMareSobeFragment2 extends Fragment {
 
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+
+        ViewTreeObserver vto1 = horizontalScrollView1.getViewTreeObserver();
+        vto1.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            public void onGlobalLayout() {
+                int maxScroll = horizontalScrollView1.getChildAt(0).getWidth() - horizontalScrollView1.getWidth();
+                horizontalScrollView1.scrollTo(maxScroll/2, 0);
+            }
+        });
+
+        ViewTreeObserver vto2 = horizontalScrollView2.getViewTreeObserver();
+        vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            public void onGlobalLayout() {
+                int maxScroll = horizontalScrollView2.getChildAt(0).getWidth() - horizontalScrollView2.getWidth();
+                horizontalScrollView2.scrollTo(maxScroll/2, 0);
+            }
+        });
     }
 
     /**
