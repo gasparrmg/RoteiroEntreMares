@@ -23,6 +23,7 @@
     <string name="novo_avistamento_title">Novo avistamento</string>
 
     <!--ERROR MESSAGES-->
+    <string name="gps_turned_off_error">Não é possível ter acesso à tua localização.</string>
 
     <string name="file_not_found_error_message">Não foi possível encontrar o ficheiro. Tente novamente mais tarde.</string>
 
