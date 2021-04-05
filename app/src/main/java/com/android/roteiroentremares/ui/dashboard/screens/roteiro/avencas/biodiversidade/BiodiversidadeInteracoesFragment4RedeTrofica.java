@@ -2,6 +2,7 @@ package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodi
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.Es
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -66,6 +68,9 @@ public class BiodiversidadeInteracoesFragment4RedeTrofica extends Fragment {
     private ImageView imageView6;
     private ImageView imageView7;
     private ImageView imageView8;
+
+    private LinearLayout linearLayoutZooplancton;
+    private LinearLayout linearLayoutFitoplancton;
 
     private LinearLayout linearLayout1;
     private LinearLayout linearLayout2;
@@ -131,6 +136,9 @@ public class BiodiversidadeInteracoesFragment4RedeTrofica extends Fragment {
         imageView7 = view.findViewById(R.id.imageView7);
         imageView8 = view.findViewById(R.id.imageView8);
 
+        linearLayoutZooplancton = view.findViewById(R.id.linearLayout_zooplancton);
+        linearLayoutFitoplancton = view.findViewById(R.id.linearLayout_fitoplancton);
+
         linearLayout1 = view.findViewById(R.id.linearLayout1);
         linearLayout2 = view.findViewById(R.id.linearLayout2);
         linearLayout3 = view.findViewById(R.id.linearLayout3);
@@ -192,6 +200,42 @@ public class BiodiversidadeInteracoesFragment4RedeTrofica extends Fragment {
                 // back to menu
                 dashboardViewModel.setBiodiversidadeInteracoesAsFinished();
                 Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMenuFragment ,false);
+            }
+        });
+
+        linearLayoutZooplancton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                materialAlertDialogBuilder.setMessage(HtmlCompat.fromHtml(
+                        "O Zooplâncton inclui um conjunto de animais microscópicos que vivem suspensos na água.",
+                        HtmlCompat.FROM_HTML_MODE_LEGACY
+                ));
+                materialAlertDialogBuilder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // dismiss
+                    }
+                });
+                materialAlertDialogBuilder.show();
+            }
+        });
+
+        linearLayoutFitoplancton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                materialAlertDialogBuilder.setMessage(HtmlCompat.fromHtml(
+                        "O Fitoplâncton inclui um conjunto de algas microscópicas que vivem suspensas na água.",
+                        HtmlCompat.FROM_HTML_MODE_LEGACY
+                ));
+                materialAlertDialogBuilder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // dismiss
+                    }
+                });
+                materialAlertDialogBuilder.show();
             }
         });
     }

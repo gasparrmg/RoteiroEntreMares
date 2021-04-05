@@ -64,6 +64,8 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE_INTERACOES_COMPETICAO = "key_finished_biodiversidade_interacoes_competicao";
     private static final String SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE_INTERACOES = "key_finished_biodiversidade_interacoes";
 
+    private static final String SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE = "key_finished_biodiversidade";
+
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
     private EspecieAvencasDao especieAvencasDao;
@@ -608,6 +610,27 @@ public class DataRepository {
     public void setBiodiversidadeInteracoesAsFinished() {
         sharedPreferences.edit().putBoolean(
                 SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE_INTERACOES,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Biodiversidade sequence
+     * @return
+     */
+    public boolean isBiodiversidadeFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Biodiversidade sequence
+     */
+    public void setBiodiversidadeAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE,
                 true
         ).apply();
     }

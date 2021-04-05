@@ -1,6 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
-import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,27 +22,22 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
 
-public class BiodiversidadeInteracoesHerbivoriaFragment2 extends Fragment {
+public class BiodiversidadeInteracoesFragment3 extends Fragment {
 
-    private static final String htmlContent = "<b>Influência da herbivoria nas comunidades (adaptado de Boaventura, 2000)</b><br><br>Que fatores condicionam os limites de distribuição vertical?<br><br>" +
-            "Qual a influência das lapas no limite superior das algas vermelhas?";
+    private static final String htmlContent = "<b>TAREFA:</b><br>" +
+            "Tendo em conta o tipo de alimentação das seguintes espécies (utiliza o <b>Guia de Campo</b>), completa a seguinte rede trófica, colocando em cada um dos espaços a espécie que consideras mais adequada.";
 
     // Views
     private TextView textViewTitle;
-    private TextView textViewTitle2;
     private TextView textViewContent;
-    private ImageView imageView;
-    private FloatingActionButton fabFullscreen;
-    private FloatingActionButton buttonFabNext;
+    private ExtendedFloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
-
-    private int imageResourceId = R.drawable.img_biodiversidade_interacoes_herbivoria_experiencias;
 
     private TextToSpeech tts;
 
@@ -51,7 +45,7 @@ public class BiodiversidadeInteracoesHerbivoriaFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_biodiversidade_interacoes_herbivoria2, container, false);
+        View view = inflater.inflate(R.layout.fragment_biodiversidade_interacoes3, container, false);
 
         initViews(view);
         setOnClickListeners(view);
@@ -63,6 +57,7 @@ public class BiodiversidadeInteracoesHerbivoriaFragment2 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         initToolbar();
     }
 
@@ -113,21 +108,15 @@ public class BiodiversidadeInteracoesHerbivoriaFragment2 extends Fragment {
 
     private void initViews(View view) {
         textViewTitle = view.findViewById(R.id.text_title);
-        textViewTitle2 = view.findViewById(R.id.text_title2);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        imageView = view.findViewById(R.id.imageView);
-        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
-
-        textViewTitle2.setVisibility(View.GONE);
     }
 
     private void setOnClickListeners(View view) {
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigation.findNavController(view).navigate(R.id.action_global_roteiroFragment);
                 Navigation.findNavController(view).popBackStack();
             }
         });
@@ -135,17 +124,7 @@ public class BiodiversidadeInteracoesHerbivoriaFragment2 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesHerbivoriaFragment2_to_biodiversidadeInteracoesHerbivoriaFragment3);
-            }
-        });
-
-        fabFullscreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open Image Activity
-                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
-                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, imageResourceId);
-                startActivity(intent);
+                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesFragment3_to_biodiversidadeInteracoesFragment4RedeTrofica);
             }
         });
     }
@@ -154,10 +133,8 @@ public class BiodiversidadeInteracoesHerbivoriaFragment2 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
-
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Experiências",
+                "Rede Trófica",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 

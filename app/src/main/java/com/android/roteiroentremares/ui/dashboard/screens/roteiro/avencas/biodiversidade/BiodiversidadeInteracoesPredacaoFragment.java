@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.MediaPlayerResourceActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -49,12 +52,13 @@ public class BiodiversidadeInteracoesPredacaoFragment extends Fragment {
     private DashboardViewModel dashboardViewModel;
 
     // Views
+    private RelativeLayout relativeLayoutVideo;
+    private ImageView imageViewVideo;
     private TextView textViewTitle;
     private TextView textViewTitle2;
     private TextView textViewContent;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
-    private Button buttonVideo;
 
     private TextToSpeech tts;
 
@@ -125,12 +129,18 @@ public class BiodiversidadeInteracoesPredacaoFragment extends Fragment {
     }
 
     private void initViews(View view) {
+        relativeLayoutVideo = view.findViewById(R.id.relativeLayout_video);
+        imageViewVideo = view.findViewById(R.id.imageView_video);
         textViewTitle = view.findViewById(R.id.text_title);
         textViewTitle2 = view.findViewById(R.id.text_title2);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        buttonVideo = view.findViewById(R.id.button_video);
+
+        Glide.with(getActivity())
+                .load(R.raw.vid_biodiversidade_interacoes_predacao)
+                .placeholder(android.R.drawable.ic_media_play)
+                .into(imageViewVideo);
     }
 
     private void setOnClickListeners(View view) {
@@ -150,10 +160,9 @@ public class BiodiversidadeInteracoesPredacaoFragment extends Fragment {
             }
         });
 
-        buttonVideo.setOnClickListener(new View.OnClickListener() {
+        relativeLayoutVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Open video
                 Intent intent = new Intent(getActivity(), MediaPlayerResourceActivity.class);
                 intent.putExtra(MediaPlayerResourceActivity.INTENT_KEY_VIDEO_RESOURCE, videoResourceId);
                 intent.putExtra(MediaPlayerResourceActivity.INTENT_KEY_INFO, "Filme da autoria de Cláudia Faria e Diana Boaventura, em colaboração com a Escola Superior de Educação João de Deus");

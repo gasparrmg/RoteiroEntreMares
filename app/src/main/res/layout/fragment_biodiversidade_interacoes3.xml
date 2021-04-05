@@ -38,83 +38,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_title2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:textAlignment="center"
-            android:textColor="@color/colorTitleText"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:typeface="normal"
-            app:layout_constraintBottom_toTopOf="@+id/btn_fabNext"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fadeScrollbars="false">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:id="@+id/relativeLayout_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp">
-
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:backgroundTint="@color/colorAccent"
-                        app:borderWidth="0dp"
-                        app:fabSize="mini"
-                        app:srcCompat="@drawable/ic_play"
-                        app:tint="@android:color/white" />
-
-                    <ImageView
-                        android:id="@+id/imageView_video"
-                        android:layout_width="match_parent"
-                        android:layout_height="194dp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitCenter" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/text_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/open_sans"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
+                android:fontFamily="@font/open_sans"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
         </ScrollView>
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_fabNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:clickable="true"
-        android:scaleType="center"
-        android:src="@drawable/ic_next"
+        android:text="Tarefa"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/poppins"
+        android:layout_marginBottom="34dp"
         android:backgroundTint="@color/colorPrimaryDark"
-        app:tint="#FFFFFF"
+        app:iconTint="@android:color/white"
+        app:iconPadding="8dp"
+        app:icon="@drawable/ic_next"
+        android:visibility="visible"
+        android:enabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

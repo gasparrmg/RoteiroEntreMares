@@ -1282,12 +1282,13 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
             <action
-                android:id="@+id/action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment4RedeTrofica"
-                app:destination="@id/biodiversidadeInteracoesFragment4RedeTrofica"
+                android:id="@+id/action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment3"
+                app:destination="@id/biodiversidadeInteracoesFragment3"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesPredacaoFragment"
@@ -1413,5 +1414,17 @@
             android:id="@+id/biodiversidadeInteracoesFragment4RedeTrofica"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment4RedeTrofica"
             android:label="BiodiversidadeInteracoesFragment4RedeTrofica" />
+        <fragment
+            android:id="@+id/biodiversidadeInteracoesFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment3"
+            android:label="BiodiversidadeInteracoesFragment3" >
+            <action
+                android:id="@+id/action_biodiversidadeInteracoesFragment3_to_biodiversidadeInteracoesFragment4RedeTrofica"
+                app:destination="@id/biodiversidadeInteracoesFragment4RedeTrofica"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
     </navigation>
 </navigation>

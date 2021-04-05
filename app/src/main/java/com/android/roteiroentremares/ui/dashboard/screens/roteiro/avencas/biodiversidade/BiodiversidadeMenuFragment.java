@@ -221,7 +221,8 @@ public class BiodiversidadeMenuFragment extends Fragment {
             public void onClick(View v) {
                 // Finished Biodiversidade
                 // Back to MAIN menu
-                // Navigation.findNavController(view).navigate(R.id.action_impactosFragment3_to_impactosOcupacaoHumanaFragmentText);
+                dashboardViewModel.setBiodiversidadeAsFinished();
+                Navigation.findNavController(view).popBackStack(R.id.roteiroFragment ,false);
             }
         });
 

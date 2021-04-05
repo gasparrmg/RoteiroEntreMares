@@ -224,6 +224,14 @@ public class DashboardViewModel extends ViewModel {
         return dataRepository.isBiodiversidadeInteracoesFinished();
     }
 
+    public boolean isBiodiversidadeFinished() {
+        return dataRepository.isBiodiversidadeFinished();
+    }
+
+    public void setBiodiversidadeAsFinished() {
+        dataRepository.setBiodiversidadeAsFinished();
+    }
+
 
     public boolean getOnBoarding() {
         return dataRepository.getOnBoarding();

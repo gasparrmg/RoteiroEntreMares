@@ -6,163 +6,174 @@
     android:layout_height="match_parent"
     tools:context=".ui.onboarding.screens.OnBoardingFragment2">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btn_fabNext"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="Antes de continuarmos,\n fala-nos um pouco sobre ti..."
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:typeface="normal" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup_userType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:checkedButton="@+id/radiobutton_aluno"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/radiobutton_aluno"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/open_sans"
-                android:text="Aluno"/>
-
-            <RadioButton
-                android:id="@+id/radiobutton_professor"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/open_sans"
-                android:layout_marginEnd="10dp"
-                android:text="Professor" />
-
-            <RadioButton
-                android:id="@+id/radiobutton_explorador"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/open_sans"
-                android:text="Explorador" />
-        </RadioGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textinputlayout_nome"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Nome"
-            app:boxStrokeColor="@color/colorAccent"
-            app:hintTextColor="@color/colorAccent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textinputedittext_nome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textinputlayout_escola"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Escola"
-            app:boxStrokeColor="@color/colorAccent"
-            app:hintTextColor="@color/colorAccent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textinputedittext_escola"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textinputlayout_anoescolaridade"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Ano de Escolaridade"
-            app:boxStrokeColor="@color/colorAccent"
-            app:hintTextColor="@color/colorAccent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textinputedittext_anoescolaridade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans"
-                android:inputType="number"
-                android:maxLength="2"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textinputlayout_anolectivo"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ano Lectivo"
-            android:layout_marginBottom="16dp"
-            app:boxStrokeColor="@color/colorAccent"
-            app:hintTextColor="@color/colorAccent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textinputedittext_anolectivo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans"
-                android:inputType="number"
-                android:maxLength="9"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
-            android:id="@+id/linearlayout_share_location_artefacto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/text_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Mostrar localização dos meus Artefactos partilhados"
-                android:textSize="16sp"
-                android:fontFamily="@font/open_sans"
-                android:layout_marginEnd="8dp"/>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Antes de continuarmos,\n fala-nos um pouco sobre ti..."
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switch_share_location_artefacto"
+            <RadioGroup
+                android:id="@+id/radioGroup_userType"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:checkedButton="@+id/radiobutton_aluno"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radiobutton_aluno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Aluno" />
+
+                <RadioButton
+                    android:id="@+id/radiobutton_professor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Professor" />
+
+                <RadioButton
+                    android:id="@+id/radiobutton_explorador"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/open_sans"
+                    android:text="Explorador" />
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_nome"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="Nome"
+                app:boxStrokeColor="@color/colorAccent"
+                app:hintTextColor="@color/colorAccent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinputedittext_nome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_escola"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="Escola"
+                app:boxStrokeColor="@color/colorAccent"
+                app:hintTextColor="@color/colorAccent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinputedittext_escola"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_anoescolaridade"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="Ano de Escolaridade"
+                app:boxStrokeColor="@color/colorAccent"
+                app:hintTextColor="@color/colorAccent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinputedittext_anoescolaridade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinputlayout_anolectivo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:hint="Ano Lectivo"
+                app:boxStrokeColor="@color/colorAccent"
+                app:hintTextColor="@color/colorAccent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinputedittext_anolectivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:inputType="number"
+                    android:maxLength="9" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayout_share_location_artefacto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center_vertical"
+                    android:text="Mostrar localização dos meus Artefactos partilhados"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switch_share_location_artefacto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_fabNext"

@@ -179,7 +179,7 @@ public class BiodiversidadeInteracoesFragment2Menu extends Fragment {
             @Override
             public void onClick(View v) {
                 // Go to rede trófica
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment4RedeTrofica);
+                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment3);
             }
         });
     }
