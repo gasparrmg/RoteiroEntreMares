@@ -45,6 +45,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_roteiroFragment_to_riaFormosaNaoFiquesPorAquiFragment"
+            app:destination="@id/navigation_riaformosa_naofiquesporaqui"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <navigation android:id="@+id/navigation_historiasPassado"
         app:startDestination="@id/historiasPassadoFragment">
@@ -1426,5 +1433,107 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
+    </navigation>
+    <navigation android:id="@+id/navigation_riaformosa_naofiquesporaqui"
+        app:startDestination="@id/riaFormosaNaoFiquesPorAquiFragment">
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment_to_riaFormosaNaoFiquesPorAquiFragment2"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment2"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment2" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment2_to_riaFormosaNaoFiquesPorAquiFragment3"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment3"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment3" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment3_to_riaFormosaNaoFiquesPorAquiFragment4"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment4"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment4" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment4_to_riaFormosaNaoFiquesPorAquiFragment5"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment5"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment5"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment5"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment5" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment5_to_riaFormosaNaoFiquesPorAquiFragment6"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment6"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment6"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment6" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment6_to_riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment6_to_riaFormosaNaoFiquesPorAquiFragment7"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment7"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment6SabiasQue" />
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment7"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment7"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment7" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment7_to_riaFormosaNaoFiquesPorAquiFragment8"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment8"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment8"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment8"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment8" />
     </navigation>
 </navigation>

@@ -1,9 +1,7 @@
 package com.android.roteiroentremares.ui.onboarding.screens;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,26 +10,19 @@ import android.widget.TextView;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
-import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
-import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
-import com.android.roteiroentremares.util.ClickableString;
+import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
+import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
-import dagger.hilt.android.AndroidEntryPoint;
-
-@AndroidEntryPoint
-public class AvencasOnBoardingFragment3 extends Fragment {
+public class RiaFormosaOnBoardingFragment3 extends Fragment {
 
     private static final int SEQUENCE_NUMBER = 3;
-
-    // ViewModel
-    private OnBoardingViewModel onBoardingViewModel;
-    private DashboardViewModel dashboardViewModel;
 
     // Views
     private TextView textViewTitle;
@@ -40,24 +31,18 @@ public class AvencasOnBoardingFragment3 extends Fragment {
     private ImageButton buttonPrev;
     private ViewPager2 viewPager;
 
-    public AvencasOnBoardingFragment3() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_avencas_on_boarding2, container, false);
-
-        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_on_boarding3, container, false);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        viewPager = getActivity().findViewById(R.id.viewPager_avencas);
+        viewPager = getActivity().findViewById(R.id.viewPager_riaformosa);
+
 
         setOnClickListeners();
         insertContent();
@@ -73,12 +58,7 @@ public class AvencasOnBoardingFragment3 extends Fragment {
             @Override
             public void onClick(View v) {
                 // User finished onBoarding sequence
-                onBoardingViewModel.setOnBoarding(true);
-                dashboardViewModel.setAvencasOrRiaFormosa(0);
-
-                Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
 
@@ -95,17 +75,14 @@ public class AvencasOnBoardingFragment3 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Área Marinha Protegida das Avencas",
+                "Ria Formosa",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Antes de começares a explorar esta zona, lembra-te que é uma <b>Zona Protegida</b>.<br><br>" +
-                        "Evita a interferência com os organismos marinhos, nomeadamente:<br>" +
-                        "- Reduz ao mínimo possível o pisoteio (procura andar apenas pelos locais assinalados)<br>" +
-                        "- Sempre que levantares uma rocha, volta a colocá-la tal como estava (não deixes a face interior exposta)<br>" +
-                        "- Não faças recolhas de nenhum organismo (podes sempre fotografá-los)<br>" +
-                        "- Não deixes o teu lixo para trás.",
+                "A Ria Formosa é considerada uma <b>zona entremarés</b> incluída numa área <b>estuarina</b>. Por um lado, devido às trocas de água com o mar que ocorrem em cada ciclo de marés (nutrientes e oxigénio chegam aos sapais e outras substâncias são levadas para o mar), por outro lado, porque o gradiente de salinidade é elevado, uma vez que as entradas de água doce têm pouca relevância." +
+                        "<br><br>" +
+                        "A circulação da massa de água associada às marés, no interior deste sistema lagunar, influencia a qualidade físico-química e biológica da água da Ria, assim como o dinamismo das partículas.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

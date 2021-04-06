@@ -12,26 +12,15 @@ import android.widget.TextView;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
-import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
-import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.android.roteiroentremares.util.ClickableString;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import dagger.hilt.android.AndroidEntryPoint;
+public class RiaFormosaOnBoardingFragment5 extends Fragment {
 
-@AndroidEntryPoint
-public class AvencasOnBoardingFragment3 extends Fragment {
-
-    private static final int SEQUENCE_NUMBER = 3;
-
-    // ViewModel
-    private OnBoardingViewModel onBoardingViewModel;
-    private DashboardViewModel dashboardViewModel;
+    private static final int SEQUENCE_NUMBER = 5;
 
     // Views
     private TextView textViewTitle;
@@ -40,24 +29,18 @@ public class AvencasOnBoardingFragment3 extends Fragment {
     private ImageButton buttonPrev;
     private ViewPager2 viewPager;
 
-    public AvencasOnBoardingFragment3() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_avencas_on_boarding2, container, false);
-
-        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_on_boarding3, container, false);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        viewPager = getActivity().findViewById(R.id.viewPager_avencas);
+        viewPager = getActivity().findViewById(R.id.viewPager_riaformosa);
+
 
         setOnClickListeners();
         insertContent();
@@ -73,19 +56,14 @@ public class AvencasOnBoardingFragment3 extends Fragment {
             @Override
             public void onClick(View v) {
                 // User finished onBoarding sequence
-                onBoardingViewModel.setOnBoarding(true);
-                dashboardViewModel.setAvencasOrRiaFormosa(0);
-
-                Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(SEQUENCE_NUMBER-2);
+                viewPager.setCurrentItem(SEQUENCE_NUMBER - 2);
             }
         });
     }
@@ -95,18 +73,34 @@ public class AvencasOnBoardingFragment3 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Área Marinha Protegida das Avencas",
+                "Tabela de Marés",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
+        SpannableString link = ClickableString.makeLinkSpan("tabela de marés", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.hidrografico.pt/m.mare"));
+                startActivity(browserIntent);
+            }
+        });
+
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Antes de começares a explorar esta zona, lembra-te que é uma <b>Zona Protegida</b>.<br><br>" +
-                        "Evita a interferência com os organismos marinhos, nomeadamente:<br>" +
-                        "- Reduz ao mínimo possível o pisoteio (procura andar apenas pelos locais assinalados)<br>" +
-                        "- Sempre que levantares uma rocha, volta a colocá-la tal como estava (não deixes a face interior exposta)<br>" +
-                        "- Não faças recolhas de nenhum organismo (podes sempre fotografá-los)<br>" +
-                        "- Não deixes o teu lixo para trás.",
+                "ATENÇÃO:<br><br>" +
+                        "Tal como referido no início desta App, para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
+
+        textViewContent.append(link);
+        textViewContent.append(HtmlCompat.fromHtml(
+                ". No caso da plataforma da Praia do Arraial de Tavira (onde irão decorrer os percursos), tens de selecionar o <u>Porto de Tavira</u>, tem em atenção o seguinte:\n" +
+                        "- Altura da maré-baixa: <u>tem de ser inferior a 0.9m</u><br>" +
+                        "- Intervalo de tempo com acesso seguro à zona: 2h antes até 2h depois da hora da maré-baixa<br>" +
+                        "<br>" +
+                        "Confirma sempre o estado do mar, antes de ires visitar estes locais. A ondulação deve estar abaixo dos 2m.",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
+
+        ClickableString.makeLinksFocusable(textViewContent);
     }
 }

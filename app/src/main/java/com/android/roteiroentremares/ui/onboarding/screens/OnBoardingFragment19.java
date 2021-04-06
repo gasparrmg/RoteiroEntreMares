@@ -70,7 +70,6 @@ public class OnBoardingFragment19 extends Fragment {
         btnAvencas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Avencas clicked.", Toast.LENGTH_SHORT).show();
                 NavController navController = Navigation.findNavController(view);
                 navController.navigate(R.id.action_viewPagerFragment_to_avencasViewPagerFragment);
             }
@@ -79,7 +78,8 @@ public class OnBoardingFragment19 extends Fragment {
         btnRiaFormosa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Ria Formosa clicked.", Toast.LENGTH_SHORT).show();
+                NavController navController = Navigation.findNavController(view);
+                navController.navigate(R.id.action_viewPagerFragment_to_riaFormosaViewPagerFragment);
             }
         });
     }

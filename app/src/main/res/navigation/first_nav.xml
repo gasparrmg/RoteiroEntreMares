@@ -24,10 +24,17 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_avencasViewPagerFragment"
             app:destination="@id/avencasViewPagerFragment" />
+        <action
+            android:id="@+id/action_viewPagerFragment_to_riaFormosaViewPagerFragment"
+            app:destination="@id/riaFormosaViewPagerFragment" />
     </fragment>
     <fragment
         android:id="@+id/avencasViewPagerFragment"
         android:name="com.android.roteiroentremares.ui.onboarding.AvencasViewPagerFragment"
         android:label="fragment_avencas_view_pager"
         tools:layout="@layout/fragment_avencas_view_pager" />
+    <fragment
+        android:id="@+id/riaFormosaViewPagerFragment"
+        android:name="com.android.roteiroentremares.ui.onboarding.RiaFormosaViewPagerFragment"
+        android:label="RiaFormosaViewPagerFragment" />
 </navigation>

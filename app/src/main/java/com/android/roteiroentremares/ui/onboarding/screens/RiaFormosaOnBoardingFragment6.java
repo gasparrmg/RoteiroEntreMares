@@ -12,26 +12,15 @@ import android.widget.TextView;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
-import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
-import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.android.roteiroentremares.util.ClickableString;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import dagger.hilt.android.AndroidEntryPoint;
+public class RiaFormosaOnBoardingFragment6 extends Fragment {
 
-@AndroidEntryPoint
-public class AvencasOnBoardingFragment3 extends Fragment {
-
-    private static final int SEQUENCE_NUMBER = 3;
-
-    // ViewModel
-    private OnBoardingViewModel onBoardingViewModel;
-    private DashboardViewModel dashboardViewModel;
+    private static final int SEQUENCE_NUMBER = 6;
 
     // Views
     private TextView textViewTitle;
@@ -40,24 +29,18 @@ public class AvencasOnBoardingFragment3 extends Fragment {
     private ImageButton buttonPrev;
     private ViewPager2 viewPager;
 
-    public AvencasOnBoardingFragment3() {
-        // Required empty public constructor
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_avencas_on_boarding2, container, false);
-
-        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_on_boarding3, container, false);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        viewPager = getActivity().findViewById(R.id.viewPager_avencas);
+        viewPager = getActivity().findViewById(R.id.viewPager_riaformosa);
+
 
         setOnClickListeners();
         insertContent();
@@ -73,19 +56,14 @@ public class AvencasOnBoardingFragment3 extends Fragment {
             @Override
             public void onClick(View v) {
                 // User finished onBoarding sequence
-                onBoardingViewModel.setOnBoarding(true);
-                dashboardViewModel.setAvencasOrRiaFormosa(0);
-
-                Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(SEQUENCE_NUMBER-2);
+                viewPager.setCurrentItem(SEQUENCE_NUMBER - 2);
             }
         });
     }
@@ -95,17 +73,17 @@ public class AvencasOnBoardingFragment3 extends Fragment {
      */
     private void insertContent() {
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Área Marinha Protegida das Avencas",
+                "Recomendações",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Antes de começares a explorar esta zona, lembra-te que é uma <b>Zona Protegida</b>.<br><br>" +
-                        "Evita a interferência com os organismos marinhos, nomeadamente:<br>" +
-                        "- Reduz ao mínimo possível o pisoteio (procura andar apenas pelos locais assinalados)<br>" +
-                        "- Sempre que levantares uma rocha, volta a colocá-la tal como estava (não deixes a face interior exposta)<br>" +
-                        "- Não faças recolhas de nenhum organismo (podes sempre fotografá-los)<br>" +
-                        "- Não deixes o teu lixo para trás.",
+                        "a) Recomenda-se que os participantes calcem <u>sapatos com sola aderente</u> ao substrato (sobretudo às rochas e algas escorregadias) e <u>mudem de calçado e de roupa</u> no fim da saída de campo.<br>" +
+                        "b) Recomenda-se também a utilização de chapéu, de óculos de sol e de protetor solar com índice de proteção UV elevado.<br>" +
+                        "<br>" +
+                        "<u>Material:</u> Balde ou outro recipiente de plástico, Camaroeiro, Caderno de campo, Lápis, Máquina fotográfica.<br>" +
+                        "<br>" +
+                        "<u>Material opcional:</u> Canivete, Sacos de plástico com fecho Zip, Marcador/Caneta.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

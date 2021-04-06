@@ -28,6 +28,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class DataRepository {
+    private static final String SHAREDPREF_KEY_AVENCAS_RIAFORMOSA = "key_avencas_riaformosa";
     private static final String SHAREDPREF_KEY_TIPOUTILIZADOR = "key_tipoutilizador";
     private static final String SHAREDPREF_KEY_ONBOARDING = "key_onboarding";
     private static final String SHAREDPREF_KEY_NOME = "key_nome";
@@ -65,6 +66,10 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE_INTERACOES = "key_finished_biodiversidade_interacoes";
 
     private static final String SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE = "key_finished_biodiversidade";
+
+    // Ria Formosa
+
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI = "key_finished_riaformosa_naofiquesporaqui";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
@@ -635,6 +640,27 @@ public class DataRepository {
         ).apply();
     }
 
+    /**
+     * Returns true if the User already completed the Nao Fiques Por Aqui sequence
+     * @return
+     */
+    public boolean isRiaFormosaNaoFiquesPorAquiFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Nao Fiques Por Aqui sequence
+     */
+    public void setRiaFormosaNaoFiquesPorAquiAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI,
+                true
+        ).apply();
+    }
+
 
 
 
@@ -659,6 +685,30 @@ public class DataRepository {
         sharedPreferences.edit().putBoolean(
                 SHAREDPREF_KEY_ONBOARDING,
                 onBoarding
+        ).apply();
+    }
+
+    /**
+     * 0 - Avencas
+     * 1 - Ria Formosa
+     * @return
+     */
+    public int getAvencasOrRiaFormosa() {
+        return sharedPreferences.getInt(
+                SHAREDPREF_KEY_AVENCAS_RIAFORMOSA,
+                0
+        );
+    }
+
+    /**
+     * 0 - Avencas
+     * 1 - Ria Formosa
+     * @param zona
+     */
+    public void setAvencasOrRiaFormosa(int zona) {
+        sharedPreferences.edit().putInt(
+                SHAREDPREF_KEY_AVENCAS_RIAFORMOSA,
+                zona
         ).apply();
     }
 
