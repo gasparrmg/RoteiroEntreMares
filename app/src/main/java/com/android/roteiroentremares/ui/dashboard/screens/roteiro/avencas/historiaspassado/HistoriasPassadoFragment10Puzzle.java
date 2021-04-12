@@ -30,6 +30,18 @@ public class HistoriasPassadoFragment10Puzzle extends Fragment implements Puzzle
 
     private PuzzleFactory puzzleFactory;
 
+    private static final int[] puzzleImages = {
+            R.drawable.img_historiaspassado_puzzle_1,
+            R.drawable.img_historiaspassado_puzzle_2,
+            R.drawable.img_historiaspassado_puzzle_3,
+            R.drawable.img_historiaspassado_puzzle_4,
+            R.drawable.img_historiaspassado_puzzle_5,
+            R.drawable.img_historiaspassado_puzzle_6,
+            R.drawable.img_historiaspassado_puzzle_7,
+            R.drawable.img_historiaspassado_puzzle_8,
+            R.drawable.img_historiaspassado_puzzle_9
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -61,7 +73,7 @@ public class HistoriasPassadoFragment10Puzzle extends Fragment implements Puzzle
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
 
-        puzzleFactory = new PuzzleFactory(getActivity(), gestureDetectGridView, this);
+        puzzleFactory = new PuzzleFactory(getActivity(), gestureDetectGridView, this, puzzleImages);
     }
 
     private void setOnClickListeners(View view) {

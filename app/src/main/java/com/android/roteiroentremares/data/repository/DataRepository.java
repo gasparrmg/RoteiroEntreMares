@@ -72,6 +72,7 @@ public class DataRepository {
     // Ria Formosa
 
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI = "key_finished_riaformosa_naofiquesporaqui";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS = "key_finished_riaformosa_pradariasmarinhas";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
@@ -665,6 +666,27 @@ public class DataRepository {
     public void setRiaFormosaNaoFiquesPorAquiAsFinished() {
         sharedPreferences.edit().putBoolean(
                 SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the PradariasMarinhas sequence
+     * @return
+     */
+    public boolean isRiaFormosaPradariasMarinhasFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the PradariasMarinhas sequence
+     */
+    public void setRiaFormosaPradariasMarinhasAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS,
                 true
         ).apply();
     }

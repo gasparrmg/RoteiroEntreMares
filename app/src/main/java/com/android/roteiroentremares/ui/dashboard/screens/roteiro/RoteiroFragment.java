@@ -362,7 +362,7 @@ public class RoteiroFragment extends Fragment {
             isNaoFiquesPorAqui2Finished = dashboardViewModel.isRiaFormosaNaoFiquesPorAquiFinished();
             // isIntertidalArenosoFinished = dashboardViewModel.isEQuandoAMareSobeFinished();
             // isDunasFinished = dashboardViewModel.isImpactosFinished();
-            // isPradariasMarinhasFinished = dashboardViewModel.isBiodiversidadeFinished();
+            isPradariasMarinhasFinished = dashboardViewModel.isRiaFormosaPradariasMarinhasFinished();
 
             /*if (isSapalFinished) {
                 textViewSapalIsFinished.setVisibility(View.VISIBLE);
@@ -380,9 +380,9 @@ public class RoteiroFragment extends Fragment {
                 textViewDunasIsFinished.setVisibility(View.VISIBLE);
             }*/
 
-            /*if (isPradariasMarinhasFinished) {
+            if (isPradariasMarinhasFinished) {
                 textViewPradariasMarinhasIsFinished.setVisibility(View.VISIBLE);
-            }*/
+            }
 
             cardViewSapal.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -466,14 +466,14 @@ public class RoteiroFragment extends Fragment {
             cardViewPradariasMarinhas.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*if (isEQuandoAMareSobeFinished) {
+                    if (isPradariasMarinhasFinished) {
                         MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
                         materialAlertDialogBuilder.setTitle("Percurso terminado!");
                         materialAlertDialogBuilder.setMessage("Este percurso já foi terminado. Tens a certeza que o queres repetir?");
                         materialAlertDialogBuilder.setPositiveButton("Repetir", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_EQuandoAMareSobeFragment);
+                                Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_riaFormosaPradariasMarinhasFragment);
                             }
                         });
                         materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
@@ -484,8 +484,8 @@ public class RoteiroFragment extends Fragment {
                         });
                         materialAlertDialogBuilder.show();
                     } else {
-                        Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_EQuandoAMareSobeFragment);
-                    }*/
+                        Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_riaFormosaPradariasMarinhasFragment);
+                    }
                 }
             });
 
