@@ -11,6 +11,7 @@ import com.android.roteiroentremares.data.dao.ArtefactoDao;
 import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
 import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
+import com.android.roteiroentremares.data.dao.EspecieRiaFormosaDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
 import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.data.model.AvistamentoPocasAvencas;
@@ -18,6 +19,7 @@ import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.EspecieAvencasZonacaoInstancias;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 
@@ -74,11 +76,13 @@ public class DataRepository {
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
     private EspecieAvencasDao especieAvencasDao;
+    private EspecieRiaFormosaDao especieRiaFormosaDao;
     private AvistamentoPocasAvencasDao avistamentoPocasAvencasDao;
     private AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao;
 
     private LiveData<List<Artefacto>> allArtefactos;
     private LiveData<List<EspecieAvencas>> allEspecieAvencas;
+    private LiveData<List<EspecieRiaFormosa>> allEspecieRiaFormosa;
 
     private LiveData<List<AvistamentoPocasAvencas>> allAvistamentoPocasAvencas;
     private LiveData<List<AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias>> allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
@@ -92,17 +96,21 @@ public class DataRepository {
             SharedPreferences sharedPreferences,
             ArtefactoDao artefactoDao,
             EspecieAvencasDao especieAvencasDao,
+            EspecieRiaFormosaDao especieRiaFormosaDao,
             AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
             AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao
     ) {
         this.sharedPreferences = sharedPreferences;
         this.artefactoDao = artefactoDao;
         this.especieAvencasDao = especieAvencasDao;
+        this.especieRiaFormosaDao = especieRiaFormosaDao;
         this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
         this.avistamentoZonacaoAvencasDao = avistamentoZonacaoAvencasDao;
 
         allArtefactos = artefactoDao.getAll();
+
         allEspecieAvencas = especieAvencasDao.getAll();
+        allEspecieRiaFormosa = especieRiaFormosaDao.getAll();
 
         allAvistamentoPocasAvencas = avistamentoPocasAvencasDao.getAllAvistamentoPocasAvencas();
         allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias = avistamentoPocasAvencasDao.getAllAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias();
@@ -1209,6 +1217,14 @@ public class DataRepository {
      */
     public LiveData<List<Artefacto>> getAllArtefactos() {
         return allArtefactos;
+    }
+
+    public LiveData<List<EspecieRiaFormosa>> getAllEspecieRiaFormosa() {
+        return allEspecieRiaFormosa;
+    }
+
+    public LiveData<List<EspecieRiaFormosa>> getFilteredRiaFormosaEspecies(SupportSQLiteQuery query) {
+        return especieRiaFormosaDao.getWithQuery(query);
     }
 
     /**

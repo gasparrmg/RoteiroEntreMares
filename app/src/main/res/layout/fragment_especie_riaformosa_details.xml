@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.dashboard.screens.guiadecampo.details.EspecieDetailsFragment">
+    tools:context=".ui.dashboard.screens.guiadecampo.details.avencas.EspecieAvencasDetailsFragment">
 
     <LinearLayout
         android:id="@+id/linearlayout_nomecomum"
@@ -88,6 +88,64 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Anémonas e Actinias (Cnidaria)"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_zona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_zona_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Zona"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_zona_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sapal"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_tipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_tipo_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Tipo"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_tipo_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fauna"
             android:textSize="16sp"
             android:fontFamily="@font/open_sans"
             android:textColor="@color/colorBodyText"/>

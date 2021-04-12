@@ -11,6 +11,7 @@ import androidx.sqlite.db.SimpleSQLiteQuery;
 import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 import com.android.roteiroentremares.data.repository.DataRepository;
@@ -28,9 +29,10 @@ public class GuiaDeCampoViewModel extends ViewModel {
     private SavedStateHandle savedStateHandle;
 
     private MutableLiveData<String> filterQuery = new MutableLiveData<>();
+    private MutableLiveData<String> filterQueryRiaFormosa = new MutableLiveData<>();
 
     private LiveData<List<EspecieAvencas>> allEspecieAvencas;
-    // private LiveData<List<EspecieRiaFormosa>> allEspecieRiaFormosa;
+    private LiveData<List<EspecieRiaFormosa>> allEspecieRiaFormosa;
 
     private LiveData<List<AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias>> allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
     private LiveData<List<AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias>> allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
@@ -44,9 +46,6 @@ public class GuiaDeCampoViewModel extends ViewModel {
         this.savedStateHandle = savedStateHandle;
         this.dataRepository = dataRepository;
 
-        // allEspecieAvencas = dataRepository.getAllEspecieAvencas();
-        // // allEspecieRiaFormosa = dataRepository.getAllEspecieRiaFormosa();
-
         allEspecieAvencas = Transformations.switchMap(filterQuery,
                 new Function<String, LiveData<List<EspecieAvencas>>>() {
                     @Override
@@ -54,6 +53,13 @@ public class GuiaDeCampoViewModel extends ViewModel {
                         return dataRepository.getFilteredEspecies(new SimpleSQLiteQuery(input));
                     }
                 });
+
+        allEspecieRiaFormosa = Transformations.switchMap(filterQueryRiaFormosa, new Function<String, LiveData<List<EspecieRiaFormosa>>>() {
+            @Override
+            public LiveData<List<EspecieRiaFormosa>> apply(String input) {
+                return dataRepository.getFilteredRiaFormosaEspecies(new SimpleSQLiteQuery(input));
+            }
+        });
 
         allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias = dataRepository.getAllAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias();
         allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias = dataRepository.getAllAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias();
@@ -65,9 +71,15 @@ public class GuiaDeCampoViewModel extends ViewModel {
     }
 
     public LiveData<List<EspecieAvencas>> getAllEspecies() {
-        // IF Avencas -> return allEspeciesAvencas; else -> return allEspeciesRiaFormosa
-
         return allEspecieAvencas;
+    }
+
+    public void filterEspeciesRiaFormosa(String query) {
+        filterQueryRiaFormosa.postValue(query);
+    }
+
+    public LiveData<List<EspecieRiaFormosa>> getAllEspecieRiaFormosa() {
+        return allEspecieRiaFormosa;
     }
 
     public LiveData<List<AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias>> getAllAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias() {

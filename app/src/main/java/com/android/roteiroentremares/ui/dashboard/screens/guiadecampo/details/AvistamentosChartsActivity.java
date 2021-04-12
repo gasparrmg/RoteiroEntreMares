@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
@@ -44,6 +46,8 @@ public class AvistamentosChartsActivity extends AppCompatActivity {
     // ViewModel
     private GuiaDeCampoViewModel guiaDeCampoViewModel;
 
+    private TextView textViewPresenceTitle;
+
     private LineChart lineChartDistribution;
     private BarChart barChartPresence;
 
@@ -72,6 +76,7 @@ public class AvistamentosChartsActivity extends AppCompatActivity {
 
         lineChartDistribution = findViewById(R.id.lineChart_distribution);
         barChartPresence = findViewById(R.id.barChart_presence);
+        textViewPresenceTitle = findViewById(R.id.textView_presence_title);
 
         gotDataFromPocas = false;
         gotDataFromSupralitoral = false;
@@ -353,36 +358,43 @@ public class AvistamentosChartsActivity extends AppCompatActivity {
 
         // Bar Chart
 
-        BarData barData = new BarData(barDataSets);
-        barChartPresence.setData(barData);
+        if (barDataSets.size() > 1) {
+            BarData barData = new BarData(barDataSets);
+            barChartPresence.setData(barData);
 
-        barChartPresence.getLegend().setWordWrapEnabled(true);
+            barChartPresence.getLegend().setWordWrapEnabled(true);
 
-        barChartPresence.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(nomesEspecies));
-        barChartPresence.getXAxis().setCenterAxisLabels(true);
-        barChartPresence.getXAxis().setGranularity(1f);
-        barChartPresence.getXAxis().setGranularityEnabled(true);
+            barChartPresence.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(nomesEspecies));
+            barChartPresence.getXAxis().setCenterAxisLabels(true);
+            barChartPresence.getXAxis().setGranularity(1f);
+            barChartPresence.getXAxis().setGranularityEnabled(true);
+            barChartPresence.getAxisLeft().setGranularityEnabled(true);
+            barChartPresence.getAxisLeft().setGranularity(1f);
 
-        barChartPresence.setDragEnabled(true);
-        barChartPresence.setVisibleXRangeMaximum(2);
+            barChartPresence.setDragEnabled(true);
+            barChartPresence.setVisibleXRangeMaximum(2);
 
-        float barWidth = 0.1f;
-        float barSpace = 0.025f;
-        //float groupSpace = 0.375f; // 5 groups
-        float groupSpace = (1 - ((barSpace + barWidth) * numberOfGroups));
-        barData.setBarWidth(barWidth);
+            float barWidth = 0.1f;
+            float barSpace = 0.025f;
+            //float groupSpace = 0.375f; // 5 groups
+            float groupSpace = (1 - ((barSpace + barWidth) * numberOfGroups));
+            barData.setBarWidth(barWidth);
 
-        barChartPresence.getXAxis().setAxisMinimum(0);
-        // barChartPresence.getXAxis().setAxisMaximum(0 + barChartPresence.getBarData().getGroupWidth(groupSpace, barSpace) * 7);
-        // barChartPresence.getAxisLeft().setAxisMinimum(0);
-        barChartPresence.groupBars(0, groupSpace, barSpace);
+            barChartPresence.getXAxis().setAxisMinimum(0);
+            // barChartPresence.getXAxis().setAxisMaximum(0 + barChartPresence.getBarData().getGroupWidth(groupSpace, barSpace) * 7);
+            // barChartPresence.getAxisLeft().setAxisMinimum(0);
+            barChartPresence.groupBars(0, groupSpace, barSpace);
 
-        barChartPresence.setDescription(description);
-        barChartPresence.getDescription().setTextSize(14f);
-        barChartPresence.getXAxis().setDrawGridLines(false);
+            barChartPresence.setDescription(description);
+            barChartPresence.getDescription().setTextSize(14f);
+            barChartPresence.getXAxis().setDrawGridLines(false);
 
-        barChartPresence.notifyDataSetChanged();
-        barChartPresence.invalidate();
+            barChartPresence.notifyDataSetChanged();
+            barChartPresence.invalidate();
+        } else {
+            barChartPresence.setVisibility(View.GONE);
+            textViewPresenceTitle.setVisibility(View.GONE);
+        }
     }
 
     private void checkIfAllDataReceived() {

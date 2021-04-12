@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.dashboard.screens.guiadecampo.details.EspecieDetailsFragment">
+    tools:context=".ui.dashboard.screens.guiadecampo.details.avencas.EspecieAvencasDetailsFragment">
 
     <LinearLayout
         android:id="@+id/linearlayout_sabiasque"

@@ -1,4 +1,4 @@
-package com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details;
+package com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.avencas;
 
 import android.os.Bundle;
 
@@ -13,8 +13,9 @@ import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
+import com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity;
 
-public class EspecieSabiasQueFragment extends Fragment {
+public class EspecieAvencasSabiasQueFragment extends Fragment {
 
     private ViewPager2 viewPager;
     private EspecieAvencas especieAvencas;
@@ -22,7 +23,7 @@ public class EspecieSabiasQueFragment extends Fragment {
     private TextView textViewSabiasQueContent;
     private Button buttonBack;
 
-    public EspecieSabiasQueFragment(EspecieAvencas especieAvencas) {
+    public EspecieAvencasSabiasQueFragment(EspecieAvencas especieAvencas) {
         // Required empty public constructor
         this.especieAvencas = especieAvencas;
     }
@@ -31,7 +32,7 @@ public class EspecieSabiasQueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_especie_sabias_que, container, false);
+        View view = inflater.inflate(R.layout.fragment_especie_avencas_sabias_que, container, false);
 
         viewPager = getActivity().findViewById(R.id.viewPager_especieDetails);
 
