@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -32,6 +33,7 @@ import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -130,7 +132,7 @@ public class BiodiversidadeZonacaoFragment6Pergunta4 extends Fragment {
         buttonPrev = view.findViewById(R.id.btn_prev);
         buttonCharts = view.findViewById(R.id.button_charts);
 
-        textInputEditTextResposta.addTextChangedListener(new TextWatcher() {
+        /*textInputEditTextResposta.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -151,7 +153,7 @@ public class BiodiversidadeZonacaoFragment6Pergunta4 extends Fragment {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
     }
 
     private void setOnClickListeners(View view) {
@@ -168,30 +170,58 @@ public class BiodiversidadeZonacaoFragment6Pergunta4 extends Fragment {
                 // Guardar nos Artefactos
                     // If !Explorador -> Partilhar
 
-                Artefacto newTextArtefacto = new Artefacto(
-                        "Biodiversidade // Zonação - Porque encontramos organismos diferentes consoante a distância ao nível da água na maré-baixa?",
-                        textInputEditTextResposta.getText().toString(),
-                        0,
-                        "",
-                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
-                        "",
-                        "",
-                        artefactosViewModel.getCodigoTurma(),
-                        false
-                );
+                if (textInputEditTextResposta.getText().toString().trim().length() == 0) {
+                    // if empty
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_question_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // next no save
+                            InputMethodManager inputManager = (InputMethodManager)
+                                    getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                artefactosViewModel.insertArtefacto(newTextArtefacto);
+                            //inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                Toast.makeText(getActivity(), "A tua resposta foi guardada nos teus Artefactos!", Toast.LENGTH_LONG).show();
+                            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                InputMethodManager inputManager = (InputMethodManager)
-                        getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7Words);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Artefacto newTextArtefacto = new Artefacto(
+                            "Biodiversidade // Zonação - Porque encontramos organismos diferentes consoante a distância ao nível da água na maré-baixa?",
+                            textInputEditTextResposta.getText().toString(),
+                            0,
+                            "",
+                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                            "",
+                            "",
+                            artefactosViewModel.getCodigoTurma(),
+                            false
+                    );
 
-                //inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    artefactosViewModel.insertArtefacto(newTextArtefacto);
 
-                inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    Toast.makeText(getActivity(), "A tua resposta foi guardada nos teus Artefactos!", Toast.LENGTH_LONG).show();
 
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7Words);
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    //inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7Words);
+                }
             }
         });
 

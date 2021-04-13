@@ -213,7 +213,26 @@ public class BiodiversidadeMicrohabitatsPocasFragment4Tarefa extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeMicrohabitatsPocasFragment4Tarefa_to_biodiversidadeMicrohabitatsPocasFragment5SopaLetras);
+                if (!(poca1Finished && poca2Finished && poca3Finished)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeMicrohabitatsPocasFragment4Tarefa_to_biodiversidadeMicrohabitatsPocasFragment5SopaLetras);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeMicrohabitatsPocasFragment4Tarefa_to_biodiversidadeMicrohabitatsPocasFragment5SopaLetras);
+                }
             }
         });
     }
@@ -255,7 +274,6 @@ public class BiodiversidadeMicrohabitatsPocasFragment4Tarefa extends Fragment {
     }
 
     private void checkVisited() {
-        // TODO
         guiaDeCampoViewModel.getAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias(1).observe(getViewLifecycleOwner(), new Observer<AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias>() {
             @Override
             public void onChanged(AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias avistamentoPocasAvencasWithEspecieAvencasPocasInstancias) {

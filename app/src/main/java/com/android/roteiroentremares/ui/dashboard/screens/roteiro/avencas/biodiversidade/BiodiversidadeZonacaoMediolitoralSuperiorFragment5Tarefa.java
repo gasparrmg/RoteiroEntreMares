@@ -264,7 +264,26 @@ public class BiodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa extends Fr
             @Override
             public void onClick(View v) {
                 // Mediolitoral inferior
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa_to_biodiversidadeZonacaoMediolitoralInferiorFragment);
+                if (!(quadrado1Finished && quadrado2Finished && quadrado3Finished)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa_to_biodiversidadeZonacaoMediolitoralInferiorFragment);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa_to_biodiversidadeZonacaoMediolitoralInferiorFragment);
+                }
             }
         });
     }

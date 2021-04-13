@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
@@ -28,6 +29,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.FontManager;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rjbasitali.wordsearch.Word;
 import com.rjbasitali.wordsearch.WordSearchView;
@@ -202,8 +204,28 @@ public class BiodiversidadeMicrohabitatsPocasFragment5SopaLetras extends Fragmen
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboardViewModel.setBiodiversidadeMicrohabitatsPocasAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                if (wordsFound < 5) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setBiodiversidadeMicrohabitatsPocasAsFinished();
+                            Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    dashboardViewModel.setBiodiversidadeMicrohabitatsPocasAsFinished();
+                    Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                }
             }
         });
     }

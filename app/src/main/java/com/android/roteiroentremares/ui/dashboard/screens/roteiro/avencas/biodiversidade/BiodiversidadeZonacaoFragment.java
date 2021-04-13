@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -30,6 +31,7 @@ import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -64,6 +66,10 @@ public class BiodiversidadeZonacaoFragment extends Fragment {
     private Button buttonParaSaberesMais;
 
     private TextToSpeech tts;
+
+    private boolean isBiodiversidadeZonacaoSupralitoralFinished;
+    private boolean isBiodiversidadeZonacaoMediolitoralFinished;
+    private boolean isBiodiversidadeZonacaoInfralitoralFinished;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -185,7 +191,26 @@ public class BiodiversidadeZonacaoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Go to questions
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoFragment2PerguntasIntro);
+                if (!(isBiodiversidadeZonacaoSupralitoralFinished && isBiodiversidadeZonacaoMediolitoralFinished && isBiodiversidadeZonacaoInfralitoralFinished)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_content_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoFragment2PerguntasIntro);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoFragment2PerguntasIntro);
+                }
             }
         });
 
@@ -232,9 +257,9 @@ public class BiodiversidadeZonacaoFragment extends Fragment {
     }
 
     private void checkVisited() {
-        boolean isBiodiversidadeZonacaoSupralitoralFinished = dashboardViewModel.isBiodiversidadeZonacaoSupralitoralFinished();
-        boolean isBiodiversidadeZonacaoMediolitoralFinished = dashboardViewModel.isBiodiversidadeZonacaoMediolitoralFinished();
-        boolean isBiodiversidadeZonacaoInfralitoralFinished = dashboardViewModel.isBiodiversidadeZonacaoInfralitoralFinished();
+        isBiodiversidadeZonacaoSupralitoralFinished = dashboardViewModel.isBiodiversidadeZonacaoSupralitoralFinished();
+        isBiodiversidadeZonacaoMediolitoralFinished = dashboardViewModel.isBiodiversidadeZonacaoMediolitoralFinished();
+        isBiodiversidadeZonacaoInfralitoralFinished = dashboardViewModel.isBiodiversidadeZonacaoInfralitoralFinished();
 
         if (isBiodiversidadeZonacaoSupralitoralFinished) {
             setVisitedIcon(imageViewSupralitoralIcon);

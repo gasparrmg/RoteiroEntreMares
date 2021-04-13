@@ -9,6 +9,44 @@
     android:padding="16dp">
 
     <LinearLayout
+        android:id="@+id/linearlayout_isEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:baselineAlignBottom="false"
+            android:src="@drawable/ic_search_not_found" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Não tens dados suficientes!"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Para adicionar dados aos gráficos terás acabar as tarefas relacionadas com os Avistamentos!"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

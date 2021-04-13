@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,6 +18,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.GestureDetectGridView;
 import com.android.roteiroentremares.util.PuzzleFactory;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -42,11 +44,15 @@ public class RiaFormosaPradariasMarinhasFragment7SabiasQue2 extends Fragment imp
             R.drawable.img_riaformosa_pradariasmarinhas_puzzle_9
     };
 
+    private boolean isSolved;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_historias_passado10_puzzle, container, false);
+
+        isSolved = false;
 
         initViews(view);
         setOnClickListeners(view);
@@ -87,7 +93,26 @@ public class RiaFormosaPradariasMarinhasFragment7SabiasQue2 extends Fragment imp
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment7SabiasQue2_to_riaFormosaPradariasMarinhasFragment7SabiasQue3);
+                if (!isSolved) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment7SabiasQue2_to_riaFormosaPradariasMarinhasFragment7SabiasQue3);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment7SabiasQue2_to_riaFormosaPradariasMarinhasFragment7SabiasQue3);
+                }
             }
         });
     }
@@ -95,6 +120,8 @@ public class RiaFormosaPradariasMarinhasFragment7SabiasQue2 extends Fragment imp
     @Override
     public void onSolvedCallback() {
         Toast.makeText(getActivity(), "Parabéns! Resolveste o Puzzle!", Toast.LENGTH_SHORT).show();
+
+        isSolved = true;
 
         buttonFabNext.setVisibility(View.VISIBLE);
         buttonFabNext.setEnabled(true);

@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.onboarding.screens;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
@@ -12,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.Question;
 import com.android.roteiroentremares.data.factory.QuestionFactory;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
@@ -65,7 +68,7 @@ public class OnBoardingFragment13 extends Fragment implements View.OnClickListen
 
         progressBar.setMax(viewPager.getAdapter().getItemCount());
         progressBar.setProgress(SEQUENCE_NUMBER);
-        buttonFabNext.setEnabled(false);
+        buttonFabNext.setEnabled(true);
 
         isCorrect = false;
 
@@ -83,7 +86,26 @@ public class OnBoardingFragment13 extends Fragment implements View.OnClickListen
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(SEQUENCE_NUMBER);
+                if (!isCorrect) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_question_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            viewPager.setCurrentItem(SEQUENCE_NUMBER);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    viewPager.setCurrentItem(SEQUENCE_NUMBER);
+                }
             }
         });
 
@@ -144,6 +166,8 @@ public class OnBoardingFragment13 extends Fragment implements View.OnClickListen
             if (isCorrect) {
                 buttonFabNext.setEnabled(true);
                 buttonFabNext.setVisibility(View.VISIBLE);
+
+                Toast.makeText(getActivity(), getResources().getString(R.string.message_correct_answer), Toast.LENGTH_SHORT).show();
             }
         }
     }

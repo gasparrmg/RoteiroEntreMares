@@ -91,7 +91,7 @@ public class EQuandoAMareSobeFragment extends Fragment {
                     tts.stop();
                     item.setIcon(R.drawable.ic_volume);
                 } else {
-                    String text = "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem?";
+                    String text = "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem? E será que estes locais são visitados por outras espécies?";
                     tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                 }
                 return true;
@@ -140,7 +140,7 @@ public class EQuandoAMareSobeFragment extends Fragment {
      */
     private void insertContent() {
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem?",
+                "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem? E será que estes locais são visitados por outras espécies?",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 

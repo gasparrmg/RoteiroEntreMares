@@ -10,6 +10,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
@@ -47,9 +48,12 @@ public class AvistamentosChartsActivity extends AppCompatActivity {
     private GuiaDeCampoViewModel guiaDeCampoViewModel;
 
     private TextView textViewPresenceTitle;
+    private TextView textViewDistributionTitle;
 
     private LineChart lineChartDistribution;
     private BarChart barChartPresence;
+
+    private LinearLayout linearLayoutIsEmpty;
 
     private List<AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias> avistamentosPocas;
     private List<AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias> avistamentosSupralitoral;
@@ -77,6 +81,8 @@ public class AvistamentosChartsActivity extends AppCompatActivity {
         lineChartDistribution = findViewById(R.id.lineChart_distribution);
         barChartPresence = findViewById(R.id.barChart_presence);
         textViewPresenceTitle = findViewById(R.id.textView_presence_title);
+        textViewDistributionTitle = findViewById(R.id.textView_distribution_title);
+        linearLayoutIsEmpty = findViewById(R.id.linearlayout_isEmpty);
 
         gotDataFromPocas = false;
         gotDataFromSupralitoral = false;
@@ -340,6 +346,21 @@ public class AvistamentosChartsActivity extends AppCompatActivity {
             barDataSets.add(infralitoralBarDataSet);
         }
 
+        if (numberOfGroups == 0) {
+            // NO DATA, SHOW WARNING
+            lineChartDistribution.setVisibility(View.GONE);
+            textViewDistributionTitle.setVisibility(View.GONE);
+
+            barChartPresence.setVisibility(View.GONE);
+            textViewPresenceTitle.setVisibility(View.GONE);
+
+            linearLayoutIsEmpty.setVisibility(View.VISIBLE);
+
+            return;
+        } else {
+            linearLayoutIsEmpty.setVisibility(View.GONE);
+        }
+
         lineChartDistribution.getLegend().setWordWrapEnabled(true);
         lineChartDistribution.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(nomesEspecies));
         lineChartDistribution.getXAxis().setGranularity(1f);
@@ -368,11 +389,17 @@ public class AvistamentosChartsActivity extends AppCompatActivity {
             barChartPresence.getXAxis().setCenterAxisLabels(true);
             barChartPresence.getXAxis().setGranularity(1f);
             barChartPresence.getXAxis().setGranularityEnabled(true);
+
             barChartPresence.getAxisLeft().setGranularityEnabled(true);
             barChartPresence.getAxisLeft().setGranularity(1f);
+            barChartPresence.getAxisRight().setGranularityEnabled(true);
+            barChartPresence.getAxisRight().setGranularity(1f);
 
             barChartPresence.setDragEnabled(true);
             barChartPresence.setVisibleXRangeMaximum(2);
+
+            barChartPresence.setHorizontalScrollBarEnabled(true);
+            barChartPresence.setScrollBarSize(20);
 
             float barWidth = 0.1f;
             float barSpace = 0.025f;

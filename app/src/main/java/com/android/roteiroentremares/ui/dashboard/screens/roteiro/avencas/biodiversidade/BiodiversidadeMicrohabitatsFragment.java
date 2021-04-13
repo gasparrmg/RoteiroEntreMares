@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -30,6 +31,7 @@ import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardV
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -61,6 +63,10 @@ public class BiodiversidadeMicrohabitatsFragment extends Fragment {
 
     private TextToSpeech tts;
 
+    private boolean isBiodiversidadeMicrohabitatsCanaisFinished;
+    private boolean isBiodiversidadeMicrohabitatsFendasFinished;
+    private boolean isBiodiversidadeMicrohabitatsPocasFinished;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,8 +79,6 @@ public class BiodiversidadeMicrohabitatsFragment extends Fragment {
         setOnClickListeners(view);
         insertContent();
 
-        checkVisited();
-
         return view;
     }
 
@@ -82,6 +86,8 @@ public class BiodiversidadeMicrohabitatsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initToolbar();
+
+        checkVisited();
     }
 
     private void initToolbar() {
@@ -179,8 +185,30 @@ public class BiodiversidadeMicrohabitatsFragment extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboardViewModel.setBiodiversidadeMicrohabitatsAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMenuFragment ,false);
+                if (!(isBiodiversidadeMicrohabitatsCanaisFinished &&
+                        isBiodiversidadeMicrohabitatsFendasFinished &&
+                        isBiodiversidadeMicrohabitatsPocasFinished)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_content_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setBiodiversidadeMicrohabitatsAsFinished();
+                            Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMenuFragment ,false);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    dashboardViewModel.setBiodiversidadeMicrohabitatsAsFinished();
+                    Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMenuFragment ,false);
+                }
             }
         });
     }
@@ -217,9 +245,9 @@ public class BiodiversidadeMicrohabitatsFragment extends Fragment {
     }
 
     private void checkVisited() {
-        boolean isBiodiversidadeMicrohabitatsCanaisFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsCanaisFinished();
-        boolean isBiodiversidadeMicrohabitatsFendasFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsFendasFinished();
-        boolean isBiodiversidadeMicrohabitatsPocasFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsPocasFinished();
+        isBiodiversidadeMicrohabitatsCanaisFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsCanaisFinished();
+        isBiodiversidadeMicrohabitatsFendasFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsFendasFinished();
+        isBiodiversidadeMicrohabitatsPocasFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsPocasFinished();
 
         if (isBiodiversidadeMicrohabitatsCanaisFinished) {
             setVisitedIcon(imageViewCanaisIcon);

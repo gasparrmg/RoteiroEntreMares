@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -30,6 +31,7 @@ import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -60,6 +62,10 @@ public class BiodiversidadeInteracoesFragment2Menu extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+
+    private boolean isBiodiversidadeInteracoesPredacaoFinished;
+    private boolean isBiodiversidadeInteracoesHerbivoriaFinished;
+    private boolean isBiodiversidadeInteracoesCompeticaoFinished;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -179,7 +185,26 @@ public class BiodiversidadeInteracoesFragment2Menu extends Fragment {
             @Override
             public void onClick(View v) {
                 // Go to rede trófica
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment3);
+                if (!(isBiodiversidadeInteracoesPredacaoFinished && isBiodiversidadeInteracoesHerbivoriaFinished && isBiodiversidadeInteracoesCompeticaoFinished)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_content_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment3);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesFragment3);
+                }
             }
         });
     }
@@ -216,9 +241,9 @@ public class BiodiversidadeInteracoesFragment2Menu extends Fragment {
     }
 
     private void checkVisited() {
-        boolean isBiodiversidadeInteracoesPredacaoFinished = dashboardViewModel.isBiodiversidadeInteracoesPredacaoFinished();
-        boolean isBiodiversidadeInteracoesHerbivoriaFinished = dashboardViewModel.isBiodiversidadeInteracoesHerbivoriaFinished();
-        boolean isBiodiversidadeInteracoesCompeticaoFinished = dashboardViewModel.isBiodiversidadeInteracoesCompeticaoFinished();
+        isBiodiversidadeInteracoesPredacaoFinished = dashboardViewModel.isBiodiversidadeInteracoesPredacaoFinished();
+        isBiodiversidadeInteracoesHerbivoriaFinished = dashboardViewModel.isBiodiversidadeInteracoesHerbivoriaFinished();
+        isBiodiversidadeInteracoesCompeticaoFinished = dashboardViewModel.isBiodiversidadeInteracoesCompeticaoFinished();
 
         if (isBiodiversidadeInteracoesPredacaoFinished) {
             setVisitedIcon(imageViewPredacaoIcon);

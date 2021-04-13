@@ -2,6 +2,7 @@ package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodi
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -32,6 +33,7 @@ import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -160,7 +162,27 @@ public class BiodiversidadeInteracoesHerbivoriaFragment9Words extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesHerbivoriaFragment9Words_to_biodiversidadeInteracoesHerbivoriaFragment10);
+
+                if (!(linearLayoutContainer1.getChildCount() == 0 && linearLayoutContainer2.getChildCount() == 0)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesHerbivoriaFragment9Words_to_biodiversidadeInteracoesHerbivoriaFragment10);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesHerbivoriaFragment9Words_to_biodiversidadeInteracoesHerbivoriaFragment10);
+                }
             }
         });
 

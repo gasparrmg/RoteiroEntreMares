@@ -33,7 +33,7 @@ public class GuiaDeCampoContent {
             new EspecieAvencas(
                     "Tomate-do-mar",
                     "Actinia equina",
-                    "Anémonas e Actinias (Cnidaria)",
+                    "Cnidaria",
                     "Corpo dividido em 3 partes: tentáculos, coluna e base, onde se encontra o pé da base que se fixa à superfície duras como rocha, pedras ou outras superfícies.\n" +
                             "Ocorre no intertidal, sobretudo no mediolitoral. Estas espécies também podem viver em profundidades até 20m.\n" +
                             "O pé pode ter até 5cm de diâmetro, coluna lisa e pode apresentar uma coloração verde, vermelha ou castanha.",
@@ -61,7 +61,7 @@ public class GuiaDeCampoContent {
             new EspecieAvencas(
                     "Anémona",
                     "Anemonia sulcata",
-                    "Anémonas e Actinias (Cnidaria)",
+                    "Cnidaria",
                     "Apresenta grandes tentáculos com uma coloração cinzento-acastanhados ou verde-vivo. As anémonas que têm a tonalidade verde apresentam, nas pontas dos tentáculos, uma cor purpura. A coluna tem uma coloração avermelhada ou cinzento-acastanhada.\n" +
                             "Presentes no intertidal, sobretudo no infralitoral e também em poças de maré.",
                     "Sendo carnívoras alimentam-se de juvenis de peixes, crustáceos, plâncton.",
@@ -1154,7 +1154,7 @@ public class GuiaDeCampoContent {
                     "Actinia equina",
                     "Intertidal arenoso",
                     "Fauna",
-                    "Anémonas e Actinias (Cnidaria)",
+                    "Cnidaria",
                     "Corpo dividido em 3 partes: tentáculos, coluna e base, onde se encontra o pé da base que se fixa à superfície duras como rocha, pedras ou outras superfícies.\n" +
                             "Ocorre no intertidal, sobretudo no mediolitoral. Estas espécies também podem viver em profundidades até 20m.\n" +
                             "O pé pode ter até 5cm de diâmetro, coluna lisa e pode apresentar uma coloração verde, vermelha ou castanha.",
@@ -1176,7 +1176,7 @@ public class GuiaDeCampoContent {
                     "Anemonia sulcata",
                     "Intertidal arenoso",
                     "Fauna",
-                    "Anémonas e Actinias (Cnidaria)",
+                    "Cnidaria",
                     "Apresenta grandes tentáculos com uma coloração cinzento-acastanhados ou verde-vivo. As anémonas que têm a tonalidade verde apresentam, nas pontas dos tentáculos, uma cor purpura. A coluna tem uma coloração avermelhada ou cinzento-acastanhada.\n" +
                             "Presentes no intertidal, sobretudo no infralitoral e também em poças de maré.",
                     "Sendo carnívoras alimentam-se de juvenis de peixes, crustáceos, plâncton.",
