@@ -73,6 +73,7 @@ public class DataRepository {
 
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI = "key_finished_riaformosa_naofiquesporaqui";
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS = "key_finished_riaformosa_pradariasmarinhas";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_SAPAL = "key_finished_riaformosa_sapal";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
@@ -691,6 +692,26 @@ public class DataRepository {
         ).apply();
     }
 
+    /**
+     * Returns true if the User already completed the Sapal sequence
+     * @return
+     */
+    public boolean isRiaFormosaSapalFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_SAPAL,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Sapal sequence
+     */
+    public void setRiaFormosaSapalAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_SAPAL,
+                true
+        ).apply();
+    }
 
 
 

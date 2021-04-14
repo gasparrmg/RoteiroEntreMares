@@ -242,6 +242,14 @@ public class DashboardViewModel extends ViewModel {
 
     // Ria Formosa
 
+    public boolean isRiaFormosaSapalFinished() {
+        return dataRepository.isRiaFormosaSapalFinished();
+    }
+
+    public void setRiaFormosaSapalAsFinished() {
+        dataRepository.setRiaFormosaSapalAsFinished();
+    }
+
     public boolean isRiaFormosaPradariasMarinhasFinished() {
         return dataRepository.isRiaFormosaPradariasMarinhasFinished();
     }
