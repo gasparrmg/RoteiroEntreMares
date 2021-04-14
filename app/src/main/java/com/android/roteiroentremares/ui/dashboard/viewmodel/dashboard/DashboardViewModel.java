@@ -39,6 +39,14 @@ public class DashboardViewModel extends ViewModel {
      * -------------------------------- SHARED PREFERENCES METHODS -------------------------------------------------
      */
 
+    public int getAvencasOrRiaFormosa() {
+        return dataRepository.getAvencasOrRiaFormosa();
+    }
+
+    public void setAvencasOrRiaFormosa(int zona) {
+        dataRepository.setAvencasOrRiaFormosa(zona);
+    }
+
     public boolean isHistoriasPassadoFinished() {
         return dataRepository.isHistoriasPassadoFinished();
     }
@@ -232,6 +240,25 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setBiodiversidadeAsFinished();
     }
 
+    // Ria Formosa
+
+    public boolean isRiaFormosaPradariasMarinhasFinished() {
+        return dataRepository.isRiaFormosaPradariasMarinhasFinished();
+    }
+
+    public void setRiaFormosaPradariasMarinhasAsFinished() {
+        dataRepository.setRiaFormosaPradariasMarinhasAsFinished();
+    }
+
+    public boolean isRiaFormosaNaoFiquesPorAquiFinished() {
+        return dataRepository.isRiaFormosaNaoFiquesPorAquiFinished();
+    }
+
+    public void setRiaFormosaNaoFiquesPorAquiAsFinished() {
+        dataRepository.setRiaFormosaNaoFiquesPorAquiAsFinished();
+    }
+
+    // GENERAL
 
     public boolean getOnBoarding() {
         return dataRepository.getOnBoarding();

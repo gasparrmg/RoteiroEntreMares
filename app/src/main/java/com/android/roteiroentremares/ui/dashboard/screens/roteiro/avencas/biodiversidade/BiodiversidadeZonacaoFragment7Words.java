@@ -2,6 +2,7 @@ package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodi
 
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -29,6 +30,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -178,8 +180,29 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
             public void onClick(View v) {
                 // Finished Zonacao
                 // Go to Menu
-                dashboardViewModel.setBiodiversidadeZonacaoAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMenuFragment ,false);
+
+                if (!(linearLayoutContainer1.getChildCount() == 0 && linearLayoutContainer2.getChildCount() == 0)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setBiodiversidadeZonacaoAsFinished();
+                            Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMenuFragment ,false);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    dashboardViewModel.setBiodiversidadeZonacaoAsFinished();
+                    Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMenuFragment ,false);
+                }
             }
         });
     }

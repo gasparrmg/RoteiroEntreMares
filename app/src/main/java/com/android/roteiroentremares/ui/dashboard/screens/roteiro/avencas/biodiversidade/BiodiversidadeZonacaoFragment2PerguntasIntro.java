@@ -31,7 +31,8 @@ import java.util.Locale;
 
 public class BiodiversidadeZonacaoFragment2PerguntasIntro extends Fragment {
 
-    private static final String htmlContent = "Agora que percorreste os diferentes andares, observa o <b>gráfico de distribuição dos organismos</b>, que foi elaborado a partir dos avistamentos que submeteste em cada andar, e responde às seguintes questões dos próximos ecrãs.";
+    private static final String htmlContent = "Agora que percorreste os diferentes andares, observa o <b>gráfico de distribuição dos organismos</b>, que foi elaborado a partir dos avistamentos que submeteste em cada andar, e responde às seguintes questões dos próximos ecrãs.<br><br>" +
+            "<b>ATENÇÃO:</b><br>Se por algum motivo não submeteste os avistamentos, os dados nos gráficos estarão incompletos e poderão não ser úteis para responder às questões.";
 
     // Views
     private TextView textViewTitle;

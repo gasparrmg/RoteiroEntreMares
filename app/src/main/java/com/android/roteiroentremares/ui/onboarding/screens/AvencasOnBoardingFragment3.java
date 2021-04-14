@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.android.roteiroentremares.util.ClickableString;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +31,7 @@ public class AvencasOnBoardingFragment3 extends Fragment {
 
     // ViewModel
     private OnBoardingViewModel onBoardingViewModel;
+    private DashboardViewModel dashboardViewModel;
 
     // Views
     private TextView textViewTitle;
@@ -49,6 +51,7 @@ public class AvencasOnBoardingFragment3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_avencas_on_boarding2, container, false);
 
         onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
@@ -71,6 +74,7 @@ public class AvencasOnBoardingFragment3 extends Fragment {
             public void onClick(View v) {
                 // User finished onBoarding sequence
                 onBoardingViewModel.setOnBoarding(true);
+                dashboardViewModel.setAvencasOrRiaFormosa(0);
 
                 Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
                 startActivity(intent);

@@ -12,6 +12,7 @@ import com.android.roteiroentremares.data.dao.ArtefactoDao;
 import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
 import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
+import com.android.roteiroentremares.data.dao.EspecieRiaFormosaDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
 
 import java.util.Locale;
@@ -66,5 +67,11 @@ public class AppModule {
     @Singleton
     AvistamentoZonacaoAvencasDao provideAvistamentoZonacaoAvencasDao(RoteiroDatabase roteiroDatabase) {
         return roteiroDatabase.avistamentoZonacaoAvencasDao();
+    }
+
+    @Provides
+    @Singleton
+    EspecieRiaFormosaDao provideEspecieRiaFormosaDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.especieRiaFormosaDao();
     }
 }

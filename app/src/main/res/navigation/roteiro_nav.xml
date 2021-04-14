@@ -45,6 +45,20 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_roteiroFragment_to_riaFormosaNaoFiquesPorAquiFragment"
+            app:destination="@id/navigation_riaformosa_naofiquesporaqui"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_roteiroFragment_to_riaFormosaPradariasMarinhasFragment"
+            app:destination="@id/navigation_riaformosa_pradariasmarinhas"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <navigation android:id="@+id/navigation_historiasPassado"
         app:startDestination="@id/historiasPassadoFragment">
@@ -1426,5 +1440,245 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
+    </navigation>
+    <navigation android:id="@+id/navigation_riaformosa_naofiquesporaqui"
+        app:startDestination="@id/riaFormosaNaoFiquesPorAquiFragment">
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment_to_riaFormosaNaoFiquesPorAquiFragment2"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment2"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment2" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment2_to_riaFormosaNaoFiquesPorAquiFragment3"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment3"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment3" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment3_to_riaFormosaNaoFiquesPorAquiFragment4"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment4"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment4" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment4_to_riaFormosaNaoFiquesPorAquiFragment5"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment5"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment5"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment5"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment5" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment5_to_riaFormosaNaoFiquesPorAquiFragment6"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment6"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment6"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment6" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment6_to_riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment6_to_riaFormosaNaoFiquesPorAquiFragment7"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment7"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment6SabiasQue" />
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment7"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment7"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment7" >
+            <action
+                android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment7_to_riaFormosaNaoFiquesPorAquiFragment8"
+                app:destination="@id/riaFormosaNaoFiquesPorAquiFragment8"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaNaoFiquesPorAquiFragment8"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment8"
+            android:label="RiaFormosaNaoFiquesPorAquiFragment8" />
+    </navigation>
+    <navigation android:id="@+id/navigation_riaformosa_pradariasmarinhas"
+        app:startDestination="@id/riaFormosaPradariasMarinhasFragment">
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment"
+            android:label="RiaFormosaPradariasMarinhasFragment" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment_to_riaFormosaPradariasMarinhasFragment2"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment2"
+            android:label="RiaFormosaPradariasMarinhasFragment2" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment2_to_riaFormosaPradariasMarinhasFragment3"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment3"
+            android:label="RiaFormosaPradariasMarinhasFragment3" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment3_to_riaFormosaPradariasMarinhasFragment4"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment4"
+            android:label="RiaFormosaPradariasMarinhasFragment4" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment4_to_riaFormosaPradariasMarinhasFragment5"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment5"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment5"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment5"
+            android:label="RiaFormosaPradariasMarinhasFragment5" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment5_to_riaFormosaPradariasMarinhasFragment6"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment6"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment6"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment6"
+            android:label="RiaFormosaPradariasMarinhasFragment6" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment6_to_riaFormosaPradariasMarinhasFragment7"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment7"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment7"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7"
+            android:label="RiaFormosaPradariasMarinhasFragment7" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment7_to_riaFormosaPradariasMarinhasFragment7SabiasQue1"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment7SabiasQue1"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment7_to_riaFormosaPradariasMarinhasFragment8"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment8"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment7SabiasQue1"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue1"
+            android:label="RiaFormosaPradariasMarinhasFragment7SabiasQue1" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment7SabiasQue1_to_riaFormosaPradariasMarinhasFragment7SabiasQue2"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment7SabiasQue2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment7SabiasQue2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue2"
+            android:label="RiaFormosaPradariasMarinhasFragment7SabiasQue2" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment7SabiasQue2_to_riaFormosaPradariasMarinhasFragment7SabiasQue3"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment7SabiasQue3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment7SabiasQue3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue3"
+            android:label="RiaFormosaPradariasMarinhasFragment7SabiasQue3" />
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment8"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment8"
+            android:label="RiaFormosaPradariasMarinhasFragment8" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment8_to_riaFormosaPradariasMarinhasFragment9"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment9"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment9"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment9"
+            android:label="RiaFormosaPradariasMarinhasFragment9" />
     </navigation>
 </navigation>

@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -19,6 +20,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.GestureDetectGridView;
 import com.android.roteiroentremares.util.PuzzleFactory;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HistoriasPassadoFragment10Puzzle extends Fragment implements PuzzleFactory.OnSolvedListener{
@@ -30,6 +32,20 @@ public class HistoriasPassadoFragment10Puzzle extends Fragment implements Puzzle
 
     private PuzzleFactory puzzleFactory;
 
+    private static final int[] puzzleImages = {
+            R.drawable.img_historiaspassado_puzzle_1,
+            R.drawable.img_historiaspassado_puzzle_2,
+            R.drawable.img_historiaspassado_puzzle_3,
+            R.drawable.img_historiaspassado_puzzle_4,
+            R.drawable.img_historiaspassado_puzzle_5,
+            R.drawable.img_historiaspassado_puzzle_6,
+            R.drawable.img_historiaspassado_puzzle_7,
+            R.drawable.img_historiaspassado_puzzle_8,
+            R.drawable.img_historiaspassado_puzzle_9
+    };
+
+    private boolean isSolved;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +54,8 @@ public class HistoriasPassadoFragment10Puzzle extends Fragment implements Puzzle
 
         initViews(view);
         setOnClickListeners(view);
+
+        isSolved = false;
 
         return view;
     }
@@ -61,7 +79,7 @@ public class HistoriasPassadoFragment10Puzzle extends Fragment implements Puzzle
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
 
-        puzzleFactory = new PuzzleFactory(getActivity(), gestureDetectGridView, this);
+        puzzleFactory = new PuzzleFactory(getActivity(), gestureDetectGridView, this, puzzleImages);
     }
 
     private void setOnClickListeners(View view) {
@@ -75,7 +93,26 @@ public class HistoriasPassadoFragment10Puzzle extends Fragment implements Puzzle
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment10Puzzle_to_historiasPassadoFragment11);
+                if (!isSolved) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment10Puzzle_to_historiasPassadoFragment11);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment10Puzzle_to_historiasPassadoFragment11);
+                }
             }
         });
     }
@@ -83,6 +120,8 @@ public class HistoriasPassadoFragment10Puzzle extends Fragment implements Puzzle
     @Override
     public void onSolvedCallback() {
         Toast.makeText(getActivity(), "Parabéns! Resolveste o Puzzle!", Toast.LENGTH_SHORT).show();
+
+        isSolved = true;
 
         buttonFabNext.setVisibility(View.VISIBLE);
         buttonFabNext.setEnabled(true);

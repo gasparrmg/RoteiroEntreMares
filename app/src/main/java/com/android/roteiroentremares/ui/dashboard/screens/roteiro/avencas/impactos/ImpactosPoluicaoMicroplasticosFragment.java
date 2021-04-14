@@ -146,7 +146,7 @@ public class ImpactosPoluicaoMicroplasticosFragment extends Fragment {
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Os microplásticos são um dos principais poluentes dos oceanos. Resultam da degradação progressiva dos plásticos, que acabam por ser convertidos em partículas de muito pequena dimensão (<5mm). Este tipo de material tem a capacidade de absorver produtos tóxicos, como pesticidas e metais pesados.<br>" +
+                "Os microplásticos são um dos principais poluentes dos oceanos. Resultam da degradação progressiva dos plásticos, que acabam por ser convertidos em partículas de muito pequena dimensão (menores do que 5mm). Este tipo de material tem a capacidade de absorver produtos tóxicos, como pesticidas e metais pesados.<br>" +
                         "<br>" +
                         "Sendo partículas tão pequenas, são consumidas pelos organismos presentes no plâncton, que por sua vez são consumidos por organismos um pouco maiores, e assim sucessivamente, chegando aos peixes de maiores dimensões, e finalmente ao ser humano (Bioacumulação).<br>" +
                         "<br>" +

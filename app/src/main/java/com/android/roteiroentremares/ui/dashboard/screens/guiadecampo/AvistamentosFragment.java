@@ -31,6 +31,7 @@ import com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.Av
 import com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.AvistamentoZonacaoDetails;
 import com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity;
 import com.android.roteiroentremares.ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -43,6 +44,7 @@ public class AvistamentosFragment extends Fragment {
 
     // ViewModel
     private GuiaDeCampoViewModel guiaDeCampoViewModel;
+    private DashboardViewModel dashboardViewModel;
 
     // Adapters
     private AvistamentoPocasAdapter adapterPocas;
@@ -50,6 +52,7 @@ public class AvistamentosFragment extends Fragment {
 
     // Views
     private LinearLayout linearLayoutIsEmpty;
+    private TextView textViewIsEmptyMessage;
     private TextView textViewPocasTitle;
     private TextView textViewZonacaoTitle;
     private ProgressBar progressBar;
@@ -67,6 +70,7 @@ public class AvistamentosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_avistamentos, container, false);
 
         guiaDeCampoViewModel = new ViewModelProvider(this).get(GuiaDeCampoViewModel.class);
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         noPocas = false;
         noZonacao = false;
@@ -79,12 +83,21 @@ public class AvistamentosFragment extends Fragment {
 
     private void initViews(View view) {
         linearLayoutIsEmpty = view.findViewById(R.id.linearlayout_isEmpty);
+        textViewIsEmptyMessage = view.findViewById(R.id.textView_isEmpty_message);
         textViewPocasTitle = view.findViewById(R.id.textView_pocas_title);
         textViewZonacaoTitle = view.findViewById(R.id.textView_zonacao_title);
         progressBar = view.findViewById(R.id.progress_bar);
         recyclerViewPocas = view.findViewById(R.id.recyclerView_pocas);
         recyclerViewZonacao = view.findViewById(R.id.recyclerView_zonacao);
         fabCharts = view.findViewById(R.id.fab_charts);
+
+        if (dashboardViewModel.getAvencasOrRiaFormosa() == 0) {
+            // Avencas
+            textViewIsEmptyMessage.setText("Poderás adicionar avistamentos durante o percurso Biodiversidade");
+        } else {
+            // Ria Formosa
+            textViewIsEmptyMessage.setText("Poderás adicionar avistamentos durante os percursos Sapal, Intertidal Arenoso e Dunas");
+        }
     }
 
     private void showMessageIfNoAvistamentos() {

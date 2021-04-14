@@ -24,6 +24,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.GlossarioRiaFormosaActivity"></activity>
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity"
             android:screenOrientation="portrait" />

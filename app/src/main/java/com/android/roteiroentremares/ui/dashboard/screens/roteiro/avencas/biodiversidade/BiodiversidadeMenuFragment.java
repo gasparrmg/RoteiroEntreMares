@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -69,6 +71,10 @@ public class BiodiversidadeMenuFragment extends Fragment {
 
     private TextToSpeech tts;
 
+    private boolean isBiodiversidadeMicrohabitatsFinished;
+    private boolean isBiodiversidadeZonacaoFinished;
+    private boolean isBiodiversidadeInteracoesFinished;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,9 +101,9 @@ public class BiodiversidadeMenuFragment extends Fragment {
     }
 
     private void checkIfLinksVisited() {
-        boolean isBiodiversidadeMicrohabitatsFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsFinished();
-        boolean isBiodiversidadeZonacaoFinished = dashboardViewModel.isBiodiversidadeZonacaoFinished();
-        boolean isBiodiversidadeInteracoesFinished = dashboardViewModel.isBiodiversidadeInteracoesFinished();
+        isBiodiversidadeMicrohabitatsFinished = dashboardViewModel.isBiodiversidadeMicrohabitatsFinished();
+        isBiodiversidadeZonacaoFinished = dashboardViewModel.isBiodiversidadeZonacaoFinished();
+        isBiodiversidadeInteracoesFinished = dashboardViewModel.isBiodiversidadeInteracoesFinished();
 
         if (isBiodiversidadeMicrohabitatsFinished) {
             setVisitedIcon(imageViewMicrohabitatsIcon);
@@ -221,8 +227,31 @@ public class BiodiversidadeMenuFragment extends Fragment {
             public void onClick(View v) {
                 // Finished Biodiversidade
                 // Back to MAIN menu
-                dashboardViewModel.setBiodiversidadeAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.roteiroFragment ,false);
+
+                if (!(isBiodiversidadeInteracoesFinished && isBiodiversidadeMicrohabitatsFinished && isBiodiversidadeZonacaoFinished)) {
+                    // not finished -> alert
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_content_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setBiodiversidadeAsFinished();
+                            Navigation.findNavController(view).popBackStack(R.id.roteiroFragment ,false);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    // no alert
+                    dashboardViewModel.setBiodiversidadeAsFinished();
+                    Navigation.findNavController(view).popBackStack(R.id.roteiroFragment ,false);
+                }
             }
         });
 

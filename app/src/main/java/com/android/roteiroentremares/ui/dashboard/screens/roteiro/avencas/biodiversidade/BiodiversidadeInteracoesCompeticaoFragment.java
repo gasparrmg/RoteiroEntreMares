@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -37,6 +38,7 @@ import com.android.roteiroentremares.ui.dashboard.viewmodel.artefactos.Artefacto
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -147,7 +149,7 @@ public class BiodiversidadeInteracoesCompeticaoFragment extends Fragment {
         textInputEditTextResposta = view.findViewById(R.id.textinputedittext_resposta);
         buttonPrev = view.findViewById(R.id.btn_prev);
 
-        textInputEditTextResposta.addTextChangedListener(new TextWatcher() {
+        /*textInputEditTextResposta.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -168,7 +170,7 @@ public class BiodiversidadeInteracoesCompeticaoFragment extends Fragment {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
     }
 
     private void setOnClickListeners(View view) {
@@ -193,31 +195,61 @@ public class BiodiversidadeInteracoesCompeticaoFragment extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Artefacto newTextArtefacto = new Artefacto(
-                        "Biodiversidade // Interações // Competição - Explica qual das duas espécies será competitivamente mais forte, “empurrando” a outra espécie para uma zona menos favorável à sobrevivência",
-                        textInputEditTextResposta.getText().toString(),
-                        0,
-                        "",
-                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
-                        "",
-                        "",
-                        artefactosViewModel.getCodigoTurma(),
-                        false
-                );
 
-                artefactosViewModel.insertArtefacto(newTextArtefacto);
+                if (textInputEditTextResposta.getText().toString().trim().length() == 0) {
+                    // if empty
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_question_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // next no save
+                            InputMethodManager inputManager = (InputMethodManager)
+                                    getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                Toast.makeText(getActivity(), "A tua resposta foi guardada nos teus Artefactos!", Toast.LENGTH_LONG).show();
+                            //inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                InputMethodManager inputManager = (InputMethodManager)
-                        getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                //inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                            dashboardViewModel.setBiodiversidadeInteracoesCompeticaoAsFinished();
+                            Navigation.findNavController(view).popBackStack(R.id.biodiversidadeInteracoesFragment2Menu ,false);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Artefacto newTextArtefacto = new Artefacto(
+                            "Biodiversidade // Interações // Competição - Explica qual das duas espécies será competitivamente mais forte, “empurrando” a outra espécie para uma zona menos favorável à sobrevivência",
+                            textInputEditTextResposta.getText().toString(),
+                            0,
+                            "",
+                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                            "",
+                            "",
+                            artefactosViewModel.getCodigoTurma(),
+                            false
+                    );
 
-                inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    artefactosViewModel.insertArtefacto(newTextArtefacto);
 
-                dashboardViewModel.setBiodiversidadeInteracoesCompeticaoAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeInteracoesFragment2Menu ,false);
+                    Toast.makeText(getActivity(), "A tua resposta foi guardada nos teus Artefactos!", Toast.LENGTH_LONG).show();
+
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    //inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    dashboardViewModel.setBiodiversidadeInteracoesCompeticaoAsFinished();
+                    Navigation.findNavController(view).popBackStack(R.id.biodiversidadeInteracoesFragment2Menu ,false);
+                }
             }
         });
     }

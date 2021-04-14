@@ -23,13 +23,15 @@ public class PuzzleFactory {
     private static OnSolvedListener onSolvedListener;
 
     private static String[] tileList;
+    private static int[] puzzleImages;
 
     private static GestureDetectGridView gridView;
     private static int columnWidth, columnHeight;
 
-    public PuzzleFactory(Context context, GestureDetectGridView gestureDetectGridView, OnSolvedListener onSolvedListener) {
+    public PuzzleFactory(Context context, GestureDetectGridView gestureDetectGridView, OnSolvedListener onSolvedListener, int[] puzzleImages) {
         this.context = context;
         this.onSolvedListener = onSolvedListener;
+        this.puzzleImages = puzzleImages;
 
         init(gestureDetectGridView);
         scramble();
@@ -69,23 +71,23 @@ public class PuzzleFactory {
             button = new Button(context);
 
             if (tileList[i].equals("0")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_1);
+                button.setBackgroundResource(puzzleImages[0]);
             } else if (tileList[i].equals("1")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_2);
+                button.setBackgroundResource(puzzleImages[1]);
             } else if (tileList[i].equals("2")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_3);
+                button.setBackgroundResource(puzzleImages[2]);
             } else if (tileList[i].equals("3")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_4);
+                button.setBackgroundResource(puzzleImages[3]);
             } else if (tileList[i].equals("4")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_5);
+                button.setBackgroundResource(puzzleImages[4]);
             } else if (tileList[i].equals("5")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_6);
+                button.setBackgroundResource(puzzleImages[5]);
             } else if (tileList[i].equals("6")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_7);
+                button.setBackgroundResource(puzzleImages[6]);
             } else if (tileList[i].equals("7")) {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_8);
+                button.setBackgroundResource(puzzleImages[7]);
             } else {
-                button.setBackgroundResource(R.drawable.img_historiaspassado_puzzle_9);
+                button.setBackgroundResource(puzzleImages[8]);
             }
 
             buttons.add(button);

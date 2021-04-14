@@ -266,8 +266,28 @@ public class BiodiversidadeZonacaoSupralitoralFragment5Tarefa extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboardViewModel.setBiodiversidadeZonacaoSupralitoralAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeZonacaoFragment ,false);
+                if (!(quadrado1Finished && quadrado2Finished && quadrado3Finished)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setBiodiversidadeZonacaoSupralitoralAsFinished();
+                            Navigation.findNavController(view).popBackStack(R.id.biodiversidadeZonacaoFragment ,false);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    dashboardViewModel.setBiodiversidadeZonacaoSupralitoralAsFinished();
+                    Navigation.findNavController(view).popBackStack(R.id.biodiversidadeZonacaoFragment ,false);
+                }
             }
         });
     }

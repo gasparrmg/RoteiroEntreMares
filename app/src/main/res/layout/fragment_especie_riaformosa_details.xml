@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.dashboard.screens.guiadecampo.details.avencas.EspecieAvencasDetailsFragment">
+
+    <LinearLayout
+        android:id="@+id/linearlayout_nomecomum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_nomecomum_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Nome Comum"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_nomecomum_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tomate-do-mar"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_nomecientifico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_nomecientifico_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Nome Científico"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_nomecientifico_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
+            android:text="Actinia equina"
+            android:textColor="@color/colorBodyText"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_grupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_grupo_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Grupo"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_grupo_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Anémonas e Actinias (Cnidaria)"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_zona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_zona_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Zona"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_zona_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sapal"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_tipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_tipo_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Tipo"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_tipo_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fauna"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_caracteristicas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_caracteristicas_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Características"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_caracteristicas_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Corpo dividido em 3 partes: tentáculos, coluna e base, onde se encontra o pé da base que se fixa à superfície duras como rocha, pedras ou outras superfícies."
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_alimentacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_alimentacao_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Alimentação"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_alimentacao_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alimenta-se de diversos organismos como moluscos, bivalves, insectos, caracóis e lesmas do mar, entre outros."
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout_adaptacoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_adaptacoes_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Adaptações"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView_adaptacoes_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consegue sobreviver fora de água e nestas condições recolhe os seus tentáculos para dentro do corpo, evitando a perda de água."
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_sabiasque"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
+        android:text="Sabias que..."
+        android:textStyle="bold"/>
+
+</LinearLayout>

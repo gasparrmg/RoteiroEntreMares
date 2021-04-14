@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -27,6 +28,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -76,6 +78,11 @@ public class ImpactosFragment3 extends Fragment {
 
     private TextToSpeech tts;
 
+    private boolean isCapturaExcessivaFinished;
+    private boolean isPisoteioFinished;
+    private boolean isPoluicaoFinished;
+    private boolean isTempAguaFinished;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -99,10 +106,10 @@ public class ImpactosFragment3 extends Fragment {
     }
 
     private void checkIfLinksVisited() {
-        boolean isCapturaExcessivaFinished = dashboardViewModel.isImpactosCapturaExcessivaFinished();
-        boolean isPisoteioFinished = dashboardViewModel.isImpactosPisoteioFinished();
-        boolean isPoluicaoFinished = dashboardViewModel.isImpactosPoluicaoFinished();
-        boolean isTempAguaFinished = dashboardViewModel.isImpactosTempAguaFinished();
+        isCapturaExcessivaFinished = dashboardViewModel.isImpactosCapturaExcessivaFinished();
+        isPisoteioFinished = dashboardViewModel.isImpactosPisoteioFinished();
+        isPoluicaoFinished = dashboardViewModel.isImpactosPoluicaoFinished();
+        isTempAguaFinished = dashboardViewModel.isImpactosTempAguaFinished();
 
         boolean was2Answered = dashboardViewModel.isImpactos2Answered();
         boolean was3Answered = dashboardViewModel.isImpactos3Answered();
@@ -149,7 +156,7 @@ public class ImpactosFragment3 extends Fragment {
             buttonFabNext.setVisibility(View.VISIBLE);
             buttonFabNext.setEnabled(true);
 
-            Toast.makeText(getActivity(), "Selecionaste todas as opções corretas. Podes passar para o próximo ecrã!", Toast.LENGTH_LONG).show();
+            // Toast.makeText(getActivity(), getResources().getString(R.string.message_correct_answer), Toast.LENGTH_LONG).show();
         }
 
     }
@@ -294,7 +301,29 @@ public class ImpactosFragment3 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_impactosFragment3_to_impactosOcupacaoHumanaFragmentText);
+                if (!(isCapturaExcessivaFinished &&
+                        isPisoteioFinished &&
+                        isPoluicaoFinished &&
+                        isTempAguaFinished)) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_content_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_impactosFragment3_to_impactosOcupacaoHumanaFragmentText);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_impactosFragment3_to_impactosOcupacaoHumanaFragmentText);
+                }
             }
         });
 

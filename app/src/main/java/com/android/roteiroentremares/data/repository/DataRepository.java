@@ -11,6 +11,7 @@ import com.android.roteiroentremares.data.dao.ArtefactoDao;
 import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
 import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
+import com.android.roteiroentremares.data.dao.EspecieRiaFormosaDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
 import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.data.model.AvistamentoPocasAvencas;
@@ -18,6 +19,7 @@ import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.EspecieAvencasZonacaoInstancias;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 
@@ -28,6 +30,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class DataRepository {
+    private static final String SHAREDPREF_KEY_AVENCAS_RIAFORMOSA = "key_avencas_riaformosa";
     private static final String SHAREDPREF_KEY_TIPOUTILIZADOR = "key_tipoutilizador";
     private static final String SHAREDPREF_KEY_ONBOARDING = "key_onboarding";
     private static final String SHAREDPREF_KEY_NOME = "key_nome";
@@ -66,14 +69,21 @@ public class DataRepository {
 
     private static final String SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE = "key_finished_biodiversidade";
 
+    // Ria Formosa
+
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI = "key_finished_riaformosa_naofiquesporaqui";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS = "key_finished_riaformosa_pradariasmarinhas";
+
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
     private EspecieAvencasDao especieAvencasDao;
+    private EspecieRiaFormosaDao especieRiaFormosaDao;
     private AvistamentoPocasAvencasDao avistamentoPocasAvencasDao;
     private AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao;
 
     private LiveData<List<Artefacto>> allArtefactos;
     private LiveData<List<EspecieAvencas>> allEspecieAvencas;
+    private LiveData<List<EspecieRiaFormosa>> allEspecieRiaFormosa;
 
     private LiveData<List<AvistamentoPocasAvencas>> allAvistamentoPocasAvencas;
     private LiveData<List<AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias>> allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
@@ -87,17 +97,21 @@ public class DataRepository {
             SharedPreferences sharedPreferences,
             ArtefactoDao artefactoDao,
             EspecieAvencasDao especieAvencasDao,
+            EspecieRiaFormosaDao especieRiaFormosaDao,
             AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
             AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao
     ) {
         this.sharedPreferences = sharedPreferences;
         this.artefactoDao = artefactoDao;
         this.especieAvencasDao = especieAvencasDao;
+        this.especieRiaFormosaDao = especieRiaFormosaDao;
         this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
         this.avistamentoZonacaoAvencasDao = avistamentoZonacaoAvencasDao;
 
         allArtefactos = artefactoDao.getAll();
+
         allEspecieAvencas = especieAvencasDao.getAll();
+        allEspecieRiaFormosa = especieRiaFormosaDao.getAll();
 
         allAvistamentoPocasAvencas = avistamentoPocasAvencasDao.getAllAvistamentoPocasAvencas();
         allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias = avistamentoPocasAvencasDao.getAllAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias();
@@ -635,6 +649,48 @@ public class DataRepository {
         ).apply();
     }
 
+    /**
+     * Returns true if the User already completed the Nao Fiques Por Aqui sequence
+     * @return
+     */
+    public boolean isRiaFormosaNaoFiquesPorAquiFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Nao Fiques Por Aqui sequence
+     */
+    public void setRiaFormosaNaoFiquesPorAquiAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the PradariasMarinhas sequence
+     * @return
+     */
+    public boolean isRiaFormosaPradariasMarinhasFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the PradariasMarinhas sequence
+     */
+    public void setRiaFormosaPradariasMarinhasAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS,
+                true
+        ).apply();
+    }
+
 
 
 
@@ -659,6 +715,30 @@ public class DataRepository {
         sharedPreferences.edit().putBoolean(
                 SHAREDPREF_KEY_ONBOARDING,
                 onBoarding
+        ).apply();
+    }
+
+    /**
+     * 0 - Avencas
+     * 1 - Ria Formosa
+     * @return
+     */
+    public int getAvencasOrRiaFormosa() {
+        return sharedPreferences.getInt(
+                SHAREDPREF_KEY_AVENCAS_RIAFORMOSA,
+                0
+        );
+    }
+
+    /**
+     * 0 - Avencas
+     * 1 - Ria Formosa
+     * @param zona
+     */
+    public void setAvencasOrRiaFormosa(int zona) {
+        sharedPreferences.edit().putInt(
+                SHAREDPREF_KEY_AVENCAS_RIAFORMOSA,
+                zona
         ).apply();
     }
 
@@ -1159,6 +1239,14 @@ public class DataRepository {
      */
     public LiveData<List<Artefacto>> getAllArtefactos() {
         return allArtefactos;
+    }
+
+    public LiveData<List<EspecieRiaFormosa>> getAllEspecieRiaFormosa() {
+        return allEspecieRiaFormosa;
+    }
+
+    public LiveData<List<EspecieRiaFormosa>> getFilteredRiaFormosaEspecies(SupportSQLiteQuery query) {
+        return especieRiaFormosaDao.getWithQuery(query);
     }
 
     /**
