@@ -36,8 +36,9 @@ public class EspecieRiaFormosa implements Serializable {
     private ArrayList<String> picturesCuriosidades;
 
     private String linkExterno;
+    private String tinyDesc;
 
-    public EspecieRiaFormosa(String nomeComum, String nomeCientifico, String zona, String tipo, String grupo, String caracteristicas, String alimentacao, String adaptacoes, String sabiasQue, String curiosidades, ArrayList<String> pictures, ArrayList<String> picturesSabiasQue, ArrayList<String> picturesCuriosidades, String linkExterno) {
+    public EspecieRiaFormosa(String nomeComum, String nomeCientifico, String zona, String tipo, String grupo, String caracteristicas, String alimentacao, String adaptacoes, String sabiasQue, String curiosidades, ArrayList<String> pictures, ArrayList<String> picturesSabiasQue, ArrayList<String> picturesCuriosidades, String linkExterno, String tinyDesc) {
         this.nomeComum = nomeComum;
         this.nomeCientifico = nomeCientifico;
         this.zona = zona;
@@ -52,6 +53,7 @@ public class EspecieRiaFormosa implements Serializable {
         this.picturesSabiasQue = picturesSabiasQue;
         this.picturesCuriosidades = picturesCuriosidades;
         this.linkExterno = linkExterno;
+        this.tinyDesc = tinyDesc;
     }
 
     public void setId(int id) {
@@ -116,5 +118,9 @@ public class EspecieRiaFormosa implements Serializable {
 
     public String getLinkExterno() {
         return linkExterno;
+    }
+
+    public String getTinyDesc() {
+        return tinyDesc;
     }
 }

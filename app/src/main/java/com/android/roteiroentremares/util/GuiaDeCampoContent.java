@@ -753,6 +753,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -774,6 +775,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -792,6 +794,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -812,6 +815,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -832,6 +836,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -850,6 +855,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -868,6 +874,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -890,6 +897,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -912,7 +920,8 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
-                    ""
+                    "",
+                    "Espécie endémica da zona Mediterrânica"
             ),
             new EspecieRiaFormosa(
                     "Suaeda",
@@ -932,6 +941,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -954,6 +964,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -975,6 +986,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -996,6 +1008,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1017,6 +1030,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1040,6 +1054,7 @@ public class GuiaDeCampoContent {
                     new ArrayList<String>(Arrays.asList(
                             "img_riaformosa_guiadecampo_abrotomo_3"
                     )),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1062,6 +1077,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1084,6 +1100,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1105,7 +1122,8 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
-                    ""
+                    "",
+                    "Espécie endémica do Sul da Península ibérica e Marrocos"
             ),
             new EspecieRiaFormosa(
                     "Limoniastrum",
@@ -1125,6 +1143,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1147,6 +1166,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1169,6 +1189,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1191,6 +1212,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1213,6 +1235,7 @@ public class GuiaDeCampoContent {
                             "img_guiadecampo_sabiasque_caranguejo_1"
                     )),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1236,6 +1259,7 @@ public class GuiaDeCampoContent {
                             "img_guiadecampo_sabiasque_caranguejo_1"
                     )),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1260,6 +1284,7 @@ public class GuiaDeCampoContent {
                             "img_guiadecampo_sabiasque_caranguejo_1"
                     )),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1280,6 +1305,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1299,6 +1325,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1318,6 +1345,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1339,6 +1367,7 @@ public class GuiaDeCampoContent {
                             "img_guiadecampo_sabiasque_lapa_1"
                     )),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1359,6 +1388,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1379,6 +1409,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1400,6 +1431,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1421,6 +1453,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1441,6 +1474,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1460,6 +1494,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1480,6 +1515,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1501,6 +1537,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1524,6 +1561,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1550,6 +1588,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1576,6 +1615,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1603,6 +1643,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1623,7 +1664,8 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
-                    "https://sapientia.ualg.pt/bitstream/10400.1/1643/2/Guia%20de%20Campo.pdf"
+                    "https://sapientia.ualg.pt/bitstream/10400.1/1643/2/Guia%20de%20Campo.pdf",
+                    ""
             ),
             new EspecieRiaFormosa(
                     "Narciso-das-areias",
@@ -1646,6 +1688,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1667,6 +1710,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1689,6 +1733,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1712,6 +1757,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1736,6 +1782,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1758,6 +1805,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1779,6 +1827,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1801,6 +1850,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1824,6 +1874,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1844,6 +1895,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1867,6 +1919,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1888,6 +1941,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1911,6 +1965,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1932,6 +1987,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1954,6 +2010,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1976,6 +2033,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -1999,6 +2057,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -2019,6 +2078,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -2040,6 +2100,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             ),
             new EspecieRiaFormosa(
@@ -2060,6 +2121,7 @@ public class GuiaDeCampoContent {
                     )),
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
+                    "",
                     ""
             )
     );
