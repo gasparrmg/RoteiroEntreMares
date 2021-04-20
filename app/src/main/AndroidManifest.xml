@@ -28,6 +28,11 @@
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.AvistamentosRiaFormosaChartsActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoPocasDetails"
             android:screenOrientation="portrait" />

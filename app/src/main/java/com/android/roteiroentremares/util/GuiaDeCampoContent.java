@@ -2011,7 +2011,7 @@ public class GuiaDeCampoContent {
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
                     "",
-                    ""
+                    "Um endemismo ibérico, presente no Alentejo e Algarve, com um odor que faz lembrar a lavanda"
             ),
             new EspecieRiaFormosa(
                     "Hypecoum",
@@ -2034,7 +2034,7 @@ public class GuiaDeCampoContent {
                     new ArrayList<String>(Arrays.asList()),
                     new ArrayList<String>(Arrays.asList()),
                     "",
-                    ""
+                    "Em Portugal só existe na Ria Formosa, encontrando-se criticamente em perigo"
             ),
             new EspecieRiaFormosa(
                     "Feno-das-areias",

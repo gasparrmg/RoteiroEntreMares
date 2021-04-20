@@ -266,6 +266,48 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setRiaFormosaNaoFiquesPorAquiAsFinished();
     }
 
+    public boolean isRiaFormosaDunasDunaEmbrionariaFinished() {
+        return dataRepository.isRiaFormosaDunasDunaEmbrionariaFinished();
+    }
+
+    public void setRiaFormosaDunasDunaEmbrionariaAsFinished() {
+        dataRepository.setRiaFormosaDunasDunaEmbrionariaAsFinished();
+    }
+
+    public boolean isRiaFormosaDunasDunaPrimariaFinished() {
+        return dataRepository.isRiaFormosaDunasDunaPrimariaFinished();
+    }
+
+    public void setRiaFormosaDunasDunaPrimariaAsFinished() {
+        dataRepository.setRiaFormosaDunasDunaPrimariaAsFinished();
+    }
+
+    public boolean isRiaFormosaDunasZonaInterdunarFinished() {
+        return dataRepository.isRiaFormosaDunasZonaInterdunarFinished();
+    }
+
+    public void setRiaFormosaDunasZonaInterdunarAsFinished() {
+        dataRepository.setRiaFormosaDunasZonaInterdunarAsFinished();
+    }
+
+    public boolean isRiaFormosaDunasDunaSecundariaFinished() {
+        return dataRepository.isRiaFormosaDunasDunaSecundariaFinished();
+    }
+
+    public void setRiaFormosaDunasDunaSecundariaAsFinished() {
+        dataRepository.setRiaFormosaDunasDunaSecundariaAsFinished();
+    }
+
+    public boolean isRiaFormosaDunasFinished() {
+        return dataRepository.isRiaFormosaDunasFinished();
+    }
+
+    public void setRiaFormosaDunasAsFinished() {
+        dataRepository.setRiaFormosaDunasAsFinished();
+    }
+
+
+
     // GENERAL
 
     public boolean getOnBoarding() {

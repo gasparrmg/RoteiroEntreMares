@@ -8,18 +8,22 @@ import androidx.lifecycle.LiveData;
 import androidx.sqlite.db.SupportSQLiteQuery;
 
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
+import com.android.roteiroentremares.data.dao.AvistamentoDunasRiaFormosaDao;
 import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
 import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieRiaFormosaDao;
 import com.android.roteiroentremares.data.database.RoteiroDatabase;
 import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.data.model.AvistamentoDunasRiaFormosa;
 import com.android.roteiroentremares.data.model.AvistamentoPocasAvencas;
 import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.EspecieAvencasZonacaoInstancias;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosaDunasInstancias;
+import com.android.roteiroentremares.data.model.relations.AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 
@@ -74,13 +78,23 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI = "key_finished_riaformosa_naofiquesporaqui";
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_PRADARIASMARINHAS = "key_finished_riaformosa_pradariasmarinhas";
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_SAPAL = "key_finished_riaformosa_sapal";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS = "key_finished_riaformosa_dunas";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNAEMBRIONARIA = "key_finished_riaformosa_dunas_dunaembrionaria";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNAPRIMARIA = "key_finished_riaformosa_dunas_dunaprimaria";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNASECUNDARIA = "key_finished_riaformosa_dunas_dunasecundaria";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_ZONAINTERDUNAR = "key_finished_riaformosa_dunas_zonainterdunar";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
+
+    // Avencas
     private EspecieAvencasDao especieAvencasDao;
     private EspecieRiaFormosaDao especieRiaFormosaDao;
     private AvistamentoPocasAvencasDao avistamentoPocasAvencasDao;
     private AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao;
+
+    // Ria Formosa
+    private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
 
     private LiveData<List<Artefacto>> allArtefactos;
     private LiveData<List<EspecieAvencas>> allEspecieAvencas;
@@ -92,6 +106,9 @@ public class DataRepository {
     private LiveData<List<AvistamentoZonacaoAvencas>> allAvistamentoZonacaoAvencas;
     private LiveData<List<AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias>> allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 
+    private LiveData<List<AvistamentoDunasRiaFormosa>> allAvistamentoDunasRiaFormosa;
+    private LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
+
 
     @Inject
     public DataRepository (
@@ -100,7 +117,8 @@ public class DataRepository {
             EspecieAvencasDao especieAvencasDao,
             EspecieRiaFormosaDao especieRiaFormosaDao,
             AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
-            AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao
+            AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao,
+            AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao
     ) {
         this.sharedPreferences = sharedPreferences;
         this.artefactoDao = artefactoDao;
@@ -108,6 +126,7 @@ public class DataRepository {
         this.especieRiaFormosaDao = especieRiaFormosaDao;
         this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
         this.avistamentoZonacaoAvencasDao = avistamentoZonacaoAvencasDao;
+        this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
 
         allArtefactos = artefactoDao.getAll();
 
@@ -119,6 +138,9 @@ public class DataRepository {
 
         allAvistamentoZonacaoAvencas = avistamentoZonacaoAvencasDao.getAllAvistamentoZonacaoAvencas();
         allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias = avistamentoZonacaoAvencasDao.getAllAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias();
+
+        allAvistamentoDunasRiaFormosa = avistamentoDunasRiaFormosaDao.getAllAvistamentoDunasRiaFormosa();
+        allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias = avistamentoDunasRiaFormosaDao.getAllAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias();
     }
 
     /**
@@ -713,6 +735,111 @@ public class DataRepository {
         ).apply();
     }
 
+    /**
+     * Returns true if the User already completed the Sapal sequence
+     * @return
+     */
+    public boolean isRiaFormosaDunasDunaEmbrionariaFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNAEMBRIONARIA,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Sapal sequence
+     */
+    public void setRiaFormosaDunasDunaEmbrionariaAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNAEMBRIONARIA,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Sapal sequence
+     * @return
+     */
+    public boolean isRiaFormosaDunasDunaPrimariaFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNAPRIMARIA,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Sapal sequence
+     */
+    public void setRiaFormosaDunasDunaPrimariaAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNAPRIMARIA,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Sapal sequence
+     * @return
+     */
+    public boolean isRiaFormosaDunasZonaInterdunarFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_ZONAINTERDUNAR,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Sapal sequence
+     */
+    public void setRiaFormosaDunasZonaInterdunarAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_ZONAINTERDUNAR,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Sapal sequence
+     * @return
+     */
+    public boolean isRiaFormosaDunasDunaSecundariaFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNASECUNDARIA,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Sapal sequence
+     */
+    public void setRiaFormosaDunasDunaSecundariaAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNASECUNDARIA,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the Sapal sequence
+     * @return
+     */
+    public boolean isRiaFormosaDunasFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the Sapal sequence
+     */
+    public void setRiaFormosaDunasAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS,
+                true
+        ).apply();
+    }
+
 
 
 
@@ -919,6 +1046,153 @@ public class DataRepository {
      * -------------------------------- LOCAL DATABASE METHODS -------------------------------------------------
      */
 
+    // Ria Formosa Dunas
+
+    public void updateAvistamentoDunasRiaFormosa(AvistamentoDunasRiaFormosa avistamentoDunasRiaFormosa) {
+        new UpdateAvistamentoDunasRiaFormosaAsyncTask(avistamentoDunasRiaFormosaDao).execute(avistamentoDunasRiaFormosa);
+    }
+
+    public void deleteAllAvistamentoDunasRiaFormosa() {
+        new DeleteAllAvistamentoDunasRiaFormosaAsyncTask(avistamentoDunasRiaFormosaDao).execute();
+    }
+
+    public void deleteAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(int iteracao, String zona) {
+        new DeleteAvistamentoDunasRiaFormosaAsyncTask(avistamentoDunasRiaFormosaDao, iteracao, zona).execute();
+    }
+
+    public LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> getAvistamentosDunasWithZona(String zona) {
+        return avistamentoDunasRiaFormosaDao.getAvistamentosDunasWithZona(zona);
+    }
+
+    public LiveData<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias> getAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(int iteracao, String zona) {
+        return avistamentoDunasRiaFormosaDao.getAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(iteracao, zona);
+    }
+
+    public LiveData<List<AvistamentoDunasRiaFormosa>> getAllAvistamentoDunasRiaFormosa() {
+        return allAvistamentoDunasRiaFormosa;
+    }
+
+    private static class DeleteAvistamentoDunasRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
+        private int iteracao;
+        private String zona;
+
+        private DeleteAvistamentoDunasRiaFormosaAsyncTask(AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao, int iteracao, String zona) {
+            this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
+            this.iteracao = iteracao;
+            this.zona = zona;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            avistamentoDunasRiaFormosaDao.deleteAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(iteracao, zona);
+            return null;
+        }
+    }
+
+    private static class DeleteAllAvistamentoDunasRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
+
+        private DeleteAllAvistamentoDunasRiaFormosaAsyncTask(AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao) {
+            this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            avistamentoDunasRiaFormosaDao.deleteAllAvistamentoDunasRiaFormosa();
+            return null;
+        }
+    }
+
+    private static class UpdateAvistamentoDunasRiaFormosaAsyncTask extends AsyncTask<AvistamentoDunasRiaFormosa, Void, Void> {
+        private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
+
+        private UpdateAvistamentoDunasRiaFormosaAsyncTask(AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao) {
+            this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
+        }
+
+        @Override
+        protected Void doInBackground(AvistamentoDunasRiaFormosa... avistamentos) {
+            avistamentoDunasRiaFormosaDao.update(avistamentos[0]);
+            return null;
+        }
+    }
+
+    public LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> getAllAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias() {
+        return allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
+    }
+
+    public void insertAvistamentoDunasWithInstanciasRiaFormosa(
+            int nrIteracao,
+            String zona,
+            String photoPath,
+            List<EspecieRiaFormosa> especiesRiaFormosa,
+            int[] instancias
+    ) {
+        new InsertAvistamentoDunasWithInstanciasRiaFormosaAsyncTask(
+                avistamentoDunasRiaFormosaDao,
+                nrIteracao,
+                zona,
+                photoPath,
+                especiesRiaFormosa,
+                instancias
+        ).execute();
+    }
+
+    private static class InsertAvistamentoDunasWithInstanciasRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
+        private int nrIteracao;
+        private String zona;
+        private String photoPath;
+        private List<EspecieRiaFormosa> especiesRiaFormosa;
+        private int[] instancias;
+
+        private InsertAvistamentoDunasWithInstanciasRiaFormosaAsyncTask(
+                AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao,
+                int nrIteracao,
+                String zona,
+                String photoPath,
+                List<EspecieRiaFormosa> especiesRiaFormosa,
+                int[] instancias
+        ) {
+            this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
+            this.nrIteracao = nrIteracao;
+            this.zona = zona;
+            this.photoPath = photoPath;
+            this.especiesRiaFormosa = especiesRiaFormosa;
+            this.instancias = instancias;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // Insert Avistamento
+            long insertedIdAvistamento = avistamentoDunasRiaFormosaDao.insertAvistamentoDunasRiaFormosa(new AvistamentoDunasRiaFormosa(
+                    nrIteracao,
+                    zona,
+                    photoPath
+            ));
+
+            Log.d("DATA_REPOSITORY", "Inserted avistamento");
+
+            // Insert EspecieRiaFormosaDunasInstancias
+            for (int i = 0; i < especiesRiaFormosa.size(); i++) {
+                avistamentoDunasRiaFormosaDao.insertEspecieRiaFormosaDunasInstancias(new EspecieRiaFormosaDunasInstancias(
+                        (int) insertedIdAvistamento,
+                        especiesRiaFormosa.get(i),
+                        instancias[i]
+                ));
+
+                Log.d("DATA_REPOSITORY", "Inserted EspecieWithInstancia for species " + especiesRiaFormosa.get(i).getNomeComum() + " with value " + instancias[i]);
+            }
+
+            Log.d("DATA_REPOSITORY", "Finished inserting Avistamento and EspecieWithInstancia");
+
+            return null;
+        }
+    }
+
+    // Avencas Zonacao
+
     public void updateAvistamentoZonacaoAvencas(AvistamentoZonacaoAvencas avistamentoZonacaoAvencas) {
         new UpdateAvistamentoZonacaoAvencasAsyncTask(avistamentoZonacaoAvencasDao).execute(avistamentoZonacaoAvencas);
     }
@@ -1062,39 +1336,7 @@ public class DataRepository {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Avencas Pocas
 
     public void updateAvistamentoPocasAvencas(AvistamentoPocasAvencas avistamentoPocasAvencas) {
         new UpdateAvistamentoPocasAvencasAsyncTask(avistamentoPocasAvencasDao).execute(avistamentoPocasAvencas);
