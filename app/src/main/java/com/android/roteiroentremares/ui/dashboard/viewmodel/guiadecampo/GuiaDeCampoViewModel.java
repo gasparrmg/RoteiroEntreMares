@@ -9,9 +9,11 @@ import androidx.lifecycle.ViewModel;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
 import com.android.roteiroentremares.data.model.Artefacto;
+import com.android.roteiroentremares.data.model.AvistamentoDunasRiaFormosa;
 import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
+import com.android.roteiroentremares.data.model.relations.AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 import com.android.roteiroentremares.data.repository.DataRepository;
@@ -34,9 +36,14 @@ public class GuiaDeCampoViewModel extends ViewModel {
     private LiveData<List<EspecieAvencas>> allEspecieAvencas;
     private LiveData<List<EspecieRiaFormosa>> allEspecieRiaFormosa;
 
+    // Avencas
     private LiveData<List<AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias>> allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
     private LiveData<List<AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias>> allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
     private LiveData<List<AvistamentoZonacaoAvencas>> allAvistamentoZonacaoAvencas;
+
+    // Ria Formosa Dunas
+    private LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
+    private LiveData<List<AvistamentoDunasRiaFormosa>> allAvistamentoDunasRiaFormosa;
 
     @Inject
     public GuiaDeCampoViewModel(
@@ -64,6 +71,9 @@ public class GuiaDeCampoViewModel extends ViewModel {
         allAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias = dataRepository.getAllAvistamentoPocasAvencasWithEspecieAvencasPocasInstancias();
         allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias = dataRepository.getAllAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias();
         allAvistamentoZonacaoAvencas = dataRepository.getAllAvistamentoZonacaoAvencas();
+
+        allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias = dataRepository.getAllAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias();
+        allAvistamentoDunasRiaFormosa = dataRepository.getAllAvistamentoDunasRiaFormosa();
     }
 
     public void filterEspecies(String query) {
@@ -118,6 +128,8 @@ public class GuiaDeCampoViewModel extends ViewModel {
         );
     }
 
+    // Avencas Zonacao
+
     public LiveData<List<AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias>> getAllAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias() {
         return allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
     }
@@ -156,5 +168,47 @@ public class GuiaDeCampoViewModel extends ViewModel {
 
     public LiveData<List<AvistamentoZonacaoAvencas>> getAllAvistamentoZonacaoAvencas () {
         return allAvistamentoZonacaoAvencas;
+    }
+
+    // Ria Formosa Dunas
+
+    public LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> getAllAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias() {
+        return allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
+    }
+
+    public LiveData<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias> getAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(int iteracao, String zona) {
+        return dataRepository.getAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(iteracao, zona);
+    }
+
+    public LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> getAvistamentosDunasWithZona(String zona) {
+        return dataRepository.getAvistamentosDunasWithZona(zona);
+    }
+
+    public void deleteAllAvistamentoDunasRiaFormosa() {
+        dataRepository.deleteAllAvistamentoDunasRiaFormosa();
+    }
+
+    public void deleteAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(int iteracao, String zona) {
+        dataRepository.deleteAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias(iteracao, zona);
+    }
+
+    public void insertAvistamentoDunasWithInstanciasRiaFormosa(
+            int nrIteracao,
+            String zona,
+            String photoPath,
+            List<EspecieRiaFormosa> especiesRiaFormosa,
+            int[] instancias
+    ) {
+        dataRepository.insertAvistamentoDunasWithInstanciasRiaFormosa(
+                nrIteracao,
+                zona,
+                photoPath,
+                especiesRiaFormosa,
+                instancias
+        );
+    }
+
+    public LiveData<List<AvistamentoDunasRiaFormosa>> getAllAvistamentoDunasRiaFormosa() {
+        return allAvistamentoDunasRiaFormosa;
     }
 }
