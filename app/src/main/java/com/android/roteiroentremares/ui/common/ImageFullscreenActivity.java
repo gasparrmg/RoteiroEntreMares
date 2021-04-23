@@ -1,14 +1,18 @@
 package com.android.roteiroentremares.ui.common;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment13TarefaTranseptosDirections;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 

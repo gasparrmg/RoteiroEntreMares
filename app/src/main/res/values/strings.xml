@@ -21,6 +21,7 @@
     <string name="riaformosa_naofiquesporaqui_title">Não fiques por aqui...</string>
     <string name="riaformosa_sapal_title">Sapal</string>
     <string name="riaformosa_dunas_title">Dunas</string>
+    <string name="riaformosa_intertidalarenoso_title">Intertidal arenoso</string>
     <string name="riaformosa_pradariasmarinhas_title">Pradarias Marinhas</string>
 
     <string name="avencas_biodiversidade_interacoes_title">Interações</string>
@@ -34,6 +35,7 @@
     <string name="warning_content_not_finished">Ainda tens conteúdos por descobrir aqui. Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_task_not_finished">Não acabaste a tarefa! Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_question_not_finished">Não respondeste à questão! Tens a certeza de que queres passar para o próximo ecrã?</string>
+    <string name="warning_delete_image">Tens a certeza de que queres apagar esta imagem?</string>
 
     <string name="message_correct_answer">Resposta correta!</string>
 

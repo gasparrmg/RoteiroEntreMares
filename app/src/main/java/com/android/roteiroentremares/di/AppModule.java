@@ -11,6 +11,8 @@ import androidx.room.Room;
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
 import com.android.roteiroentremares.data.dao.AvistamentoDunasRiaFormosaDao;
 import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
+import com.android.roteiroentremares.data.dao.AvistamentoPocasRiaFormosaDao;
+import com.android.roteiroentremares.data.dao.AvistamentoTranseptosRiaFormosaDao;
 import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieRiaFormosaDao;
@@ -62,6 +64,18 @@ public class AppModule {
     @Singleton
     AvistamentoPocasAvencasDao provideAvistamentoPocasAvencasDao(RoteiroDatabase roteiroDatabase) {
         return roteiroDatabase.avistamentoPocasAvencasDao();
+    }
+
+    @Provides
+    @Singleton
+    AvistamentoPocasRiaFormosaDao provideAvistamentoPocasRiaFormosaDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.avistamentoPocasRiaFormosaDao();
+    }
+
+    @Provides
+    @Singleton
+    AvistamentoTranseptosRiaFormosaDao provideAvistamentoTranseptosRiaFormosaDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.avistamentoTranseptosRiaFormosaDao();
     }
 
     @Provides

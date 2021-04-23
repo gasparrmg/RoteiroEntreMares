@@ -10,6 +10,8 @@ import androidx.sqlite.db.SupportSQLiteQuery;
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
 import com.android.roteiroentremares.data.dao.AvistamentoDunasRiaFormosaDao;
 import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
+import com.android.roteiroentremares.data.dao.AvistamentoPocasRiaFormosaDao;
+import com.android.roteiroentremares.data.dao.AvistamentoTranseptosRiaFormosaDao;
 import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieRiaFormosaDao;
@@ -17,14 +19,20 @@ import com.android.roteiroentremares.data.database.RoteiroDatabase;
 import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.data.model.AvistamentoDunasRiaFormosa;
 import com.android.roteiroentremares.data.model.AvistamentoPocasAvencas;
+import com.android.roteiroentremares.data.model.AvistamentoPocasRiaFormosa;
+import com.android.roteiroentremares.data.model.AvistamentoTranseptosRiaFormosa;
 import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.EspecieAvencasZonacaoInstancias;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosaDunasInstancias;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosaPocasInstancias;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosaTranseptosInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
+import com.android.roteiroentremares.data.model.relations.AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
+import com.android.roteiroentremares.data.model.relations.AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 
 import java.util.List;
@@ -95,6 +103,8 @@ public class DataRepository {
 
     // Ria Formosa
     private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
+    private AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao;
+    private AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao;
 
     private LiveData<List<Artefacto>> allArtefactos;
     private LiveData<List<EspecieAvencas>> allEspecieAvencas;
@@ -109,6 +119,12 @@ public class DataRepository {
     private LiveData<List<AvistamentoDunasRiaFormosa>> allAvistamentoDunasRiaFormosa;
     private LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 
+    private LiveData<List<AvistamentoPocasRiaFormosa>> allAvistamentoPocasRiaFormosa;
+    private LiveData<List<AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias>> allAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
+
+    private LiveData<List<AvistamentoTranseptosRiaFormosa>> allAvistamentoTranseptosRiaFormosa;
+    private LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
+
 
     @Inject
     public DataRepository (
@@ -117,6 +133,8 @@ public class DataRepository {
             EspecieAvencasDao especieAvencasDao,
             EspecieRiaFormosaDao especieRiaFormosaDao,
             AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
+            AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao,
+            AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao,
             AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao,
             AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao
     ) {
@@ -125,6 +143,8 @@ public class DataRepository {
         this.especieAvencasDao = especieAvencasDao;
         this.especieRiaFormosaDao = especieRiaFormosaDao;
         this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
+        this.avistamentoPocasRiaFormosaDao = avistamentoPocasRiaFormosaDao;
+        this.avistamentoTranseptosRiaFormosaDao = avistamentoTranseptosRiaFormosaDao;
         this.avistamentoZonacaoAvencasDao = avistamentoZonacaoAvencasDao;
         this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
 
@@ -141,6 +161,12 @@ public class DataRepository {
 
         allAvistamentoDunasRiaFormosa = avistamentoDunasRiaFormosaDao.getAllAvistamentoDunasRiaFormosa();
         allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias = avistamentoDunasRiaFormosaDao.getAllAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias();
+
+        allAvistamentoPocasRiaFormosa = avistamentoPocasRiaFormosaDao.getAllAvistamentoPocasRiaFormosa();
+        allAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias = avistamentoPocasRiaFormosaDao.getAllAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias();
+
+        allAvistamentoTranseptosRiaFormosa = avistamentoTranseptosRiaFormosaDao.getAllAvistamentoTranseptosRiaFormosa();
+        allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias = avistamentoTranseptosRiaFormosaDao.getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias();
     }
 
     /**
@@ -1045,6 +1071,244 @@ public class DataRepository {
     /**
      * -------------------------------- LOCAL DATABASE METHODS -------------------------------------------------
      */
+
+    // Ria Formosa Transeptos
+
+    public void updateAvistamentoTranseptosRiaFormosa(AvistamentoTranseptosRiaFormosa avistamentoTranseptosRiaFormosa) {
+        new UpdateAvistamentoTranseptosRiaFormosaAsyncTask(avistamentoTranseptosRiaFormosaDao).execute(avistamentoTranseptosRiaFormosa);
+    }
+
+    public void deleteAllAvistamentoTranseptosRiaFormosa() {
+        new DeleteAllAvistamentoTranseptosRiaFormosaAsyncTask(avistamentoTranseptosRiaFormosaDao).execute();
+    }
+
+    public LiveData<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias> getAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias(int idAvistamento) {
+        return avistamentoTranseptosRiaFormosaDao.getAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias(idAvistamento);
+    }
+
+    public LiveData<List<AvistamentoTranseptosRiaFormosa>> getAllAvistamentoTranseptosRiaFormosa() {
+        return allAvistamentoTranseptosRiaFormosa;
+    }
+
+    private static class DeleteAllAvistamentoTranseptosRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao;
+
+        private DeleteAllAvistamentoTranseptosRiaFormosaAsyncTask(AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao) {
+            this.avistamentoTranseptosRiaFormosaDao = avistamentoTranseptosRiaFormosaDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            avistamentoTranseptosRiaFormosaDao.deleteAllAvistamentoTranseptosRiaFormosa();
+            return null;
+        }
+    }
+
+    private static class UpdateAvistamentoTranseptosRiaFormosaAsyncTask extends AsyncTask<AvistamentoTranseptosRiaFormosa, Void, Void> {
+        private AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao;
+
+        private UpdateAvistamentoTranseptosRiaFormosaAsyncTask(AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao) {
+            this.avistamentoTranseptosRiaFormosaDao = avistamentoTranseptosRiaFormosaDao;
+        }
+
+        @Override
+        protected Void doInBackground(AvistamentoTranseptosRiaFormosa... avistamentos) {
+            avistamentoTranseptosRiaFormosaDao.update(avistamentos[0]);
+            return null;
+        }
+    }
+
+    public LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias() {
+        return allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
+    }
+
+    public void insertAvistamentoTranseptosWithInstanciasRiaFormosa(
+            int nrTransepto,
+            List<EspecieRiaFormosa> especiesRiaFormosa,
+            boolean[] instanciasExpostaPedra,
+            boolean[] instanciasInferiorPedra,
+            boolean[] instanciasSubstrato,
+            String[] photoPathEspecie
+    ) {
+        new InsertAvistamentoTranseptosWithInstanciasRiaFormosaAsyncTask(
+                avistamentoTranseptosRiaFormosaDao,
+                nrTransepto,
+                especiesRiaFormosa,
+                instanciasExpostaPedra,
+                instanciasInferiorPedra,
+                instanciasSubstrato,
+                photoPathEspecie
+        ).execute();
+    }
+
+    private static class InsertAvistamentoTranseptosWithInstanciasRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao;
+        private int nrTransepto;
+        private List<EspecieRiaFormosa> especiesRiaFormosa;
+        private boolean[] instanciasExpostaPedra;
+        private boolean[] instanciasInferiorPedra;
+        private boolean[] instanciasSubstrato;
+        private String[] photoPathEspecie;
+
+        private InsertAvistamentoTranseptosWithInstanciasRiaFormosaAsyncTask(
+                AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao,
+                int nrTransepto,
+                List<EspecieRiaFormosa> especiesRiaFormosa,
+                boolean[] instanciasExpostaPedra,
+                boolean[] instanciasInferiorPedra,
+                boolean[] instanciasSubstrato,
+                String[] photoPathEspecie
+        ) {
+            this.avistamentoTranseptosRiaFormosaDao = avistamentoTranseptosRiaFormosaDao;
+            this.nrTransepto = nrTransepto;
+            this.especiesRiaFormosa = especiesRiaFormosa;
+            this.instanciasExpostaPedra = instanciasExpostaPedra;
+            this.instanciasInferiorPedra = instanciasInferiorPedra;
+            this.instanciasSubstrato = instanciasSubstrato;
+            this.photoPathEspecie = photoPathEspecie;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // Insert Avistamento
+            avistamentoTranseptosRiaFormosaDao.insertAvistamentoTranseptosRiaFormosa(new AvistamentoTranseptosRiaFormosa(
+                    nrTransepto
+            ));
+
+            Log.d("DATA_REPOSITORY", "Inserted avistamento");
+
+            // Insert EspecieRiaFormosaTranseptosInstancias
+            for (int i = 0; i < especiesRiaFormosa.size(); i++) {
+                avistamentoTranseptosRiaFormosaDao.insertEspecieRiaFormosaTranseptosInstancias(new EspecieRiaFormosaTranseptosInstancias(
+                        nrTransepto,
+                        especiesRiaFormosa.get(i),
+                        instanciasExpostaPedra[i],
+                        instanciasInferiorPedra[i],
+                        instanciasSubstrato[i],
+                        photoPathEspecie[i]
+                ));
+
+                Log.d("DATA_REPOSITORY", "Inserted EspecieWithInstancia for species " + especiesRiaFormosa.get(i).getNomeComum() + " with value " + instanciasExpostaPedra[i]);
+            }
+
+            Log.d("DATA_REPOSITORY", "Finished inserting Avistamento and EspecieWithInstancia");
+
+            return null;
+        }
+    }
+
+    // Ria Formosa Pocas
+
+    public void updateAvistamentoPocasRiaFormosa(AvistamentoPocasRiaFormosa avistamentoPocasRiaFormosa) {
+        new UpdateAvistamentoPocasRiaFormosaAsyncTask(avistamentoPocasRiaFormosaDao).execute(avistamentoPocasRiaFormosa);
+    }
+
+    public void deleteAllAvistamentoPocasRiaFormosa() {
+        new DeleteAllAvistamentoPocasRiaFormosaAsyncTask(avistamentoPocasRiaFormosaDao).execute();
+    }
+
+    public LiveData<AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias> getAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias(int idAvistamento) {
+        return avistamentoPocasRiaFormosaDao.getAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias(idAvistamento);
+    }
+
+    public LiveData<List<AvistamentoPocasRiaFormosa>> getAllAvistamentoPocasRiaFormosa() {
+        return allAvistamentoPocasRiaFormosa;
+    }
+
+    private static class DeleteAllAvistamentoPocasRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao;
+
+        private DeleteAllAvistamentoPocasRiaFormosaAsyncTask(AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao) {
+            this.avistamentoPocasRiaFormosaDao = avistamentoPocasRiaFormosaDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            avistamentoPocasRiaFormosaDao.deleteAllAvistamentoPocasRiaFormosa();
+            return null;
+        }
+    }
+
+    private static class UpdateAvistamentoPocasRiaFormosaAsyncTask extends AsyncTask<AvistamentoPocasRiaFormosa, Void, Void> {
+        private AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao;
+
+        private UpdateAvistamentoPocasRiaFormosaAsyncTask(AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao) {
+            this.avistamentoPocasRiaFormosaDao = avistamentoPocasRiaFormosaDao;
+        }
+
+        @Override
+        protected Void doInBackground(AvistamentoPocasRiaFormosa... avistamentos) {
+            avistamentoPocasRiaFormosaDao.update(avistamentos[0]);
+            return null;
+        }
+    }
+
+    public LiveData<List<AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias>> getAllAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias() {
+        return allAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
+    }
+
+    public void insertAvistamentoPocaWithInstanciasRiaFormosa(
+            int nrPoca,
+            String photoPath,
+            List<EspecieRiaFormosa> especiesRiaFormosa,
+            boolean[] instancias
+    ) {
+        new InsertAvistamentoPocaWithInstanciasRiaFormosaAsyncTask(
+                avistamentoPocasRiaFormosaDao,
+                nrPoca,
+                photoPath,
+                especiesRiaFormosa,
+                instancias
+        ).execute();
+    }
+
+    private static class InsertAvistamentoPocaWithInstanciasRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao;
+        private int nrPoca;
+        private String photoPath;
+        private List<EspecieRiaFormosa> especiesRiaFormosa;
+        private boolean[] instancias;
+
+        private InsertAvistamentoPocaWithInstanciasRiaFormosaAsyncTask(
+                AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao,
+                int nrPoca,
+                String photoPath,
+                List<EspecieRiaFormosa> especiesRiaFormosa,
+                boolean[] instancias
+        ) {
+            this.avistamentoPocasRiaFormosaDao = avistamentoPocasRiaFormosaDao;
+            this.nrPoca = nrPoca;
+            this.photoPath = photoPath;
+            this.especiesRiaFormosa = especiesRiaFormosa;
+            this.instancias = instancias;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // Insert Avistamento
+            avistamentoPocasRiaFormosaDao.insertAvistamentoPocasRiaFormosa(new AvistamentoPocasRiaFormosa(
+                    nrPoca,
+                    photoPath
+            ));
+
+            Log.d("DATA_REPOSITORY", "Inserted avistamento");
+
+            // Insert EspecieRiaFormosaPocasInstancias
+            for (int i = 0; i < especiesRiaFormosa.size(); i++) {
+                avistamentoPocasRiaFormosaDao.insertEspecieRiaFormosaPocasInstancias(new EspecieRiaFormosaPocasInstancias(
+                        nrPoca,
+                        especiesRiaFormosa.get(i),
+                        instancias[i]
+                ));
+
+                Log.d("DATA_REPOSITORY", "Inserted EspecieWithInstancia for species " + especiesRiaFormosa.get(i).getNomeComum() + " with value " + instancias[i]);
+            }
+
+            Log.d("DATA_REPOSITORY", "Finished inserting Avistamento and EspecieWithInstancia");
+
+            return null;
+        }
+    }
 
     // Ria Formosa Dunas
 

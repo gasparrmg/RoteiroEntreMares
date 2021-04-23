@@ -433,6 +433,8 @@ public class RoteiroFragment extends Fragment {
                     } else {
                         Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_historiasPassadoFragment);
                     }*/
+
+                    Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_riaFormosaIntertidalArenosoFragment);
                 }
             });
 
