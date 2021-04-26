@@ -1668,6 +1668,25 @@ public class GuiaDeCampoContent {
                     ""
             ),
             new EspecieRiaFormosa(
+                    "Pilrito da areia",
+                    "Calibris alba",
+                    "Intertidal arenoso",
+                    "Fauna",
+                    "Aves Limícolas (Chordata)",
+                    "Límicola de reduzidas dimensões, facilmente identificável pela sua cor clara. As regiões inferiores são brancas e as superiores cinzento-claro, onde se destacam as pequenas coberturas da asa pretas, formando uma mancha escura no ombro.",
+                    "Alimenta-se de poliquetas, crustáceos e larvas de insetos. Utilizam a plataforma rochosa durante a maré-baixa para se alimentar.",
+                    "",
+                    "",
+                    "",
+                    new ArrayList<String>(Arrays.asList(
+                            "img_guiadecampo_pilritodaareia_1"
+                    )),
+                    new ArrayList<String>(Arrays.asList()),
+                    new ArrayList<String>(Arrays.asList()),
+                    "",
+                    ""
+            ),
+            new EspecieRiaFormosa(
                     "Narciso-das-areias",
                     "Pancratium maritimum",
                     "Dunas",

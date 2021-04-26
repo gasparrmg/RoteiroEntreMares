@@ -15,6 +15,8 @@ import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.android.roteiroentremares.data.model.relations.AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
+import com.android.roteiroentremares.data.model.relations.AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
+import com.android.roteiroentremares.data.model.relations.AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
 import com.android.roteiroentremares.data.repository.DataRepository;
 
@@ -41,7 +43,9 @@ public class GuiaDeCampoViewModel extends ViewModel {
     private LiveData<List<AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias>> allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
     private LiveData<List<AvistamentoZonacaoAvencas>> allAvistamentoZonacaoAvencas;
 
-    // Ria Formosa Dunas
+    // Ria Formosa
+    private LiveData<List<AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias>> allAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
+    private LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
     private LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
     private LiveData<List<AvistamentoDunasRiaFormosa>> allAvistamentoDunasRiaFormosa;
 
@@ -72,6 +76,8 @@ public class GuiaDeCampoViewModel extends ViewModel {
         allAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias = dataRepository.getAllAvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias();
         allAvistamentoZonacaoAvencas = dataRepository.getAllAvistamentoZonacaoAvencas();
 
+        allAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias = dataRepository.getAllAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias();
+        allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias = dataRepository.getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias();
         allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias = dataRepository.getAllAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias();
         allAvistamentoDunasRiaFormosa = dataRepository.getAllAvistamentoDunasRiaFormosa();
     }
@@ -210,5 +216,65 @@ public class GuiaDeCampoViewModel extends ViewModel {
 
     public LiveData<List<AvistamentoDunasRiaFormosa>> getAllAvistamentoDunasRiaFormosa() {
         return allAvistamentoDunasRiaFormosa;
+    }
+
+    // Ria Formosa Pocas
+
+    public LiveData<List<AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias>> getAllAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias() {
+        return allAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
+    }
+
+    public LiveData<AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias> getAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias(int idAvistamento) {
+        return dataRepository.getAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias(idAvistamento);
+    }
+
+    public void deleteAllAvistamentoPocasRiaFormosa() {
+        dataRepository.deleteAllAvistamentoPocasRiaFormosa();
+    }
+
+    public void insertAvistamentoPocaWithInstanciasRiaFormosa(
+            int nrPoca,
+            String photoPath,
+            List<EspecieRiaFormosa> especiesRiaFormosa,
+            boolean[] instancias
+    ) {
+        dataRepository.insertAvistamentoPocaWithInstanciasRiaFormosa(
+                nrPoca,
+                photoPath,
+                especiesRiaFormosa,
+                instancias
+        );
+    }
+
+    // Ria Formosa Transeptos
+
+    public LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias() {
+        return allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
+    }
+
+    public LiveData<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias> getAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias(int idAvistamento) {
+        return dataRepository.getAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias(idAvistamento);
+    }
+
+    public void deleteAllAvistamentoTranseptosRiaFormosa() {
+        dataRepository.deleteAllAvistamentoTranseptosRiaFormosa();
+    }
+
+    public void insertAvistamentoTranseptosWithInstanciasRiaFormosa(
+            int nrTransepto,
+            List<EspecieRiaFormosa> especiesRiaFormosa,
+            boolean[] instanciasExpostaPedra,
+            boolean[] instanciasInferiorPedra,
+            boolean[] instanciasSubstrato,
+            String[] photoPath
+    ) {
+        dataRepository.insertAvistamentoTranseptosWithInstanciasRiaFormosa(
+                nrTransepto,
+                especiesRiaFormosa,
+                instanciasExpostaPedra,
+                instanciasInferiorPedra,
+                instanciasSubstrato,
+                photoPath
+        );
     }
 }

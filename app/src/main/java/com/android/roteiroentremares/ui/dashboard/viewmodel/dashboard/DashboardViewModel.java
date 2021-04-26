@@ -306,6 +306,30 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setRiaFormosaDunasAsFinished();
     }
 
+    public boolean isRiaFormosaIntertidalArenosoPredacaoFinished() {
+        return dataRepository.isRiaFormosaIntertidalArenosoPredacaoFinished();
+    }
+
+    public void setRiaFormosaIntertidalArenosoPredacaoAsFinished() {
+        dataRepository.setRiaFormosaIntertidalArenosoPredacaoAsFinished();
+    }
+
+    public boolean isRiaFormosaIntertidalArenosoCompeticaoFinished() {
+        return dataRepository.isRiaFormosaIntertidalArenosoPredacaoFinished();
+    }
+
+    public void setRiaFormosaIntertidalArenosoCompeticaoAsFinished() {
+        dataRepository.setRiaFormosaIntertidalArenosoPredacaoAsFinished();
+    }
+
+    public boolean isRiaFormosaIntertidalArenosoFinished() {
+        return dataRepository.isRiaFormosaIntertidalArenosoFinished();
+    }
+
+    public void setRiaFormosaIntertidalArenosoAsFinished() {
+        dataRepository.setRiaFormosaIntertidalArenosoAsFinished();
+    }
+
 
 
     // GENERAL

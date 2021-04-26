@@ -13,18 +13,24 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.android.roteiroentremares.data.dao.ArtefactoDao;
 import com.android.roteiroentremares.data.dao.AvistamentoDunasRiaFormosaDao;
 import com.android.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
+import com.android.roteiroentremares.data.dao.AvistamentoPocasRiaFormosaDao;
+import com.android.roteiroentremares.data.dao.AvistamentoTranseptosRiaFormosaDao;
 import com.android.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.android.roteiroentremares.data.dao.EspecieRiaFormosaDao;
 import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.data.model.AvistamentoDunasRiaFormosa;
 import com.android.roteiroentremares.data.model.AvistamentoPocasAvencas;
+import com.android.roteiroentremares.data.model.AvistamentoPocasRiaFormosa;
+import com.android.roteiroentremares.data.model.AvistamentoTranseptosRiaFormosa;
 import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.EspecieAvencasZonacaoInstancias;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosaDunasInstancias;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosaPocasInstancias;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosaTranseptosInstancias;
 import com.android.roteiroentremares.util.GuiaDeCampoContent;
 
 import javax.inject.Inject;
@@ -35,7 +41,11 @@ import javax.inject.Provider;
         EspecieAvencas.class,
         EspecieRiaFormosa.class,
         AvistamentoPocasAvencas.class,
+        AvistamentoPocasRiaFormosa.class,
+        AvistamentoTranseptosRiaFormosa.class,
         EspecieAvencasPocasInstancias.class,
+        EspecieRiaFormosaPocasInstancias.class,
+        EspecieRiaFormosaTranseptosInstancias.class,
         AvistamentoZonacaoAvencas.class,
         EspecieAvencasZonacaoInstancias.class,
         EspecieRiaFormosaDunasInstancias.class,
@@ -48,6 +58,10 @@ public abstract class RoteiroDatabase extends RoomDatabase {
     public abstract EspecieAvencasDao especieAvencasDao();
 
     public abstract AvistamentoPocasAvencasDao avistamentoPocasAvencasDao();
+
+    public abstract AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao();
+
+    public abstract AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao();
 
     public abstract AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao();
 
@@ -73,9 +87,11 @@ public abstract class RoteiroDatabase extends RoomDatabase {
             EspecieAvencasDao especieAvencasDao = roteiroDatabaseProvider.get().especieAvencasDao();
             EspecieRiaFormosaDao especieRiaFormosaDao = roteiroDatabaseProvider.get().especieRiaFormosaDao();
             AvistamentoPocasAvencasDao avistamentoPocasAvencasDao = roteiroDatabaseProvider.get().avistamentoPocasAvencasDao();
+            AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao = roteiroDatabaseProvider.get().avistamentoPocasRiaFormosaDao();
+            AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao = roteiroDatabaseProvider.get().avistamentoTranseptosRiaFormosaDao();
             AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao = roteiroDatabaseProvider.get().avistamentoZonacaoAvencasDao();
             AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao = roteiroDatabaseProvider.get().avistamentoDunasRiaFormosaDao();
-            new PopulateDbAsyncTask(artefactoDao, especieAvencasDao, especieRiaFormosaDao, avistamentoPocasAvencasDao, avistamentoZonacaoAvencasDao, avistamentoDunasRiaFormosaDao).execute();
+            new PopulateDbAsyncTask(artefactoDao, especieAvencasDao, especieRiaFormosaDao, avistamentoPocasAvencasDao, avistamentoPocasRiaFormosaDao, avistamentoTranseptosRiaFormosaDao, avistamentoZonacaoAvencasDao, avistamentoDunasRiaFormosaDao).execute();
         }
     }
 
@@ -84,6 +100,8 @@ public abstract class RoteiroDatabase extends RoomDatabase {
         private EspecieAvencasDao especieAvencasDao;
         private EspecieRiaFormosaDao especieRiaFormosaDao;
         private AvistamentoPocasAvencasDao avistamentoPocasAvencasDao;
+        private AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao;
+        private AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao;
         private AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao;
         private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
 
@@ -94,6 +112,8 @@ public abstract class RoteiroDatabase extends RoomDatabase {
                 EspecieAvencasDao especieAvencasDao,
                 EspecieRiaFormosaDao especieRiaFormosaDao,
                 AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
+                AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao,
+                AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao,
                 AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao,
                 AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao
         ) {
@@ -101,6 +121,8 @@ public abstract class RoteiroDatabase extends RoomDatabase {
             this.especieAvencasDao = especieAvencasDao;
             this.especieRiaFormosaDao = especieRiaFormosaDao;
             this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
+            this.avistamentoPocasRiaFormosaDao = avistamentoPocasRiaFormosaDao;
+            this.avistamentoTranseptosRiaFormosaDao = avistamentoTranseptosRiaFormosaDao;
             this.avistamentoZonacaoAvencasDao = avistamentoZonacaoAvencasDao;
             this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
         }
