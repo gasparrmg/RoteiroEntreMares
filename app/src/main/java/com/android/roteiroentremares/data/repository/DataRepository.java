@@ -91,6 +91,9 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNAPRIMARIA = "key_finished_riaformosa_dunas_dunaprimaria";
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_DUNASECUNDARIA = "key_finished_riaformosa_dunas_dunasecundaria";
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_DUNAS_ZONAINTERDUNAR = "key_finished_riaformosa_dunas_zonainterdunar";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO_PREDACAO = "key_finished_riaformosa_intertidalarenoso_predacao";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO_COMPETICAO = "key_finished_riaformosa_intertidalarenoso_competicao";
+    private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO = "key_finished_riaformosa_intertidalarenoso";
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
@@ -865,6 +868,86 @@ public class DataRepository {
                 true
         ).apply();
     }
+
+    /**
+     * Returns true if the User already completed the predacao sequence
+     * @return
+     */
+    public boolean isRiaFormosaIntertidalArenosoPredacaoFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO_PREDACAO,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the predacao sequence
+     */
+    public void setRiaFormosaIntertidalArenosoPredacaoAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO_PREDACAO,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the predacao sequence
+     * @return
+     */
+    public boolean isRiaFormosaIntertidalArenosoCompeticaoFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO_COMPETICAO,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the predacao sequence
+     */
+    public void setRiaFormosaIntertidalArenosoCompeticaoAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO_COMPETICAO,
+                true
+        ).apply();
+    }
+
+    /**
+     * Returns true if the User already completed the predacao sequence
+     * @return
+     */
+    public boolean isRiaFormosaIntertidalArenosoFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO,
+                false
+        );
+    }
+
+    /**
+     * Sets as finished the predacao sequence
+     */
+    public void setRiaFormosaIntertidalArenosoAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_RIAFORMOSA_INTERTIDALARENOSO,
+                true
+        ).apply();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -72,7 +72,7 @@ public class RiaFormosaIntertidalArenosoFragment2 extends Fragment {
     }
 
     private void initToolbar() {
-        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_sapal_title));
+        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_intertidalarenoso_title));
         s.setSpan(new TypefaceSpan(getActivity(), "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 

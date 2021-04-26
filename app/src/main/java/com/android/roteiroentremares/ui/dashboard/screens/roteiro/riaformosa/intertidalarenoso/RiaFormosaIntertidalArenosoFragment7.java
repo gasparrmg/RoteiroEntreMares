@@ -197,6 +197,13 @@ public class RiaFormosaIntertidalArenosoFragment7 extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_riaFormosaIntertidalArenosoFragment7_to_riaFormosaIntertidalArenosoFragment8);
             }
         });
+
+        buttonSabiasQue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_riaFormosaIntertidalArenosoFragment7_to_riaFormosaIntertidalArenosoFragment7EspeciesExoticas);
+            }
+        });
     }
 
     /**

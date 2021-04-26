@@ -2538,6 +2538,13 @@
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment7_to_riaFormosaIntertidalArenosoFragment7EspeciesExoticas"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment7EspeciesExoticas"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment8"
@@ -2656,6 +2663,140 @@
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment15Pergunta"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment15Pergunta"
-            android:label="RiaFormosaIntertidalArenosoFragment15Pergunta" />
+            android:label="RiaFormosaIntertidalArenosoFragment15Pergunta" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment15Pergunta_to_riaFormosaIntertidalArenosoFragment16"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment16"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment16"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment16"
+            android:label="RiaFormosaIntertidalArenosoFragment16" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment16_to_riaFormosaIntertidalArenosoFragment17ConnectWords"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment17ConnectWords"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment17ConnectWords"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment17ConnectWords"
+            android:label="RiaFormosaIntertidalArenosoFragment17ConnectWords" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment17ConnectWords_to_riaFormosaIntertidalArenosoFragment18Menu"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment18Menu"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment18Menu"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment18Menu"
+            android:label="RiaFormosaIntertidalArenosoFragment18Menu" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment18Menu_to_riaFormosaIntertidalArenosoFragmentPredacao1"
+                app:destination="@id/riaFormosaIntertidalArenosoFragmentPredacao1"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment18Menu_to_riaFormosaIntertidalArenosoFragmentCompeticao1"
+                app:destination="@id/riaFormosaIntertidalArenosoFragmentCompeticao1"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment18Menu_to_riaFormosaIntertidalArenosoFragment19"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment19"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragmentPredacao1"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragmentPredacao1"
+            android:label="RiaFormosaIntertidalArenosoFragmentPredacao1" />
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragmentCompeticao1"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragmentCompeticao1"
+            android:label="RiaFormosaIntertidalArenosoFragmentCompeticao1" />
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment19"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment19"
+            android:label="RiaFormosaIntertidalArenosoFragment19" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment19_to_riaFormosaIntertidalArenosoFragment20RedeTrofica"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment20RedeTrofica"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment20RedeTrofica"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment20RedeTrofica"
+            android:label="RiaFormosaIntertidalArenosoFragment20RedeTrofica" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment20RedeTrofica_to_riaFormosaIntertidalArenosoFragment21"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment21"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment21"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment21"
+            android:label="RiaFormosaIntertidalArenosoFragment21" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment21_to_riaFormosaIntertidalArenosoFragment22"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment22"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment22"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment22"
+            android:label="RiaFormosaIntertidalArenosoFragment22" >
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment22_to_riaFormosaIntertidalArenosoFragment23"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment23"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment23"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment23"
+            android:label="RiaFormosaIntertidalArenosoFragment23">
+            <action
+                android:id="@+id/action_riaFormosaIntertidalArenosoFragment23_to_riaFormosaIntertidalArenosoFragment24"
+                app:destination="@id/riaFormosaIntertidalArenosoFragment24"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment24"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment24"
+            android:label="RiaFormosaIntertidalArenosoFragment24" />
+        <fragment
+            android:id="@+id/riaFormosaIntertidalArenosoFragment7EspeciesExoticas"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment7EspeciesExoticas"
+            android:label="RiaFormosaIntertidalArenosoFragment7EspeciesExoticas" />
     </navigation>
 </navigation>

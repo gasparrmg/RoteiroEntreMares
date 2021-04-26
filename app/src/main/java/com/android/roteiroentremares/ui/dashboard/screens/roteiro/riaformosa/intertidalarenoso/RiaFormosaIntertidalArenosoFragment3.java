@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -11,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.common.MediaPlayerResourceActivity;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,13 +31,15 @@ import java.util.Locale;
 
 public class RiaFormosaIntertidalArenosoFragment3 extends Fragment {
 
-    private static final String htmlContent = "No local que vais explorar, não existe uma plataforma rochosa, como a que está representada na imagem anterior. O substrato é maioritariamente arenoso, no entanto tem muitos blocos de pedra, o que permite a ocorrência de muitas espécies típicas do intertidal rochoso.";
+    private static final String htmlContent = "No local que vais explorar, não existe uma plataforma rochosa, como a que está representada na imagem anterior. O substrato é maioritariamente arenoso, no entanto tem muitos blocos de pedra, o que permite a ocorrência de muitas espécies típicas do intertidal rochoso.<br>" +
+            "Toca no botão abaixo para assitires a uma gravação que te ajudará a perceber as principais diferenças entre os dois locais.";
 
     // Views
     private TextView textViewTitle;
     private TextView textViewContent;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
+    private Button buttonGravacao;
 
     private TextToSpeech tts;
     private boolean ttsEnabled;
@@ -43,7 +48,7 @@ public class RiaFormosaIntertidalArenosoFragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_nao_fiques_por_aqui, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_intertidalarenoso3, container, false);
 
         ttsEnabled = false;
 
@@ -114,9 +119,20 @@ public class RiaFormosaIntertidalArenosoFragment3 extends Fragment {
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+        buttonGravacao = view.findViewById(R.id.button_sabiasque);
     }
 
     private void setOnClickListeners(View view) {
+        buttonGravacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MediaPlayerResourceActivity.class);
+                intent.putExtra(MediaPlayerResourceActivity.INTENT_KEY_VIDEO_RESOURCE, R.raw.vid_intertidalarenoso);
+                //intent.putExtra(MediaPlayerResourceActivity.INTENT_KEY_INFO, "Filme da autoria de Cláudia Faria e Diana Boaventura, em colaboração com a Escola Superior de Educação João de Deus");
+                startActivity(intent);
+            }
+        });
+
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +152,8 @@ public class RiaFormosaIntertidalArenosoFragment3 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
+        buttonGravacao.setText("Vídeo");
+
         textViewTitle.setText(HtmlCompat.fromHtml(
                 "Zonação",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
