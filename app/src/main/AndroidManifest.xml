@@ -30,7 +30,15 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.dashboard.screens.guiadecampo.AvistamentosListActivity"
+            android:parentActivityName=".ui.dashboard.GuiaDeCampoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.AvistamentosRiaFormosaChartsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.AvistamentosRiaFormosaPocasTranseptosChartsActivity"
             android:screenOrientation="portrait" />
 
         <activity
@@ -38,6 +46,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoZonacaoDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoRiaFormosaDunasDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoRiaFormosaPocasDetails"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoRiaFormosaTranseptosDetails"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
