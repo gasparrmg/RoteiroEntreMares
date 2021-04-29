@@ -378,7 +378,7 @@ public class RoteiroFragment extends Fragment {
                     .into(imageViewNaoFiquesPorAqui);
 
             Glide.with(getActivity())
-                    .load(R.drawable.img_menu_naofiquesporaqui)
+                    .load(R.drawable.img_mares)
                     .placeholder(android.R.drawable.ic_media_play)
                     .into(imageViewMares);
         } else {
@@ -622,7 +622,7 @@ public class RoteiroFragment extends Fragment {
                     .into(imageViewNaoFiquesPorAqui2);
 
             Glide.with(getActivity())
-                    .load(R.drawable.img_menu_naofiquesporaqui)
+                    .load(R.drawable.img_mares)
                     .placeholder(android.R.drawable.ic_media_play)
                     .into(imageViewMares);
         }

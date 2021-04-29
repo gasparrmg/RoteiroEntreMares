@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.LocationDetails;
+import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.common.LocationViewModel;
 import com.android.roteiroentremares.util.Constants;
 import com.android.roteiroentremares.util.PermissionsUtils;
@@ -46,6 +48,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.Locale;
@@ -60,6 +63,10 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
     private final String spotCoordinates = "38.68935,-9.36362";
     private final double spotLatitude = 38.68935;
     private final double spotLongitude = -9.36362;
+
+    private final int imageResourceId = R.drawable.img_biodiversidade_zonacao_drone;
+    private ImageView imageView;
+    private FloatingActionButton fabFullscreen;
 
     private LocationViewModel locationViewModel;
 
@@ -150,6 +157,8 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
         buttonDirections = view.findViewById(R.id.btn_directions);
+        imageView = view.findViewById(R.id.imageView);
+        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
     }
 
     /**
@@ -173,6 +182,17 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
     }
 
     private void setOnClickListeners(View view) {
+
+        imageView.setImageResource(imageResourceId);
+        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open Image Activity
+                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
+                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, imageResourceId);
+                startActivity(intent);
+            }
+        });
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override

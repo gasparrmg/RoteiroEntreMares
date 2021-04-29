@@ -75,6 +75,31 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_fullscreen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        app:fabSize="mini"
+                        app:srcCompat="@drawable/ic_fullscreen"
+                        app:tint="@android:color/white" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter" />
+
+                </RelativeLayout>
+
             </LinearLayout>
         </ScrollView>
 

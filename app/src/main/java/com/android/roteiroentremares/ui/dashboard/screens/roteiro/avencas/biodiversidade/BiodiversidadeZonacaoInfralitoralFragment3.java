@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.LocationDetails;
+import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.common.LocationViewModel;
 import com.android.roteiroentremares.util.Constants;
 import com.android.roteiroentremares.util.PermissionsUtils;
@@ -61,6 +63,10 @@ public class BiodiversidadeZonacaoInfralitoralFragment3 extends Fragment impleme
     private final String spotCoordinates = "38.68922,-9.36383";
     private final double spotLatitude = 38.68922;
     private final double spotLongitude = -9.36383;
+
+    private final int imageResourceId = R.drawable.img_biodiversidade_zonacao_drone;
+    private ImageView imageView;
+    private FloatingActionButton fabFullscreen;
 
     private LocationViewModel locationViewModel;
 
@@ -151,6 +157,9 @@ public class BiodiversidadeZonacaoInfralitoralFragment3 extends Fragment impleme
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
         buttonDirections = view.findViewById(R.id.btn_directions);
+
+        imageView = view.findViewById(R.id.imageView);
+        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
     }
 
     /**
@@ -174,6 +183,16 @@ public class BiodiversidadeZonacaoInfralitoralFragment3 extends Fragment impleme
     }
 
     private void setOnClickListeners(View view) {
+        imageView.setImageResource(imageResourceId);
+        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open Image Activity
+                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
+                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, imageResourceId);
+                startActivity(intent);
+            }
+        });
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override

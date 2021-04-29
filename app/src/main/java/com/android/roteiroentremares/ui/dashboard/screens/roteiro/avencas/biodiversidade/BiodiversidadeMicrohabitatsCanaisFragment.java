@@ -73,6 +73,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initToolbar();
+        setupAudio();
     }
 
     private void initToolbar() {

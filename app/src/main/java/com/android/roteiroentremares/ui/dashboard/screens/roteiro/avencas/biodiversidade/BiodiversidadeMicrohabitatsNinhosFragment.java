@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
@@ -27,6 +28,7 @@ import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.common.MediaPlayerResourceActivity;
 import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapter;
 import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderDescriptionAdapter;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +38,9 @@ import com.smarteist.autoimageslider.SliderView;
 
 import java.util.Locale;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
 
     // Views
@@ -49,6 +54,9 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
     private ImageView imageViewVideo1;
     private ImageView imageViewVideo2;
     private ImageButton buttonPrev;
+    private FloatingActionButton buttonFabNext;
+
+    private DashboardViewModel dashboardViewModel;
 
     private TextToSpeech tts;
 
@@ -72,6 +80,8 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_biodiversidade_microhabitats_ninhos, container, false);
+
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         initViews(view);
         insertContent();
@@ -143,6 +153,7 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
         imageViewVideo2 = view.findViewById(R.id.imageView_video2);
         fabFullscreen = view.findViewById(R.id.fab_fullscreen);
         buttonPrev = view.findViewById(R.id.btn_prev);
+        buttonFabNext = view.findViewById(R.id.btn_fabNext);
 
         initSliderView(view);
     }
@@ -222,6 +233,14 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).popBackStack();
+            }
+        });
+
+        buttonFabNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dashboardViewModel.setBiodiversidadeMicrohabitatsFendasAsFinished();
+                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
             }
         });
 

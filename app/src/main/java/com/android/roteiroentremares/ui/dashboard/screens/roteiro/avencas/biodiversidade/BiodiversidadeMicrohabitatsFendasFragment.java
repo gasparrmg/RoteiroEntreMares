@@ -209,25 +209,23 @@ public class BiodiversidadeMicrohabitatsFendasFragment extends Fragment implemen
         ));
 
 
-        SpannableString linkNinho = ClickableString.makeLinkSpan("ninho", new View.OnClickListener() {
+        /*SpannableString linkNinho = ClickableString.makeLinkSpan("ninho", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to Ninhos sequence
                 Navigation.findNavController(view).navigate(R.id.action_biodiversidadeMicrohabitatsFendasFragment_to_biodiversidadeMicrohabitatsNinhosFragment);
             }
-        });
+        });*/
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Estas fendas funcionam como local de refúgio de crustáceos e bivalves, mas também como locais onde algumas espécies de peixes residentes nestas plataformas fazem o ",
+                "Estas fendas funcionam como local de refúgio de crustáceos e bivalves, mas também como locais onde algumas espécies de peixes residentes nestas plataformas fazem o ninho",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
-        textViewContent.append(linkNinho);
         textViewContent.append(HtmlCompat.fromHtml(
                 ".<br><br>Dirige-te à plataforma onde podes encontrar vários destes canais premindo o botão das direções.<br><br>Poderás passar para o próximo ecrã assim que te encontrares perto do local.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
-        ClickableString.makeLinksFocusable(textViewContent);
     }
 
     private void setOnClickListeners(View view) {
@@ -253,8 +251,10 @@ public class BiodiversidadeMicrohabitatsFendasFragment extends Fragment implemen
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboardViewModel.setBiodiversidadeMicrohabitatsFendasAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                /*dashboardViewModel.setBiodiversidadeMicrohabitatsFendasAsFinished();
+                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);*/
+
+                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeMicrohabitatsFendasFragment_to_biodiversidadeMicrohabitatsNinhosFragment);
             }
         });
 
