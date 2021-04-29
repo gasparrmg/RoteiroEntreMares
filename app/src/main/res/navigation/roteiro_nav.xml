@@ -1697,17 +1697,41 @@
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment8"
             android:label="RiaFormosaPradariasMarinhasFragment8" >
             <action
-                android:id="@+id/action_riaFormosaPradariasMarinhasFragment8_to_riaFormosaPradariasMarinhasFragment9"
-                app:destination="@id/riaFormosaPradariasMarinhasFragment9"
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment8_to_riaFormosaPradariasMarinhasFragment9TarefaInfo"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment9TarefaInfo"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
         <fragment
-            android:id="@+id/riaFormosaPradariasMarinhasFragment9"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment9"
-            android:label="RiaFormosaPradariasMarinhasFragment9" />
+            android:id="@+id/riaFormosaPradariasMarinhasFragment9TarefaInfo"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment9TarefaInfo"
+            android:label="RiaFormosaPradariasMarinhasFragment9TarefaInfo" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment9TarefaInfo_to_riaFormosaPradariasMarinhasFragment10Sopa"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment10Sopa"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment10Sopa"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment10Sopa"
+            android:label="RiaFormosaPradariasMarinhasFragment10Sopa" >
+            <action
+                android:id="@+id/action_riaFormosaPradariasMarinhasFragment10Sopa_to_riaFormosaPradariasMarinhasFragment11"
+                app:destination="@id/riaFormosaPradariasMarinhasFragment11"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/riaFormosaPradariasMarinhasFragment11"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment11"
+            android:label="RiaFormosaPradariasMarinhasFragment11" />
     </navigation>
     <navigation android:id="@+id/navigation_riaformosa_sapal"
         app:startDestination="@id/riaFormosaSapalFragment">

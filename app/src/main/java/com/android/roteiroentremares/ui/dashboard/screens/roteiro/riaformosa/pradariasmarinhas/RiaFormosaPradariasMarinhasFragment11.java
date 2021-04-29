@@ -32,7 +32,7 @@ import java.util.Locale;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class RiaFormosaPradariasMarinhasFragment9 extends Fragment {
+public class RiaFormosaPradariasMarinhasFragment11 extends Fragment {
 
     private static final String htmlContent = "No entanto, e apesar da sua importância, estes locais encontram-se ameaçados, devido ao uso insustentável das zonas costeiras e às alterações climáticas.<br><br>" +
             "<b>PARA INVESTIGAR:</b><br>" +

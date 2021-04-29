@@ -1,7 +1,5 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -13,9 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,30 +21,20 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.TypefaceSpan;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.Locale;
 
-public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
+public class RiaFormosaPradariasMarinhasFragment9TarefaInfo extends Fragment {
 
-    private static final String htmlContent = "<b>2. Regulação do clima</b><br>" +
-            "Estes locais têm uma grande capacidade de fixação de carbono e ajudam na regulação do clima, armazenando grandes quantidades de carbono (captam 30 vezes mais carbono do que as florestas).<br>" +
-            "<br>" +
-            "<b>3. Prevenção da erosão costeira</b><br>" +
-            "Previnem a erosão costeira através da fixação de sedimentos nas raízes, e protegem contra as tempestades e inundações.<br>" +
-            "<br>" +
-            "<b>4. Turismo</b><br>" +
-            "Têm uma grande importância para o turismo, fornecendo serviços culturais e recreativos como mergulho, pesca, e observação de aves.<br><br>" +
-            "Para saberes mais sobre as pradarias marinhas visita o site da Ocean Alive";
+    private static final String htmlContent = "Tendo em conta a importância das pradarias marinhas, procura encontrar os principais fatores referidos relacionados com os recursos disponibilizados por estes ecossistemas, na sopa de letras do próximo ecrã.";
 
     // Views
     private TextView textViewTitle;
     private TextView textViewContent;
-    private FloatingActionButton buttonFabNext;
+    private ExtendedFloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
-    private Button buttonSabiasQue;
 
     private TextToSpeech tts;
     private boolean ttsEnabled;
@@ -57,7 +43,7 @@ public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_pradariasmarinhas8, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_dunas_dunaembrionaria2, container, false);
 
         ttsEnabled = false;
 
@@ -128,11 +114,7 @@ public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        buttonSabiasQue = view.findViewById(R.id.button_sabiasque);
-
-        buttonSabiasQue.setText("Ocean\nAlive");
     }
-
 
     private void setOnClickListeners(View view) {
         buttonPrev.setOnClickListener(new View.OnClickListener() {
@@ -145,16 +127,7 @@ public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment8_to_riaFormosaPradariasMarinhasFragment9TarefaInfo);
-            }
-        });
-
-        buttonSabiasQue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // browser
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ocean-alive.org/pradarias-marinhas"));
-                startActivity(browserIntent);
+                Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment9TarefaInfo_to_riaFormosaPradariasMarinhasFragment10Sopa);
             }
         });
     }
@@ -163,9 +136,8 @@ public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Qual a importância de preservar estes locais?",
+                "Tarefa",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
