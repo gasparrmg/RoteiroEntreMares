@@ -162,7 +162,7 @@ public class RiaFormosaDunasFragment10Pergunta2 extends Fragment {
 
                             inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                            Navigation.findNavController(view).navigate(R.id.action_riaFormosaDunasFragment10Pergunta2_to_riaFormosaDunasFragment11);
+                            Navigation.findNavController(view).navigate(R.id.action_riaFormosaDunasFragment10Pergunta2_to_riaFormosaDunasFragment13);
                         }
                     });
                     materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -196,7 +196,7 @@ public class RiaFormosaDunasFragment10Pergunta2 extends Fragment {
 
                     inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                    Navigation.findNavController(view).navigate(R.id.action_riaFormosaDunasFragment10Pergunta2_to_riaFormosaDunasFragment11);
+                    Navigation.findNavController(view).navigate(R.id.action_riaFormosaDunasFragment10Pergunta2_to_riaFormosaDunasFragment13);
                 }
             }
         });

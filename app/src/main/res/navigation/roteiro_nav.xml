@@ -2305,31 +2305,7 @@
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment10Pergunta2"
             android:label="RiaFormosaDunasFragment10Pergunta2" >
             <action
-                android:id="@+id/action_riaFormosaDunasFragment10Pergunta2_to_riaFormosaDunasFragment11"
-                app:destination="@id/riaFormosaDunasFragment11"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-        </fragment>
-        <fragment
-            android:id="@+id/riaFormosaDunasFragment11"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment11"
-            android:label="RiaFormosaDunasFragment11" >
-            <action
-                android:id="@+id/action_riaFormosaDunasFragment11_to_riaFormosaDunasFragment12Esquema"
-                app:destination="@id/riaFormosaDunasFragment12Esquema"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-        </fragment>
-        <fragment
-            android:id="@+id/riaFormosaDunasFragment12Esquema"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment12Esquema"
-            android:label="RiaFormosaDunasFragment12Esquema" >
-            <action
-                android:id="@+id/action_riaFormosaDunasFragment12Esquema_to_riaFormosaDunasFragment13"
+                android:id="@+id/action_riaFormosaDunasFragment10Pergunta2_to_riaFormosaDunasFragment13"
                 app:destination="@id/riaFormosaDunasFragment13"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
