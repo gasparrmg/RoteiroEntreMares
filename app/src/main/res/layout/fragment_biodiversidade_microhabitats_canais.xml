@@ -117,6 +117,14 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/text_content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/open_sans"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
             </LinearLayout>
         </ScrollView>
 

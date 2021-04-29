@@ -54,6 +54,7 @@ public class BiodiversidadeInteracoesPredacaoFragment extends Fragment {
     // Views
     private RelativeLayout relativeLayoutVideo;
     private ImageView imageViewVideo;
+    private FloatingActionButton fabVideo;
     private TextView textViewTitle;
     private TextView textViewTitle2;
     private TextView textViewContent;
@@ -131,6 +132,7 @@ public class BiodiversidadeInteracoesPredacaoFragment extends Fragment {
     private void initViews(View view) {
         relativeLayoutVideo = view.findViewById(R.id.relativeLayout_video);
         imageViewVideo = view.findViewById(R.id.imageView_video);
+        fabVideo = view.findViewById(R.id.fab_video);
         textViewTitle = view.findViewById(R.id.text_title);
         textViewTitle2 = view.findViewById(R.id.text_title2);
         textViewContent = view.findViewById(R.id.text_content);
@@ -160,7 +162,7 @@ public class BiodiversidadeInteracoesPredacaoFragment extends Fragment {
             }
         });
 
-        relativeLayoutVideo.setOnClickListener(new View.OnClickListener() {
+        fabVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MediaPlayerResourceActivity.class);

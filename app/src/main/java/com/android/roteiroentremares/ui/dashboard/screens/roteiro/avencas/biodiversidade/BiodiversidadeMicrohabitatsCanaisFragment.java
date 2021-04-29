@@ -38,6 +38,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
     private TextView textViewTitle;
     private TextView textViewTitle2;
     private TextView textViewContent;
+    private TextView textViewContent2;
 
     private ImageButton buttonPlay;
     private ImageButton buttonPause;
@@ -129,6 +130,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
         textViewTitle = view.findViewById(R.id.text_title);
         textViewTitle2 = view.findViewById(R.id.text_title2);
         textViewContent = view.findViewById(R.id.text_content);
+        textViewContent2 = view.findViewById(R.id.text_content2);
 
         buttonPlay = view.findViewById(R.id.imagebutton_play_audio);
         buttonPause = view.findViewById(R.id.imagebutton_pause_audio);
@@ -213,6 +215,8 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
                 htmlContent,
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
+
+        textViewContent2.setText("Esta gravação é da autoria de Frederico Almada, Biólogo Marinho.");
 
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
             @Override
