@@ -330,6 +330,14 @@ public class DashboardViewModel extends ViewModel {
         dataRepository.setRiaFormosaIntertidalArenosoAsFinished();
     }
 
+    public boolean isMaresFinished() {
+        return dataRepository.isMaresFinished();
+    }
+
+    public void setMaresAsFinished() {
+        dataRepository.setMaresAsFinished();
+    }
+
 
 
     // GENERAL

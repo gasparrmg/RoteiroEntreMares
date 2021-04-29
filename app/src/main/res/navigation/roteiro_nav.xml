@@ -80,6 +80,13 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_roteiroFragment_to_maresFragment"
+            app:destination="@id/navigation_mares"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <navigation android:id="@+id/navigation_historiasPassado"
         app:startDestination="@id/historiasPassadoFragment">
@@ -2798,5 +2805,180 @@
             android:id="@+id/riaFormosaIntertidalArenosoFragment7EspeciesExoticas"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment7EspeciesExoticas"
             android:label="RiaFormosaIntertidalArenosoFragment7EspeciesExoticas" />
+    </navigation>
+    <navigation android:id="@+id/navigation_mares"
+        app:startDestination="@id/maresFragment">
+        <fragment
+            android:id="@+id/maresFragment"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment"
+            android:label="MaresFragment" >
+            <action
+                android:id="@+id/action_maresFragment_to_maresFragment2"
+                app:destination="@id/maresFragment2"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment2"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment2"
+            android:label="MaresFragment2" >
+            <action
+                android:id="@+id/action_maresFragment2_to_maresFragment3"
+                app:destination="@id/maresFragment3"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment3"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment3"
+            android:label="MaresFragment3" >
+            <action
+                android:id="@+id/action_maresFragment3_to_maresFragment4"
+                app:destination="@id/maresFragment4"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment4"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment4"
+            android:label="MaresFragment4" >
+            <action
+                android:id="@+id/action_maresFragment4_to_maresFragment5"
+                app:destination="@id/maresFragment5"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment5"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment5"
+            android:label="MaresFragment5" >
+            <action
+                android:id="@+id/action_maresFragment5_to_maresFragment6"
+                app:destination="@id/maresFragment6"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment6"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment6"
+            android:label="MaresFragment6" >
+            <action
+                android:id="@+id/action_maresFragment6_to_maresFragment7"
+                app:destination="@id/maresFragment7"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment7"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment7"
+            android:label="MaresFragment7" >
+            <action
+                android:id="@+id/action_maresFragment7_to_maresFragment8"
+                app:destination="@id/maresFragment8"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment8"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment8"
+            android:label="MaresFragment8" >
+            <action
+                android:id="@+id/action_maresFragment8_to_maresFragment9"
+                app:destination="@id/maresFragment9"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment9"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment9"
+            android:label="MaresFragment9" >
+            <action
+                android:id="@+id/action_maresFragment9_to_maresFragment10"
+                app:destination="@id/maresFragment10"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment10"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment10"
+            android:label="MaresFragment10" >
+            <action
+                android:id="@+id/action_maresFragment10_to_maresFragment11"
+                app:destination="@id/maresFragment11"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment11"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment11"
+            android:label="MaresFragment11" >
+            <action
+                android:id="@+id/action_maresFragment11_to_maresFragment12"
+                app:destination="@id/maresFragment12"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment12"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment12"
+            android:label="MaresFragment12" >
+            <action
+                android:id="@+id/action_maresFragment12_to_maresFragment13"
+                app:destination="@id/maresFragment13"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment13"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment13"
+            android:label="MaresFragment13" >
+            <action
+                android:id="@+id/action_maresFragment13_to_maresFragment14"
+                app:destination="@id/maresFragment14"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment14"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment14"
+            android:label="MaresFragment14" >
+            <action
+                android:id="@+id/action_maresFragment14_to_maresFragment15"
+                app:destination="@id/maresFragment15"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
+        <fragment
+            android:id="@+id/maresFragment15"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment15"
+            android:label="MaresFragment15" />
     </navigation>
 </navigation>

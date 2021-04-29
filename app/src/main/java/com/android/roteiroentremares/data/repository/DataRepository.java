@@ -81,6 +81,8 @@ public class DataRepository {
 
     private static final String SHAREDPREF_KEY_FINISHED_BIODIVERSIDADE = "key_finished_biodiversidade";
 
+    private static final String SHAREDPREF_KEY_FINISHED_MARES = "key_finished_mares";
+
     // Ria Formosa
 
     private static final String SHAREDPREF_KEY_FINISHED_RIAFORMOSA_NAOFIQUESPORAQUI = "key_finished_riaformosa_naofiquesporaqui";
@@ -932,26 +934,28 @@ public class DataRepository {
         ).apply();
     }
 
+    /**
+     * Returns true if the User already completed the Mares sequence
+     * @return
+     */
+    public boolean isMaresFinished() {
+        return sharedPreferences.getBoolean(
+                SHAREDPREF_KEY_FINISHED_MARES,
+                false
+        );
+    }
 
+    /**
+     * Sets as finished the Mares sequence
+     */
+    public void setMaresAsFinished() {
+        sharedPreferences.edit().putBoolean(
+                SHAREDPREF_KEY_FINISHED_MARES,
+                true
+        ).apply();
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // GENERAL INFO
 
     /**
      * Returns true if the User already completed the OnBoarding sequence

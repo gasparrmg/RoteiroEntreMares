@@ -88,6 +88,11 @@ public class RoteiroFragment extends Fragment {
     private ImageView imageViewPradariasMarinhas;
     private TextView textViewPradariasMarinhasIsFinished;
 
+    private MaterialCardView cardViewMares;
+    private ImageView imageViewMares;
+    private TextView textViewMaresIsFinished;
+    private boolean isMaresFinished;
+
     private boolean isSapalFinished;
     private boolean isNaoFiquesPorAqui2Finished;
     private boolean isIntertidalArenosoFinished;
@@ -155,11 +160,17 @@ public class RoteiroFragment extends Fragment {
             imageViewBiodiversidade = view.findViewById(R.id.imageview_biodiversidade);
             textViewBiodiversidadeIsFinished = view.findViewById(R.id.textView_biodiversidade_is_finished);
 
+            cardViewMares = view.findViewById(R.id.cardview_mares);
+            imageViewMares = view.findViewById(R.id.imageview_mares);
+            textViewMaresIsFinished = view.findViewById(R.id.textView_mares_is_finished);
+
             isHistoriasPassadoFinished = dashboardViewModel.isHistoriasPassadoFinished();
             isNaoFiquesPorAquiFinished = dashboardViewModel.isNaoFiquesPorAquiFinished();
             isEQuandoAMareSobeFinished = dashboardViewModel.isEQuandoAMareSobeFinished();
             isImpactosFinished = dashboardViewModel.isImpactosFinished();
             isBiodiversidadeFinished = dashboardViewModel.isBiodiversidadeFinished();
+
+            isMaresFinished = dashboardViewModel.isMaresFinished();
 
             if (isHistoriasPassadoFinished) {
                 textViewHistoriasPassadoIsFinished.setVisibility(View.VISIBLE);
@@ -179,6 +190,36 @@ public class RoteiroFragment extends Fragment {
             if (isBiodiversidadeFinished) {
                 textViewBiodiversidadeIsFinished.setVisibility(View.VISIBLE);
             }
+
+            if (isMaresFinished) {
+                textViewMaresIsFinished.setVisibility(View.VISIBLE);
+            }
+
+            cardViewMares.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isMaresFinished) {
+                        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                        materialAlertDialogBuilder.setTitle("Percurso terminado!");
+                        materialAlertDialogBuilder.setMessage("Este percurso já foi terminado. Tens a certeza que o queres repetir?");
+                        materialAlertDialogBuilder.setPositiveButton("Repetir", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_maresFragment);
+                            }
+                        });
+                        materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // dismiss
+                            }
+                        });
+                        materialAlertDialogBuilder.show();
+                    } else {
+                        Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_maresFragment);
+                    }
+                }
+            });
 
             cardViewBiodiversidade.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -335,6 +376,11 @@ public class RoteiroFragment extends Fragment {
                     .load(R.drawable.img_menu_naofiquesporaqui)
                     .placeholder(android.R.drawable.ic_media_play)
                     .into(imageViewNaoFiquesPorAqui);
+
+            Glide.with(getActivity())
+                    .load(R.drawable.img_menu_naofiquesporaqui)
+                    .placeholder(android.R.drawable.ic_media_play)
+                    .into(imageViewMares);
         } else {
             // Ria Formosa
 
@@ -357,6 +403,12 @@ public class RoteiroFragment extends Fragment {
             cardViewPradariasMarinhas = view.findViewById(R.id.cardview_pradariasmarinhas);
             imageViewPradariasMarinhas = view.findViewById(R.id.imageview_pradariasmarinhas);
             textViewPradariasMarinhasIsFinished = view.findViewById(R.id.textView_pradariasmarinhas_is_finished);
+
+            cardViewMares = view.findViewById(R.id.cardview_mares);
+            imageViewMares = view.findViewById(R.id.imageview_mares);
+            textViewMaresIsFinished = view.findViewById(R.id.textView_mares_is_finished);
+
+            isMaresFinished = dashboardViewModel.isMaresFinished();
 
             isSapalFinished = dashboardViewModel.isRiaFormosaSapalFinished();
             isNaoFiquesPorAqui2Finished = dashboardViewModel.isRiaFormosaNaoFiquesPorAquiFinished();
@@ -383,6 +435,36 @@ public class RoteiroFragment extends Fragment {
             if (isPradariasMarinhasFinished) {
                 textViewPradariasMarinhasIsFinished.setVisibility(View.VISIBLE);
             }
+
+            if (isMaresFinished) {
+                textViewMaresIsFinished.setVisibility(View.VISIBLE);
+            }
+
+            cardViewMares.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isMaresFinished) {
+                        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                        materialAlertDialogBuilder.setTitle("Percurso terminado!");
+                        materialAlertDialogBuilder.setMessage("Este percurso já foi terminado. Tens a certeza que o queres repetir?");
+                        materialAlertDialogBuilder.setPositiveButton("Repetir", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_maresFragment);
+                            }
+                        });
+                        materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // dismiss
+                            }
+                        });
+                        materialAlertDialogBuilder.show();
+                    } else {
+                        Navigation.findNavController(view).navigate(R.id.action_roteiroFragment_to_maresFragment);
+                    }
+                }
+            });
 
             cardViewSapal.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -538,6 +620,11 @@ public class RoteiroFragment extends Fragment {
                     .load(R.drawable.img_riaformosa_onboarding_2)
                     .placeholder(android.R.drawable.ic_media_play)
                     .into(imageViewNaoFiquesPorAqui2);
+
+            Glide.with(getActivity())
+                    .load(R.drawable.img_menu_naofiquesporaqui)
+                    .placeholder(android.R.drawable.ic_media_play)
+                    .into(imageViewMares);
         }
 
 
