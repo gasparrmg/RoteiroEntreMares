@@ -35,13 +35,14 @@ public class ImpactosFragment5 extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos5, container, false);
-
+        ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
         insertContent();
@@ -84,19 +85,22 @@ public class ImpactosFragment5 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                    item.setIcon(R.drawable.ic_volume);
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "Devido às suas características geológicas e grande variedade biológica a Área Marinha Protegida das Avencas é uma zona privilegiada para a elaboração de estudos de âmbito científico e pedagógico, constituindo também uma área de lazer para toda a população.<br>" +
+                                        "<br>" +
+                                        "A riqueza das comunidades presentes, não só em termos de diversidade específica, como de abundância de organismos, que têm um papel central na teia trófica de comunidades costeiras mais profundas, justificou a atribuição do seu estatuto de proteção atual. <br>" +
+                                        "<br>" +
+                                        "No entanto, e apesar do seu estatuto de proteção, esta plataforma rochosa continua a ser alvo de diversas atividades humanas causadoras de impacto.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "Devido às suas características geológicas e grande variedade biológica a Área Marinha Protegida das Avencas é uma zona privilegiada para a elaboração de estudos de âmbito científico e pedagógico, constituindo também uma área de lazer para toda a população.<br>" +
-                                    "<br>" +
-                                    "A riqueza das comunidades presentes, não só em termos de diversidade específica, como de abundância de organismos, que têm um papel central na teia trófica de comunidades costeiras mais profundas, justificou a atribuição do seu estatuto de proteção atual. <br>" +
-                                    "<br>" +
-                                    "No entanto, e apesar do seu estatuto de proteção, esta plataforma rochosa continua a ser alvo de diversas atividades humanas causadoras de impacto.",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -134,8 +138,10 @@ public class ImpactosFragment5 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

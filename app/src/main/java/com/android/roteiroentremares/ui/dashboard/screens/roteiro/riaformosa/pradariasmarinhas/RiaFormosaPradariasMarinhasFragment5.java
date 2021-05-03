@@ -42,6 +42,7 @@ public class RiaFormosaPradariasMarinhasFragment5 extends Fragment {
     private TextView textViewTitle;
     private TextView textViewContent;
     private FloatingActionButton buttonFabNext;
+    private FloatingActionButton buttonVideo;
     private ImageButton buttonPrev;
 
     private RelativeLayout relativeLayoutVideo;
@@ -125,6 +126,7 @@ public class RiaFormosaPradariasMarinhasFragment5 extends Fragment {
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+        buttonVideo = view.findViewById(R.id.fab_openvid);
 
         relativeLayoutVideo = view.findViewById(R.id.relativeLayout_video);
         imageViewVideo = view.findViewById(R.id.imageView_video);
@@ -153,7 +155,7 @@ public class RiaFormosaPradariasMarinhasFragment5 extends Fragment {
             }
         });
 
-        relativeLayoutVideo.setOnClickListener(new View.OnClickListener() {
+        buttonVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MediaPlayerResourceActivity.class);

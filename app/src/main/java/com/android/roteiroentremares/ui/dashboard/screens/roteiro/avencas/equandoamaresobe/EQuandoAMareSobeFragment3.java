@@ -42,6 +42,7 @@ public class EQuandoAMareSobeFragment3 extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +51,8 @@ public class EQuandoAMareSobeFragment3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_e_quando_a_mare_sobe3, container, false);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
+        ttsEnabled = false;
 
         initViews(view);
         setOnClickListeners(view);
@@ -93,16 +96,20 @@ public class EQuandoAMareSobeFragment3 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "De facto, com a chegada da maré, estas plataformas são visitadas por muitas outras espécies de peixes (para além das 3 espécies assinaladas), muitas delas importantes para a nossa alimentação, que aproveitam a riqueza e diversidade destes locais para se alimentar.<br>" +
+                                        "<br>" +
+                                        "Esta é uma das razões pelas quais estes locais devem ser protegidos.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "De facto, com a chegada da maré, estas plataformas são visitadas por muitas outras espécies de peixes (para além das 3 espécies assinaladas), muitas delas importantes para a nossa alimentação, que aproveitam a riqueza e diversidade destes locais para se alimentar.<br>" +
-                                    "<br>" +
-                                    "Esta é uma das razões pelas quais estes locais devem ser protegidos.",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -152,8 +159,10 @@ public class EQuandoAMareSobeFragment3 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

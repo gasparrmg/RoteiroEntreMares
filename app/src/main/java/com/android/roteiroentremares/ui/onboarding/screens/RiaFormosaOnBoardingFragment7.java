@@ -1,13 +1,19 @@
 package com.android.roteiroentremares.ui.onboarding.screens;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -17,6 +23,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.UserDashboardActivity;
+import com.android.roteiroentremares.ui.dashboard.screens.artefactos.EditArtefactoActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,6 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class RiaFormosaOnBoardingFragment7 extends Fragment {
 
     private static final int SEQUENCE_NUMBER = 7;
+    private static final String spotCoordinates = "-37.119266,-7.621086";
 
     private OnBoardingViewModel onBoardingViewModel;
     private DashboardViewModel dashboardViewModel;
@@ -36,6 +44,7 @@ public class RiaFormosaOnBoardingFragment7 extends Fragment {
     private TextView textViewContent;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
+    private ImageButton buttonDirections;
     private ViewPager2 viewPager;
 
     private ImageView imageView;
@@ -54,6 +63,7 @@ public class RiaFormosaOnBoardingFragment7 extends Fragment {
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
+        buttonDirections = view.findViewById(R.id.btn_directions);
         buttonPrev = view.findViewById(R.id.btn_prev);
         viewPager = getActivity().findViewById(R.id.viewPager_riaformosa);
 
@@ -100,6 +110,16 @@ public class RiaFormosaOnBoardingFragment7 extends Fragment {
                 startActivity(intent);
             }
         });
+
+        buttonDirections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uri = "http://maps.google.com/maps?daddr=" + spotCoordinates;
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setPackage("com.google.android.apps.maps");
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -114,7 +134,7 @@ public class RiaFormosaOnBoardingFragment7 extends Fragment {
         ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Os percursos a realizar decorrem na <u>Praia do Arraial de Tavira</u> (Coordenadas: - 37.119266, -7.621086)",
+                "Os percursos a realizar decorrem na <u>Praia do Arraial de Tavira</u> (Coordenadas: -37.119266, -7.621086)",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

@@ -18,29 +18,20 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
-import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
 
-import dagger.hilt.android.AndroidEntryPoint;
+public class RiaFormosaPradariasMarinhasFragment9TarefaInfo extends Fragment {
 
-@AndroidEntryPoint
-public class RiaFormosaPradariasMarinhasFragment9 extends Fragment {
-
-    private static final String htmlContent = "No entanto, e apesar da sua importância, estes locais encontram-se ameaçados, devido ao uso insustentável das zonas costeiras e às alterações climáticas.<br><br>" +
-            "<b>PARA INVESTIGAR:</b><br>" +
-            "Investiga quais são as principais causas de destruição destes habitats e discute com os teus colegas formas de alertar a população em geral para a proteção destes ambientes.";
-
-    private DashboardViewModel dashboardViewModel;
+    private static final String htmlContent = "Tendo em conta a importância das pradarias marinhas, procura encontrar os principais fatores referidos relacionados com os recursos disponibilizados por estes ecossistemas, na sopa de letras do próximo ecrã.";
 
     // Views
+    private TextView textViewTitle;
     private TextView textViewContent;
     private ExtendedFloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
@@ -52,9 +43,7 @@ public class RiaFormosaPradariasMarinhasFragment9 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_pradariasmarinhas9, container, false);
-
-        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_dunas_dunaembrionaria2, container, false);
 
         ttsEnabled = false;
 
@@ -121,6 +110,7 @@ public class RiaFormosaPradariasMarinhasFragment9 extends Fragment {
     }
 
     private void initViews(View view) {
+        textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
@@ -137,9 +127,7 @@ public class RiaFormosaPradariasMarinhasFragment9 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // finish pradarias marinhas
-                dashboardViewModel.setRiaFormosaPradariasMarinhasAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.roteiroFragment ,false);
+                Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment9TarefaInfo_to_riaFormosaPradariasMarinhasFragment10Sopa);
             }
         });
     }
@@ -148,6 +136,10 @@ public class RiaFormosaPradariasMarinhasFragment9 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
+        textViewTitle.setText(HtmlCompat.fromHtml(
+                "Tarefa",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
                 htmlContent,

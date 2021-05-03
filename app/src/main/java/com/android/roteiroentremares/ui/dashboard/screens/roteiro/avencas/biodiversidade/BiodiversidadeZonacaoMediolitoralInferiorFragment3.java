@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.LocationDetails;
+import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.common.LocationViewModel;
 import com.android.roteiroentremares.util.Constants;
 import com.android.roteiroentremares.util.PermissionsUtils;
@@ -46,6 +48,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 import java.util.Locale;
@@ -61,6 +64,10 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
     private final double spotLatitude = 38.68935;
     private final double spotLongitude = -9.36362;
 
+    private final int imageResourceId = R.drawable.img_biodiversidade_zonacao_drone;
+    private ImageView imageView;
+    private FloatingActionButton fabFullscreen;
+
     private LocationViewModel locationViewModel;
 
     // Views
@@ -72,6 +79,7 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
     private ImageButton buttonDirections;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
     private Vibrator vibrator;
 
     @Override
@@ -79,6 +87,8 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_biodiversidade_zonacao_mediolitoral_inferior3, container, false);
+
+        ttsEnabled = false;
 
         initViews(view);
         insertContent();
@@ -126,15 +136,18 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                    item.setIcon(R.drawable.ic_volume);
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                htmlContent,
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            htmlContent,
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -150,6 +163,8 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
         buttonDirections = view.findViewById(R.id.btn_directions);
+        imageView = view.findViewById(R.id.imageView);
+        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
     }
 
     /**
@@ -173,6 +188,17 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
     }
 
     private void setOnClickListeners(View view) {
+
+        imageView.setImageResource(imageResourceId);
+        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open Image Activity
+                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
+                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, imageResourceId);
+                startActivity(intent);
+            }
+        });
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,8 +231,10 @@ public class BiodiversidadeZonacaoMediolitoralInferiorFragment3 extends Fragment
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

@@ -49,6 +49,7 @@ public class ImpactosPisoteioFragment2 extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     private final int imageResourceId = R.drawable.img_impactos_pisoteio;
 
@@ -59,7 +60,7 @@ public class ImpactosPisoteioFragment2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_impactos_pisoteio2, container, false);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
-
+        ttsEnabled = false;
         initViews(view);
         insertContent();
         setOnClickListeners(view);
@@ -102,15 +103,18 @@ public class ImpactosPisoteioFragment2 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                    item.setIcon(R.drawable.ic_volume);
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "<b>Uma forma de evitar que este cenário se torne realidade, será utilizar sempre as zonas delimitadas para nos movimentarmos dentro desta Área Protegida</b>",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "<b>Uma forma de evitar que este cenário se torne realidade, será utilizar sempre as zonas delimitadas para nos movimentarmos dentro desta Área Protegida</b>",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -179,8 +183,10 @@ public class ImpactosPisoteioFragment2 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

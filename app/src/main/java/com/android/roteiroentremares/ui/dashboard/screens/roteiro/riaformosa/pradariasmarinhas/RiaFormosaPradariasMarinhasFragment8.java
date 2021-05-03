@@ -145,7 +145,7 @@ public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment8_to_riaFormosaPradariasMarinhasFragment9);
+                Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment8_to_riaFormosaPradariasMarinhasFragment9TarefaInfo);
             }
         });
 

@@ -1,6 +1,9 @@
-package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
+package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -16,41 +19,51 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rjbasitali.wordsearch.Word;
+import com.rjbasitali.wordsearch.WordSearchView;
 
 import java.util.Locale;
 
-public class BiodiversidadeInteracoesHerbivoriaFragment7 extends Fragment {
+public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
 
-    private static final String htmlContent = "O controlo e meia rede destinam-se a verificar que na presença de herbívoros não há crescimento das algas. Assim, pode comprovar-se, por comparação com o tratamento de exclusão, que o crescimento das algas na exclusão se deve à ausência de herbívoros e não a outros fatores (como por exemplo a colocação de redes ou outros fatores naturais).";
+    private static final String htmlContent = "Procura encontrar os principais fatores referidos relacionados com os recursos disponibilizados por estes ecossistemas. Tens 5 palavras para encontrar.";
 
     // Views
-    private TextView textViewTitle;
-    private TextView textViewTitle2;
     private TextView textViewContent;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
 
+    private WordSearchView wordsGrid;
+
     private TextToSpeech tts;
     private boolean ttsEnabled;
+
+    private int wordsFound;
+    private Vibrator vibrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_biodiversidade_interacoes_herbivoria, container, false);
-
+        View view = inflater.inflate(R.layout.fragment_biodiversidade_microhabitats_pocas5_sopa_letras, container, false);
         ttsEnabled = false;
-
         initViews(view);
+        setupWordSearch(view);
         setOnClickListeners(view);
         insertContent();
+
+        wordsFound = 0;
+
+        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         return view;
     }
@@ -62,7 +75,7 @@ public class BiodiversidadeInteracoesHerbivoriaFragment7 extends Fragment {
     }
 
     private void initToolbar() {
-        SpannableString s = new SpannableString(getResources().getString(R.string.avencas_biodiversidade_title));
+        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_intertidalarenoso_title));
         s.setSpan(new TypefaceSpan(getActivity(), "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -82,7 +95,7 @@ public class BiodiversidadeInteracoesHerbivoriaFragment7 extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.roteiro_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -111,11 +124,63 @@ public class BiodiversidadeInteracoesHerbivoriaFragment7 extends Fragment {
     }
 
     private void initViews(View view) {
-        textViewTitle = view.findViewById(R.id.text_title);
-        textViewTitle2 = view.findViewById(R.id.text_title2);
         textViewContent = view.findViewById(R.id.text_content);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+    }
+
+    private void setupWordSearch(View view) {
+        wordsGrid = view.findViewById(R.id.wordsGrid);
+
+        wordsGrid.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.open_sans));
+
+
+        // create a 10x10 grid of characters which includes words to be found
+        wordsGrid.setLetters(new char[][]{
+                "MZODWSJARZ".toCharArray(),
+                "ZPQURYZSOQ".toCharArray(),
+                "BERÇÁRIOXW".toCharArray(),
+                "EPKCSDNNOM".toCharArray(),
+                "ZLEJLOYOHZ".toCharArray(),
+                "BUZSBIAVQP".toCharArray(),
+                "NJRRCLMTHK".toCharArray(),
+                "YRAGAAIAME".toCharArray(),
+                "PCRGQRSQUG".toCharArray(),
+                "TURISMOPWH".toCharArray()
+        });
+
+        // words with their respective starting and ending X and Y values in the grid
+        wordsGrid.setWords(
+                new Word("ONOBRAC", false, 8, 1, 2, 7),
+                new Word("BERÇÁRIO", false, 2, 0, 2, 7),
+                new Word("TURISMO", false, 9, 0, 9, 6),
+                new Word("PESCAS", false, 3, 1, 8, 6),
+                new Word("CLIMA", false, 3, 3, 7, 7));
+
+        // callback when a word is found
+        wordsGrid.setOnWordSearchedListener(new WordSearchView.OnWordSearchedListener() {
+            @Override
+            public void wordFound(String word) {
+                if (word.equals("ONOBRAC")) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append(word);
+                    stringBuilder.reverse();
+                    Toast.makeText(getActivity(), "Encontraste a palavra " + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Encontraste a palavra " + word, Toast.LENGTH_SHORT).show();
+                }
+
+
+                wordsFound++;
+
+                if (wordsFound >= 5) {
+                    buttonFabNext.setVisibility(View.VISIBLE);
+                    buttonFabNext.setEnabled(true);
+
+                    vibrator.vibrate(500);
+                }
+            }
+        });
     }
 
     private void setOnClickListeners(View view) {
@@ -130,7 +195,26 @@ public class BiodiversidadeInteracoesHerbivoriaFragment7 extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_biodiversidadeInteracoesHerbivoriaFragment7_to_biodiversidadeInteracoesHerbivoriaFragment8);
+                if (wordsFound < 5) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment10Sopa_to_riaFormosaPradariasMarinhasFragment11);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment10Sopa_to_riaFormosaPradariasMarinhasFragment11);
+                }
             }
         });
     }
@@ -139,15 +223,6 @@ public class BiodiversidadeInteracoesHerbivoriaFragment7 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        textViewTitle.setText(HtmlCompat.fromHtml(
-                "Experiências",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
-
-        textViewTitle2.setText(HtmlCompat.fromHtml(
-                "Respostas",
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
 
         textViewContent.setText(HtmlCompat.fromHtml(
                 htmlContent,

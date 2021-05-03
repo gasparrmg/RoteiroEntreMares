@@ -65,6 +65,7 @@ public class RiaFormosaIntertidalArenosoFragmentCompeticao1 extends Fragment {
     private int imageResourceId = R.drawable.img_biodiversidade_interacoes_competicao;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,7 +75,7 @@ public class RiaFormosaIntertidalArenosoFragmentCompeticao1 extends Fragment {
 
         artefactosViewModel = new ViewModelProvider(this).get(ArtefactosViewModel.class);
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
-
+        ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
         insertContent();
@@ -117,18 +118,22 @@ public class RiaFormosaIntertidalArenosoFragmentCompeticao1 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "As espécies de cracas presentes nestas plataformas, Chthamalus spp (cracas mais pequenas) e Balanus sp (cracas em forma de vulcão) competem entre si pelo mesmo espaço. Sabendo que:" +
+                                        "Intervalo de distribuição potencial: corresponde ao intervalo de distribuição em que a espécie sobrevive;" +
+                                        "Intervalo de distribuição real: Corresponde ao intervalo de distribuição em que a espécie de facto está presente." +
+                                        "Analisa a figura através do botão abaixo e explica qual das duas espécies será competitivamente mais forte, “empurrando” a outra espécie para uma zona menos favorável à sobrevivência." +
+                                        "Discute com os teus colegas e escreve a tua resposta",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "As espécies de cracas presentes nestas plataformas, Chthamalus spp (cracas mais pequenas) e Balanus sp (cracas em forma de vulcão) competem entre si pelo mesmo espaço. Sabendo que:" +
-                                    "Intervalo de distribuição potencial: corresponde ao intervalo de distribuição em que a espécie sobrevive;" +
-                                    "Intervalo de distribuição real: Corresponde ao intervalo de distribuição em que a espécie de facto está presente." +
-                                    "Analisa a figura através do botão abaixo e explica qual das duas espécies será competitivamente mais forte, “empurrando” a outra espécie para uma zona menos favorável à sobrevivência." +
-                                    "Discute com os teus colegas e escreve a tua resposta",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -342,8 +347,10 @@ public class RiaFormosaIntertidalArenosoFragmentCompeticao1 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

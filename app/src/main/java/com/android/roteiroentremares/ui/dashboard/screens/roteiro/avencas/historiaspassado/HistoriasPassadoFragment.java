@@ -43,12 +43,15 @@ public class HistoriasPassadoFragment extends Fragment {
     private Button buttonParaSaberesMais;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_historias_passado, container, false);
+
+        ttsEnabled = false;
 
         initViews(view);
         setOnClickListeners(view);
@@ -92,11 +95,18 @@ public class HistoriasPassadoFragment extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "Sabes o que é um fóssil? Os fósseis são restos de seres vivos (ex. ossos, conchas, dentes) ou de evidências de suas atividades biológicas, preservados em materiais geológicos, fundamentalmente nas rochas sedimentares. Os fósseis são entidades geológicas portadoras de informação paleobiológica e, inseridos nos materiais geológicos (por exemplo, gelo de glaciares, âmbar, camadas sedimentares) constituem o registo fóssil, o qual contém inúmeros restos e vestígios dos mais variados seres do passado geológico da Terra.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = "Sabes o que é um fóssil? Os fósseis são restos de seres vivos (ex. ossos, conchas, dentes) ou de evidências de suas atividades biológicas, preservados em materiais geológicos, fundamentalmente nas rochas sedimentares. Os fósseis são entidades geológicas portadoras de informação paleobiológica e, inseridos nos materiais geológicos (por exemplo, gelo de glaciares, âmbar, camadas sedimentares) constituem o registo fóssil, o qual contém inúmeros restos e vestígios dos mais variados seres do passado geológico da Terra.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -161,8 +171,10 @@ public class HistoriasPassadoFragment extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

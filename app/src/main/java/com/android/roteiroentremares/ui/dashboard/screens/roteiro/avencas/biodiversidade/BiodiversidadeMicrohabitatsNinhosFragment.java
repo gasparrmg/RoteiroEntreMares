@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
@@ -27,6 +28,7 @@ import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.common.MediaPlayerResourceActivity;
 import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapter;
 import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderDescriptionAdapter;
+import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +38,9 @@ import com.smarteist.autoimageslider.SliderView;
 
 import java.util.Locale;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
 
     // Views
@@ -49,8 +54,12 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
     private ImageView imageViewVideo1;
     private ImageView imageViewVideo2;
     private ImageButton buttonPrev;
+    private FloatingActionButton buttonFabNext;
+
+    private DashboardViewModel dashboardViewModel;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     private final int[] imageResourceIds = {
             R.drawable.img_biodiversidade_microhabitats_ninhos_marachomba,
@@ -72,6 +81,10 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_biodiversidade_microhabitats_ninhos, container, false);
+
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
+        ttsEnabled = false;
 
         initViews(view);
         insertContent();
@@ -115,21 +128,24 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                    item.setIcon(R.drawable.ic_volume);
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "Algumas das espécies de peixes que colonizam as plataformas  rochosas colocam os ovos em pequenas fendas, ou debaixo de pedras. Apesar destas fendas ficarem a descoberto durante todo o período de maré-baixa, são locais que mantém uma grande percentagem de humidade, permitindo a sobrevivência dos peixes." +
+                                        "Em geral, são os machos que cuidam dos ovos, protegendo-os de predadores (como os caranguejos), e limpando-os das pequenas impurezas que se vão depositando (roçando com o corpo nos ovos e provocando a agitação da água com a ajuda das barbatanas)." +
+                                        "Quando o ovo eclode (em geral ao fim de cerca de 15 dias), surge uma larva que demora cerca de 1 mês a  transforma-se em juvenil, ou seja, a adquirir as características iguais ao adulto.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "Algumas das espécies de peixes que colonizam as plataformas  rochosas colocam os ovos em pequenas fendas, ou debaixo de pedras. Apesar destas fendas ficarem a descoberto durante todo o período de maré-baixa, são locais que mantém uma grande percentagem de humidade, permitindo a sobrevivência dos peixes." +
-                                    "Em geral, são os machos que cuidam dos ovos, protegendo-os de predadores (como os caranguejos), e limpando-os das pequenas impurezas que se vão depositando (roçando com o corpo nos ovos e provocando a agitação da água com a ajuda das barbatanas)." +
-                                    "Quando o ovo eclode (em geral ao fim de cerca de 15 dias), surge uma larva que demora cerca de 1 mês a  transforma-se em juvenil, ou seja, a adquirir as características iguais ao adulto.",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
-                Navigation.findNavController(getView()).popBackStack(R.id.roteiroFragment, false);
+                Navigation.findNavController(getView()).popBackStack(R.id.roteiroFragment ,false);
         }
         return false;
     }
@@ -143,6 +159,7 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
         imageViewVideo2 = view.findViewById(R.id.imageView_video2);
         fabFullscreen = view.findViewById(R.id.fab_fullscreen);
         buttonPrev = view.findViewById(R.id.btn_prev);
+        buttonFabNext = view.findViewById(R.id.btn_fabNext);
 
         initSliderView(view);
     }
@@ -225,6 +242,14 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
             }
         });
 
+        buttonFabNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dashboardViewModel.setBiodiversidadeMicrohabitatsFendasAsFinished();
+                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+            }
+        });
+
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -232,8 +257,10 @@ public class BiodiversidadeMicrohabitatsNinhosFragment extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

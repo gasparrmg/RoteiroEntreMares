@@ -111,14 +111,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressBar"
+    <ImageButton
+        android:id="@+id/btn_directions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:indicatorColor="@color/colorAccent"
+        android:background="@null"
+        android:src="@drawable/ic_directions"
+        android:tint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_fabNext"
-        app:layout_constraintTop_toTopOf="@+id/btn_fabNext"/>
+        app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

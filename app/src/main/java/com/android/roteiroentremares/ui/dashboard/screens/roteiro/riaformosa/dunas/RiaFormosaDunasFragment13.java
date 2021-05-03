@@ -29,7 +29,7 @@ import java.util.Locale;
 
 public class RiaFormosaDunasFragment13 extends Fragment {
 
-    private static final String htmlContent = "Face às condições ambientais adversas que se fazem sentir nestas áreas a vegetação dunar apresenta importantes adaptações para sobreviver.";
+    private static final String htmlContent = "Face às condições ambientais adversas que se fazem sentir nestas áreas, a vegetação dunar apresenta importantes adaptações para sobreviver.";
 
     // Views
     private TextView textViewTitle;

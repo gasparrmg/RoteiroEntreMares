@@ -38,6 +38,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
     private TextView textViewTitle;
     private TextView textViewTitle2;
     private TextView textViewContent;
+    private TextView textViewContent2;
 
     private ImageButton buttonPlay;
     private ImageButton buttonPause;
@@ -49,6 +50,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
 
     private MediaPlayer mediaPlayer;
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     private Handler handlerSeekBar;
     private Runnable updateSeekBar;
@@ -58,6 +60,8 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_biodiversidade_microhabitats_canais, container, false);
+
+        ttsEnabled = false;
 
         initViews(view);
         setOnClickListeners(view);
@@ -72,6 +76,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initToolbar();
+        setupAudio();
     }
 
     private void initToolbar() {
@@ -106,17 +111,21 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                } else {
-                    if (mediaPlayer.isPlaying()) {
-                        pause();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        if (mediaPlayer.isPlaying()) {
+                            pause();
+                        }
+                        String text = HtmlCompat.fromHtml(
+                                htmlContent,
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
                     }
-                    String text = HtmlCompat.fromHtml(
-                            htmlContent,
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                } else {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -129,6 +138,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
         textViewTitle = view.findViewById(R.id.text_title);
         textViewTitle2 = view.findViewById(R.id.text_title2);
         textViewContent = view.findViewById(R.id.text_content);
+        textViewContent2 = view.findViewById(R.id.text_content2);
 
         buttonPlay = view.findViewById(R.id.imagebutton_play_audio);
         buttonPause = view.findViewById(R.id.imagebutton_pause_audio);
@@ -214,6 +224,8 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
+        textViewContent2.setText("Esta gravação é da autoria de Frederico Almada, Biólogo Marinho.");
+
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -221,8 +233,10 @@ public class BiodiversidadeMicrohabitatsCanaisFragment extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");
