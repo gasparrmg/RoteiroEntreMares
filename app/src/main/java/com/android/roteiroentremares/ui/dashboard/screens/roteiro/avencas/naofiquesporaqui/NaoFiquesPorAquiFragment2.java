@@ -41,13 +41,14 @@ public class NaoFiquesPorAquiFragment2 extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nao_fiques_por_aqui2, container, false);
-
+        ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
         insertContent();
@@ -90,11 +91,18 @@ public class NaoFiquesPorAquiFragment2 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "A Área Marinha Protegida das Avencas é considerada uma área litoral muito rica por servir de habitat a uma grande variedade de espécies. No entanto esta é também muito frágil por estar sujeita a fatores físicos severos como por exemplo a força das ondas e os ciclos de marés. Mas os fatores que exercem maior pressão sobre este ecossistema são de origem humana, nomeadamente o pisoteio excessivo, a pesca e apanha não autorizada, a remoção de plantas necessárias para fixar o solo  das arribas e o lixo deixado na praia.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = "A Área Marinha Protegida das Avencas é considerada uma área litoral muito rica por servir de habitat a uma grande variedade de espécies. No entanto esta é também muito frágil por estar sujeita a fatores físicos severos como por exemplo a força das ondas e os ciclos de marés. Mas os fatores que exercem maior pressão sobre este ecossistema são de origem humana, nomeadamente o pisoteio excessivo, a pesca e apanha não autorizada, a remoção de plantas necessárias para fixar o solo  das arribas e o lixo deixado na praia.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -148,8 +156,10 @@ public class NaoFiquesPorAquiFragment2 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

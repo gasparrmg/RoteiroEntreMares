@@ -41,12 +41,15 @@ public class BiodiversidadeZonacaoInfralitoralFragment4 extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_biodiversidade_zonacao_infralitoral4, container, false);
+
+        ttsEnabled = false;
 
         initViews(view);
         setOnClickListeners(view);
@@ -90,20 +93,24 @@ public class BiodiversidadeZonacaoInfralitoralFragment4 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "<b>TAREFA:</b> Observa com atenção a zona onde te encontras.<br><br>" +
+                                        "1) Delimita sobre a rocha, uma área correspondente a um quadrado de 50cmx50cm<br>" +
+                                        "2) Observa com atenção a área delimitada e tenta identificar todos os organismos presentes, com a ajuda do Guia de Campo<br>" +
+                                        "3) Tira uma fotografia e recorta-a de maneira a incluir só o quadrado<br>" +
+                                        "4) Observa no ecrã do teu telemóvel, essa fotografia sobreposta com a grelha de registo" +
+                                        "<br>" +
+                                        "5) Regista o número de quadrados preenchidos por cada espécie presente ou no caso dos organismos em que for possível fazer contagens, conta o número de indivíduos presentes no interior da grelha.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "<b>TAREFA:</b> Observa com atenção a zona onde te encontras.<br><br>" +
-                                    "1) Delimita sobre a rocha, uma área correspondente a um quadrado de 50cmx50cm<br>" +
-                                    "2) Observa com atenção a área delimitada e tenta identificar todos os organismos presentes, com a ajuda do Guia de Campo<br>" +
-                                    "3) Tira uma fotografia e recorta-a de maneira a incluir só o quadrado<br>" +
-                                    "4) Observa no ecrã do teu telemóvel, essa fotografia sobreposta com a grelha de registo" +
-                                    "<br>" +
-                                    "5) Regista o número de quadrados preenchidos por cada espécie presente ou no caso dos organismos em que for possível fazer contagens, conta o número de indivíduos presentes no interior da grelha.",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -186,8 +193,10 @@ public class BiodiversidadeZonacaoInfralitoralFragment4 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

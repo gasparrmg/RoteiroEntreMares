@@ -35,13 +35,14 @@ public class ImpactosTempAguaFragment extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos_temp_agua, container, false);
-
+        ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
         insertContent();
@@ -84,17 +85,20 @@ public class ImpactosTempAguaFragment extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                    item.setIcon(R.drawable.ic_volume);
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "As questões relacionadas com alterações climáticas têm tido e terão no futuro um enorme impacto sobretudo nas zonas costeiras. Estes impactos ocorrem a diversos níveis, desde alterações do nível médio da água do mar, com influência em fenómenos de erosão costeira, até alterações na constituição das comunidades de organismos costeiros.<br><br>" +
+                                        "Um dos principais efeitos das alterações climáticas é o aumento da temperatura da água. Esse aumento, vai permitir que espécies características de águas mais quentes, alarguem a sua área de distribuição, começando a colonizar a nossa costa, competindo assim com as espécies autóctones (indígenas deste local).<br><br>" +
+                                        "Estas espécies, pelo facto de não serem características destes locais, são denominadas de <b>espécies exóticas</b>.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "As questões relacionadas com alterações climáticas têm tido e terão no futuro um enorme impacto sobretudo nas zonas costeiras. Estes impactos ocorrem a diversos níveis, desde alterações do nível médio da água do mar, com influência em fenómenos de erosão costeira, até alterações na constituição das comunidades de organismos costeiros.<br><br>" +
-                                    "Um dos principais efeitos das alterações climáticas é o aumento da temperatura da água. Esse aumento, vai permitir que espécies características de águas mais quentes, alarguem a sua área de distribuição, começando a colonizar a nossa costa, competindo assim com as espécies autóctones (indígenas deste local).<br><br>" +
-                                    "Estas espécies, pelo facto de não serem características destes locais, são denominadas de <b>espécies exóticas</b>.",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -132,8 +136,10 @@ public class ImpactosTempAguaFragment extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

@@ -35,13 +35,14 @@ public class ImpactosTempAguaFragment2 extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos_temp_agua2, container, false);
-
+        ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
         insertContent();
@@ -84,17 +85,20 @@ public class ImpactosTempAguaFragment2 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                    item.setIcon(R.drawable.ic_volume);
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "Nalguns casos estas espécies exóticas podem tornar-se pragas sobretudo quando são mais agressivas e apresentam estratégias de reprodução muito rápidas, que lhes conferem uma vantagem em relação às espécies locais.<br><br>" +
+                                        "A piorar esta situação está o facto de muitas destas espécies não terem predadores nos locais onde fundam novas populações. Esta é uma característica que pode fazer com que muitas espécies não indígenas passem a ser consideradas espécies invasoras, com consequências muito graves para as comunidades locais.<br><br>" +
+                                        "Se este fator não for controlado, observa o cenário possível no ecrã seguinte",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "Nalguns casos estas espécies exóticas podem tornar-se pragas sobretudo quando são mais agressivas e apresentam estratégias de reprodução muito rápidas, que lhes conferem uma vantagem em relação às espécies locais.<br><br>" +
-                                    "A piorar esta situação está o facto de muitas destas espécies não terem predadores nos locais onde fundam novas populações. Esta é uma característica que pode fazer com que muitas espécies não indígenas passem a ser consideradas espécies invasoras, com consequências muito graves para as comunidades locais.<br><br>" +
-                                    "Se este fator não for controlado, observa o cenário possível no ecrã seguinte",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -132,8 +136,10 @@ public class ImpactosTempAguaFragment2 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

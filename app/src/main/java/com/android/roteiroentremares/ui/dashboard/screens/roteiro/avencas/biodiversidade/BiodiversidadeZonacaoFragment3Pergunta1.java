@@ -51,6 +51,7 @@ public class BiodiversidadeZonacaoFragment3Pergunta1 extends Fragment implements
     private Button buttonCharts;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     private boolean isCorrect;
 
@@ -60,6 +61,7 @@ public class BiodiversidadeZonacaoFragment3Pergunta1 extends Fragment implements
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_biodiversidade_zonacao3_pergunta_1, container, false);
 
+        ttsEnabled = false;
         isCorrect = false;
 
         initViews(view);
@@ -104,11 +106,18 @@ public class BiodiversidadeZonacaoFragment3Pergunta1 extends Fragment implements
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "Os organismos presentes na parte superior da praia são os mesmos da zona mais próxima do mar?",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = "Os organismos presentes na parte superior da praia são os mesmos da zona mais próxima do mar?";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -199,8 +208,10 @@ public class BiodiversidadeZonacaoFragment3Pergunta1 extends Fragment implements
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

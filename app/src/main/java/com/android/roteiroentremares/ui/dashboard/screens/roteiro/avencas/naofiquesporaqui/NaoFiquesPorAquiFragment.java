@@ -43,6 +43,7 @@ public class NaoFiquesPorAquiFragment extends Fragment {
     private Button buttonSabiasQue;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     private int imageResourceId = R.drawable.img_naofiquesporaqui_mapa;
 
@@ -51,7 +52,7 @@ public class NaoFiquesPorAquiFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nao_fiques_por_aqui, container, false);
-
+        ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
         insertContent();
@@ -94,11 +95,18 @@ public class NaoFiquesPorAquiFragment extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "Entre as praias da Bafureira e da Parede encontramos a praia das Avencas de dimensão pequena mas muito especial. As características geológicas e biológicas desta praia levaram à sua classificação como Área Marinha Protegida das Avencas (AMP das Avencas), com o objetivo de proteger e preservar do habitat entre-marés e respetiva biodiversidade.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = "Entre as praias da Bafureira e da Parede encontramos a praia das Avencas de dimensão pequena mas muito especial. As características geológicas e biológicas desta praia levaram à sua classificação como Área Marinha Protegida das Avencas (AMP das Avencas), com o objetivo de proteger e preservar do habitat entre-marés e respetiva biodiversidade.";
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -185,8 +193,10 @@ public class NaoFiquesPorAquiFragment extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");

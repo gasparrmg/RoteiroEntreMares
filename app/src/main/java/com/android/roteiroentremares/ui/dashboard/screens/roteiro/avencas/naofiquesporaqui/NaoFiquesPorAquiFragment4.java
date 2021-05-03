@@ -36,13 +36,14 @@ public class NaoFiquesPorAquiFragment4 extends Fragment {
     private ImageButton buttonPrev;
 
     private TextToSpeech tts;
+    private boolean ttsEnabled;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_nao_fiques_por_aqui4, container, false);
-
+        ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
         insertContent();
@@ -85,22 +86,26 @@ public class NaoFiquesPorAquiFragment4 extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.item_text_to_speech:
-                if (tts.isSpeaking()) {
-                    tts.stop();
+                if (ttsEnabled) {
+                    if (tts.isSpeaking()) {
+                        tts.stop();
+                    } else {
+                        String text = HtmlCompat.fromHtml(
+                                "<b>Desafio para aprofundar:</b><br>" +
+                                        "Imagina que eras responsável por decidir se as atuais restrições que existem na AMP das Avencas se deviam manter, ou se deviam ser repensadas.<br>" +
+                                        "<br>" +
+                                        "Para isso decidiste realizar uma reunião com representantes das diferentes entidades interessadas na utilização desta zona, para diferentes fins. Assim, convocaste para a tua reunião as seguintes pessoas:<br>" +
+                                        "- Um biólogo<br>" +
+                                        "- Um representante dos pescadores da zona<br>" +
+                                        "- Um representante do turismo local<br>" +
+                                        "<br>" +
+                                        "Com os teus amigos ou colegas, organizem-se em grupos, e cada grupo irá assumir o papel de um dos atores aqui apresentados.  Cada grupo será responsável por fazer uma pesquisa sobre a perspetiva de cada um destes atores, e organizem uma discussão, em que cada grupo terá de apresentar a sua opinião sobre a questão colocada e fundamentar essa opinião, com base na pesquisa efetuada. No final, procurem chegar a um consenso, sobre qual será a melhor solução.",
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                        ).toString();
+                        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    }
                 } else {
-                    String text = HtmlCompat.fromHtml(
-                            "<b>Desafio para aprofundar:</b><br>" +
-                                    "Imagina que eras responsável por decidir se as atuais restrições que existem na AMP das Avencas se deviam manter, ou se deviam ser repensadas.<br>" +
-                                    "<br>" +
-                                    "Para isso decidiste realizar uma reunião com representantes das diferentes entidades interessadas na utilização desta zona, para diferentes fins. Assim, convocaste para a tua reunião as seguintes pessoas:<br>" +
-                                    "- Um biólogo<br>" +
-                                    "- Um representante dos pescadores da zona<br>" +
-                                    "- Um representante do turismo local<br>" +
-                                    "<br>" +
-                                    "Com os teus amigos ou colegas, organizem-se em grupos, e cada grupo irá assumir o papel de um dos atores aqui apresentados.  Cada grupo será responsável por fazer uma pesquisa sobre a perspetiva de cada um destes atores, e organizem uma discussão, em que cada grupo terá de apresentar a sua opinião sobre a questão colocada e fundamentar essa opinião, com base na pesquisa efetuada. No final, procurem chegar a um consenso, sobre qual será a melhor solução.",
-                            HtmlCompat.FROM_HTML_MODE_LEGACY
-                    ).toString();
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                    Toast.makeText(getActivity(), getResources().getString(R.string.tts_error_message), Toast.LENGTH_LONG).show();
                 }
                 return true;
             case R.id.item_back_to_main_menu:
@@ -151,7 +156,7 @@ public class NaoFiquesPorAquiFragment4 extends Fragment {
                         "- Um representante dos pescadores da zona<br>" +
                         "- Um representante do turismo local<br>" +
                         "<br>" +
-                        "Com os teus amigos ou colegas, organizem-se em grupos, e cada grupo irá assumir o papel de um dos atores aqui apresentados.  Cada grupo será responsável por fazer uma pesquisa sobre a perspetiva de cada um destes atores, e organizem uma discussão, em que cada grupo terá de apresentar a sua opinião sobre a questão colocada e fundamentar essa opinião, com base na pesquisa efetuada. No final, procurem chegar a um consenso, sobre qual será a melhor solução.",
+                        "Com os teus amigos ou colegas, organizem-se em grupos, e cada grupo irá assumir o papel de um dos atores aqui apresentados. Cada grupo será responsável por fazer uma pesquisa sobre a perspetiva de cada um destes atores, e organizem uma discussão, em que cada grupo terá de apresentar a sua opinião sobre a questão colocada e fundamentar essa opinião, com base na pesquisa efetuada. No final, procurem chegar a um consenso, sobre qual será a melhor solução.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
@@ -162,8 +167,10 @@ public class NaoFiquesPorAquiFragment4 extends Fragment {
                     int result = tts.setLanguage(new Locale("pt", "PT"));
 
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        ttsEnabled = false;
                         Log.e("TEXT2SPEECH", "Language not supported");
-                        Toast.makeText(getActivity(), "Não tens o linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.", Toast.LENGTH_LONG).show();
+                    } else {
+                        ttsEnabled = true;
                     }
                 } else {
                     Log.e("TEXT2SPEECH", "Initialization failed");
