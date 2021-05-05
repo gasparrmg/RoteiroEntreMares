@@ -32,6 +32,18 @@ public class OnBoardingViewModel extends ViewModel {
         dataRepository.setOnBoarding(onBoarding);
     }
 
+    public int getChangeToAvencasOrRiaFormosa() {
+        return dataRepository.getChangeToAvencasOrRiaFormosa();
+    }
+
+    public void setChangeToAvencasOrRiaFormosa(int zonaToChange) {
+        dataRepository.setChangeToAvencasOrRiaFormosa(zonaToChange);
+    }
+
+    public void deleteChangeToAvencasOrRiaFormosa() {
+        dataRepository.deleteChangeToAvencasOrRiaFormosa();
+    }
+
     public void setTipoUtilizador(int tipoUtilizador) {
         dataRepository.setTipoUtilizador(tipoUtilizador);
     }

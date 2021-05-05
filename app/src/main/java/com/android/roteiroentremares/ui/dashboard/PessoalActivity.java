@@ -1,14 +1,22 @@
 package com.android.roteiroentremares.ui.dashboard;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,13 +24,19 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
+import com.android.roteiroentremares.ui.onboarding.MainActivity;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -127,6 +141,66 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         formValidator.setValidationListener(this);
 
         Log.d(TAG, "Tipo Utilizador: " + tipoUtilizador);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.pessoal_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_change_spot:
+                // MOSTRAR POPUP
+                // Mudar para Avencas/RF, restart app
+                MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
+                materialAlertDialogBuilder.setTitle("Atenção!");
+
+                if (dashboardViewModel.getAvencasOrRiaFormosa() == 0) {
+                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Ria Formosa?");
+                    materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setChangeToAvencasOrRiaFormosa(1);
+
+                            restartApp(getApplicationContext());
+                        }
+                    });
+                } else if (dashboardViewModel.getAvencasOrRiaFormosa() == 1) {
+                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Área Marinha Protegida das Avencas?");
+                    materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setChangeToAvencasOrRiaFormosa(0);
+
+                            restartApp(getApplicationContext());
+                        }
+                    });
+                }
+
+                materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // dismiss
+                    }
+                });
+                AlertDialog alertDialog = materialAlertDialogBuilder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void restartApp(Context c) {
+        Intent i = new Intent(PessoalActivity.this, MainActivity.class);
+        // set the new task and clear flags
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
     }
 
     private void getUserInfo() {

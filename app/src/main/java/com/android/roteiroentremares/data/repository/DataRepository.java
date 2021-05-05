@@ -43,6 +43,7 @@ import javax.inject.Singleton;
 @Singleton
 public class DataRepository {
     private static final String SHAREDPREF_KEY_AVENCAS_RIAFORMOSA = "key_avencas_riaformosa";
+    private static final String SHAREDPREF_KEY_AVENCAS_RIAFORMOSA_TO_CHANGE = "key_avencas_riaformosa_to_change";
     private static final String SHAREDPREF_KEY_TIPOUTILIZADOR = "key_tipoutilizador";
     private static final String SHAREDPREF_KEY_ONBOARDING = "key_onboarding";
     private static final String SHAREDPREF_KEY_NOME = "key_nome";
@@ -1001,6 +1002,34 @@ public class DataRepository {
                 SHAREDPREF_KEY_AVENCAS_RIAFORMOSA,
                 zona
         ).apply();
+    }
+
+    /**
+     * 0 - Change to Avencas
+     * 1 - Change to Ria Formosa
+     * @return
+     */
+    public int getChangeToAvencasOrRiaFormosa() {
+        return sharedPreferences.getInt(
+                SHAREDPREF_KEY_AVENCAS_RIAFORMOSA_TO_CHANGE,
+                -1
+        );
+    }
+
+    /**
+     * 0 - Change to Avencas
+     * 1 - Change to Ria Formosa
+     * @param zonaToChange
+     */
+    public void setChangeToAvencasOrRiaFormosa(int zonaToChange) {
+        sharedPreferences.edit().putInt(
+                SHAREDPREF_KEY_AVENCAS_RIAFORMOSA_TO_CHANGE,
+                zonaToChange
+        ).apply();
+    }
+
+    public void deleteChangeToAvencasOrRiaFormosa() {
+        sharedPreferences.edit().remove(SHAREDPREF_KEY_AVENCAS_RIAFORMOSA_TO_CHANGE).apply();
     }
 
     /**

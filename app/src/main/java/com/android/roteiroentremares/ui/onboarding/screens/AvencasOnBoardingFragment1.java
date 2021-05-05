@@ -4,8 +4,10 @@ import android.os.Bundle;
 
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +15,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class AvencasOnBoardingFragment1 extends Fragment {
 
     private static final int SEQUENCE_NUMBER = 1;
+
+    private OnBoardingViewModel onBoardingViewModel;
 
     // Views
     private TextView textViewTitle;
@@ -35,6 +43,16 @@ public class AvencasOnBoardingFragment1 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_avencas_on_boarding1, container, false);
+
+        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
+
+        if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() != -1) {
+            Log.d("ONBOARDING", "toChange value: " + onBoardingViewModel.getChangeToAvencasOrRiaFormosa());
+
+            onBoardingViewModel.deleteChangeToAvencasOrRiaFormosa();
+
+            Log.d("ONBOARDING", "toChange value: " + onBoardingViewModel.getChangeToAvencasOrRiaFormosa());
+        }
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);

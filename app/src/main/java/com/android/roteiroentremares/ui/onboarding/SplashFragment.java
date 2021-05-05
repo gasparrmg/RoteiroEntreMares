@@ -48,10 +48,21 @@ public class SplashFragment extends Fragment {
                 //onBoardingViewModel.setOnBoarding(false); // Uncomment ONLY for onBoarding testing purposes
 
                 if (onBoardingViewModel.getOnBoarding()) {
-                    Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
+                    if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() == -1) {
+                        Intent intent = new Intent(getActivity(), UserDashboardActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() == 0) {
+                        // navigate to Avencas
+                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_avencasViewPagerFragment);
+                    } else if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() == 1) {
+                        // navigate to RF
+                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_riaFormosaViewPagerFragment);
+                    }
                 } else {
+                    if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() != -1) {
+                        onBoardingViewModel.deleteChangeToAvencasOrRiaFormosa();
+                    }
                     NavController navController = Navigation.findNavController(view);
                     navController.navigate(R.id.action_splashFragment_to_viewPagerFragment);
                 }

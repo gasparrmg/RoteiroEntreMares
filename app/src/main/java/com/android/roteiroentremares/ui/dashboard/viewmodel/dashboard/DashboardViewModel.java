@@ -39,6 +39,14 @@ public class DashboardViewModel extends ViewModel {
      * -------------------------------- SHARED PREFERENCES METHODS -------------------------------------------------
      */
 
+    public int getChangeToAvencasOrRiaFormosa() {
+        return dataRepository.getChangeToAvencasOrRiaFormosa();
+    }
+
+    public void setChangeToAvencasOrRiaFormosa(int zonaToChange) {
+        dataRepository.setChangeToAvencasOrRiaFormosa(zonaToChange);
+    }
+
     public int getAvencasOrRiaFormosa() {
         return dataRepository.getAvencasOrRiaFormosa();
     }
