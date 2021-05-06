@@ -32,7 +32,7 @@ import java.util.Locale;
 public class RiaFormosaSapalFragment12 extends Fragment {
 
     private static final String htmlContent = "<b>Há alguma “Boca” por aqui? Se sim, será macho ou fêmea?</b><br><br>" +
-            "Boca ou Caranguejo-violinista (<i>Afruca tangeri</i>) o macho distingue-se facilmente da fêmea porque apresenta uma das pinças ou quelíceras muito mais desenvolvida do que a outra)" +
+            "Boca ou Caranguejo-violinista (<i>Afruca tangeri</i>) o macho distingue-se facilmente da fêmea porque apresenta uma das pinças ou quelíceras muito mais desenvolvida do que a outra" +
             "<br><br>" +
             "<b>INVESTIGA:</b> Para que serve a pinça tão grande do macho?";
 

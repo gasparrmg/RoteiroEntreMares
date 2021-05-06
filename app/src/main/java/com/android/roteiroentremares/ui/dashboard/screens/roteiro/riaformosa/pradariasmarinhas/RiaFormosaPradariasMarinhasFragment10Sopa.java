@@ -35,7 +35,7 @@ import java.util.Locale;
 
 public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
 
-    private static final String htmlContent = "Procura encontrar os principais fatores referidos relacionados com os recursos disponibilizados por estes ecossistemas. Tens 5 palavras para encontrar.";
+    private static final String htmlContent = "Procura encontrar os principais fatores referidos relacionados com os recursos disponibilizados por estes ecossistemas.<br><br>Pescas, berçário, carbono, turismo, clima.";
 
     // Views
     private TextView textViewContent;

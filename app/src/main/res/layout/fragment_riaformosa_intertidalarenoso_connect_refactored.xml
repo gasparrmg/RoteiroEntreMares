@@ -26,10 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
-            android:textSize="12dp"
             android:fontFamily="@font/poppins_semibold"
+            android:text="Associa a cada uma das espécies listadas, a correspondente adaptação."
             android:textColor="@color/colorTitleText"
-            android:text="Associa a cada uma das espécies listadas, a correspondente adaptação."/>
+            android:textSize="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,15 +39,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:minHeight="120dp">
+                android:minHeight="120dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/linearLayout_container1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/cardView1"
@@ -58,7 +58,7 @@
                         app:cardBackgroundColor="@android:color/white"
                         app:cardForegroundColor="@android:color/transparent">
 
-                        <TextView
+                        <!--<TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -67,13 +67,34 @@
                             android:layout_margin="8dp"
                             android:text="A. Cracas"
                             android:textColor="@color/colorTitleText"
-                            android:textSize="10sp" />
+                            android:textSize="10sp" />-->
 
-                        <!--<ImageView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/img_connectwords_cracas"/>-->
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/open_sans"
+                                android:gravity="center"
+                                android:text="A"
+                                android:textColor="@color/colorTitleText"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/img_connectwords_cracas"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -86,16 +107,32 @@
                         app:cardBackgroundColor="@android:color/white"
                         app:cardForegroundColor="@android:color/transparent">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/open_sans"
-                            android:gravity="center"
-                            android:layout_margin="8dp"
-                            android:text="B. Caranguejos"
-                            android:textColor="@color/colorTitleText"
-                            android:textSize="10sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/open_sans"
+                                android:gravity="center"
+                                android:text="B"
+                                android:textColor="@color/colorTitleText"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/img_connectwords_caranguejo"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -108,16 +145,32 @@
                         app:cardBackgroundColor="@android:color/white"
                         app:cardForegroundColor="@android:color/transparent">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/open_sans"
-                            android:gravity="center"
-                            android:text="C. Mexilhão"
-                            android:layout_margin="8dp"
-                            android:textColor="@color/colorTitleText"
-                            android:textSize="10sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/open_sans"
+                                android:gravity="center"
+                                android:text="C"
+                                android:textColor="@color/colorTitleText"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/img_connectwords_mexilhao"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -127,8 +180,8 @@
                     android:id="@+id/linearLayout_container2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/cardView4"
@@ -139,16 +192,32 @@
                         app:cardBackgroundColor="@android:color/white"
                         app:cardForegroundColor="@android:color/transparent">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/open_sans"
-                            android:gravity="center"
-                            android:text="D. Lapas"
-                            android:layout_margin="8dp"
-                            android:textColor="@color/colorTitleText"
-                            android:textSize="10sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/open_sans"
+                                android:gravity="center"
+                                android:text="D"
+                                android:textColor="@color/colorTitleText"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/img_connectwords_lapas"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -161,16 +230,32 @@
                         app:cardBackgroundColor="@android:color/white"
                         app:cardForegroundColor="@android:color/transparent">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/open_sans"
-                            android:gravity="center"
-                            android:text="E. Peixes residentes"
-                            android:layout_margin="8dp"
-                            android:textColor="@color/colorTitleText"
-                            android:textSize="10sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/open_sans"
+                                android:gravity="center"
+                                android:text="E"
+                                android:textColor="@color/colorTitleText"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/img_connectwords_salariapavo"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -183,16 +268,32 @@
                         app:cardBackgroundColor="@android:color/white"
                         app:cardForegroundColor="@android:color/transparent">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/open_sans"
-                            android:gravity="center"
-                            android:text="F. Tomate do mar"
-                            android:layout_margin="8dp"
-                            android:textColor="@color/colorTitleText"
-                            android:textSize="10sp" />
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="16dp"
+                                android:fontFamily="@font/open_sans"
+                                android:gravity="center"
+                                android:text="F"
+                                android:textColor="@color/colorTitleText"
+                                android:textSize="16sp"/>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:src="@drawable/img_connectwords_tomatemar"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
 
@@ -204,44 +305,42 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/linearLayout1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="4dp"
+                        android:layout_weight="1"
                         android:background="@drawable/word_association_container"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Refúgio em poças e fendas"
                             android:layout_margin="8dp"
-                            android:textSize="12sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
+                            android:text="Refúgio em poças e fendas"
                             android:textColor="@color/colorTitleText"
-                            />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textView1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="22sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
                             android:textColor="@android:color/holo_green_dark"
-                            />
+                            android:textSize="22sp" />
 
                     </LinearLayout>
 
@@ -249,31 +348,29 @@
                         android:id="@+id/linearLayout2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="4dp"
+                        android:layout_weight="1"
                         android:background="@drawable/word_association_container"
-                        android:layout_weight="1">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Fecham-se no interior das placas ou das conchas"
                             android:layout_margin="8dp"
-                            android:textSize="12sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
+                            android:text="Fecham-se no interior das placas ou das conchas"
                             android:textColor="@color/colorTitleText"
-                            />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textView2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="22sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
                             android:textColor="@android:color/holo_green_dark"
-                            />
+                            android:textSize="22sp" />
 
                     </LinearLayout>
 
@@ -283,38 +380,36 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/linearLayout3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="4dp"
+                        android:layout_weight="1"
                         android:background="@drawable/word_association_container"
-                        android:layout_weight="1">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Fixam-se firmemente às rochas"
                             android:layout_margin="8dp"
-                            android:textSize="12sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
+                            android:text="Fixam-se firmemente às rochas"
                             android:textColor="@color/colorTitleText"
-                            />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textView3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="22sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
                             android:textColor="@android:color/holo_green_dark"
-                            />
+                            android:textSize="22sp" />
 
                     </LinearLayout>
 
@@ -322,43 +417,38 @@
                         android:id="@+id/linearLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_margin="4dp"
+                        android:layout_weight="1"
                         android:background="@drawable/word_association_container"
-                        android:layout_weight="1">
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Recolha dos tentáculos"
                             android:layout_margin="8dp"
-                            android:textSize="12sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
+                            android:text="Recolha dos tentáculos"
                             android:textColor="@color/colorTitleText"
-                            />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/textView4"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textSize="22sp"
                             android:fontFamily="@font/open_sans_semibold"
                             android:gravity="center"
                             android:textColor="@android:color/holo_green_dark"
-                            />
+                            android:textSize="22sp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
 
-
             </LinearLayout>
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>
@@ -368,16 +458,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:clickable="true"
+        android:enabled="true"
         android:scaleType="center"
         android:src="@drawable/ic_next"
-        android:backgroundTint="@color/colorPrimaryDark"
-        app:tint="#FFFFFF"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="visible"
-        android:enabled="true"/>
+        app:tint="#FFFFFF" />
 
     <ImageButton
         android:id="@+id/btn_prev"

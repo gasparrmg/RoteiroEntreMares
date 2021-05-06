@@ -38,9 +38,9 @@ import java.util.Locale;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class BiodiversidadeZonacaoFragment7Words extends Fragment {
+public class BiodiversidadeZonacaoFragment7ConnectWords extends Fragment {
 
-    private static final String htmlContent = "Arrasta cada uma das espécies até à sua correspondente adaptação.";
+    private static final String htmlContent = "Arrasta cada uma das espécies até às suas adaptações.";
 
     private DashboardViewModel dashboardViewModel;
 
@@ -57,10 +57,29 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
     private MaterialCardView cardView5;
     private MaterialCardView cardView6;
 
+    private static final int maxCorrect1 = 1;
+    private static final int maxCorrect2 = 1;
+    private static final int maxCorrect3 = 2;
+    private static final int maxCorrect4 = 1;
+    private static final int maxCorrect5 = 1;
+    private static final int maxCorrect6 = 1;
+
+    private int correct1;
+    private int correct2;
+    private int correct3;
+    private int correct4;
+    private int correct5;
+    private int correct6;
+
     private LinearLayout linearLayout1;
     private LinearLayout linearLayout2;
     private LinearLayout linearLayout3;
     private LinearLayout linearLayout4;
+
+    private TextView textView1;
+    private TextView textView2;
+    private TextView textView3;
+    private TextView textView4;
 
     private LinearLayout linearLayoutContainer1;
     private LinearLayout linearLayoutContainer2;
@@ -72,11 +91,16 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_biodiversidade_zonacao7_words, container, false);
+        View view = inflater.inflate(R.layout.fragment_biodiversidade_connect_refactored, container, false);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
-
         ttsEnabled = false;
+        correct1 = 0;
+        correct2 = 0;
+        correct3 = 0;
+        correct4 = 0;
+        correct5 = 0;
+        correct6 = 0;
 
         initViews(view);
         setOnClickListeners(view);
@@ -157,6 +181,11 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
         linearLayout3 = view.findViewById(R.id.linearLayout3);
         linearLayout4 = view.findViewById(R.id.linearLayout4);
 
+        textView1 = view.findViewById(R.id.textView1);
+        textView2 = view.findViewById(R.id.textView2);
+        textView3 = view.findViewById(R.id.textView3);
+        textView4 = view.findViewById(R.id.textView4);
+
         linearLayoutContainer1 = view.findViewById(R.id.linearLayout_container1);
         linearLayoutContainer2 = view.findViewById(R.id.linearLayout_container2);
 
@@ -177,7 +206,6 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigation.findNavController(view).navigate(R.id.action_global_roteiroFragment);
                 Navigation.findNavController(view).popBackStack();
             }
         });
@@ -185,10 +213,7 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Finished Zonacao
-                // Go to Menu
-
-                if (!(linearLayoutContainer1.getChildCount() == 0 && linearLayoutContainer2.getChildCount() == 0)) {
+                if (!checkIfCompleted()) {
                     MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
                     materialAlertDialogBuilder.setTitle("Atenção!");
                     materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
@@ -242,11 +267,69 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
         });
     }
 
-    private void checkIfCompleted() {
-        if (linearLayoutContainer1.getChildCount() == 0 && linearLayoutContainer2.getChildCount() == 0) {
+    private boolean checkIfCompleted() {
+        if (correct1 >= maxCorrect1 &&
+                correct2 >= maxCorrect2 &&
+                correct3 >= maxCorrect3 &&
+                correct4 >= maxCorrect4 &&
+                correct5 >= maxCorrect5 &&
+                correct6 >= maxCorrect6) {
+            return true;
+        }
+         return false;
+    }
+
+    private void saveCorrect(View view) {
+        int id = view.getId();
+
+        if (id == cardView1.getId()) {
+            correct1++;
+
+            if (correct1 >= maxCorrect1) {
+                cardView1.setBackgroundResource(R.drawable.background_answer_correct);
+                cardView1.setEnabled(false);
+            }
+        } else if (id == cardView2.getId()) {
+            correct2++;
+
+            if (correct2 >= maxCorrect2) {
+                cardView2.setBackgroundResource(R.drawable.background_answer_correct);
+                cardView2.setEnabled(false);
+            }
+        } else if (id == cardView3.getId()) {
+            correct3++;
+
+            if (correct3 >= maxCorrect3) {
+                cardView3.setBackgroundResource(R.drawable.background_answer_correct);
+                cardView3.setEnabled(false);
+            }
+        } else if (id == cardView4.getId()) {
+            correct4++;
+
+            if (correct4 >= maxCorrect4) {
+                cardView4.setBackgroundResource(R.drawable.background_answer_correct);
+                cardView4.setEnabled(false);
+            }
+        } else if (id == cardView5.getId()) {
+            correct5++;
+
+            if (correct5 >= maxCorrect5) {
+                cardView5.setBackgroundResource(R.drawable.background_answer_correct);
+                cardView5.setEnabled(false);
+            }
+        } else if (id == cardView6.getId()) {
+            correct6++;
+
+            if (correct6 >= maxCorrect6) {
+                cardView6.setBackgroundResource(R.drawable.background_answer_correct);
+                cardView6.setEnabled(false);
+            }
+        }
+
+        if (!checkIfCompleted()) {
+            Toast.makeText(getActivity(), "Correto!", Toast.LENGTH_SHORT).show();
+        } else {
             Toast.makeText(getActivity(), "Parabéns! Completaste a tarefa!", Toast.LENGTH_LONG).show();
-            buttonFabNext.setVisibility(View.VISIBLE);
-            buttonFabNext.setEnabled(true);
         }
     }
 
@@ -294,51 +377,60 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
                 case DragEvent.ACTION_DROP:
 
                     if (destination.getId() == linearLayout1.getId()) {
-                        if (draggedView.getId() == cardView2.getId() || draggedView.getId() == cardView5.getId()) {
-
+                        if (draggedView.getId() == cardView2.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
+                            textView1.append(dragData + "  ");
 
-                            view.invalidate();
-                            owner.removeView(draggedView);
+                            saveCorrect(draggedView);
+                        } else if (draggedView.getId() == cardView5.getId()) {
+                            ClipData.Item item = event.getClipData().getItemAt(0);
+                            String dragData = item.getText().toString();
+                            textView1.append(dragData + "  ");
 
-                            destination.addView(draggedView);
-                            draggedView.setVisibility(View.VISIBLE);
-                            draggedView.setEnabled(false);
+                            saveCorrect(draggedView);
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
                             return false;
                         }
                     } else if (destination.getId() == linearLayout2.getId()) {
-                        if (draggedView.getId() == cardView1.getId() || draggedView.getId() == cardView3.getId()) {
-
+                        if (draggedView.getId() == cardView3.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
+                            textView2.append(dragData + "  ");
 
-                            view.invalidate();
-                            owner.removeView(draggedView);
+                            saveCorrect(draggedView);
+                        } else if (draggedView.getId() == cardView1.getId()) {
+                            ClipData.Item item = event.getClipData().getItemAt(0);
+                            String dragData = item.getText().toString();
+                            textView2.append(dragData + "  ");
 
-                            destination.addView(draggedView);
-                            draggedView.setVisibility(View.VISIBLE);
-                            draggedView.setEnabled(false);
+                            saveCorrect(draggedView);
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
                             return false;
                         }
                     } else if (destination.getId() == linearLayout3.getId()) {
-                        if (draggedView.getId() == cardView3.getId() || draggedView.getId() == cardView4.getId()) {
-
+                        if (draggedView.getId() == cardView1.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
+                            textView3.append(dragData + "  ");
 
-                            view.invalidate();
-                            owner.removeView(draggedView);
+                            saveCorrect(draggedView);
+                        } else if (draggedView.getId() == cardView3.getId()) {
+                            ClipData.Item item = event.getClipData().getItemAt(0);
+                            String dragData = item.getText().toString();
+                            textView3.append(dragData + "  ");
 
-                            destination.addView(draggedView);
-                            draggedView.setVisibility(View.VISIBLE);
-                            draggedView.setEnabled(false);
+                            saveCorrect(draggedView);
+                        } else if (draggedView.getId() == cardView4.getId()) {
+                            ClipData.Item item = event.getClipData().getItemAt(0);
+                            String dragData = item.getText().toString();
+                            textView3.append(dragData + "  ");
+
+                            saveCorrect(draggedView);
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
@@ -346,16 +438,11 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
                         }
                     } else if (destination.getId() == linearLayout4.getId()) {
                         if (draggedView.getId() == cardView6.getId()) {
-
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
+                            textView4.append(dragData + "  ");
 
-                            view.invalidate();
-                            owner.removeView(draggedView);
-
-                            destination.addView(draggedView);
-                            draggedView.setVisibility(View.VISIBLE);
-                            draggedView.setEnabled(false);
+                            saveCorrect(draggedView);
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
@@ -369,7 +456,7 @@ public class BiodiversidadeZonacaoFragment7Words extends Fragment {
 
                     Log.d("DragDrop","past events");
 
-                    checkIfCompleted();
+                    //checkIfCompleted();
 
                     return true;
                 default:

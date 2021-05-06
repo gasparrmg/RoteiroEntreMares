@@ -1,5 +1,8 @@
-package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas;
+package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -21,15 +24,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
 
-public class RiaFormosaPradariasMarinhasFragment extends Fragment {
+public class RiaFormosaSapalFragment9SapalMedioSabiasQue extends Fragment {
 
-    private static final String htmlContent = "As ervas marinhas (<i>Zoostera spp.</i> e <i>Cymodocea nodosa</i>) são plantas aquáticas constituídas por um complexo sistema de rizomas que crescem na horizontal, podendo estender-se em alguns metros de profundidade e ficam enterrados no fundo marinho de areia ou lodo. Ao contrário das algas, estas ervas são constituídas por raízes, caules e folhas.<br>" +
-            "Estas ervas marinhas ocorrem, por norma, em manchas mais ou menos extensas a qual designamos por pradarias marinhas.";
+    private static final String htmlContent = "<b>Endemismo</b> – Em biologia, chamam-se endemismos a espécies que se desenvolveram numa região restrita.<br>" +
+            "<br>" +
+            "No caso do <i>Limonium algarvense</i>, repara que o epíteto específico está associado à região do Algarve; e no caso do <i>Halimione portucaloides</i>, está associado ao nosso país. Para ficares a conhecer as espécies endémicas de Portugal carrega neste link.";
 
     // Views
     private TextView textViewTitle;
@@ -62,7 +68,7 @@ public class RiaFormosaPradariasMarinhasFragment extends Fragment {
     }
 
     private void initToolbar() {
-        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_pradariasmarinhas_title));
+        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_sapal_title));
         s.setSpan(new TypefaceSpan(getActivity(), "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -112,8 +118,14 @@ public class RiaFormosaPradariasMarinhasFragment extends Fragment {
 
     private void initViews(View view) {
         textViewTitle = view.findViewById(R.id.text_title);
+        textViewTitle.setVisibility(View.GONE);
+
         textViewContent = view.findViewById(R.id.text_content);
+
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
+        buttonFabNext.setVisibility(View.INVISIBLE);
+        buttonFabNext.setEnabled(false);
+
         buttonPrev = view.findViewById(R.id.btn_prev);
     }
 
@@ -124,28 +136,32 @@ public class RiaFormosaPradariasMarinhasFragment extends Fragment {
                 Navigation.findNavController(view).popBackStack();
             }
         });
-
-        buttonFabNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment_to_riaFormosaPradariasMarinhasFragment2);
-            }
-        });
     }
 
     /**
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        textViewTitle.setText(HtmlCompat.fromHtml(
-                "O que são as pradarias marinhas?",
+
+        textViewContent.setText(HtmlCompat.fromHtml(
+                "<b>Endemismo</b> – Em biologia, chamam-se endemismos a espécies que se desenvolveram numa região restrita.<br>" +
+                        "<br>" +
+                        "No caso do <i>Limonium algarvense</i>, repara que o epíteto específico está associado à região do Algarve; e no caso do <i>Halimione portucaloides</i>, está associado ao nosso país. <br><br>Para ficares a conhecer as espécies endémicas de Portugal carrega neste ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
-        textViewContent.setText(HtmlCompat.fromHtml(
-                htmlContent,
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
+        SpannableString link = ClickableString.makeLinkSpan("link", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://naturdata.com/especies-endemicas-de-portugal/"));
+                startActivity(browserIntent);
+            }
+        });
+
+        textViewContent.append(link);
+        textViewContent.append(".");
+
+        ClickableString.makeLinksFocusable(textViewContent);
 
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
             @Override

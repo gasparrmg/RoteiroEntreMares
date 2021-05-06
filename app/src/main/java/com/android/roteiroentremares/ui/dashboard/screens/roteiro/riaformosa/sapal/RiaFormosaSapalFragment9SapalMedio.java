@@ -45,7 +45,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class RiaFormosaSapalFragment9SapalMedio extends Fragment {
 
-    private static final String htmlContent = "As espécies vegetais mais características do sapal alto são:";
+    private static final String htmlContent = "As espécies vegetais mais características do sapal médio são:";
 
     private static final String QUERY = "SELECT * FROM especie_table_riaformosa " +
             "WHERE nomeCientifico = 'Salicornia nitens' OR " +
@@ -62,6 +62,7 @@ public class RiaFormosaSapalFragment9SapalMedio extends Fragment {
     private TextView textViewContent2;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
+    private Button buttonSabiasQue;
 
     private RecyclerView recyclerView;
     private EspecieRiaFormosaHorizontalWithTinyDescAdapter adapter;
@@ -73,7 +74,7 @@ public class RiaFormosaSapalFragment9SapalMedio extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_sapalmedio_especies, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal_especies, container, false);
 
         guiaDeCampoViewModel = new ViewModelProvider(this).get(GuiaDeCampoViewModel.class);
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
@@ -159,6 +160,7 @@ public class RiaFormosaSapalFragment9SapalMedio extends Fragment {
         textViewContent2 = view.findViewById(R.id.text_content2);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+        buttonSabiasQue = view.findViewById(R.id.button_sabiasque);
 
         recyclerView = view.findViewById(R.id.recyclerView_especies);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -189,6 +191,13 @@ public class RiaFormosaSapalFragment9SapalMedio extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment9SapalMedio_to_riaFormosaSapalFragment10SapalBaixo);
+            }
+        });
+
+        buttonSabiasQue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment9SapalMedio_to_riaFormosaSapalFragment9SapalMedioSabiasQue);
             }
         });
     }

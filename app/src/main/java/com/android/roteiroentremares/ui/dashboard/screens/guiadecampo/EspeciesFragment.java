@@ -110,6 +110,8 @@ public class EspeciesFragment extends Fragment {
                 public void onClick(View v) {
                     Intent filterIntent = new Intent(getActivity(), EspecieFilterActivity.class);
 
+                    filterIntent.putExtra("avencasOrRiaFormosa", avencasOrRiaFormosa);
+
                     // Pass current filters to the activity
                     filterIntent.putExtra("ESPECIE_FILTER_GRUPO", currentGrupo);
                     filterIntent.putExtra("ESPECIE_FILTER_ANIMALMOVEL", currentAnimalMovel);

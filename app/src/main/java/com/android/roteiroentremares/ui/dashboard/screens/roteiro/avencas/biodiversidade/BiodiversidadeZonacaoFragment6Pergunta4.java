@@ -192,7 +192,7 @@ public class BiodiversidadeZonacaoFragment6Pergunta4 extends Fragment {
 
                             inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7Words);
+                            Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7ConnectWords);
                         }
                     });
                     materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -226,7 +226,7 @@ public class BiodiversidadeZonacaoFragment6Pergunta4 extends Fragment {
 
                     inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7Words);
+                    Navigation.findNavController(view).navigate(R.id.action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7ConnectWords);
                 }
             }
         });

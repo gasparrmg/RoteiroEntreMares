@@ -45,7 +45,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class RiaFormosaSapalFragment10SapalBaixo extends Fragment {
 
-    private static final String htmlContent = "As espécies vegetais mais características do sapal alto são:";
+    private static final String htmlContent = "As espécies vegetais mais características do sapal baixo são:";
 
     private static final String QUERY = "SELECT * FROM especie_table_riaformosa " +
             "WHERE nomeCientifico = 'Spartina maritima' OR " +

@@ -41,10 +41,10 @@
             android:fontFamily="@font/open_sans_bold"
             android:textColor="@color/colorBodyText"
             android:background="@color/colorBackground"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:gravity="center"
             android:textAlignment="center"
-            android:text="Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem?"/>
+            android:text="Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem?\nCarrega em cada uma das imagens do ecrã seguinte para saber o comportamento das espécies durante a maré-cheia"/>
 
     </LinearLayout>
 

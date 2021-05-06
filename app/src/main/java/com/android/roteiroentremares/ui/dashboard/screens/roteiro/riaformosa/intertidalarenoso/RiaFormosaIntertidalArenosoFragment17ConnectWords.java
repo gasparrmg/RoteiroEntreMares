@@ -91,7 +91,7 @@ public class RiaFormosaIntertidalArenosoFragment17ConnectWords extends Fragment 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_intertidalarenoso_connect, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_intertidalarenoso_connect_refactored, container, false);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         ttsEnabled = false;
@@ -319,8 +319,8 @@ public class RiaFormosaIntertidalArenosoFragment17ConnectWords extends Fragment 
             correct6++;
 
             if (correct6 >= maxCorrect6) {
-                cardView5.setBackgroundResource(R.drawable.background_answer_correct);
-                cardView5.setEnabled(false);
+                cardView6.setBackgroundResource(R.drawable.background_answer_correct);
+                cardView6.setEnabled(false);
             }
         }
 

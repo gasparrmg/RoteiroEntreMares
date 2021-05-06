@@ -358,12 +358,12 @@ public class RoteiroFragment extends Fragment {
                     .into(imageViewBiodiversidade);
 
             Glide.with(getActivity())
-                    .load(R.drawable.img_menu_historiaspassado)
+                    .load(R.drawable.img_avencas_historiaspassado_cover)
                     .placeholder(android.R.drawable.ic_media_play)
                     .into(imageViewHistoriasPassado);
 
             Glide.with(getActivity())
-                    .load(R.drawable.img_menu_impactos)
+                    .load(R.drawable.img_avencas_impactos_cover)
                     .placeholder(android.R.drawable.ic_media_play)
                     .into(imageViewImpactos);
 
@@ -373,7 +373,7 @@ public class RoteiroFragment extends Fragment {
                     .into(imageViewEQuandoAMareSobe);
 
             Glide.with(getActivity())
-                    .load(R.drawable.img_menu_naofiquesporaqui)
+                    .load(R.drawable.img_avencas_naofiquesporaqui_cover)
                     .placeholder(android.R.drawable.ic_media_play)
                     .into(imageViewNaoFiquesPorAqui);
 

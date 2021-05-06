@@ -31,7 +31,7 @@ import java.util.Locale;
 
 public class RiaFormosaDunasFragment2 extends Fragment {
 
-    private static final String htmlContent = "Dirige-te para a zona do Sapal " +
+    private static final String htmlContent = "Dirige-te para a zona de dunas " +
             "<b>(assinalada com o número 2 na imagem)</b>";
 
     private static final int imageResourceId = R.drawable.img_riaformosa_sapal_ponto2;

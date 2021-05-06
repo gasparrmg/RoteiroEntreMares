@@ -1275,17 +1275,13 @@
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment6Pergunta4"
             android:label="BiodiversidadeZonacaoFragment6Pergunta4" >
             <action
-                android:id="@+id/action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7Words"
-                app:destination="@id/biodiversidadeZonacaoFragment7Words"
+                android:id="@+id/action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7ConnectWords"
+                app:destination="@id/biodiversidadeZonacaoFragment7ConnectWords"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
-        <fragment
-            android:id="@+id/biodiversidadeZonacaoFragment7Words"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment7Words"
-            android:label="BiodiversidadeZonacaoFragment7Words" />
         <fragment
             android:id="@+id/biodiversidadeInteracoesFragment"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment"
@@ -1468,6 +1464,10 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
+        <fragment
+            android:id="@+id/biodiversidadeZonacaoFragment7ConnectWords"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment7ConnectWords"
+            android:label="BiodiversidadeZonacaoFragment7ConnectWords" />
     </navigation>
     <navigation android:id="@+id/navigation_riaformosa_naofiquesporaqui"
         app:startDestination="@id/riaFormosaNaoFiquesPorAquiFragment">
@@ -1849,6 +1849,13 @@
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_riaFormosaSapalFragment9SapalMedio_to_riaFormosaSapalFragment9SapalMedioSabiasQue"
+                app:destination="@id/riaFormosaSapalFragment9SapalMedioSabiasQue"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment10SapalBaixo"
@@ -1964,6 +1971,10 @@
             android:id="@+id/riaFormosaSapalFragment13SabiasQue2"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment13SabiasQue2"
             android:label="RiaFormosaSapalFragment13SabiasQue2" />
+        <fragment
+            android:id="@+id/riaFormosaSapalFragment9SapalMedioSabiasQue"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment9SapalMedioSabiasQue"
+            android:label="RiaFormosaSapalFragment9SapalMedioSabiasQue" />
     </navigation>
     <navigation android:id="@+id/navigation_riaformosa_dunas"
         app:startDestination="@id/riaFormosaDunasFragment">
