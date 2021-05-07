@@ -32,6 +32,7 @@
     <string name="gps_turned_off_error">Não é possível ter acesso à tua localização.</string>
 
     <string name="file_not_found_error_message">Não foi possível encontrar o ficheiro. Tente novamente mais tarde.</string>
+    <string name="general_error_message">Ocorreu um erro. Tente novamente mais tarde.</string>
     <string name="tts_error_message">Não tens a linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.</string>
     <string name="warning_content_not_finished">Ainda tens conteúdos por descobrir aqui. Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_task_not_finished">Não acabaste a tarefa! Tens a certeza de que queres passar para o próximo ecrã?</string>

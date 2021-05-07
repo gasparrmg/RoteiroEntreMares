@@ -13,6 +13,7 @@ import com.android.roteiroentremares.data.model.AvistamentoDunasRiaFormosa;
 import com.android.roteiroentremares.data.model.AvistamentoZonacaoAvencas;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.data.model.EspecieRiaFormosa;
+import com.android.roteiroentremares.data.model.EspecieRiaFormosaTranseptosInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
@@ -48,6 +49,7 @@ public class GuiaDeCampoViewModel extends ViewModel {
     private LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
     private LiveData<List<AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias>> allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
     private LiveData<List<AvistamentoDunasRiaFormosa>> allAvistamentoDunasRiaFormosa;
+    private LiveData<List<EspecieRiaFormosaTranseptosInstancias>> allEspecieRiaFormosaTranseptosInstancias;
 
     @Inject
     public GuiaDeCampoViewModel(
@@ -80,6 +82,7 @@ public class GuiaDeCampoViewModel extends ViewModel {
         allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias = dataRepository.getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias();
         allAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias = dataRepository.getAllAvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias();
         allAvistamentoDunasRiaFormosa = dataRepository.getAllAvistamentoDunasRiaFormosa();
+        allEspecieRiaFormosaTranseptosInstancias = dataRepository.getAllEspecieRiaFormosaTranseptosInstancias();
     }
 
     public void filterEspecies(String query) {
@@ -250,6 +253,10 @@ public class GuiaDeCampoViewModel extends ViewModel {
 
     public LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias() {
         return allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
+    }
+
+    public LiveData<List<EspecieRiaFormosaTranseptosInstancias>> getAllEspecieRiaFormosaTranseptosInstancias() {
+        return allEspecieRiaFormosaTranseptosInstancias;
     }
 
     public LiveData<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias> getAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias(int idAvistamento) {

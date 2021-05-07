@@ -1,5 +1,7 @@
 package com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard;
 
+import android.app.Activity;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
@@ -33,6 +35,10 @@ public class DashboardViewModel extends ViewModel {
 
         allArtefactos = dataRepository.getAllArtefactos();
         allEspecieAvencas = dataRepository.getAllEspecieAvencas();
+    }
+
+    public void deleteAllProgress(Activity activity) {
+        dataRepository.deleteAllProgress(activity);
     }
 
     /**
