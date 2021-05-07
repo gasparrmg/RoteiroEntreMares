@@ -278,14 +278,14 @@ public class NewEditAvistamentoZonacaoFragment extends Fragment implements EasyP
     }
 
     private File saveToInternalStorage(Bitmap bitmapImage){
-        // path to /data/data/yourapp/app_data/imageDir
-        File directory = getActivity().getDir("imageDir", Context.MODE_PRIVATE);
-        // Create imageDir
+
+        // File directory = getActivity().getDir("imageDir", Context.MODE_PRIVATE);
+        File directory = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
         String currentTimeStamp = dateFormat.format(new Date());
 
-        File mypath = new File(directory,"roteiroentremares_biodiversidade_zonacao_supralitoral_quadrado" + iteracao + "_" + currentTimeStamp);
+        File mypath = new File(directory,"roteiroentremares_biodiversidade_zonacao_supralitoral_quadrado" + iteracao + "_" + currentTimeStamp + ".jpg");
 
         FileOutputStream fos = null;
         try {

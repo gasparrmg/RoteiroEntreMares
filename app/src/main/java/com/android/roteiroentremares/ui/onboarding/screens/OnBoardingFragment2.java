@@ -240,7 +240,6 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
     private void askForLocationPermissions() {
         if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getLocationPermissionList())) {
-            Toast.makeText(getActivity(), "Already has permissions needed", Toast.LENGTH_SHORT).show();
             switchShareLocation.setChecked(true);
         } else {
             EasyPermissions.requestPermissions(getActivity(), "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",

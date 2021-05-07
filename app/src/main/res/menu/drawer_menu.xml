@@ -14,4 +14,9 @@
         android:id="@+id/nav_pessoal"
         android:icon="@drawable/ic_pessoal"
         android:title="Pessoal" />
+
+    <item
+        android:id="@+id/nav_change_zone"
+        android:icon="@drawable/ic_baseline_place_24"
+        android:title="Mudar zona de interesse" />
 </menu>

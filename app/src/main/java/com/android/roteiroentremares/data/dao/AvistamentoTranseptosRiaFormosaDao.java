@@ -36,6 +36,9 @@ public interface AvistamentoTranseptosRiaFormosaDao {
     @Query("DELETE FROM avistamento_transeptos_riaformosa")
     void deleteAllAvistamentoTranseptosRiaFormosa();
 
+    @Query("SELECT * FROM especie_transeptos_instancias_table_riaformosa")
+    LiveData<List<EspecieRiaFormosaTranseptosInstancias>> getAllEspecieRiaFormosaTranseptosInstancias();
+
     @Transaction
     @Query("SELECT * FROM avistamento_transeptos_riaformosa ORDER BY idAvistamento DESC")
     LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias();

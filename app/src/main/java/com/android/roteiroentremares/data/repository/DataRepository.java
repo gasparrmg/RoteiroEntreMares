@@ -1,8 +1,10 @@
 package com.android.roteiroentremares.data.repository;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.sqlite.db.SupportSQLiteQuery;
@@ -34,6 +36,7 @@ import com.android.roteiroentremares.data.model.relations.AvistamentoPocasAvenca
 import com.android.roteiroentremares.data.model.relations.AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
 import com.android.roteiroentremares.data.model.relations.AvistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias;
+import com.android.roteiroentremares.ui.dashboard.PessoalActivity;
 
 import java.util.List;
 
@@ -130,10 +133,11 @@ public class DataRepository {
 
     private LiveData<List<AvistamentoTranseptosRiaFormosa>> allAvistamentoTranseptosRiaFormosa;
     private LiveData<List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias>> allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
+    private LiveData<List<EspecieRiaFormosaTranseptosInstancias>> allEspecieRiaFormosaTranseptosInstancias;
 
 
     @Inject
-    public DataRepository (
+    public DataRepository(
             SharedPreferences sharedPreferences,
             ArtefactoDao artefactoDao,
             EspecieAvencasDao especieAvencasDao,
@@ -173,6 +177,74 @@ public class DataRepository {
 
         allAvistamentoTranseptosRiaFormosa = avistamentoTranseptosRiaFormosaDao.getAllAvistamentoTranseptosRiaFormosa();
         allAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias = avistamentoTranseptosRiaFormosaDao.getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias();
+        allEspecieRiaFormosaTranseptosInstancias = avistamentoTranseptosRiaFormosaDao.getAllEspecieRiaFormosaTranseptosInstancias();
+    }
+
+    public void deleteAllProgress(Activity activity) {
+        new DeleteAllProgressAsyncTask(activity, sharedPreferences, artefactoDao, avistamentoDunasRiaFormosaDao, avistamentoPocasAvencasDao, avistamentoPocasRiaFormosaDao, avistamentoTranseptosRiaFormosaDao, avistamentoZonacaoAvencasDao).execute();
+    }
+
+    private static class DeleteAllProgressAsyncTask extends AsyncTask<Void, Void, Boolean> {
+        private Activity activity;
+        private SharedPreferences sharedPreferences;
+        private ArtefactoDao artefactoDao;
+        private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
+        private AvistamentoPocasAvencasDao avistamentoPocasAvencasDao;
+        private AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao;
+        private AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao;
+        private AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao;
+
+        private DeleteAllProgressAsyncTask(
+                Activity activity,
+                SharedPreferences sharedPreferences,
+                ArtefactoDao artefactoDao,
+                AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao,
+                AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
+                AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao,
+                AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao,
+                AvistamentoZonacaoAvencasDao avistamentoZonacaoAvencasDao
+        ) {
+            this.activity = activity;
+            this.sharedPreferences = sharedPreferences;
+            this.artefactoDao = artefactoDao;
+            this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
+            this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
+            this.avistamentoPocasRiaFormosaDao = avistamentoPocasRiaFormosaDao;
+            this.avistamentoTranseptosRiaFormosaDao = avistamentoTranseptosRiaFormosaDao;
+            this.avistamentoZonacaoAvencasDao = avistamentoZonacaoAvencasDao;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            sharedPreferences.edit().clear().commit();
+
+            try {
+                artefactoDao.deleteAll();
+                avistamentoDunasRiaFormosaDao.deleteAllAvistamentoDunasRiaFormosa();
+                avistamentoPocasAvencasDao.deleteAllAvistamentoPocasAvencas();
+                avistamentoPocasRiaFormosaDao.deleteAllAvistamentoPocasRiaFormosa();
+                avistamentoTranseptosRiaFormosaDao.deleteAllAvistamentoTranseptosRiaFormosa();
+                avistamentoZonacaoAvencasDao.deleteAllAvistamentoZonacaoAvencas();
+            } catch (Exception e) {
+                Log.e("REPOSITORY_DELETEALLPROGRESS", "There was an error: " + e.getMessage());
+                // Throw error
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+
+            if (aBoolean) {
+                ((PessoalActivity) activity).restartApp();
+            } else {
+                // call error method in activity
+                ((PessoalActivity) activity).showErrorOnDeleteProgress();
+            }
+        }
     }
 
     /**
@@ -181,6 +253,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Historias do Passado sequence
+     *
      * @return
      */
     public boolean isHistoriasPassadoFinished() {
@@ -202,6 +275,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the E Quando a Mare Sobe sequence
+     *
      * @return
      */
     public boolean isEQuandoAMareSobeFinished() {
@@ -223,6 +297,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Não Fiques Por Aqui sequence
+     *
      * @return
      */
     public boolean isNaoFiquesPorAquiFinished() {
@@ -244,6 +319,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Impactos sequence
+     *
      * @return
      */
     public boolean isImpactosFinished() {
@@ -265,6 +341,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Impactos -> Captura Excessiva sequence
+     *
      * @return
      */
     public boolean isImpactosCapturaExcessivaFinished() {
@@ -286,6 +363,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Impactos -> Pisoteio sequence
+     *
      * @return
      */
     public boolean isImpactosPisoteioFinished() {
@@ -307,6 +385,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Impactos -> Poluicao sequence
+     *
      * @return
      */
     public boolean isImpactosPoluicaoFinished() {
@@ -328,6 +407,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Impactos -> Temp Agua sequence
+     *
      * @return
      */
     public boolean isImpactosTempAguaFinished() {
@@ -349,6 +429,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Impactos -> Temp Agua sequence
+     *
      * @return
      */
     public boolean isImpactosOcupacaoHumanaFinished() {
@@ -370,6 +451,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already answered the Impactos 2
+     *
      * @return
      */
     public boolean isImpactos2Answered() {
@@ -391,6 +473,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already answered the Impactos 3
+     *
      * @return
      */
     public boolean isImpactos3Answered() {
@@ -412,6 +495,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already answered the Impactos 6
+     *
      * @return
      */
     public boolean isImpactos6Answered() {
@@ -433,6 +517,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Microhabitats sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeMicrohabitatsFinished() {
@@ -454,6 +539,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Microhabitats -> Canais sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeMicrohabitatsCanaisFinished() {
@@ -475,6 +561,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Microhabitats -> Fendas sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeMicrohabitatsFendasFinished() {
@@ -496,6 +583,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Microhabitats -> Poças sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeMicrohabitatsPocasFinished() {
@@ -517,6 +605,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Zonacao sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeZonacaoFinished() {
@@ -538,6 +627,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Zonacao -> Supralitoral sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeZonacaoSupralitoralFinished() {
@@ -559,6 +649,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Zonacao -> Mediolitoral sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeZonacaoMediolitoralFinished() {
@@ -580,6 +671,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Zonacao -> Infralitoral sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeZonacaoInfralitoralFinished() {
@@ -601,6 +693,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Interacoes -> Predacao sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeInteracoesPredacaoFinished() {
@@ -622,6 +715,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Interacoes -> Herbivoria sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeInteracoesHerbivoriaFinished() {
@@ -643,6 +737,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Interacoes -> Competicao sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeInteracoesCompeticaoFinished() {
@@ -664,6 +759,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade -> Interacoes sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeInteracoesFinished() {
@@ -685,6 +781,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Biodiversidade sequence
+     *
      * @return
      */
     public boolean isBiodiversidadeFinished() {
@@ -706,6 +803,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Nao Fiques Por Aqui sequence
+     *
      * @return
      */
     public boolean isRiaFormosaNaoFiquesPorAquiFinished() {
@@ -727,6 +825,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the PradariasMarinhas sequence
+     *
      * @return
      */
     public boolean isRiaFormosaPradariasMarinhasFinished() {
@@ -748,6 +847,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Sapal sequence
+     *
      * @return
      */
     public boolean isRiaFormosaSapalFinished() {
@@ -769,6 +869,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Sapal sequence
+     *
      * @return
      */
     public boolean isRiaFormosaDunasDunaEmbrionariaFinished() {
@@ -790,6 +891,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Sapal sequence
+     *
      * @return
      */
     public boolean isRiaFormosaDunasDunaPrimariaFinished() {
@@ -811,6 +913,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Sapal sequence
+     *
      * @return
      */
     public boolean isRiaFormosaDunasZonaInterdunarFinished() {
@@ -832,6 +935,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Sapal sequence
+     *
      * @return
      */
     public boolean isRiaFormosaDunasDunaSecundariaFinished() {
@@ -853,6 +957,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Sapal sequence
+     *
      * @return
      */
     public boolean isRiaFormosaDunasFinished() {
@@ -874,6 +979,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the predacao sequence
+     *
      * @return
      */
     public boolean isRiaFormosaIntertidalArenosoPredacaoFinished() {
@@ -895,6 +1001,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the predacao sequence
+     *
      * @return
      */
     public boolean isRiaFormosaIntertidalArenosoCompeticaoFinished() {
@@ -916,6 +1023,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the predacao sequence
+     *
      * @return
      */
     public boolean isRiaFormosaIntertidalArenosoFinished() {
@@ -937,6 +1045,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the Mares sequence
+     *
      * @return
      */
     public boolean isMaresFinished() {
@@ -960,6 +1069,7 @@ public class DataRepository {
 
     /**
      * Returns true if the User already completed the OnBoarding sequence
+     *
      * @return
      */
     public boolean getOnBoarding() {
@@ -971,6 +1081,7 @@ public class DataRepository {
 
     /**
      * Sets preference regarding the OnBoarding sequence
+     *
      * @param onBoarding
      */
     public void setOnBoarding(boolean onBoarding) {
@@ -983,6 +1094,7 @@ public class DataRepository {
     /**
      * 0 - Avencas
      * 1 - Ria Formosa
+     *
      * @return
      */
     public int getAvencasOrRiaFormosa() {
@@ -995,6 +1107,7 @@ public class DataRepository {
     /**
      * 0 - Avencas
      * 1 - Ria Formosa
+     *
      * @param zona
      */
     public void setAvencasOrRiaFormosa(int zona) {
@@ -1007,6 +1120,7 @@ public class DataRepository {
     /**
      * 0 - Change to Avencas
      * 1 - Change to Ria Formosa
+     *
      * @return
      */
     public int getChangeToAvencasOrRiaFormosa() {
@@ -1019,6 +1133,7 @@ public class DataRepository {
     /**
      * 0 - Change to Avencas
      * 1 - Change to Ria Formosa
+     *
      * @param zonaToChange
      */
     public void setChangeToAvencasOrRiaFormosa(int zonaToChange) {
@@ -1037,6 +1152,7 @@ public class DataRepository {
      * 0 - Aluno
      * 1 - Professor
      * 2 - Explorador
+     *
      * @return
      */
     public int getTipoUtilizador() {
@@ -1051,6 +1167,7 @@ public class DataRepository {
      * 0 - Aluno
      * 1 - Professor
      * 2 - Explorador
+     *
      * @param tipoUtilizador
      */
     public void setTipoUtilizador(int tipoUtilizador) {
@@ -1062,6 +1179,7 @@ public class DataRepository {
 
     /**
      * Returns the User's name written in the Shared Preferences
+     *
      * @return
      */
     public String getNome() {
@@ -1073,6 +1191,7 @@ public class DataRepository {
 
     /**
      * Inserts the User's name into Shared Preferences
+     *
      * @param nome
      */
     public void setNome(String nome) {
@@ -1084,6 +1203,7 @@ public class DataRepository {
 
     /**
      * Returns the User's school name written in the Shared Preferences
+     *
      * @return
      */
     public String getEscola() {
@@ -1095,6 +1215,7 @@ public class DataRepository {
 
     /**
      * Inserts the User's school name into Shared Preferences
+     *
      * @param escola
      */
     public void setEscola(String escola) {
@@ -1106,6 +1227,7 @@ public class DataRepository {
 
     /**
      * Returns the User's school year written in the Shared Preferences
+     *
      * @return
      */
     public String getAnoEscolaridade() {
@@ -1117,6 +1239,7 @@ public class DataRepository {
 
     /**
      * Inserts the User's school year into Shared Preferences
+     *
      * @param anoEscolaridade
      */
     public void setAnoEscolaridade(String anoEscolaridade) {
@@ -1128,6 +1251,7 @@ public class DataRepository {
 
     /**
      * Returns the User's academic year written in the Shared Preferences
+     *
      * @return
      */
     public String getAnoLectivo() {
@@ -1139,6 +1263,7 @@ public class DataRepository {
 
     /**
      * Inserts the User's academic year into Shared Preferences
+     *
      * @param anoLectivo
      */
     public void setAnoLectivo(String anoLectivo) {
@@ -1164,6 +1289,7 @@ public class DataRepository {
 
     /**
      * Returns the Class Code written in the Shared Preferences
+     *
      * @return
      */
     public String getCodigoTurma() {
@@ -1175,6 +1301,7 @@ public class DataRepository {
 
     /**
      * Inserts the Class Code into Shared Preferences
+     *
      * @param codigoTurma
      */
     public void setCodigoTurma(String codigoTurma) {
@@ -1189,7 +1316,6 @@ public class DataRepository {
      */
 
     // Ria Formosa Transeptos
-
     public void updateAvistamentoTranseptosRiaFormosa(AvistamentoTranseptosRiaFormosa avistamentoTranseptosRiaFormosa) {
         new UpdateAvistamentoTranseptosRiaFormosaAsyncTask(avistamentoTranseptosRiaFormosaDao).execute(avistamentoTranseptosRiaFormosa);
     }
@@ -1204,6 +1330,10 @@ public class DataRepository {
 
     public LiveData<List<AvistamentoTranseptosRiaFormosa>> getAllAvistamentoTranseptosRiaFormosa() {
         return allAvistamentoTranseptosRiaFormosa;
+    }
+
+    public LiveData<List<EspecieRiaFormosaTranseptosInstancias>> getAllEspecieRiaFormosaTranseptosInstancias() {
+        return allEspecieRiaFormosaTranseptosInstancias;
     }
 
     private static class DeleteAllAvistamentoTranseptosRiaFormosaAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -1878,6 +2008,7 @@ public class DataRepository {
     /**
      * Return all artefacts.
      * Methods that return LiveData don't need AsyncTasks bc Room already does it behind the scenes
+     *
      * @return
      */
     public LiveData<List<Artefacto>> getAllArtefactos() {
@@ -1895,6 +2026,7 @@ public class DataRepository {
     /**
      * Return all species from Avencas.
      * Methods that return LiveData don't need AsyncTasks bc Room already does it behind the scenes
+     *
      * @return
      */
     public LiveData<List<EspecieAvencas>> getAllEspecieAvencas() {

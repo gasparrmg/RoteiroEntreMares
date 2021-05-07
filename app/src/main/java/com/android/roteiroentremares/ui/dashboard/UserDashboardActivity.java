@@ -3,13 +3,17 @@ package com.android.roteiroentremares.ui.dashboard;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -22,9 +26,11 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.Artefacto;
 import com.android.roteiroentremares.data.model.EspecieAvencas;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
+import com.android.roteiroentremares.ui.onboarding.MainActivity;
 import com.android.roteiroentremares.util.PermissionsUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
@@ -106,10 +112,53 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 Intent intent3 = new Intent(this, PessoalActivity.class);
                 startActivityForResult(intent3, 3);
                 break;
+            case R.id.nav_change_zone:
+                MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
+                materialAlertDialogBuilder.setTitle("Atenção!");
+
+                if (dashboardViewModel.getAvencasOrRiaFormosa() == 0) {
+                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Ria Formosa?");
+                    materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setChangeToAvencasOrRiaFormosa(1);
+
+                            restartApp(getApplicationContext());
+                        }
+                    });
+                } else if (dashboardViewModel.getAvencasOrRiaFormosa() == 1) {
+                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Área Marinha Protegida das Avencas?");
+                    materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setChangeToAvencasOrRiaFormosa(0);
+
+                            restartApp(getApplicationContext());
+                        }
+                    });
+                }
+
+                materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // dismiss
+                    }
+                });
+                AlertDialog alertDialog = materialAlertDialogBuilder.show();
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
+
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void restartApp(Context c) {
+        Intent i = new Intent(UserDashboardActivity.this, MainActivity.class);
+        // set the new task and clear flags
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
     }
 
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)

@@ -14,6 +14,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -110,12 +111,17 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
     private String code;
     private boolean shareLocationArtefactos;
 
+    private boolean isResettingApp;
+    private AlertDialog dialogProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pessoal);
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+
+        isResettingApp = false;
 
         SpannableString s = new SpannableString(getResources().getString(R.string.title_pessoal));
         s.setSpan(new TypefaceSpan(this, "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
@@ -144,6 +150,15 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (dialogProgress != null && dialogProgress.isShowing()) {
+            dialogProgress.dismiss();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.pessoal_menu, menu);
@@ -157,29 +172,24 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
                 // MOSTRAR POPUP
                 // Mudar para Avencas/RF, restart app
                 MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
-                materialAlertDialogBuilder.setTitle("Atenção!");
+                materialAlertDialogBuilder.setTitle("ATENÇÃO!");
 
-                if (dashboardViewModel.getAvencasOrRiaFormosa() == 0) {
-                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Ria Formosa?");
-                    materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dashboardViewModel.setChangeToAvencasOrRiaFormosa(1);
+                materialAlertDialogBuilder.setMessage("Tens a certeza que queres apagar todo o teu progresso no Roteiro Entre-Marés, incluindo Artefactos e Avistamentos?");
+                materialAlertDialogBuilder.setPositiveButton("Sim, tenho", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(PessoalActivity.this);
+                        LayoutInflater layoutInflater = PessoalActivity.this.getLayoutInflater();
+                        View customView = layoutInflater.inflate(R.layout.dialog_progress, null);
+                        builder.setView(customView);
+                        dialogProgress = builder.create();
+                        dialogProgress.setCanceledOnTouchOutside(false);
+                        dialogProgress.setCancelable(false);
+                        dialogProgress.show();
 
-                            restartApp(getApplicationContext());
-                        }
-                    });
-                } else if (dashboardViewModel.getAvencasOrRiaFormosa() == 1) {
-                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Área Marinha Protegida das Avencas?");
-                    materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dashboardViewModel.setChangeToAvencasOrRiaFormosa(0);
-
-                            restartApp(getApplicationContext());
-                        }
-                    });
-                }
+                        deleteProgress();
+                    }
+                });
 
                 materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
                     @Override
@@ -196,11 +206,38 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         }
     }
 
-    private void restartApp(Context c) {
-        Intent i = new Intent(PessoalActivity.this, MainActivity.class);
+    private void deleteProgress() {
+        /*Intent i = new Intent(PessoalActivity.this, MainActivity.class);
         // set the new task and clear flags
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(i);
+        startActivity(i);*/
+
+        isResettingApp = true;
+
+        dashboardViewModel.deleteAllProgress(this);
+    }
+
+    public void showErrorOnDeleteProgress() {
+        if (dialogProgress != null) {
+            if (dialogProgress.isShowing()) {
+                dialogProgress.dismiss();
+            }
+        }
+
+        Toast.makeText(this, getResources().getString(R.string.general_error_message), Toast.LENGTH_SHORT).show();
+    }
+
+    public void restartApp() {
+        if (isResettingApp) {
+            if (dialogProgress != null && dialogProgress.isShowing()) {
+                dialogProgress.dismiss();
+            }
+
+            Intent i = new Intent(PessoalActivity.this, MainActivity.class);
+            // set the new task and clear flags
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
+        }
     }
 
     private void getUserInfo() {
@@ -240,7 +277,7 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (editTextAnoLectivo.getText().length() == 4 && position != 5) {
-                    editTextAnoLectivo.setText(editTextAnoLectivo.getText().toString()+"/");
+                    editTextAnoLectivo.setText(editTextAnoLectivo.getText().toString() + "/");
                     editTextAnoLectivo.setSelection(5);
                 }
             }
