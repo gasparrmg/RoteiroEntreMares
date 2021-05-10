@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.text.Editable;
@@ -90,6 +91,8 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
     private int position = 0;
     private boolean isExplorador = false;
 
+    private View view;
+
     public OnBoardingFragment2() {
         // Required empty public constructor
     }
@@ -98,7 +101,7 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_on_boarding2, container, false);
+        view = inflater.inflate(R.layout.fragment_on_boarding2, container, false);
 
         onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
@@ -218,7 +221,8 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
 
         Toast.makeText(getActivity(), "Registo feito com sucesso!", Toast.LENGTH_SHORT).show();
 
-        viewPager.setCurrentItem(SEQUENCE_NUMBER);
+        //viewPager.setCurrentItem(SEQUENCE_NUMBER);
+        Navigation.findNavController(view).navigate(R.id.action_viewPagerFragment_to_chooseZoneInteresseFragment);
     }
 
     @Override

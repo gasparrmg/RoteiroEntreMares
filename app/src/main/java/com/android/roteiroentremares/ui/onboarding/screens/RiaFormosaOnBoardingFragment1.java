@@ -44,13 +44,13 @@ public class RiaFormosaOnBoardingFragment1 extends Fragment {
 
         onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
-        if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() != -1) {
+        /*if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() != -1) {
             Log.d("ONBOARDING", "toChange value: " + onBoardingViewModel.getChangeToAvencasOrRiaFormosa());
 
             onBoardingViewModel.deleteChangeToAvencasOrRiaFormosa();
 
             Log.d("ONBOARDING", "toChange value: " + onBoardingViewModel.getChangeToAvencasOrRiaFormosa());
-        }
+        }*/
 
         textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);

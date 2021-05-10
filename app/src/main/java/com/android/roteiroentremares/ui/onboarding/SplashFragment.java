@@ -54,10 +54,10 @@ public class SplashFragment extends Fragment {
                         getActivity().finish();
                     } else if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() == 0) {
                         // navigate to Avencas
-                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_avencasViewPagerFragment);
+                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_chooseZoneInteresseFragment);
                     } else if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() == 1) {
                         // navigate to RF
-                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_riaFormosaViewPagerFragment);
+                        Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_chooseZoneInteresseFragment);
                     }
                 } else {
                     if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() != -1) {

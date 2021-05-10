@@ -21,7 +21,6 @@ import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment15;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment16;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment17;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment18;
-import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment19;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment2;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment3;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment4;
@@ -32,7 +31,6 @@ import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment8;
 import com.android.roteiroentremares.ui.onboarding.screens.OnBoardingFragment9;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ViewPagerFragment extends Fragment {
 
@@ -70,7 +68,6 @@ public class ViewPagerFragment extends Fragment {
         fragmentList.add(new OnBoardingFragment17());
         fragmentList.add(new OnBoardingFragment18());
         fragmentList.add(new OnBoardingFragment2());
-        fragmentList.add(new OnBoardingFragment19());
 
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(

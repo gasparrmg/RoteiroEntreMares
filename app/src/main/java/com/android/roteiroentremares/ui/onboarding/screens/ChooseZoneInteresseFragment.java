@@ -1,28 +1,30 @@
 package com.android.roteiroentremares.ui.onboarding.screens;
 
 import android.os.Bundle;
-
-import androidx.core.text.HtmlCompat;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.viewpager2.widget.ViewPager2;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.roteiroentremares.R;
+import com.android.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class OnBoardingFragment19 extends Fragment {
+import dagger.hilt.android.AndroidEntryPoint;
 
-    private static final int SEQUENCE_NUMBER = 19;
+@AndroidEntryPoint
+public class ChooseZoneInteresseFragment extends Fragment {
+
+    private OnBoardingViewModel onBoardingViewModel;
 
     // Views
     private Button btnAvencas;
@@ -32,7 +34,7 @@ public class OnBoardingFragment19 extends Fragment {
     private ImageButton buttonPrev;
     private ViewPager2 viewPager;
 
-    public OnBoardingFragment19() {
+    public ChooseZoneInteresseFragment() {
         // Required empty public constructor
     }
 
@@ -41,6 +43,8 @@ public class OnBoardingFragment19 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_on_boarding19, container, false);
+
+        onBoardingViewModel = new ViewModelProvider(this).get(OnBoardingViewModel.class);
 
         btnAvencas = view.findViewById(R.id.btn_avencas);
         btnRiaFormosa = view.findViewById(R.id.btn_riaformosa);
@@ -51,7 +55,17 @@ public class OnBoardingFragment19 extends Fragment {
 
         buttonFabNext.setEnabled(false);
 
+        buttonPrev.setVisibility(View.GONE);
+
         setOnClickListeners(view);
+
+        if (onBoardingViewModel.getChangeToAvencasOrRiaFormosa() != -1) {
+            Log.d("ONBOARDING", "toChange value: " + onBoardingViewModel.getChangeToAvencasOrRiaFormosa());
+
+            onBoardingViewModel.deleteChangeToAvencasOrRiaFormosa();
+
+            Log.d("ONBOARDING", "toChange value: " + onBoardingViewModel.getChangeToAvencasOrRiaFormosa());
+        }
 
         return view;
     }
@@ -63,7 +77,7 @@ public class OnBoardingFragment19 extends Fragment {
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(SEQUENCE_NUMBER-2);
+                Navigation.findNavController(view).popBackStack();
             }
         });
 
@@ -71,7 +85,7 @@ public class OnBoardingFragment19 extends Fragment {
             @Override
             public void onClick(View v) {
                 NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_viewPagerFragment_to_avencasViewPagerFragment);
+                navController.navigate(R.id.action_chooseZoneInteresseFragment_to_avencasViewPagerFragment);
             }
         });
 
@@ -79,7 +93,7 @@ public class OnBoardingFragment19 extends Fragment {
             @Override
             public void onClick(View v) {
                 NavController navController = Navigation.findNavController(view);
-                navController.navigate(R.id.action_viewPagerFragment_to_riaFormosaViewPagerFragment);
+                navController.navigate(R.id.action_chooseZoneInteresseFragment_to_riaFormosaViewPagerFragment);
             }
         });
     }

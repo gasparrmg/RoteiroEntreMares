@@ -117,7 +117,7 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 materialAlertDialogBuilder.setTitle("Atenção!");
 
                 if (dashboardViewModel.getAvencasOrRiaFormosa() == 0) {
-                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Ria Formosa?");
+                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar de zona de interesse?");
                     materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -127,7 +127,7 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                         }
                     });
                 } else if (dashboardViewModel.getAvencasOrRiaFormosa() == 1) {
-                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar o ponto de interesse para a Área Marinha Protegida das Avencas?");
+                    materialAlertDialogBuilder.setMessage("Tens a certeza que queres mudar de zona de interesse?");
                     materialAlertDialogBuilder.setPositiveButton("Mudar de zona", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

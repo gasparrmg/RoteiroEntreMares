@@ -16,15 +16,8 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_avencasViewPagerFragment"
-            app:destination="@id/avencasViewPagerFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_splashFragment_to_riaFormosaViewPagerFragment"
-            app:destination="@id/riaFormosaViewPagerFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
+            android:id="@+id/action_splashFragment_to_chooseZoneInteresseFragment"
+            app:destination="@id/chooseZoneInteresseFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -32,11 +25,8 @@
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
-            android:id="@+id/action_viewPagerFragment_to_avencasViewPagerFragment"
-            app:destination="@id/avencasViewPagerFragment" />
-        <action
-            android:id="@+id/action_viewPagerFragment_to_riaFormosaViewPagerFragment"
-            app:destination="@id/riaFormosaViewPagerFragment" />
+            android:id="@+id/action_viewPagerFragment_to_chooseZoneInteresseFragment"
+            app:destination="@id/chooseZoneInteresseFragment" />
     </fragment>
     <fragment
         android:id="@+id/avencasViewPagerFragment"
@@ -47,4 +37,15 @@
         android:id="@+id/riaFormosaViewPagerFragment"
         android:name="com.android.roteiroentremares.ui.onboarding.RiaFormosaViewPagerFragment"
         android:label="RiaFormosaViewPagerFragment" />
+    <fragment
+        android:id="@+id/chooseZoneInteresseFragment"
+        android:name="com.android.roteiroentremares.ui.onboarding.screens.ChooseZoneInteresseFragment"
+        android:label="ChooseZoneInteresseFragment" >
+        <action
+            android:id="@+id/action_chooseZoneInteresseFragment_to_avencasViewPagerFragment"
+            app:destination="@id/avencasViewPagerFragment" />
+        <action
+            android:id="@+id/action_chooseZoneInteresseFragment_to_riaFormosaViewPagerFragment"
+            app:destination="@id/riaFormosaViewPagerFragment" />
+    </fragment>
 </navigation>
