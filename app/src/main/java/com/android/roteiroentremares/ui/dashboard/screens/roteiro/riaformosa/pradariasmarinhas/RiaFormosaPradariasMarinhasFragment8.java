@@ -26,8 +26,13 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
+import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapter;
+import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapterFitCenter;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.Locale;
 
@@ -52,6 +57,16 @@ public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
 
     private TextToSpeech tts;
     private boolean ttsEnabled;
+
+    private SliderView sliderView;
+    private SliderAdapterFitCenter sliderAdapter;
+    private FloatingActionButton fabFullscreen;
+
+    private final int[] imageResourceIds = {
+            R.drawable.img_pradariasmarinhas8_a,
+            R.drawable.img_pradariasmarinhas8_b,
+            R.drawable.img_pradariasmarinhas8_c
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -129,12 +144,38 @@ public class RiaFormosaPradariasMarinhasFragment8 extends Fragment {
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
         buttonSabiasQue = view.findViewById(R.id.button_sabiasque);
+        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
 
         buttonSabiasQue.setText("Ocean\nAlive");
+
+        initSliderView(view);
+    }
+
+    private void initSliderView(View view) {
+        sliderView = view.findViewById(R.id.imageSlider);
+
+        sliderAdapter = new SliderAdapterFitCenter(getActivity(), imageResourceIds);
+        sliderView.setSliderAdapter(sliderAdapter);
+
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.startAutoCycle();
     }
 
 
     private void setOnClickListeners(View view) {
+        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open Image Activity
+                int currentImageResource = imageResourceIds[sliderView.getCurrentPagePosition()];
+
+                Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
+                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, currentImageResource);
+                startActivity(intent);
+            }
+        });
+
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

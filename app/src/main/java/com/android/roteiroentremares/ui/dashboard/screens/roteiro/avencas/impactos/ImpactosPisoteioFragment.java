@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -15,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,9 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -42,6 +48,21 @@ public class ImpactosPisoteioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos_pisoteio, container, false);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_impactos_pisoteio_ilustracao)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
+
         ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
@@ -92,8 +113,7 @@ public class ImpactosPisoteioFragment extends Fragment {
                         String text = HtmlCompat.fromHtml(
                                 "Devido à sua variada riqueza natural, a Plataforma rochosa das Avencas é uma zona muito frequentada por todo o tipo de pessoas, pescadores desportivos, alunos, investigadores e veraneantes.<br>" +
                                         "<br>" +
-                                        "O desconhecimento das normas de preservação e respetivos limites, bem como a pressão humana na época balnear contribuem para a degradação deste importante ecossistema, através da destruição dos organismos (por esmagamento) e dos respetivos habitats (por exemplo, destruição dos tapetes de algas)<br>" +
-                                        "<br><b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte.</b>",
+                                        "O desconhecimento das normas de preservação e respetivos limites, bem como a pressão humana na época balnear contribuem para a degradação deste importante ecossistema, através da destruição dos organismos (por esmagamento) e dos respetivos habitats (por exemplo, destruição dos tapetes de algas).",
                                 HtmlCompat.FROM_HTML_MODE_LEGACY
                         ).toString();
                         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -161,8 +181,7 @@ public class ImpactosPisoteioFragment extends Fragment {
         textViewContent.setText(HtmlCompat.fromHtml(
                 "Devido à sua variada riqueza natural, a Plataforma rochosa das Avencas é uma zona muito frequentada por todo o tipo de pessoas, pescadores desportivos, alunos, investigadores e veraneantes.<br>" +
                         "<br>" +
-                        "O desconhecimento das normas de preservação e respetivos limites, bem como a pressão humana na época balnear contribuem para a degradação deste importante ecossistema, através da destruição dos organismos (por esmagamento) e dos respetivos habitats (por exemplo, destruição dos tapetes de algas)<br>" +
-                        "<br><b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte.</b>",
+                        "O desconhecimento das normas de preservação e respetivos limites, bem como a pressão humana na época balnear contribuem para a degradação deste importante ecossistema, através da destruição dos organismos (por esmagamento) e dos respetivos habitats (por exemplo, destruição dos tapetes de algas).",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

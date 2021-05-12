@@ -444,6 +444,13 @@
                 app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_EQuandoAMareSobeFragment_to_EQuandoAMareSobeFragment2Refactored"
+                app:destination="@id/EQuandoAMareSobeFragment2Refactored"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         </fragment>
         <fragment
             android:id="@+id/EQuandoAMareSobeFragment2"
@@ -498,6 +505,25 @@
             android:id="@+id/EQuandoAMareSobeFragment3"
             android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment3"
             android:label="EQuandoAMareSobeFragment3" />
+        <fragment
+            android:id="@+id/EQuandoAMareSobeFragment2Refactored"
+            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment2Refactored"
+            android:label="EQuandoAMareSobeFragment2Refactored" >
+            <action
+                android:id="@+id/action_EQuandoAMareSobeFragment2Refactored_to_EQuandoAMareSobeDetailsFragment"
+                app:destination="@id/EQuandoAMareSobeDetailsFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            <action
+                android:id="@+id/action_EQuandoAMareSobeFragment2Refactored_to_EQuandoAMareSobeFragmentExercicio"
+                app:destination="@id/EQuandoAMareSobeFragmentExercicio"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        </fragment>
     </navigation>
     <navigation android:id="@+id/navigation_impactos"
         app:startDestination="@id/impactosFragment">

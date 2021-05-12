@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment4">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"/>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -29,7 +34,7 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins_bold"
             android:textAlignment="center"
-            android:textColor="@color/colorTitleText"
+            android:textColor="@color/colorBodyTextLight"
             android:textSize="20sp"
             android:textStyle="bold"
             android:typeface="normal"
@@ -50,7 +55,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <!--<RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -73,15 +78,14 @@
                         android:scaleType="fitCenter"
                         android:src="@drawable/img_historiaspassado_locais"/>
 
-                </RelativeLayout>
+                </RelativeLayout>-->
 
                 <TextView
                     android:id="@+id/text_content"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/open_sans"
-                    android:textColor="@android:color/black"
-                    android:layout_marginTop="16dp"
+                    android:textColor="@color/colorBodyTextLight"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -109,7 +113,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:src="@drawable/ic_prev"
-        android:tint="@color/colorAccent"
+        android:tint="@color/colorBodyTextLight"
         app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
         app:layout_constraintEnd_toStartOf="@+id/btn_fabNext"
         app:layout_constraintStart_toStartOf="parent"

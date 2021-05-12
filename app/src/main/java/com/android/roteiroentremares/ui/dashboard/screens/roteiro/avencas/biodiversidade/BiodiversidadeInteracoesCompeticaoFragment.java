@@ -65,7 +65,7 @@ public class BiodiversidadeInteracoesCompeticaoFragment extends Fragment {
     private TextInputEditText textInputEditTextResposta;
     private ImageButton buttonPrev;
 
-    private int imageResourceId = R.drawable.img_biodiversidade_interacoes_competicao;
+    private int imageResourceId = R.drawable.img_biodiversidade_interacoes_competicao_ilustracao;
 
     private TextToSpeech tts;
 

@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -18,6 +19,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -35,6 +38,9 @@ import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardV
 import com.android.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -80,7 +86,21 @@ public class RiaFormosaIntertidalArenosoFragment6 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal_especies, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal_especies_refactored, container, false);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_intertidalarenoso_mediolitoral_ilustracao)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
         guiaDeCampoViewModel = new ViewModelProvider(this).get(GuiaDeCampoViewModel.class);
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);

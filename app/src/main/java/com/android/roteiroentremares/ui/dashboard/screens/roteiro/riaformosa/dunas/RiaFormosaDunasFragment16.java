@@ -25,6 +25,7 @@ import androidx.navigation.Navigation;
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -38,7 +39,7 @@ public class RiaFormosaDunasFragment16 extends Fragment {
             "- Folhas impermeabilizadas por uma cobertura cerosa<br>" +
             "- Revestimento por um tomento denso";
 
-    private static final int imageResourceId = R.drawable.img_riaformosa_dunas_16;
+    private static final int imageResourceId = R.drawable.img_riaformosa_dunas_16_ilustracao;
 
     // Views
     private TextView textViewTitle;
@@ -56,7 +57,7 @@ public class RiaFormosaDunasFragment16 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5_refactored, container, false);
 
         ttsEnabled = false;
 
@@ -164,7 +165,7 @@ public class RiaFormosaDunasFragment16 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
+        Glide.with(getActivity()).load(imageResourceId).into(imageView);
         
         textViewTitle.setText("Modificações adaptativas");
 

@@ -95,7 +95,7 @@ public class EQuandoAMareSobeFragment extends Fragment {
                         tts.stop();
                     } else {
                         String text = HtmlCompat.fromHtml(
-                                "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem? E será que estes locais são visitados por outras espécies? Carrega em cada uma das imagens do ecrã seguinte para saber o comportamento das espécies durante a maré-cheia",
+                                "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem? E será que estes locais são visitados por outras espécies? Carrega em cada uma espécies do ecrã seguinte para saber o comportamento de cada uma durante a maré-cheia",
                                 HtmlCompat.FROM_HTML_MODE_LEGACY
                         ).toString();
                         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -139,7 +139,8 @@ public class EQuandoAMareSobeFragment extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_EQuandoAMareSobeFragment_to_EQuandoAMareSobeFragment2);
+                //Navigation.findNavController(view).navigate(R.id.action_EQuandoAMareSobeFragment_to_EQuandoAMareSobeFragment2);
+                Navigation.findNavController(view).navigate(R.id.action_EQuandoAMareSobeFragment_to_EQuandoAMareSobeFragment2Refactored);
             }
         });
     }
@@ -149,7 +150,7 @@ public class EQuandoAMareSobeFragment extends Fragment {
      */
     private void insertContent() {
         textViewContent.setText(HtmlCompat.fromHtml(
-                "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem? E será que estes locais são visitados por outras espécies?<br>Carrega em cada uma das imagens do ecrã seguinte para saber o comportamento das espécies durante a maré-cheia",
+                "Quando a maré enche, submergindo estas plataformas de rocha o que acontecerá aos organismos que aqui vivem? E será que estes locais são visitados por outras espécies?<br>Carrega em cada uma espécies do ecrã seguinte para saber o comportamento de cada uma durante a maré-cheia!",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 

@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -15,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,9 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -42,6 +48,21 @@ public class ImpactosTempAguaFragment2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos_temp_agua2, container, false);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_impactos_especiesexoticas_ilustracao)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
+
         ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
@@ -91,8 +112,7 @@ public class ImpactosTempAguaFragment2 extends Fragment {
                     } else {
                         String text = HtmlCompat.fromHtml(
                                 "Nalguns casos estas espécies exóticas podem tornar-se pragas sobretudo quando são mais agressivas e apresentam estratégias de reprodução muito rápidas, que lhes conferem uma vantagem em relação às espécies locais.<br><br>" +
-                                        "A piorar esta situação está o facto de muitas destas espécies não terem predadores nos locais onde fundam novas populações. Esta é uma característica que pode fazer com que muitas espécies não indígenas passem a ser consideradas espécies invasoras, com consequências muito graves para as comunidades locais.<br><br>" +
-                                        "Se este fator não for controlado, observa o cenário possível no ecrã seguinte",
+                                        "A piorar esta situação está o facto de muitas destas espécies não terem predadores nos locais onde fundam novas populações. Esta é uma característica que pode fazer com que muitas espécies não indígenas passem a ser consideradas espécies invasoras, com consequências muito graves para as comunidades locais.",
                                 HtmlCompat.FROM_HTML_MODE_LEGACY
                         ).toString();
                         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -159,8 +179,7 @@ public class ImpactosTempAguaFragment2 extends Fragment {
 
         textViewContent.setText(HtmlCompat.fromHtml(
                 "Nalguns casos estas espécies exóticas podem tornar-se pragas sobretudo quando são mais agressivas e apresentam estratégias de reprodução muito rápidas, que lhes conferem uma vantagem em relação às espécies locais.<br><br>" +
-                "A piorar esta situação está o facto de muitas destas espécies não terem predadores nos locais onde fundam novas populações. Esta é uma característica que pode fazer com que muitas espécies não indígenas passem a ser consideradas espécies invasoras, com consequências muito graves para as comunidades locais.<br><br>" +
-                "<b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte</b>",
+                "A piorar esta situação está o facto de muitas destas espécies não terem predadores nos locais onde fundam novas populações. Esta é uma característica que pode fazer com que muitas espécies não indígenas passem a ser consideradas espécies invasoras, com consequências muito graves para as comunidades locais.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

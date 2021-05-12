@@ -58,6 +58,35 @@
                     android:textSize="18sp"
                     android:layout_marginBottom="16dp"/>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_fullscreen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="8dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        app:fabSize="mini"
+                        app:srcCompat="@drawable/ic_fullscreen"
+                        app:tint="@android:color/white" />
+
+                    <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/imageSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="280dp"
+                        app:sliderScrollTimeInSec="4"
+                        app:sliderStartAutoCycle="true"
+                        app:sliderAutoCycleDirection="back_and_forth"
+                        app:sliderAnimationDuration="500"
+                        app:sliderIndicatorGravity="center_horizontal|top"
+                        app:sliderIndicatorMarginTop="16dp"
+                        android:scrollIndicators="none"/>
+
+                </RelativeLayout>
+
             </LinearLayout>
         </ScrollView>
 

@@ -2,10 +2,12 @@ package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.du
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,7 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -27,6 +32,9 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,7 +50,7 @@ public class RiaFormosaDunasFragment23Pergunta2ParaSaberesMais extends Fragment 
             "- Introdução de espécies exóticas (ex. o chorão-da-praia, Carpobrotus edulis)<br>" +
             "- Poluição (lixo marinho)";
 
-    private static final int imageResourceId = R.drawable.img_riaformosa_dunas_23_parasaberesmais;
+    private static final int imageResourceId = R.drawable.img_riaformosa_dunas_23_parasaberesmais_ilustracao;
 
     // Views
     private TextView textViewTitle;
@@ -60,7 +68,21 @@ public class RiaFormosaDunasFragment23Pergunta2ParaSaberesMais extends Fragment 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_dunas23_parasaberesmais, container, false);
+
+        Glide.with(getActivity())
+                .load(imageResourceId)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
         ttsEnabled = false;
 
@@ -78,7 +100,7 @@ public class RiaFormosaDunasFragment23Pergunta2ParaSaberesMais extends Fragment 
     }
 
     private void initToolbar() {
-        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_sapal_title));
+        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_dunas_title));
         s.setSpan(new TypefaceSpan(getActivity(), "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -138,6 +160,9 @@ public class RiaFormosaDunasFragment23Pergunta2ParaSaberesMais extends Fragment 
 
         fabFullscreen = view.findViewById(R.id.fab_fullscreen);
         imageView = view.findViewById(R.id.imageView);
+        imageView.setVisibility(View.GONE);
+        fabFullscreen.setVisibility(View.GONE);
+
     }
 
 
@@ -149,7 +174,7 @@ public class RiaFormosaDunasFragment23Pergunta2ParaSaberesMais extends Fragment 
             }
         });
 
-        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+        /*fabFullscreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
@@ -157,14 +182,14 @@ public class RiaFormosaDunasFragment23Pergunta2ParaSaberesMais extends Fragment 
                 intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, imageResourceId);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     /**
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
+        // imageView.setImageResource(imageResourceId);
 
         textViewTitle.setText("Modificações adaptativas");
 
@@ -195,6 +220,8 @@ public class RiaFormosaDunasFragment23Pergunta2ParaSaberesMais extends Fragment 
                 materialAlertDialogBuilder.show();
             }
         });
+
+        link.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)), 0, link.length(), SpannableString.SPAN_INCLUSIVE_EXCLUSIVE);
 
         textViewContent.append(link);
         textViewContent.append(" (ex. o chorão-da-praia, Carpobrotus edulis)\n" +
