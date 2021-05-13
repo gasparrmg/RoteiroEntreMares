@@ -256,7 +256,7 @@ public class AvistamentosRiaFormosaPocasTranseptosChartsActivity extends AppComp
                 public void onChanged(List<AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias> avistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias) {
                     avistamentosRiaFormosaPocas = avistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
 
-                    guiaDeCampoViewModel.getAllAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias().removeObserver(this);
+                    // guiaDeCampoViewModel.getAllAvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias().removeObserver(this);
                     gotDataFromPocas = true;
                     checkIfAllDataReceived();
                 }
@@ -267,7 +267,7 @@ public class AvistamentosRiaFormosaPocasTranseptosChartsActivity extends AppComp
                 public void onChanged(List<AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias> avistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias) {
                     avistamentosRiaFormosaTranseptos = avistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
 
-                    guiaDeCampoViewModel.getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias().removeObserver(this);
+                    // guiaDeCampoViewModel.getAllAvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias().removeObserver(this);
                     gotDataFromTranseptos = true;
                     checkIfAllDataReceived();
                 }

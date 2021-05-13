@@ -57,7 +57,7 @@ public class BiodiversidadeZonacaoFragment7ConnectWords extends Fragment {
     private MaterialCardView cardView5;
     private MaterialCardView cardView6;
 
-    private static final int maxCorrect1 = 1;
+    private static final int maxCorrect1 = 2;
     private static final int maxCorrect2 = 1;
     private static final int maxCorrect3 = 2;
     private static final int maxCorrect4 = 1;
@@ -398,15 +398,29 @@ public class BiodiversidadeZonacaoFragment7ConnectWords extends Fragment {
                         if (draggedView.getId() == cardView3.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView2.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
+                            if (textView2.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView2.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else if (draggedView.getId() == cardView1.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView2.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
+                            if (textView2.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView2.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
@@ -416,15 +430,29 @@ public class BiodiversidadeZonacaoFragment7ConnectWords extends Fragment {
                         if (draggedView.getId() == cardView1.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView3.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
+                            if (textView3.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView3.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else if (draggedView.getId() == cardView3.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView3.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
+                            if (textView3.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView3.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else if (draggedView.getId() == cardView4.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
