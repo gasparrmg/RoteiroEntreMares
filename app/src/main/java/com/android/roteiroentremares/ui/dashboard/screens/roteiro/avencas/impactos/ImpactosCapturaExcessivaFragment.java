@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -15,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,9 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -42,6 +48,21 @@ public class ImpactosCapturaExcessivaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos_captura_excessiva, container, false);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_impactos_capturaexcessiva_ilustracao)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
+
         ttsEnabled = false;
         initViews(view);
         setOnClickListeners(view);
@@ -92,9 +113,8 @@ public class ImpactosCapturaExcessivaFragment extends Fragment {
                         String text = HtmlCompat.fromHtml(
                                 "Na plataforma rochosa das Avencas, ocorre a captura de inúmeras espécies, seja através da pesca (pesca à linha e caça submarina), seja pela apanha de minhocas (para isco), gastrópodes e crustáceos.<br>" +
                                         "<br>" +
-                                        "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios)." +
-                                        "Atualmente a  captura de polvos e navalheiras é a arte mais praticada.<br>" +
-                                        "<br><b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte.</b>",
+                                        "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios). " +
+                                        "Atualmente a  captura de polvos e navalheiras é a arte mais praticada.",
                                 HtmlCompat.FROM_HTML_MODE_LEGACY
                         ).toString();
                         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -162,9 +182,8 @@ public class ImpactosCapturaExcessivaFragment extends Fragment {
         textViewContent.setText(HtmlCompat.fromHtml(
                 "Na plataforma rochosa das Avencas, ocorre a captura de inúmeras espécies, seja através da pesca (pesca à linha e caça submarina), seja pela apanha de minhocas (para isco), gastrópodes e crustáceos.<br>" +
                         "<br>" +
-                        "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios)." +
-                        "Atualmente a  captura de polvos e navalheiras é a arte mais praticada.<br>" +
-                        "<br><b>Se este fator não for controlado, observa o cenário possível no ecrã seguinte.</b>",
+                        "A captura excessiva tem levado a uma diminuição gradual da abundância das espécies mais procuradas, em particular de algumas espécies de crustáceos (caranguejos, sapateiras, santolas) e de alguns gastrópodes (búzios). " +
+                        "Atualmente a  captura de polvos e navalheiras é a arte mais praticada.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }

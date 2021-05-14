@@ -1,13 +1,18 @@
 package com.android.roteiroentremares.util;
 
+import android.graphics.Color;
 import android.text.SpannableString;
+import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.method.MovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 public class ClickableString extends ClickableSpan {
 

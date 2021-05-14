@@ -27,6 +27,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,7 +37,7 @@ public class RiaFormosaDunasFragment7 extends Fragment {
 
     private static final String htmlContent = "As diferentes condições ambientais que a vegetação enfrenta contribuem para que se diferenciem pelo menos três zonas com associações fitoecológicas distintas: Duna embrionária, duna primária, zona interdunar e duna secundária.";
 
-    private static final int imageResourceId = R.drawable.img_riaformosa_dunas_esquema_zonas;
+    private static final int imageResourceId = R.drawable.img_avencas_dunas_esquema_ilustracao;
 
     // Views
     private TextView textViewTitle;
@@ -54,7 +55,7 @@ public class RiaFormosaDunasFragment7 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5_refactored, container, false);
 
         ttsEnabled = false;
 
@@ -162,7 +163,9 @@ public class RiaFormosaDunasFragment7 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
+        //imageView.setImageResource(imageResourceId);
+
+        Glide.with(getActivity()).load(imageResourceId).into(imageView);
 
         textViewContent.setText(HtmlCompat.fromHtml(
                 "As diferentes condições ambientais que a vegetação enfrenta contribuem para que se diferenciem pelo menos três zonas com associações ",

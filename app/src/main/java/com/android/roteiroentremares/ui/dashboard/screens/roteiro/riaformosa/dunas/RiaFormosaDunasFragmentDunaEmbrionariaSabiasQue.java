@@ -27,6 +27,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,7 +37,7 @@ public class RiaFormosaDunasFragmentDunaEmbrionariaSabiasQue extends Fragment {
 
     private static final String htmlContent = "A Morganheira-das-praias, quando quebrada produz uma seiva branca, que é tóxica. No entanto, existe uma larva de borboleta (<i>Hyles euphorbiae</i>), que se alimenta das folhas desta planta, sendo imune aos efeitos tóxicos da sua seiva. Desta forma, a larva tira partido dessas substâncias tóxicas para se proteger dos seus predadores. O seu aspeto colorido brilhante funciona então como um aviso a potenciais predadores para o seu mau paladar e potencial toxicidade.";
 
-    private static final int imageResourceId = R.drawable.img_riaformosa_dunas_larva;
+    private static final int imageResourceId = R.drawable.img_riaformosa_dunas_larva_ilustracao;
 
     // Views
     private TextView textViewTitle;
@@ -54,7 +55,7 @@ public class RiaFormosaDunasFragmentDunaEmbrionariaSabiasQue extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5_refactored, container, false);
 
         ttsEnabled = false;
 
@@ -158,7 +159,9 @@ public class RiaFormosaDunasFragmentDunaEmbrionariaSabiasQue extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
+        // imageView.setImageResource(imageResourceId);
+
+        Glide.with(getActivity()).load(imageResourceId).into(imageView);
 
         textViewTitle.setText("Sabias que...");
 

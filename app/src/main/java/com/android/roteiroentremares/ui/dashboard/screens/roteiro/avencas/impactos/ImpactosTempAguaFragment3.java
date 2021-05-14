@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -27,6 +30,9 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -40,9 +46,9 @@ public class ImpactosTempAguaFragment3 extends Fragment {
 
     // Views
     private TextView textViewTitle;
-    private ImageView imageView;
+    // private ImageView imageView;
     private TextView textViewContent;
-    private FloatingActionButton fabFullscreen;
+    // private FloatingActionButton fabFullscreen;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
 
@@ -56,6 +62,20 @@ public class ImpactosTempAguaFragment3 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_impactos_temp_agua3, container, false);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_impactos_especiesexoticas_ilustracao)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         ttsEnabled = false;
@@ -123,9 +143,9 @@ public class ImpactosTempAguaFragment3 extends Fragment {
 
     private void initViews(View view) {
         textViewTitle = view.findViewById(R.id.text_title);
-        imageView = view.findViewById(R.id.imageview_impactos);
+        // imageView = view.findViewById(R.id.imageview_impactos);
         textViewContent = view.findViewById(R.id.text_content);
-        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
+        // fabFullscreen = view.findViewById(R.id.fab_fullscreen);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
     }
@@ -134,10 +154,10 @@ public class ImpactosTempAguaFragment3 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
+        // imageView.setImageResource(imageResourceId);
 
         textViewTitle.setText(HtmlCompat.fromHtml(
-                "Cenário - Espécies exóticas",
+                "Espécies exóticas",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 
@@ -148,7 +168,7 @@ public class ImpactosTempAguaFragment3 extends Fragment {
     }
 
     private void setOnClickListeners(View view) {
-        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+        /*fabFullscreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Open Image Activity
@@ -156,7 +176,7 @@ public class ImpactosTempAguaFragment3 extends Fragment {
                 intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, imageResourceId);
                 startActivity(intent);
             }
-        });
+        });*/
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override

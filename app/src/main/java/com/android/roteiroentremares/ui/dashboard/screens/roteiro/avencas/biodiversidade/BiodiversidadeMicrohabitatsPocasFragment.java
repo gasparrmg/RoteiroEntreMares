@@ -1,10 +1,13 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,7 +19,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -26,6 +32,9 @@ import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.ui.dashboard.adapters.guiadecampo.SliderAdapter;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -58,6 +67,20 @@ public class BiodiversidadeMicrohabitatsPocasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_biodiversidade_microhabitats_pocas, container, false);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_biodiversidade_pocas_bg)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
         ttsEnabled = false;
 
@@ -127,16 +150,17 @@ public class BiodiversidadeMicrohabitatsPocasFragment extends Fragment {
         textViewTitle = view.findViewById(R.id.text_title);
         textViewTitle2 = view.findViewById(R.id.text_title2);
         textViewContent = view.findViewById(R.id.text_content);
-        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
+        // fabFullscreen = view.findViewById(R.id.fab_fullscreen);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
 
-        initSliderView(view);
+        //sliderView = view.findViewById(R.id.imageSlider);
+        //sliderView.setVisibility(View.GONE);
+
+        // initSliderView(view);
     }
 
     private void initSliderView(View view) {
-        sliderView = view.findViewById(R.id.imageSlider);
-
         sliderAdapter = new SliderAdapter(getActivity(), imageResourceIds);
         sliderView.setSliderAdapter(sliderAdapter);
 
@@ -169,6 +193,8 @@ public class BiodiversidadeMicrohabitatsPocasFragment extends Fragment {
             }
         });
 
+        linkInfralitoral.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)), 0, linkInfralitoral.length(), SpannableString.SPAN_INCLUSIVE_EXCLUSIVE);
+
         textViewContent.setText(HtmlCompat.fromHtml(
                 "As poças são pequenos enclaves do ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
@@ -184,7 +210,7 @@ public class BiodiversidadeMicrohabitatsPocasFragment extends Fragment {
     }
 
     private void setOnClickListeners(View view) {
-        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+        /*fabFullscreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Open Image Activity
@@ -194,7 +220,7 @@ public class BiodiversidadeMicrohabitatsPocasFragment extends Fragment {
                 intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, currentImageResource);
                 startActivity(intent);
             }
-        });
+        });*/
 
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override

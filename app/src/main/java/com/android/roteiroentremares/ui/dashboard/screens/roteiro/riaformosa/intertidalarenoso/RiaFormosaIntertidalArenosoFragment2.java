@@ -27,6 +27,7 @@ import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.ClickableString;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -36,7 +37,7 @@ public class RiaFormosaIntertidalArenosoFragment2 extends Fragment {
 
     private static final String htmlContent = "Devido às variações periódicas das condições abióticas associadas  ao ciclo das marés, estabelecem-se determinadas condições ambientais, sensivelmente constantes  em função da situação  em relação ao nível do mar, que vão condicionar a distribuição dos organismos. É possível observar povoamentos de organismos em cada uma destas zonas, que vão constituir diferentes andares. Nestes locais é comum considerarmos os seguintes andares: supralitoral, mediolitoral e infralitoral.";
 
-    private static final int imageResourceId = R.drawable.img_biodiversidade_zonacao_esquema;
+    private static final int imageResourceId = R.drawable.img_biodiversidade_zonacao_esquema_ilustracao;
 
     // Views
     private TextView textViewTitle;
@@ -54,7 +55,7 @@ public class RiaFormosaIntertidalArenosoFragment2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_sapal5_refactored, container, false);
 
         ttsEnabled = false;
 
@@ -161,7 +162,7 @@ public class RiaFormosaIntertidalArenosoFragment2 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
+        Glide.with(getActivity()).load(imageResourceId).into(imageView);
 
         textViewTitle.setText("Zonação");
 

@@ -1,5 +1,6 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -15,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,9 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -48,7 +54,21 @@ public class RiaFormosaIntertidalArenosoFragment23 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_nao_fiques_por_aqui, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_nao_fiques_por_aqui_refactored, container, false);
+
+        Glide.with(getActivity())
+                .load(R.drawable.img_intertidalarenoso_pressoes_ilustracao)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
         ttsEnabled = false;
 

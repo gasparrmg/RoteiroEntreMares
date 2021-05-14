@@ -382,9 +382,16 @@ public class RiaFormosaDunasFragment18ConnectWords extends Fragment {
                         } else if (draggedView.getId() == cardView5.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView1.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
+                            if (textView1.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView1.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
@@ -406,9 +413,16 @@ public class RiaFormosaDunasFragment18ConnectWords extends Fragment {
                         if (draggedView.getId() == cardView5.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView3.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
+                            if (textView3.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView3.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
@@ -430,9 +444,16 @@ public class RiaFormosaDunasFragment18ConnectWords extends Fragment {
                         if (draggedView.getId() == cardView4.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView5.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
+                            if (textView5.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView5.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);
@@ -442,11 +463,16 @@ public class RiaFormosaDunasFragment18ConnectWords extends Fragment {
                         if (draggedView.getId() == cardView4.getId()) {
                             ClipData.Item item = event.getClipData().getItemAt(0);
                             String dragData = item.getText().toString();
-                            textView6.append(dragData + "  ");
 
-                            saveCorrect(draggedView);
-
-                            Toast.makeText(getActivity(), "Correto!", Toast.LENGTH_SHORT).show();
+                            if (textView6.getText().toString().indexOf(dragData) != -1) {
+                                // Char already there
+                                draggedView.setVisibility(View.VISIBLE);
+                                return false;
+                            } else {
+                                // Char NOT there -> append
+                                textView6.append(dragData + "  ");
+                                saveCorrect(draggedView);
+                            }
                         } else {
                             Toast.makeText(getActivity(), "Errado! Tenta outra vez.", Toast.LENGTH_SHORT).show();
                             draggedView.setVisibility(View.VISIBLE);

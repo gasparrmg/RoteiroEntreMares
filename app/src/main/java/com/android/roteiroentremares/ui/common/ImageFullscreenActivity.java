@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment13TarefaTranseptosDirections;
+import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -62,7 +63,12 @@ public class ImageFullscreenActivity extends AppCompatActivity {
             finish();
         } else {
             photoView = findViewById(R.id.photo_view);
-            photoView.setImageResource(resourceId);
+
+            // photoView.setImageResource(resourceId);
+
+            Glide.with(this)
+                    .load(resourceId)
+                    .into(photoView);
         }
     }
 }

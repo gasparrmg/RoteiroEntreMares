@@ -1,6 +1,7 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -26,6 +29,9 @@ import androidx.navigation.Navigation;
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
@@ -38,7 +44,7 @@ public class RiaFormosaPradariasMarinhasFragment7 extends Fragment {
             "<br>" +
             "- São zonas privilegiadas de alimentação de espécies comercialmente importantes de peixes, moluscos e crustáceos, e são usados como maternidade por muitas destas espécies, suportando o setor das <b>pescas</b>.";
 
-    private static final int imageResourceId = R.drawable.img_riaformosa_pradariasmarinhas_ovochoco;
+    private static final int imageResourceId = R.drawable.img_pradariasmarinhas_7;
 
     // Views
     private TextView textViewTitle;
@@ -48,9 +54,6 @@ public class RiaFormosaPradariasMarinhasFragment7 extends Fragment {
     private ImageButton buttonPrev;
     private Button buttonSabiasQue;
 
-    private ImageView imageView;
-    private FloatingActionButton fabFullscreen;
-
     private TextToSpeech tts;
     private boolean ttsEnabled;
 
@@ -58,7 +61,21 @@ public class RiaFormosaPradariasMarinhasFragment7 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riaformosa_pradariasmarinhas7, container, false);
+        View view = inflater.inflate(R.layout.fragment_riaformosa_pradariasmarinhas7_refactored, container, false);
+
+        Glide.with(getActivity())
+                .load(imageResourceId)
+                .into(new CustomTarget<Drawable>() {
+                    @Override
+                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                        view.setBackground(resource);
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
+                    }
+                });
 
         ttsEnabled = false;
 
@@ -132,8 +149,8 @@ public class RiaFormosaPradariasMarinhasFragment7 extends Fragment {
         buttonPrev = view.findViewById(R.id.btn_prev);
         buttonSabiasQue = view.findViewById(R.id.button_sabiasque);
 
-        fabFullscreen = view.findViewById(R.id.fab_fullscreen);
-        imageView = view.findViewById(R.id.imageView);
+        /*fabFullscreen = view.findViewById(R.id.fab_fullscreen);
+        imageView = view.findViewById(R.id.imageView);*/
     }
 
 
@@ -152,7 +169,7 @@ public class RiaFormosaPradariasMarinhasFragment7 extends Fragment {
             }
         });
 
-        fabFullscreen.setOnClickListener(new View.OnClickListener() {
+        /*fabFullscreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
@@ -160,7 +177,7 @@ public class RiaFormosaPradariasMarinhasFragment7 extends Fragment {
                 intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, imageResourceId);
                 startActivity(intent);
             }
-        });
+        });*/
 
         buttonSabiasQue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,7 +192,7 @@ public class RiaFormosaPradariasMarinhasFragment7 extends Fragment {
      * Inserts all the content text into the proper Views
      */
     private void insertContent() {
-        imageView.setImageResource(imageResourceId);
+        // imageView.setImageResource(imageResourceId);
 
         textViewTitle.setText(HtmlCompat.fromHtml(
                 "Qual a importância de preservar estes locais?",

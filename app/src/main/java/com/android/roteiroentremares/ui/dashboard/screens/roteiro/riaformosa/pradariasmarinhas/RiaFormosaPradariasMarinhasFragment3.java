@@ -162,7 +162,7 @@ public class RiaFormosaPradariasMarinhasFragment3 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ImageFullscreenActivity.class);
-                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, R.drawable.img_riaformosa_pradariasmarinhas_mapa);
+                intent.putExtra(ImageFullscreenActivity.INTENT_EXTRA_KEY, R.drawable.img_riaformosa_pradariasmarinhas_mapa_ilustracao);
                 startActivity(intent);
             }
         });

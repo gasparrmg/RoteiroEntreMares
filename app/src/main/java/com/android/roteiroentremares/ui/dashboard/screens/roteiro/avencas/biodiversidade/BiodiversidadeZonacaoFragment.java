@@ -44,7 +44,7 @@ public class BiodiversidadeZonacaoFragment extends Fragment {
     private static final String htmlContent = "Devido às variações periódicas das condições abióticas associadas  ao ciclo das marés, estabelecem-se determinadas condições ambientais, sensivelmente constantes  em função da situação  em relação ao nível do mar, que vão condicionar a distribuição dos organismos. " +
             "É possível observar povoamentos de organismos em cada uma destas zonas, que vão constituir diferentes andares. Nestas plataformas é comum considerarmos os seguintes andares: <b>supralitoral</b>, <b>mediolitoral</b> e <b>infralitoral</b>";
 
-    private static final int imageResourceId = R.drawable.img_biodiversidade_zonacao_esquema;
+    private static final int imageResourceId = R.drawable.img_biodiversidade_zonacao_esquema_ilustracao;
 
     private DashboardViewModel dashboardViewModel;
 
