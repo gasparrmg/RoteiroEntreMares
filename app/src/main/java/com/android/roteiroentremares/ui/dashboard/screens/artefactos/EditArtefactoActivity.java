@@ -300,7 +300,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 @Override
                 public void onClick(View v) {
                     Tooltip tooltip = new Tooltip.Builder(imageButtonInfoShare)
-                            .setText("Partilha não está disponível porque ainda não tens um código de turma associado")
+                            .setText(getResources().getString(R.string.coming_soon_message))
                             .setTextColor(Color.WHITE)
                             .setGravity(Gravity.TOP)
                             .setCornerRadius(8f)

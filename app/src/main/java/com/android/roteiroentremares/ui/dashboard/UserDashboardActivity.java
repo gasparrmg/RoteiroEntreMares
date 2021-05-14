@@ -148,6 +148,10 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
 
                 break;
+            case R.id.nav_about_us:
+                Intent intentAboutUs = new Intent(this, AboutUsActivity.class);
+                startActivity(intentAboutUs);
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

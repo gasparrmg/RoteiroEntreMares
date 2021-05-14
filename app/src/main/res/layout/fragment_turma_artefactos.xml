@@ -6,10 +6,42 @@
     tools:context=".ui.dashboard.screens.artefactos.TurmaArtefactosFragment"
     android:background="@android:color/transparent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearlayout_isEmpty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="turma artefactos" />
+        android:layout_marginBottom="64dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:baselineAlignBottom="false"
+            android:src="@drawable/ic_search_not_found" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Brevemente..."
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:fontFamily="@font/open_sans"
+            android:text="@string/coming_soon_message"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
 </FrameLayout>

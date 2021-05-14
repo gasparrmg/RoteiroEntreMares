@@ -24,23 +24,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.GlossarioRiaFormosaActivity"></activity>
+        <activity
+            android:name=".ui.dashboard.AboutUsActivity"
+            android:parentActivityName=".ui.dashboard.UserDashboardActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.GlossarioRiaFormosaActivity" />
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.AvistamentosListActivity"
             android:parentActivityName=".ui.dashboard.GuiaDeCampoActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.AvistamentosRiaFormosaChartsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.riaformosa.AvistamentosRiaFormosaPocasTranseptosChartsActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.dashboard.screens.guiadecampo.details.AvistamentoPocasDetails"
             android:screenOrientation="portrait" />
