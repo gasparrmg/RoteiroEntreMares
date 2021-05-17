@@ -30,8 +30,6 @@ public class ChooseZoneInteresseFragment extends Fragment {
     private Button btnAvencas;
     private Button btnRiaFormosa;
     private ImageView imageViewOnBoardingFinal;
-    private FloatingActionButton buttonFabNext;
-    private ImageButton buttonPrev;
     private ViewPager2 viewPager;
 
     public ChooseZoneInteresseFragment() {
@@ -49,13 +47,7 @@ public class ChooseZoneInteresseFragment extends Fragment {
         btnAvencas = view.findViewById(R.id.btn_avencas);
         btnRiaFormosa = view.findViewById(R.id.btn_riaformosa);
         imageViewOnBoardingFinal = view.findViewById(R.id.img_onboarding_final);
-        buttonFabNext = view.findViewById(R.id.btn_fabNext);
-        buttonPrev = view.findViewById(R.id.btn_prev);
         viewPager = getActivity().findViewById(R.id.viewPager);
-
-        buttonFabNext.setEnabled(false);
-
-        buttonPrev.setVisibility(View.GONE);
 
         setOnClickListeners(view);
 
@@ -74,13 +66,6 @@ public class ChooseZoneInteresseFragment extends Fragment {
      * Declaration of all onClick events
      */
     private void setOnClickListeners(View view) {
-        buttonPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).popBackStack();
-            }
-        });
-
         btnAvencas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
