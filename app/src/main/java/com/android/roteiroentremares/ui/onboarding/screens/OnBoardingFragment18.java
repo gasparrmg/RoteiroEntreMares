@@ -7,6 +7,7 @@ import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +72,7 @@ public class OnBoardingFragment18 extends Fragment implements EasyPermissions.Pe
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                askForPermissions();
+                // askForPermissions();
                 viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
@@ -110,9 +111,9 @@ public class OnBoardingFragment18 extends Fragment implements EasyPermissions.Pe
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
     private void askForPermissions() {
         if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getPermissionList())) {
-            Toast.makeText(getActivity(), "Already has permissions needed", Toast.LENGTH_SHORT).show();
+            Log.d("ROTEIRO_PERMISSIONS", getResources().getString(R.string.permissions_successful));
         } else {
-            EasyPermissions.requestPermissions(getActivity(), "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(getActivity(), getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getPermissionList());
         }
     }

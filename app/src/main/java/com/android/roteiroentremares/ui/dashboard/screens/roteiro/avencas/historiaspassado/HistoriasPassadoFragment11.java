@@ -1,9 +1,14 @@
 package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -34,6 +39,16 @@ import com.android.roteiroentremares.ui.dashboard.viewmodel.common.LocationViewM
 import com.android.roteiroentremares.util.Constants;
 import com.android.roteiroentremares.util.PermissionsUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -65,6 +80,9 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
 
     private TextToSpeech tts;
     private boolean ttsEnabled;
+    private Vibrator vibrator;
+    private boolean isNearSpot;
+    private boolean hasLocationServicesOn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +91,9 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
         View view = inflater.inflate(R.layout.fragment_historias_passado11, container, false);
 
         ttsEnabled = false;
+        isNearSpot = false;
+        hasLocationServicesOn = false;
+        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         initViews(view);
         insertContent();
@@ -125,7 +146,7 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
                         String text = HtmlCompat.fromHtml(
                                 "As formações rochosas constituem o testemunho preservado do registo geológico, pelo que o seu estudo permite espreitar o passado no que diz respeito à reconstituição dos ambientes geográficos em que se depositaram e à história evolutiva no tempo." +
                                         "<br><br>" +
-                                        "Dirige-te agora à arriba da Praia da Bafureira...<br><br>Poderás passar para a página seguinte assim que estiveres perto do local.",
+                                        "Dirige-te agora à arriba da Praia da Bafureira...<br><br>Só deverás passar para o próximo ecrã quando te encontrares perto do local.",
                                 HtmlCompat.FROM_HTML_MODE_LEGACY
                         ).toString();
                         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -164,7 +185,7 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
         textViewContent.setText(HtmlCompat.fromHtml(
                 "As formações rochosas constituem o testemunho preservado do registo geológico, pelo que o seu estudo permite espreitar o passado no que diz respeito à reconstituição dos ambientes geográficos em que se depositaram e à história evolutiva no tempo." +
                         "<br><br>" +
-                        "Dirige-te agora à arriba da Praia da Bafureira...<br><br>Poderás passar para a página seguinte assim que estiveres perto do local.",
+                        "Dirige-te agora à arriba da Praia da Bafureira...<br><br>Só deverás passar para o próximo ecrã quando te encontrares perto do local.",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
     }
@@ -190,7 +211,45 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment11_to_historiasPassadoFragment12);
+                if (!hasLocationServicesOn) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.location_no_data_warning));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment11_to_historiasPassadoFragment12);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    if (!isNearSpot) {
+                        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                        materialAlertDialogBuilder.setTitle("Atenção!");
+                        materialAlertDialogBuilder.setMessage(getResources().getString(R.string.location_not_near_point_warning));
+                        materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment11_to_historiasPassadoFragment12);
+                            }
+                        });
+                        materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // dismiss
+                            }
+                        });
+                        materialAlertDialogBuilder.show();
+                    } else {
+                        Navigation.findNavController(view).navigate(R.id.action_historiasPassadoFragment11_to_historiasPassadoFragment12);
+                    }
+                }
             }
         });
 
@@ -234,8 +293,12 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
                 // Toast.makeText(getActivity(), "Distance: " + results[0] + " meters", Toast.LENGTH_SHORT).show();
 
                 // TODO: Change this value to 100m after testing
-                if (results[0] < Constants.MAXIMUM_DISTANCE_TO_HOTSPOT && !buttonFabNext.isEnabled()) {
-                    Toast.makeText(getActivity(), "Já estás perto do local. Podes continuar!", Toast.LENGTH_SHORT).show();
+                if (results[0] < Constants.MAXIMUM_DISTANCE_TO_HOTSPOT && !isNearSpot) {
+                    isNearSpot = true;
+
+                    Toast.makeText(getActivity(), getResources().getString(R.string.location_near_point), Toast.LENGTH_SHORT).show();
+
+                    vibrator.vibrate(500);
 
                     buttonFabNext.setVisibility(View.VISIBLE);
                     buttonFabNext.setEnabled(true);
@@ -247,11 +310,61 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
     private void askLocationPermissions() {
         if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getLocationPermissionList())) {
-            initRequestLocationUpdates();
+            // initRequestLocationUpdates();
+            checkIfLocationIsOn();
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getLocationPermissionList());
         }
+    }
+
+    private void checkIfLocationIsOn() {
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        Task<LocationSettingsResponse> result =
+                LocationServices.getSettingsClient(getActivity()).checkLocationSettings(builder.build());
+
+
+
+        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+                try {
+                    LocationSettingsResponse response = task.getResult(ApiException.class);
+                    // All location settings are satisfied. The client can initialize location
+                    // requests here.
+                    hasLocationServicesOn = true;
+                    initRequestLocationUpdates();
+                } catch (ApiException exception) {
+                    switch (exception.getStatusCode()) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            // Location settings are not satisfied. But could be fixed by showing the
+                            // user a dialog.
+                            try {
+                                // Cast to a resolvable exception.
+                                ResolvableApiException resolvable = (ResolvableApiException) exception;
+                                // Show the dialog by calling startResolutionForResult(),
+                                // and check the result in onActivityResult().
+
+                                //resolvable.startResolutionForResult(getActivity(), LocationRequest.PRIORITY_HIGH_ACCURACY);
+                                startIntentSenderForResult(resolvable.getResolution().getIntentSender(), LocationRequest.PRIORITY_HIGH_ACCURACY, null, 0, 0, 0, null);
+                            } catch (IntentSender.SendIntentException e) {
+                                // Ignore the error.
+                            } catch (ClassCastException e) {
+                                // Ignore, should be an impossible error.
+                            }
+                            break;
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                            // Location settings are not satisfied. However, we have no way to fix the
+                            // settings so we won't show the dialog.
+                            break;
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -272,8 +385,31 @@ public class HistoriasPassadoFragment11 extends Fragment implements EasyPermissi
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show();
-        } else {
-            askLocationPermissions();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("LocationFragment", "onActivityResult");
+        switch (requestCode) {
+            case LocationRequest.PRIORITY_HIGH_ACCURACY:
+                Log.i("LocationFragment", "onActivityResult -> PRIORITY");
+                switch (resultCode) {
+                    case Activity.RESULT_OK:
+                        // All required changes were successfully made
+                        Log.i("LocationFragment", "onActivityResult: GPS Enabled by user");
+                        hasLocationServicesOn = true;
+                        initRequestLocationUpdates();
+                        break;
+                    case Activity.RESULT_CANCELED:
+                        // The user was asked to change settings, but chose not to
+                        Toast.makeText(getActivity(), getResources().getText(R.string.gps_turned_off_error), Toast.LENGTH_LONG).show();
+                        Log.i("LocationFragment", "onActivityResult: User rejected GPS request");
+                        break;
+                    default:
+                        break;
+                }
+                break;
         }
     }
 }

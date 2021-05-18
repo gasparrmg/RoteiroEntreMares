@@ -119,9 +119,7 @@
         app:icon="@drawable/ic_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="invisible"
-        android:enabled="false"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ImageButton
         android:id="@+id/btn_prev"

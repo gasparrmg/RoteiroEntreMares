@@ -311,7 +311,7 @@ public class NewEditAvistamentoZonacaoFragment extends Fragment implements EasyP
             // Open Camera
             cropImage();
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
         }
     }
@@ -334,8 +334,6 @@ public class NewEditAvistamentoZonacaoFragment extends Fragment implements EasyP
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show();
-        } else {
-            askCameraPermissions();
         }
     }
 }

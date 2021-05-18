@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.roteiroentremares.R;
 import com.android.roteiroentremares.data.model.Artefacto;
@@ -194,7 +193,6 @@ public class AvistamentosFragment extends Fragment {
     private void showMessageIfNoAvistamentos() {
         if (avencasOrRiaFormosa == 0) {
             if (noPocas && noZonacao) {
-                Toast.makeText(getActivity(), "There's no records.", Toast.LENGTH_SHORT).show();
                 linearLayoutIsEmpty.setVisibility(View.VISIBLE);
                 textViewTitle.setVisibility(View.GONE);
                 fabCharts.setVisibility(View.GONE);
@@ -205,7 +203,6 @@ public class AvistamentosFragment extends Fragment {
             }
         } else {
             if (noRiaFormosaDunas && noRiaFormosaPocas && noRiaFormosaTranseptos) {
-                Toast.makeText(getActivity(), "There's no records.", Toast.LENGTH_SHORT).show();
                 linearLayoutIsEmpty.setVisibility(View.VISIBLE);
                 textViewTitle.setVisibility(View.GONE);
             } else {

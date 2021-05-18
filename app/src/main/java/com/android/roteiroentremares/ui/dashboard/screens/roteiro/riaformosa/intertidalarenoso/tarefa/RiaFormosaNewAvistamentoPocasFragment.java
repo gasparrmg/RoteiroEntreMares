@@ -259,7 +259,7 @@ public class RiaFormosaNewAvistamentoPocasFragment extends Fragment implements E
             // Open Camera
             cropImage();
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
         }
     }
@@ -282,8 +282,6 @@ public class RiaFormosaNewAvistamentoPocasFragment extends Fragment implements E
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show();
-        } else {
-            askCameraPermissions();
         }
     }
 }

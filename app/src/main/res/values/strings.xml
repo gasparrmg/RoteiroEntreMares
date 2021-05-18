@@ -30,8 +30,13 @@
     <string name="warning_content_not_finished">Ainda tens conteúdos por descobrir aqui. Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_task_not_finished">Não acabaste a tarefa! Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_question_not_finished">Não respondeste à questão! Tens a certeza de que queres passar para o próximo ecrã?</string>
+    <string name="location_not_near_point_warning">Ainda não estás perto do local. Tens a certeza de que queres passar para o próximo ecrã?</string>
+    <string name="location_no_data_warning">Ainda não foi possível recolher a tua localização. Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_delete_image">Tens a certeza de que queres apagar esta imagem?</string>
     <string name="message_correct_answer">Resposta correta!</string>
     <string name="coming_soon_message">Esta funcionalidade ainda não está disponível</string>
     <string name="about_us_title">Acerca do projecto</string>
+    <string name="permissions_successful">All needed permissions were granted</string>
+    <string name="permissions_warning">A aplicação necessita da sua permissão para aceder a todas as funcionalidades</string>
+    <string name="location_near_point">Já estás perto do local. Podes continuar!</string>
 </resources>
