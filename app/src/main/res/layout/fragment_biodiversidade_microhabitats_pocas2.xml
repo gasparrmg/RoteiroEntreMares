@@ -92,9 +92,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:tint="#FFFFFF"
-        android:visibility="invisible"
-        android:enabled="false"/>
+        app:tint="#FFFFFF"/>
 
     <ImageButton
         android:id="@+id/btn_prev"

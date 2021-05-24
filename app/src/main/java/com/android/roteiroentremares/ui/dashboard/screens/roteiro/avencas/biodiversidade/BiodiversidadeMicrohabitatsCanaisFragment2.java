@@ -2,6 +2,7 @@ package com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodi
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
@@ -48,6 +49,7 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -61,7 +63,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 @AndroidEntryPoint
 public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment implements EasyPermissions.PermissionCallbacks {
 
-    private final String htmlContent = "Dirige-te à plataforma onde podes encontrar vários destes canais premindo o botão das direções.<br><br>Poderás passar para o próximo ecrã assim que te encontrares perto do local.";
+    private final String htmlContent = "Dirige-te à plataforma onde podes encontrar vários destes canais premindo o botão das direções.<br><br>Só deverás passar para o próximo ecrã quando te encontrares perto do local.";
     private final int imageResourceId = R.drawable.img_biodiversidade_microhabitats_canais;
     private final String spotCoordinates = "38.68839,-9.36291";
     private final double spotLatitude = 38.68839;
@@ -83,6 +85,8 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
     private TextToSpeech tts;
     private boolean ttsEnabled;
     private Vibrator vibrator;
+    private boolean isNearSpot;
+    private boolean hasLocationServicesOn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +97,8 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         ttsEnabled = false;
+        isNearSpot = false;
+        hasLocationServicesOn = false;
 
         initViews(view);
         insertContent();
@@ -214,8 +220,48 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dashboardViewModel.setBiodiversidadeMicrohabitatsCanaisAsFinished();
-                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                if (!hasLocationServicesOn) {
+                    MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                    materialAlertDialogBuilder.setTitle("Atenção!");
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.location_no_data_warning));
+                    materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dashboardViewModel.setBiodiversidadeMicrohabitatsCanaisAsFinished();
+                            Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                        }
+                    });
+                    materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // dismiss
+                        }
+                    });
+                    materialAlertDialogBuilder.show();
+                } else {
+                    if (!isNearSpot) {
+                        MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+                        materialAlertDialogBuilder.setTitle("Atenção!");
+                        materialAlertDialogBuilder.setMessage(getResources().getString(R.string.location_not_near_point_warning));
+                        materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dashboardViewModel.setBiodiversidadeMicrohabitatsCanaisAsFinished();
+                                Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                            }
+                        });
+                        materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // dismiss
+                            }
+                        });
+                        materialAlertDialogBuilder.show();
+                    } else {
+                        dashboardViewModel.setBiodiversidadeMicrohabitatsCanaisAsFinished();
+                        Navigation.findNavController(view).popBackStack(R.id.biodiversidadeMicrohabitatsFragment ,false);
+                    }
+                }
             }
         });
 
@@ -266,6 +312,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
                     LocationSettingsResponse response = task.getResult(ApiException.class);
                     // All location settings are satisfied. The client can initialize location
                     // requests here.
+                    hasLocationServicesOn = true;
                     initRequestLocationUpdates();
                 } catch (ApiException exception) {
                     switch (exception.getStatusCode()) {
@@ -307,9 +354,9 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
                 // Toast.makeText(getActivity(), "Distance: " + results[0] + " meters", Toast.LENGTH_SHORT).show();
 
                 // TODO: Change this value to 100m after testing
-                if (results[0] < Constants.MAXIMUM_DISTANCE_TO_HOTSPOT && !buttonFabNext.isEnabled()) {
-                    Toast.makeText(getActivity(), "Já estás perto do local. Podes continuar!", Toast.LENGTH_SHORT).show();
-
+                if (results[0] < Constants.MAXIMUM_DISTANCE_TO_HOTSPOT && !isNearSpot) {
+                    Toast.makeText(getActivity(), getResources().getString(R.string.location_near_point), Toast.LENGTH_SHORT).show();
+                    isNearSpot = true;
                     vibrator.vibrate(500);
 
                     buttonFabNext.setVisibility(View.VISIBLE);
@@ -325,7 +372,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
             // initRequestLocationUpdates();
             checkIfLocationIsOn();
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getLocationPermissionList());
         }
     }
@@ -348,8 +395,6 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show();
-        } else {
-            askLocationPermissions();
         }
     }
 
@@ -363,6 +408,7 @@ public class BiodiversidadeMicrohabitatsCanaisFragment2 extends Fragment impleme
                     case Activity.RESULT_OK:
                         // All required changes were successfully made
                         Log.i("LocationFragment", "onActivityResult: GPS Enabled by user");
+                        hasLocationServicesOn = true;
                         initRequestLocationUpdates();
                         break;
                     case Activity.RESULT_CANCELED:

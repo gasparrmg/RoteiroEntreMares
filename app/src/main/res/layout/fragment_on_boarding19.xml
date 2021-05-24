@@ -9,8 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="100dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +20,7 @@
             android:id="@+id/img_onboarding_final"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="fitXY"
             android:src="@drawable/img_onboarding_final" />
 
         <LinearLayout
@@ -31,7 +32,6 @@
                 android:id="@+id/btn_avencas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="75dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:visibility="visible" />
@@ -40,7 +40,6 @@
                 android:id="@+id/btn_riaformosa"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="75dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:visibility="visible" />
@@ -50,50 +49,18 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Escolhe o ponto onde te encontras..."
+        android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_fabNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:clickable="true"
-        android:scaleType="center"
-        android:src="@drawable/ic_next"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:tint="#FFFFFF" />
-
-    <ImageButton
-        android:id="@+id/btn_prev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/ic_prev"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
-        app:layout_constraintEnd_toStartOf="@+id/btn_fabNext"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:indicatorColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_fabNext"
-        app:layout_constraintTop_toTopOf="@+id/btn_fabNext"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

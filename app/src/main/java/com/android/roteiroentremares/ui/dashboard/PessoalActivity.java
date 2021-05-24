@@ -147,6 +147,14 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         formValidator.setValidationListener(this);
 
         Log.d(TAG, "Tipo Utilizador: " + tipoUtilizador);
+
+        hideShareFuncionality();
+    }
+
+    private void hideShareFuncionality() {
+        textInputLayoutCodigoTurma.setVisibility(View.GONE);
+        textInputLayoutGerarCodigoTurma.setVisibility(View.GONE);
+        linearLayoutShareLocationArtefacto.setVisibility(View.GONE);
     }
 
     @Override

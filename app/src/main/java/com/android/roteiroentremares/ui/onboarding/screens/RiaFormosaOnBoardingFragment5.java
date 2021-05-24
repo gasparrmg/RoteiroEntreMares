@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
@@ -84,6 +86,8 @@ public class RiaFormosaOnBoardingFragment5 extends Fragment {
                 startActivity(browserIntent);
             }
         });
+
+        link.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)), 0, link.length(), SpannableString.SPAN_INCLUSIVE_EXCLUSIVE);
 
         textViewContent.setText(HtmlCompat.fromHtml(
                 "ATENÇÃO:<br><br>" +

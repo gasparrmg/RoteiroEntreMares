@@ -19,6 +19,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -63,7 +64,7 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
 
         initToolbar();
 
-        askForPermissions();
+        // askForPermissions();
     }
 
     private void initToolbar() {
@@ -148,6 +149,10 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ResourcesCompat.getColor(getResources(), R.color.colorError, null));
 
                 break;
+            case R.id.nav_about_us:
+                Intent intentAboutUs = new Intent(this, AboutUsActivity.class);
+                startActivity(intentAboutUs);
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -164,9 +169,9 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
     private void askForPermissions() {
         if (EasyPermissions.hasPermissions(this, PermissionsUtils.getPermissionList())) {
-            // Toast.makeText(this, "Already has permissions needed", Toast.LENGTH_SHORT).show();
+            Log.d("ROTEIRO_PERMISSIONS", getResources().getString(R.string.permissions_successful));
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getPermissionList());
         }
     }
@@ -188,15 +193,6 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show();
         } else {
-            askForPermissions();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
             askForPermissions();
         }
     }

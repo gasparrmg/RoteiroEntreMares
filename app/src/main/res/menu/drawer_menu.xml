@@ -19,4 +19,9 @@
         android:id="@+id/nav_change_zone"
         android:icon="@drawable/ic_baseline_place_24"
         android:title="Mudar zona de interesse" />
+
+    <item
+        android:id="@+id/nav_about_us"
+        android:icon="@drawable/ic_info"
+        android:title="@string/about_us_title" />
 </menu>

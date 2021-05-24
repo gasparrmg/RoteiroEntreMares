@@ -11,6 +11,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -34,6 +35,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -55,8 +57,14 @@ import com.android.roteiroentremares.util.PermissionsUtils;
 import com.android.roteiroentremares.util.TimeUtils;
 import com.android.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -98,6 +106,9 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     private TextView textViewShare;
     private SwitchMaterial switchMaterialShare;
     private ImageButton imageButtonInfoShare;
+
+    private SwitchMaterial switchMaterialLocation;
+
     private Button buttonSubmit;
 
     private TextInputLayout textInputLayoutDescription;
@@ -246,6 +257,8 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         imageButtonInfoShare = findViewById(R.id.imageButton_infoShare);
         buttonSubmit = findViewById(R.id.button_submit);
 
+        switchMaterialLocation = findViewById(R.id.switch_location);
+
         if (artefactosViewModel.getTipoUtilizador() == 2) {
             // Explorador
             linearLayoutShare.setVisibility(View.GONE);
@@ -259,7 +272,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 @Override
                 public void onClick(View v) {
                     Tooltip tooltip = new Tooltip.Builder(imageButtonInfoShare)
-                            .setText("Partilha não está disponível porque ainda não tens um código de turma associado")
+                            .setText(getResources().getString(R.string.coming_soon_message))
                             .setTextColor(Color.WHITE)
                             .setGravity(Gravity.TOP)
                             .setCornerRadius(8f)
@@ -288,8 +301,10 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             buttonAddPicture.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    startActivityForResult(gallery, Constants.GALLERY_REQUEST_CODE);
+                    /*Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(gallery, Constants.GALLERY_REQUEST_CODE);*/
+
+                    askGalleryPermissions();
                 }
             });
 
@@ -389,120 +404,288 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             });
         }
 
+        switchMaterialLocation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    askForLocationPermissions();
+                }
+            }
+        });
+
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 linearProgressIndicator.setVisibility(View.VISIBLE);
 
-                // Get location
-                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(NewArtefactoActivity.this);
+                if (switchMaterialLocation.isChecked()) {
+                    // Get location
+                    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(NewArtefactoActivity.this);
 
-                // Check permissions (required by fusedLocationProviderClient)
-                if (ActivityCompat.checkSelfPermission(NewArtefactoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(NewArtefactoActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    EasyPermissions.requestPermissions(NewArtefactoActivity.this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
-                            PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getPermissionList());
-                    return;
+                    // Check permissions (required by fusedLocationProviderClient)
+                    if (ActivityCompat.checkSelfPermission(NewArtefactoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(NewArtefactoActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        EasyPermissions.requestPermissions(NewArtefactoActivity.this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+                                PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getLocationPermissionList());
+                        return;
+                    }
+
+                    fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
+                            location = task.getResult();
+
+                            try {
+                                if (location != null) {
+                                    Geocoder geocoder = new Geocoder(NewArtefactoActivity.this, Locale.getDefault());
+
+                                    // TODO: check if location.getLatitude and location.getLongitude are null
+
+                                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+
+                                    latitude = addresses.get(0).getLatitude();
+                                    longitude = addresses.get(0).getLongitude();
+
+                                    Log.d("TESTE_LOCATION", latitude + "," + longitude);
+                                } else {
+                                    Toast.makeText(NewArtefactoActivity.this, "Pedimos desculpa mas não foi possível recolher a localização do seu dispositivo", Toast.LENGTH_LONG).show();
+                                }
+
+                                if (artefactoType == 0) {
+                                    newTextArtefacto = new Artefacto(
+                                            textInputEditTextTitle.getText().toString(),
+                                            textInputEditTextContent.getText().toString(),
+                                            artefactoType,
+                                            "",
+                                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                            latitude == 0 ? "" : Double.toString(latitude),
+                                            longitude == 0 ? "" : Double.toString(longitude),
+                                            codigoTurma,
+                                            switchMaterialShare.isChecked()
+                                    );
+                                } else if (artefactoType == 1) {
+                                    scanFile(currentPhotoPath);
+
+                                    newTextArtefacto = new Artefacto(
+                                            textInputEditTextTitle.getText().toString(),
+                                            currentPhotoPath,
+                                            artefactoType,
+                                            textInputEditTextDescription.getText().toString(),
+                                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                            latitude == 0 ? "" : Double.toString(latitude),
+                                            longitude == 0 ? "" : Double.toString(longitude),
+                                            codigoTurma,
+                                            switchMaterialShare.isChecked()
+                                    );
+                                } else if (artefactoType == 2) {
+                                    // Audio
+                                    newTextArtefacto = new Artefacto(
+                                            textInputEditTextTitle.getText().toString(),
+                                            currentAudioPath,
+                                            artefactoType,
+                                            textInputEditTextDescription.getText().toString(),
+                                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                            latitude == 0 ? "" : Double.toString(latitude),
+                                            longitude == 0 ? "" : Double.toString(longitude),
+                                            codigoTurma,
+                                            switchMaterialShare.isChecked()
+                                    );
+                                } else {
+                                    // Video
+                                    newTextArtefacto = new Artefacto(
+                                            textInputEditTextTitle.getText().toString(),
+                                            currentVideoPath,
+                                            artefactoType,
+                                            textInputEditTextDescription.getText().toString(),
+                                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                            latitude == 0 ? "" : Double.toString(latitude),
+                                            longitude == 0 ? "" : Double.toString(longitude),
+                                            codigoTurma,
+                                            switchMaterialShare.isChecked()
+                                    );
+                                }
+
+                                artefactosViewModel.insertArtefacto(newTextArtefacto);
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                } else {
+                    if (artefactoType == 0) {
+                        newTextArtefacto = new Artefacto(
+                                textInputEditTextTitle.getText().toString(),
+                                textInputEditTextContent.getText().toString(),
+                                artefactoType,
+                                "",
+                                Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                "",
+                                "",
+                                codigoTurma,
+                                switchMaterialShare.isChecked()
+                        );
+                    } else if (artefactoType == 1) {
+                        scanFile(currentPhotoPath);
+
+                        newTextArtefacto = new Artefacto(
+                                textInputEditTextTitle.getText().toString(),
+                                currentPhotoPath,
+                                artefactoType,
+                                textInputEditTextDescription.getText().toString(),
+                                Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                "",
+                                "",
+                                codigoTurma,
+                                switchMaterialShare.isChecked()
+                        );
+                    } else if (artefactoType == 2) {
+                        // Audio
+                        newTextArtefacto = new Artefacto(
+                                textInputEditTextTitle.getText().toString(),
+                                currentAudioPath,
+                                artefactoType,
+                                textInputEditTextDescription.getText().toString(),
+                                Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                "",
+                                "",
+                                codigoTurma,
+                                switchMaterialShare.isChecked()
+                        );
+                    } else {
+                        // Video
+                        newTextArtefacto = new Artefacto(
+                                textInputEditTextTitle.getText().toString(),
+                                currentVideoPath,
+                                artefactoType,
+                                textInputEditTextDescription.getText().toString(),
+                                Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                                "",
+                                "",
+                                codigoTurma,
+                                switchMaterialShare.isChecked()
+                        );
+                    }
+
+                    artefactosViewModel.insertArtefacto(newTextArtefacto);
                 }
 
-                fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        location = task.getResult();
+                if (switchMaterialShare.isChecked()) {
+                    // TODO: Upload to the remote DB
+                    // Toast.makeText(NewArtefactoActivity.this, "Would upload to remote DB", Toast.LENGTH_SHORT).show();
 
-                        try {
-                            if (location != null) {
-                                Geocoder geocoder = new Geocoder(NewArtefactoActivity.this, Locale.getDefault());
-
-                                // TODO: check if location.getLatitude and location.getLongitude are null
-
-                                List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-
-                                latitude = addresses.get(0).getLatitude();
-                                longitude = addresses.get(0).getLongitude();
-
-                                Log.d("TESTE_LOCATION", latitude + "," + longitude);
-                            } else {
-                                Toast.makeText(NewArtefactoActivity.this, "Pedimos desculpa mas não foi possível recolher a localização do seu dispositivo", Toast.LENGTH_LONG).show();
-                            }
-
-                            if (artefactoType == 0) {
-                                newTextArtefacto = new Artefacto(
-                                        textInputEditTextTitle.getText().toString(),
-                                        textInputEditTextContent.getText().toString(),
-                                        artefactoType,
-                                        "",
-                                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
-                                        latitude == 0 ? "" : Double.toString(latitude),
-                                        longitude == 0 ? "" : Double.toString(longitude),
-                                        codigoTurma,
-                                        switchMaterialShare.isChecked()
-                                );
-                            } else if (artefactoType == 1) {
-                                scanFile(currentPhotoPath);
-
-                                newTextArtefacto = new Artefacto(
-                                        textInputEditTextTitle.getText().toString(),
-                                        currentPhotoPath,
-                                        artefactoType,
-                                        textInputEditTextDescription.getText().toString(),
-                                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
-                                        latitude == 0 ? "" : Double.toString(latitude),
-                                        longitude == 0 ? "" : Double.toString(longitude),
-                                        codigoTurma,
-                                        switchMaterialShare.isChecked()
-                                );
-                            } else if (artefactoType == 2) {
-                                // Audio
-                                newTextArtefacto = new Artefacto(
-                                        textInputEditTextTitle.getText().toString(),
-                                        currentAudioPath,
-                                        artefactoType,
-                                        textInputEditTextDescription.getText().toString(),
-                                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
-                                        latitude == 0 ? "" : Double.toString(latitude),
-                                        longitude == 0 ? "" : Double.toString(longitude),
-                                        codigoTurma,
-                                        switchMaterialShare.isChecked()
-                                );
-                            } else {
-                                // Video
-                                newTextArtefacto = new Artefacto(
-                                        textInputEditTextTitle.getText().toString(),
-                                        currentVideoPath,
-                                        artefactoType,
-                                        textInputEditTextDescription.getText().toString(),
-                                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
-                                        latitude == 0 ? "" : Double.toString(latitude),
-                                        longitude == 0 ? "" : Double.toString(longitude),
-                                        codigoTurma,
-                                        switchMaterialShare.isChecked()
-                                );
-                            }
-
-                            artefactosViewModel.insertArtefacto(newTextArtefacto);
-
-                            if (switchMaterialShare.isChecked()) {
-                                // TODO: Upload to the remote DB
-                                // Toast.makeText(NewArtefactoActivity.this, "Would upload to remote DB", Toast.LENGTH_SHORT).show();
-
-                                if (!shareLocationArtefactosPreference) {
-                                    // TODO: Se shareLocationArtefactosPreference == FALSE -> não enviar Location para a BD
-                                }
-                            }
-
-                            finish();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    if (!shareLocationArtefactosPreference) {
+                        // TODO: Se shareLocationArtefactosPreference == FALSE -> não enviar Location para a BD
                     }
-                });
+                }
+
+                finish();
             }
         });
     }
 
-    private void scanFile(String path) {
+    private void checkIfLocationIsOn() {
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
 
+        Task<LocationSettingsResponse> result =
+                LocationServices.getSettingsClient(this).checkLocationSettings(builder.build());
+
+
+
+        result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
+            @Override
+            public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+                try {
+                    LocationSettingsResponse response = task.getResult(ApiException.class);
+                    // All location settings are satisfied. The client can initialize location
+                    // requests here.
+                    switchMaterialLocation.setChecked(true);
+                } catch (ApiException exception) {
+                    switch (exception.getStatusCode()) {
+                        case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                            // Location settings are not satisfied. But could be fixed by showing the
+                            // user a dialog.
+                            try {
+                                // Cast to a resolvable exception.
+                                ResolvableApiException resolvable = (ResolvableApiException) exception;
+                                // Show the dialog by calling startResolutionForResult(),
+                                // and check the result in onActivityResult().
+
+                                //resolvable.startResolutionForResult(getActivity(), LocationRequest.PRIORITY_HIGH_ACCURACY);
+                                startIntentSenderForResult(resolvable.getResolution().getIntentSender(), LocationRequest.PRIORITY_HIGH_ACCURACY, null, 0, 0, 0, null);
+                            } catch (IntentSender.SendIntentException e) {
+                                // Ignore the error.
+                            } catch (ClassCastException e) {
+                                // Ignore, should be an impossible error.
+                            }
+                            break;
+                        case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                            // Location settings are not satisfied. However, we have no way to fix the
+                            // settings so we won't show the dialog.
+                            break;
+                    }
+                }
+            }
+        });
+    }
+
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_LOCATION_REQUEST_CODE)
+    private void askForLocationPermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getLocationPermissionList())) {
+            // switchMaterialLocation.setChecked(true);
+
+            // isLocationOn();
+            checkIfLocationIsOn();
+        } else {
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
+                    PermissionsUtils.PERMISSIONS_LOCATION_REQUEST_CODE, PermissionsUtils.getLocationPermissionList());
+            switchMaterialLocation.setChecked(false);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
+            Log.d("NEW_ARTEFACTO_IMAGE", "Camera permissions granted");
+        } else if (requestCode == PermissionsUtils.PERMISSIONS_LOCATION_REQUEST_CODE) {
+            // switchMaterialLocation.setChecked(true);
+            // checkIfLocationIsOn();
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        if (requestCode == PermissionsUtils.PERMISSIONS_LOCATION_REQUEST_CODE) {
+            switchMaterialLocation.setChecked(false);
+
+            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+                new AppSettingsDialog.Builder(this).build().show();
+            }
+        } else if (requestCode == PermissionsUtils.PERMISSIONS_GALLERY_REQUEST_CODE) {
+            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+                new AppSettingsDialog.Builder(this).build().show();
+            }
+        } else if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
+            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+                new AppSettingsDialog.Builder(this).build().show();
+            }
+        } else if (requestCode == PermissionsUtils.PERMISSIONS_MICROPHONE_REQUEST_CODE) {
+            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+                new AppSettingsDialog.Builder(this).build().show();
+            }
+        }
+    }
+
+    private void scanFile(String path) {
         MediaScannerConnection.scanFile(NewArtefactoActivity.this,
                 new String[] { path }, null,
                 new MediaScannerConnection.OnScanCompletedListener() {
@@ -686,6 +869,18 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         };
     }
 
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_GALLERY_REQUEST_CODE)
+    private void askGalleryPermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getGalleryPermissionList())) {
+            // Open Gallery
+            Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(gallery, Constants.GALLERY_REQUEST_CODE);
+        } else {
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
+                    PermissionsUtils.PERMISSIONS_GALLERY_REQUEST_CODE, PermissionsUtils.getGalleryPermissionList());
+        }
+    }
+
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE)
     private void askCameraPermissions() {
         if (EasyPermissions.hasPermissions(this, PermissionsUtils.getCameraPermissionList())) {
@@ -696,7 +891,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 dispatchTakePictureIntent();
             }
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
         }
     }
@@ -707,7 +902,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
             // Open Camera
             startRecordingAudio();
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_MICROPHONE_REQUEST_CODE, PermissionsUtils.getMicrophonePermissionList());
         }
     }
@@ -715,33 +910,10 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
     private void askForPermissions() {
         if (EasyPermissions.hasPermissions(this, PermissionsUtils.getPermissionList())) {
-            Toast.makeText(this, "Already has permissions needed", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "Already has permissions needed", Toast.LENGTH_SHORT).show();
         } else {
-            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getPermissionList());
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
-            Log.d("NEW_ARTEFACTO_IMAGE", "Camera permissions granted");
-        }
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            new AppSettingsDialog.Builder(this).build().show();
-        } else {
-            askForPermissions();
         }
     }
 
@@ -751,8 +923,26 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
 
         Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult");
 
-        if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
+        /*if (requestCode == AppSettingsDialog.DEFAULT_SETTINGS_REQ_CODE) {
             askForPermissions();
+        }*/
+
+        if (requestCode == LocationRequest.PRIORITY_HIGH_ACCURACY) {
+            Log.i("LocationFragment", "onActivityResult -> PRIORITY");
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    // All required changes were successfully made
+                    Log.i("LocationFragment", "onActivityResult: GPS Enabled by user");
+                    switchMaterialLocation.setChecked(true);
+                    break;
+                case Activity.RESULT_CANCELED:
+                    // The user was asked to change settings, but chose not to
+                    Toast.makeText(this, getResources().getText(R.string.gps_turned_off_error), Toast.LENGTH_LONG).show();
+                    Log.i("LocationFragment", "onActivityResult: User rejected GPS request");
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (requestCode == Constants.CAMERA_REQUEST_CODE) {

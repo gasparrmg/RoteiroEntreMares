@@ -12,11 +12,8 @@
     <string name="title_new_artefacto">Novo Artefacto</string>
     <string name="title_edit_artefacto">Editar Artefacto</string>
     <string name="title_guiaDeCampo">Guia de Campo</string>
-
     <string name="navigation_drawer_open">Abrir menu de navegação</string>
     <string name="navigation_drawer_close">Fechar menu de navegação</string>
-
-
     <string name="avencas_biodiversidade_title">Biodiversidade</string>
     <string name="riaformosa_naofiquesporaqui_title">Não fiques por aqui...</string>
     <string name="riaformosa_sapal_title">Sapal</string>
@@ -24,21 +21,22 @@
     <string name="riaformosa_intertidalarenoso_title">Intertidal arenoso</string>
     <string name="riaformosa_pradariasmarinhas_title">Pradarias Marinhas</string>
     <string name="riaformosa_mares_title">Marés</string>
-
     <string name="avencas_biodiversidade_interacoes_title">Interações</string>
     <string name="novo_avistamento_title">Novo avistamento</string>
-
-    <!--ERROR MESSAGES-->
     <string name="gps_turned_off_error">Não é possível ter acesso à tua localização.</string>
-
     <string name="file_not_found_error_message">Não foi possível encontrar o ficheiro. Tente novamente mais tarde.</string>
     <string name="general_error_message">Ocorreu um erro. Tente novamente mais tarde.</string>
     <string name="tts_error_message">Não tens a linguagem Português disponível no teu dispositivo. Isto acontece normalmente acontece quando a linguagem padrão do dispositivo é outra que não o Português.</string>
     <string name="warning_content_not_finished">Ainda tens conteúdos por descobrir aqui. Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_task_not_finished">Não acabaste a tarefa! Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_question_not_finished">Não respondeste à questão! Tens a certeza de que queres passar para o próximo ecrã?</string>
+    <string name="location_not_near_point_warning">Ainda não estás perto do local. Tens a certeza de que queres passar para o próximo ecrã?</string>
+    <string name="location_no_data_warning">Ainda não foi possível recolher a tua localização. Tens a certeza de que queres passar para o próximo ecrã?</string>
     <string name="warning_delete_image">Tens a certeza de que queres apagar esta imagem?</string>
-
     <string name="message_correct_answer">Resposta correta!</string>
-
+    <string name="coming_soon_message">Esta funcionalidade ainda não está disponível</string>
+    <string name="about_us_title">Acerca do projecto</string>
+    <string name="permissions_successful">All needed permissions were granted</string>
+    <string name="permissions_warning">A aplicação necessita da sua permissão para aceder a todas as funcionalidades</string>
+    <string name="location_near_point">Já estás perto do local. Podes continuar!</string>
 </resources>
