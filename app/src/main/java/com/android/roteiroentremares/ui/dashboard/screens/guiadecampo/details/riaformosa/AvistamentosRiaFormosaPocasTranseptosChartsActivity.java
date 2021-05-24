@@ -100,9 +100,12 @@ public class AvistamentosRiaFormosaPocasTranseptosChartsActivity extends AppComp
     private void initChartData() {
         int numberOfGroups = 0;
 
-        ArrayList<IBarDataSet> barDataSets = new ArrayList<>();
-
         boolean isEspeciePresent = false;
+
+        boolean isEspeciePresentExpostaPedra = false;
+        boolean isEspeciePresentInferiorPedra = false;
+        boolean isEspeciePresentSubstrato = false;
+
         ArrayList<BarEntry> barValues = new ArrayList<>();
 
         if (currentChartType.equals(CHART_TYPE_POCAS)) {
@@ -164,25 +167,61 @@ public class AvistamentosRiaFormosaPocasTranseptosChartsActivity extends AppComp
             }
 
         } else if (currentChartType.equals(CHART_TYPE_TRANSPETOS)) {
+            ArrayList<IBarDataSet> barDataSets = new ArrayList<>();
+
+            ArrayList<BarEntry> expostaPedraValues = new ArrayList<>();
+            ArrayList<BarEntry> inferiorPedraValues = new ArrayList<>();
+            ArrayList<BarEntry> substratoValues = new ArrayList<>();
+
             if (avistamentosRiaFormosaTranseptos.size() != 0) {
-                numberOfGroups++;
+                // numberOfGroups++;
+                numberOfGroups = 3;
 
                 for (int i = 0; i < avistamentosRiaFormosaTranseptos.get(0).getEspeciesRiaFormosaTranseptosInstancias().size(); i++) {
-                    isEspeciePresent = false;
+                    isEspeciePresentExpostaPedra = false;
+                    isEspeciePresentInferiorPedra = false;
+                    isEspeciePresentSubstrato = false;
 
                     for (int j = 0; j < avistamentosRiaFormosaTranseptos.size(); j++) {
-                        if (avistamentosRiaFormosaTranseptos.get(j).getEspeciesRiaFormosaTranseptosInstancias().get(i).isInstanciasExpostaPedra() ||
+                        /*if (avistamentosRiaFormosaTranseptos.get(j).getEspeciesRiaFormosaTranseptosInstancias().get(i).isInstanciasExpostaPedra() ||
                                 avistamentosRiaFormosaTranseptos.get(j).getEspeciesRiaFormosaTranseptosInstancias().get(i).isInstanciasInferiorPedra() ||
                                 avistamentosRiaFormosaTranseptos.get(j).getEspeciesRiaFormosaTranseptosInstancias().get(i).isInstanciasSubstrato()) {
                             isEspeciePresent = true;
                             break;
+                        }*/
+
+                        if (avistamentosRiaFormosaTranseptos.get(j).getEspeciesRiaFormosaTranseptosInstancias().get(i).isInstanciasExpostaPedra() &&
+                                !isEspeciePresentExpostaPedra) {
+                            isEspeciePresentExpostaPedra = true;
+                        }
+
+                        if (avistamentosRiaFormosaTranseptos.get(j).getEspeciesRiaFormosaTranseptosInstancias().get(i).isInstanciasInferiorPedra() &&
+                                !isEspeciePresentInferiorPedra) {
+                            isEspeciePresentInferiorPedra = true;
+                        }
+
+                        if (avistamentosRiaFormosaTranseptos.get(j).getEspeciesRiaFormosaTranseptosInstancias().get(i).isInstanciasSubstrato() &&
+                                !isEspeciePresentSubstrato) {
+                            isEspeciePresentSubstrato = true;
                         }
                     }
 
-                    if (isEspeciePresent) {
-                        barValues.add(new BarEntry(i, 1));
+                    if (isEspeciePresentExpostaPedra) {
+                        expostaPedraValues.add(new BarEntry(i, 1));
                     } else {
-                        barValues.add(new BarEntry(i, 0));
+                        expostaPedraValues.add(new BarEntry(i, 0));
+                    }
+
+                    if (isEspeciePresentInferiorPedra) {
+                        inferiorPedraValues.add(new BarEntry(i, 1));
+                    } else {
+                        inferiorPedraValues.add(new BarEntry(i, 0));
+                    }
+
+                    if (isEspeciePresentSubstrato) {
+                        substratoValues.add(new BarEntry(i, 1));
+                    } else {
+                        substratoValues.add(new BarEntry(i, 0));
                     }
 
                     if (nomesEspecies.size() < avistamentosRiaFormosaTranseptos.get(0).getEspeciesRiaFormosaTranseptosInstancias().size()) {
@@ -190,7 +229,63 @@ public class AvistamentosRiaFormosaPocasTranseptosChartsActivity extends AppComp
                     }
                 }
 
-                BarDataSet transeptosBarDataSet = new BarDataSet(barValues, "Transeptos");
+                BarDataSet expostaPedraBarDataSet = new BarDataSet(expostaPedraValues, "Face exposta");
+                expostaPedraBarDataSet.setColor(Color.BLUE);
+                BarDataSet inferiorPedraBarDataSet = new BarDataSet(inferiorPedraValues, "Face inferior");
+                inferiorPedraBarDataSet.setColor(Color.RED);
+                BarDataSet substratoBarDataSet = new BarDataSet(substratoValues, "Substrato");
+                substratoBarDataSet.setColor(Color.GREEN);
+
+                barDataSets.add(expostaPedraBarDataSet);
+                barDataSets.add(inferiorPedraBarDataSet);
+                barDataSets.add(substratoBarDataSet);
+
+                // setup group bar chart
+
+                BarData barData = new BarData(barDataSets);
+                barChartPresence.setData(barData);
+
+                barChartPresence.getLegend().setWordWrapEnabled(true);
+
+                barChartPresence.getXAxis().setValueFormatter(new IndexAxisValueFormatter(nomesEspecies));
+                barChartPresence.getXAxis().setCenterAxisLabels(true);
+                barChartPresence.getXAxis().setGranularity(1f);
+                barChartPresence.getXAxis().setGranularityEnabled(true);
+
+                barChartPresence.getXAxis().setAxisMaximum(barData.getXMax() + 1f);
+
+                barChartPresence.getAxisLeft().setGranularityEnabled(true);
+                barChartPresence.getAxisLeft().setGranularity(1f);
+                barChartPresence.getAxisRight().setGranularityEnabled(true);
+                barChartPresence.getAxisRight().setGranularity(1f);
+
+                barChartPresence.setDragEnabled(true);
+                barChartPresence.setVisibleXRangeMaximum(3);
+
+                barChartPresence.setHorizontalScrollBarEnabled(true);
+                barChartPresence.setScrollBarSize(20);
+
+                float barWidth = 0.2f;
+                float barSpace = 0.025f;
+                //float groupSpace = 0.375f; // 5 groups
+                float groupSpace = (1 - ((barSpace + barWidth) * numberOfGroups));
+                barData.setBarWidth(barWidth);
+
+                barChartPresence.getXAxis().setAxisMinimum(0);
+                // barChartPresence.getXAxis().setAxisMaximum(0 + barChartPresence.getBarData().getGroupWidth(groupSpace, barSpace) * 7);
+                // barChartPresence.getAxisLeft().setAxisMinimum(0);
+                barChartPresence.groupBars(0, groupSpace, barSpace);
+
+                Description description = new Description();
+                barChartPresence.setDescription(description);
+                description.setText("");
+                barChartPresence.getDescription().setTextSize(14f);
+                barChartPresence.getXAxis().setDrawGridLines(false);
+
+                barChartPresence.notifyDataSetChanged();
+                barChartPresence.invalidate();
+
+                /*BarDataSet transeptosBarDataSet = new BarDataSet(barValues, "Transeptos");
                 transeptosBarDataSet.setColor(Color.BLUE);
 
                 BarData barData = new BarData();
@@ -220,7 +315,7 @@ public class AvistamentosRiaFormosaPocasTranseptosChartsActivity extends AppComp
                 barChartPresence.getXAxis().setDrawGridLines(false);
 
                 barChartPresence.notifyDataSetChanged();
-                barChartPresence.invalidate();
+                barChartPresence.invalidate();*/
             }
         }
 
