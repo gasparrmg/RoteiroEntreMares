@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/roteiroFragment"
-        android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.RoteiroFragment"
+        android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.RoteiroFragment"
         android:label="fragment_roteiro"
         tools:layout="@layout/fragment_roteiro" >
         <action
@@ -92,7 +92,7 @@
         app:startDestination="@id/historiasPassadoFragment">
         <fragment
             android:id="@+id/historiasPassadoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment"
             android:label="fragment_historias_passado"
             tools:layout="@layout/fragment_historias_passado" >
             <action
@@ -112,7 +112,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <fragment
             android:id="@+id/historiasPassadoFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment2"
             android:label="HistoriasPassadoFragment2"
             tools:layout="@layout/fragment_historias_passado2">
             <action
@@ -125,7 +125,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment3"
             android:label="fragment_historias_passado3"
             tools:layout="@layout/fragment_historias_passado3" >
             <action
@@ -138,7 +138,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment4"
             android:label="fragment_historias_passado4"
             tools:layout="@layout/fragment_historias_passado4" >
             <action
@@ -151,7 +151,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment5"
             android:label="fragment_historias_passado5"
             tools:layout="@layout/fragment_historias_passado5" >
             <action
@@ -164,7 +164,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment6"
             android:label="fragment_historias_passado6"
             tools:layout="@layout/fragment_historias_passado6" >
             <action
@@ -177,7 +177,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment7"
             android:label="HistoriasPassadoFragment7"
             tools:layout="@layout/fragment_historias_passado7"
             >
@@ -191,7 +191,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment8"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment8"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment8"
             android:label="HistoriasPassadoFragment8"
             tools:layout="@layout/fragment_historias_passado8">
             <action
@@ -204,7 +204,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment9"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment9"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment9"
             android:label="HistoriasPassadoFragment9"
             tools:layout="@layout/fragment_historias_passado9">
             <action
@@ -217,7 +217,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment10Puzzle"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment10Puzzle"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment10Puzzle"
             android:label="HistoriasPassadoFragment10Puzzle" >
             <action
                 android:id="@+id/action_historiasPassadoFragment10Puzzle_to_historiasPassadoFragment11"
@@ -229,7 +229,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment11"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment11"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment11"
             android:label="HistoriasPassadoFragment11" >
             <action
                 android:id="@+id/action_historiasPassadoFragment11_to_historiasPassadoFragment12"
@@ -241,7 +241,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment12"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment12"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment12"
             android:label="HistoriasPassadoFragment12" >
             <action
                 android:id="@+id/action_historiasPassadoFragment12_to_historiasPassadoFragment13"
@@ -253,7 +253,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment13"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment13"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment13"
             android:label="HistoriasPassadoFragment13" >
             <action
                 android:id="@+id/action_historiasPassadoFragment13_to_historiasPassadoFragment14"
@@ -265,7 +265,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment14"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment14"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment14"
             android:label="HistoriasPassadoFragment14" >
             <action
                 android:id="@+id/action_historiasPassadoFragment14_to_historiasPassadoFragment15"
@@ -277,7 +277,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment15"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment15"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment15"
             android:label="HistoriasPassadoFragment15" >
             <action
                 android:id="@+id/action_historiasPassadoFragment15_to_historiasPassadoFragment16"
@@ -289,7 +289,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment16"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment16"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment16"
             android:label="HistoriasPassadoFragment16" >
             <action
                 android:id="@+id/action_historiasPassadoFragment16_to_historiasPassadoFragment17"
@@ -301,7 +301,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment17"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment17"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment17"
             android:label="HistoriasPassadoFragment17" >
             <action
                 android:id="@+id/action_historiasPassadoFragment17_to_historiasPassadoFragment18"
@@ -313,7 +313,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment18"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment18"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment18"
             android:label="HistoriasPassadoFragment18" >
             <action
                 android:id="@+id/action_historiasPassadoFragment18_to_historiasPassadoFragment19"
@@ -325,7 +325,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment19"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment19"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment19"
             android:label="HistoriasPassadoFragment19" >
             <action
                 android:id="@+id/action_historiasPassadoFragment19_to_historiasPassadoFragment20"
@@ -337,7 +337,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment20"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment20"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment20"
             android:label="HistoriasPassadoFragment20" >
             <action
                 android:id="@+id/action_historiasPassadoFragment20_to_historiasPassadoFragment21"
@@ -349,7 +349,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment21"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment21"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment21"
             android:label="HistoriasPassadoFragment21" >
             <action
                 android:id="@+id/action_historiasPassadoFragment21_to_historiasPassadoFragment22"
@@ -361,7 +361,7 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment22"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment22"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment22"
             android:label="HistoriasPassadoFragment22" >
             <action
                 android:id="@+id/action_historiasPassadoFragment22_to_historiasPassadoFragment23"
@@ -373,14 +373,14 @@
         </fragment>
         <fragment
             android:id="@+id/historiasPassadoFragment23"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment23"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment23"
             android:label="HistoriasPassadoFragment23" />
     </navigation>
     <navigation android:id="@+id/navigation_nao_fiques_por_aqui"
         app:startDestination="@id/naoFiquesPorAquiFragment">
         <fragment
             android:id="@+id/naoFiquesPorAquiFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment"
             android:label="NaoFiquesPorAquiFragment" >
             <action
                 android:id="@+id/action_naoFiquesPorAquiFragment_to_naoFiquesPorAquiFragment2"
@@ -392,7 +392,7 @@
         </fragment>
         <fragment
             android:id="@+id/naoFiquesPorAquiFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment2"
             android:label="NaoFiquesPorAquiFragment2" >
             <action
                 android:id="@+id/action_naoFiquesPorAquiFragment2_to_naoFiquesPorAquiFragment3"
@@ -404,7 +404,7 @@
         </fragment>
         <fragment
             android:id="@+id/naoFiquesPorAquiFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment3"
             android:label="NaoFiquesPorAquiFragment3" >
             <action
                 android:id="@+id/action_naoFiquesPorAquiFragment3_to_naoFiquesPorAquiFragment4"
@@ -416,7 +416,7 @@
         </fragment>
         <fragment
             android:id="@+id/naoFiquesPorAquiFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment4"
             android:label="NaoFiquesPorAquiFragment4" >
             <action
                 android:id="@+id/action_naoFiquesPorAquiFragment4_to_naoFiquesPorAquiFragment5"
@@ -428,14 +428,14 @@
         </fragment>
         <fragment
             android:id="@+id/naoFiquesPorAquiFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.naofiquesporaqui.NaoFiquesPorAquiFragment5"
             android:label="NaoFiquesPorAquiFragment5" />
     </navigation>
     <navigation android:id="@+id/navigation_e_quando_a_mare_sobe"
         app:startDestination="@id/EQuandoAMareSobeFragment">
         <fragment
             android:id="@+id/EQuandoAMareSobeFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment"
             android:label="EQuandoAMareSobeFragment" >
             <action
                 android:id="@+id/action_EQuandoAMareSobeFragment_to_EQuandoAMareSobeFragment2"
@@ -454,7 +454,7 @@
         </fragment>
         <fragment
             android:id="@+id/EQuandoAMareSobeFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment2"
             android:label="EQuandoAMareSobeFragment2" >
             <action
                 android:id="@+id/action_EQuandoAMareSobeFragment2_to_EQuandoAMareSobeDetailsFragment"
@@ -473,7 +473,7 @@
         </fragment>
         <fragment
             android:id="@+id/EQuandoAMareSobeDetailsFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeDetailsFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeDetailsFragment"
             android:label="EQuandoAMareSobeDetailsFragment" >
             <argument
                 android:name="title"
@@ -491,7 +491,7 @@
         </fragment>
         <fragment
             android:id="@+id/EQuandoAMareSobeFragmentExercicio"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragmentExercicio"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragmentExercicio"
             android:label="EQuandoAMareSobeFragmentExercicio" >
             <action
                 android:id="@+id/action_EQuandoAMareSobeFragmentExercicio_to_EQuandoAMareSobeFragment3"
@@ -503,11 +503,11 @@
         </fragment>
         <fragment
             android:id="@+id/EQuandoAMareSobeFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment3"
             android:label="EQuandoAMareSobeFragment3" />
         <fragment
             android:id="@+id/EQuandoAMareSobeFragment2Refactored"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment2Refactored"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.equandoamaresobe.EQuandoAMareSobeFragment2Refactored"
             android:label="EQuandoAMareSobeFragment2Refactored" >
             <action
                 android:id="@+id/action_EQuandoAMareSobeFragment2Refactored_to_EQuandoAMareSobeDetailsFragment"
@@ -529,7 +529,7 @@
         app:startDestination="@id/impactosFragment">
         <fragment
             android:id="@+id/impactosFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment"
             android:label="ImpactosFragment" >
             <action
                 android:id="@+id/action_impactosFragment_to_impactosFragment3Text"
@@ -541,7 +541,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment3"
             android:label="ImpactosFragment3" >
             <action
                 android:id="@+id/action_impactosFragment3_to_impactosCapturaExcessivaFragment"
@@ -581,7 +581,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosCapturaExcessivaFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosCapturaExcessivaFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosCapturaExcessivaFragment"
             android:label="ImpactosCapturaExcessivaFragment" >
             <action
                 android:id="@+id/action_impactosCapturaExcessivaFragment_to_impactosCapturaExcessivaFragment2"
@@ -593,11 +593,11 @@
         </fragment>
         <fragment
             android:id="@+id/impactosCapturaExcessivaFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosCapturaExcessivaFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosCapturaExcessivaFragment2"
             android:label="ImpactosCapturaExcessivaFragment2" />
         <fragment
             android:id="@+id/impactosPisoteioFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPisoteioFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPisoteioFragment"
             android:label="ImpactosPisoteioFragment" >
             <action
                 android:id="@+id/action_impactosPisoteioFragment_to_impactosPisoteioFragment2"
@@ -609,11 +609,11 @@
         </fragment>
         <fragment
             android:id="@+id/impactosPisoteioFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPisoteioFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPisoteioFragment2"
             android:label="ImpactosPisoteioFragment2" />
         <fragment
             android:id="@+id/impactosPoluicaoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPoluicaoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPoluicaoFragment"
             android:label="ImpactosPoluicaoFragment" >
             <action
                 android:id="@+id/action_impactosPoluicaoFragment_to_impactosPoluicaoMicroplasticosFragment"
@@ -632,15 +632,15 @@
         </fragment>
         <fragment
             android:id="@+id/impactosPoluicaoMicroplasticosFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPoluicaoMicroplasticosFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPoluicaoMicroplasticosFragment"
             android:label="ImpactosPoluicaoMicroplasticosFragment" />
         <fragment
             android:id="@+id/impactosPoluicaoFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPoluicaoFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosPoluicaoFragment2"
             android:label="ImpactosPoluicaoFragment2" />
         <fragment
             android:id="@+id/impactosTempAguaFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosTempAguaFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosTempAguaFragment"
             android:label="ImpactosTempAguaFragment" >
             <action
                 android:id="@+id/action_impactosTempAguaFragment_to_impactosTempAguaFragment2"
@@ -652,7 +652,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosTempAguaFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosTempAguaFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosTempAguaFragment2"
             android:label="ImpactosTempAguaFragment2" >
             <action
                 android:id="@+id/action_impactosTempAguaFragment2_to_impactosTempAguaFragment3"
@@ -664,11 +664,11 @@
         </fragment>
         <fragment
             android:id="@+id/impactosTempAguaFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosTempAguaFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosTempAguaFragment3"
             android:label="ImpactosTempAguaFragment3" />
         <fragment
             android:id="@+id/impactosOcupacaoHumanaFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragment"
             android:label="ImpactosOcupacaoHumanaFragment" >
             <action
                 android:id="@+id/action_impactosOcupacaoHumanaFragment_to_impactosOcupacaoHumanaFragmentExercicio1"
@@ -680,7 +680,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment4"
             android:label="ImpactosFragment4" >
             <action
                 android:id="@+id/action_impactosFragment4_to_impactosFragment5"
@@ -692,7 +692,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment5"
             android:label="ImpactosFragment5" >
             <action
                 android:id="@+id/action_impactosFragment5_to_impactosFragment6"
@@ -704,11 +704,11 @@
         </fragment>
         <fragment
             android:id="@+id/impactosFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment6"
             android:label="ImpactosFragment6" />
         <fragment
             android:id="@+id/impactosFragment3Text"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment3Text"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosFragment3Text"
             android:label="ImpactosFragment3Text" >
 
             <action
@@ -721,7 +721,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosOcupacaoHumanaFragmentText"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentText"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentText"
             android:label="ImpactosOcupacaoHumanaFragmentText" >
             <action
                 android:id="@+id/action_impactosOcupacaoHumanaFragmentText_to_impactosOcupacaoHumanaFragment"
@@ -733,7 +733,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosOcupacaoHumanaFragmentExercicio1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentExercicio1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentExercicio1"
             android:label="ImpactosOcupacaoHumanaFragmentExercicio1" >
             <action
                 android:id="@+id/action_impactosOcupacaoHumanaFragmentExercicio1_to_impactosOcupacaoHumanaFragmentExercicio2"
@@ -745,7 +745,7 @@
         </fragment>
         <fragment
             android:id="@+id/impactosOcupacaoHumanaFragmentExercicio2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentExercicio2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.impactos.ImpactosOcupacaoHumanaFragmentExercicio2"
             android:label="ImpactosOcupacaoHumanaFragmentExercicio2" >
             <action
                 android:id="@+id/action_impactosOcupacaoHumanaFragmentExercicio2_to_impactosFragment4"
@@ -760,7 +760,7 @@
         app:startDestination="@id/biodiversidadeFragment">
         <fragment
             android:id="@+id/biodiversidadeFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeFragment"
             android:label="BiodiversidadeFragment" >
             <action
                 android:id="@+id/action_biodiversidadeFragment_to_biodiversidadeMenuFragment"
@@ -772,7 +772,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMenuFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMenuFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMenuFragment"
             android:label="BiodiversidadeMenuFragment" >
             <action
                 android:id="@+id/action_biodiversidadeMenuFragment_to_biodiversidadeMicrohabitatsFragment"
@@ -798,7 +798,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsFragment"
             android:label="BiodiversidadeMicrohabitatsFragment" >
             <action
                 android:id="@+id/action_biodiversidadeMicrohabitatsFragment_to_biodiversidadeMicrohabitatsCanaisFragment"
@@ -824,7 +824,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsCanaisFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsCanaisFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsCanaisFragment"
             android:label="BiodiversidadeMicrohabitatsCanaisFragment" >
             <action
                 android:id="@+id/action_biodiversidadeMicrohabitatsCanaisFragment_to_biodiversidadeMicrohabitatsCanaisFragment2"
@@ -836,11 +836,11 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsCanaisFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsCanaisFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsCanaisFragment2"
             android:label="BiodiversidadeMicrohabitatsCanaisFragment2" />
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsFendasFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsFendasFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsFendasFragment"
             android:label="BiodiversidadeMicrohabitatsFendasFragment" >
             <action
                 android:id="@+id/action_biodiversidadeMicrohabitatsFendasFragment_to_biodiversidadeMicrohabitatsNinhosFragment"
@@ -852,11 +852,11 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsNinhosFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsNinhosFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsNinhosFragment"
             android:label="BiodiversidadeMicrohabitatsNinhosFragment" />
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsPocasFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment"
             android:label="BiodiversidadeMicrohabitatsPocasFragment" >
             <action
                 android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment_to_biodiversidadeMicrohabitatsPocasFragment2"
@@ -868,7 +868,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsPocasFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment2"
             android:label="BiodiversidadeMicrohabitatsPocasFragment2" >
             <action
                 android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment2_to_biodiversidadeMicrohabitatsPocasFragment3"
@@ -880,7 +880,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsPocasFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment3"
             android:label="BiodiversidadeMicrohabitatsPocasFragment3" >
             <action
                 android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment3_to_biodiversidadeMicrohabitatsPocasFragment4Tarefa"
@@ -892,7 +892,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsPocasFragment4Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment4Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment4Tarefa"
             android:label="BiodiversidadeMicrohabitatsPocasFragment4Tarefa" >
             <action
                 android:id="@+id/action_biodiversidadeMicrohabitatsPocasFragment4Tarefa_to_biodiversidadeMicrohabitatsPocasFragment5SopaLetras"
@@ -911,11 +911,11 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeMicrohabitatsPocasFragment5SopaLetras"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment5SopaLetras"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeMicrohabitatsPocasFragment5SopaLetras"
             android:label="BiodiversidadeMicrohabitatsPocasFragment5SopaLetras" />
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment"
             android:label="BiodiversidadeZonacaoFragment" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment_to_biodiversidadeZonacaoSupralitoralFragment"
@@ -948,7 +948,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoSupralitoralFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment"
             android:label="BiodiversidadeZonacaoSupralitoralFragment" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment_to_biodiversidadeZonacaoSupralitoralFragment2"
@@ -960,7 +960,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoSupralitoralFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment2"
             android:label="BiodiversidadeZonacaoSupralitoralFragment2" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment2_to_biodiversidadeZonacaoSupralitoralFragment3"
@@ -972,7 +972,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoSupralitoralFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment3"
             android:label="BiodiversidadeZonacaoSupralitoralFragment3" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment3_to_biodiversidadeZonacaoSupralitoralFragment4"
@@ -984,7 +984,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment"
             android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment_to_biodiversidadeZonacaoMediolitoralSuperiorFragment2"
@@ -996,7 +996,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment2"
             android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment2" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment2_to_biodiversidadeZonacaoMediolitoralSuperiorFragment3"
@@ -1008,7 +1008,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment3"
             android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment3" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment3_to_biodiversidadeZonacaoMediolitoralSuperiorFragment4"
@@ -1020,7 +1020,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoInfralitoralFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment"
             android:label="BiodiversidadeZonacaoInfralitoralFragment" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment_to_biodiversidadeZonacaoInfralitoralFragment2"
@@ -1032,7 +1032,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoInfralitoralFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment2"
             android:label="BiodiversidadeZonacaoInfralitoralFragment2" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment2_to_biodiversidadeZonacaoInfralitoralFragment3"
@@ -1044,7 +1044,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoInfralitoralFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment3"
             android:label="BiodiversidadeZonacaoInfralitoralFragment3" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment3_to_biodiversidadeZonacaoInfralitoralFragment422"
@@ -1056,7 +1056,7 @@
         </fragment>
         <fragment
             android:id="@+id/newEditAvistamentoPocasFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.tarefas.NewEditAvistamentoPocasFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.tarefas.NewEditAvistamentoPocasFragment"
             android:label="NewEditAvistamentoPocasFragment" >
             <argument
                 android:name="nrPoca"
@@ -1064,7 +1064,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoSupralitoralFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment4"
             android:label="BiodiversidadeZonacaoSupralitoralFragment4" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment4_to_biodiversidadeZonacaoSupralitoralFragment5Tarefa"
@@ -1076,7 +1076,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoSupralitoralFragment5Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment5Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoSupralitoralFragment5Tarefa"
             android:label="BiodiversidadeZonacaoSupralitoralFragment5Tarefa" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoSupralitoralFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
@@ -1088,7 +1088,7 @@
         </fragment>
         <fragment
             android:id="@+id/newEditAvistamentoZonacaoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.tarefas.NewEditAvistamentoZonacaoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.tarefas.NewEditAvistamentoZonacaoFragment"
             android:label="NewEditAvistamentoZonacaoFragment" >
             <argument
                 android:name="zona"
@@ -1099,7 +1099,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoInfralitoralFragment42"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment4"
             android:label="BiodiversidadeZonacaoInfralitoralFragment4" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment42_to_biodiversidadeZonacaoInfralitoralFragment5Tarefa"
@@ -1111,7 +1111,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoInfralitoralFragment5Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment5Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoInfralitoralFragment5Tarefa"
             android:label="BiodiversidadeZonacaoInfralitoralFragment5Tarefa" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoInfralitoralFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
@@ -1123,7 +1123,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment4"
             android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment4" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment4_to_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
@@ -1135,7 +1135,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa"
             android:label="BiodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralSuperiorFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
@@ -1154,7 +1154,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment"
             android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment_to_biodiversidadeZonacaoMediolitoralInferiorFragment2"
@@ -1166,7 +1166,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment2"
             android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment2" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment2_to_biodiversidadeZonacaoMediolitoralInferiorFragment3"
@@ -1178,7 +1178,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment3"
             android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment3" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment3_to_biodiversidadeZonacaoMediolitoralInferiorFragment4"
@@ -1190,7 +1190,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment4"
             android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment4" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment4_to_biodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
@@ -1202,7 +1202,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa"
             android:label="BiodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoMediolitoralInferiorFragment5Tarefa_to_newEditAvistamentoZonacaoFragment"
@@ -1214,7 +1214,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment2PerguntasIntro"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment2PerguntasIntro"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment2PerguntasIntro"
             android:label="BiodiversidadeZonacaoFragment2PerguntasIntro" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment2PerguntasIntro_to_biodiversidadeZonacaoFragment3Pergunta12"
@@ -1226,7 +1226,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment3Pergunta12"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment3Pergunta1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment3Pergunta1"
             android:label="BiodiversidadeZonacaoFragment3Pergunta1" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment3Pergunta12_to_biodiversidadeZonacaoFragment4Pergunta21"
@@ -1238,7 +1238,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment4Pergunta21"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta21"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta21"
             android:label="BiodiversidadeZonacaoFragment4Pergunta21" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta21_to_biodiversidadeZonacaoFragment4Pergunta22"
@@ -1250,7 +1250,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment4Pergunta22"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta22"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta22"
             android:label="BiodiversidadeZonacaoFragment4Pergunta22" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta22_to_biodiversidadeZonacaoFragment4Pergunta23"
@@ -1262,7 +1262,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment4Pergunta23"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta23"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta23"
             android:label="BiodiversidadeZonacaoFragment4Pergunta23" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta23_to_biodiversidadeZonacaoFragment4Pergunta24"
@@ -1274,7 +1274,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment4Pergunta24"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta24"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment4Pergunta24"
             android:label="BiodiversidadeZonacaoFragment4Pergunta24" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment4Pergunta24_to_biodiversidadeZonacaoFragment5Pergunta3"
@@ -1286,7 +1286,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment5Pergunta3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment5Pergunta3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment5Pergunta3"
             android:label="BiodiversidadeZonacaoFragment5Pergunta3" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment5Pergunta3_to_biodiversidadeZonacaoFragment6Pergunta4"
@@ -1298,7 +1298,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment6Pergunta4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment6Pergunta4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment6Pergunta4"
             android:label="BiodiversidadeZonacaoFragment6Pergunta4" >
             <action
                 android:id="@+id/action_biodiversidadeZonacaoFragment6Pergunta4_to_biodiversidadeZonacaoFragment7ConnectWords"
@@ -1310,7 +1310,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment"
             android:label="BiodiversidadeInteracoesFragment" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesFragment_to_biodiversidadeInteracoesFragment2Menu"
@@ -1322,7 +1322,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesFragment2Menu"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment2Menu"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment2Menu"
             android:label="BiodiversidadeInteracoesFragment2Menu" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesFragment2Menu_to_biodiversidadeInteracoesPredacaoFragment"
@@ -1356,11 +1356,11 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesPredacaoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesPredacaoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesPredacaoFragment"
             android:label="BiodiversidadeInteracoesPredacaoFragment" />
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment_to_biodiversidadeInteracoesHerbivoriaFragment2"
@@ -1372,7 +1372,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment2"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment2" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment2_to_biodiversidadeInteracoesHerbivoriaFragment3"
@@ -1384,7 +1384,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment3"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment3" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment3_to_biodiversidadeInteracoesHerbivoriaFragment4"
@@ -1396,7 +1396,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment4"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment4" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment4_to_biodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
@@ -1408,7 +1408,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment5Pergunta1"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment5Pergunta1" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment5Pergunta1_to_biodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
@@ -1420,7 +1420,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment6Pergunta2"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment6Pergunta2" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment6Pergunta2_to_biodiversidadeInteracoesHerbivoriaFragment7"
@@ -1432,7 +1432,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment7"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment7" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment7_to_biodiversidadeInteracoesHerbivoriaFragment8"
@@ -1444,7 +1444,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment8"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment8"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment8"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment8" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment8_to_biodiversidadeInteracoesHerbivoriaFragment9Words"
@@ -1456,7 +1456,7 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment9Words"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment9Words"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment9Words"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment9Words" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesHerbivoriaFragment9Words_to_biodiversidadeInteracoesHerbivoriaFragment10"
@@ -1468,19 +1468,19 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeInteracoesHerbivoriaFragment10"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment10"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesHerbivoriaFragment10"
             android:label="BiodiversidadeInteracoesHerbivoriaFragment10" />
         <fragment
             android:id="@+id/biodiversidadeInteracoesCompeticaoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesCompeticaoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesCompeticaoFragment"
             android:label="BiodiversidadeInteracoesCompeticaoFragment" />
         <fragment
             android:id="@+id/biodiversidadeInteracoesFragment4RedeTrofica"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment4RedeTrofica"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment4RedeTrofica"
             android:label="BiodiversidadeInteracoesFragment4RedeTrofica" />
         <fragment
             android:id="@+id/biodiversidadeInteracoesFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeInteracoesFragment3"
             android:label="BiodiversidadeInteracoesFragment3" >
             <action
                 android:id="@+id/action_biodiversidadeInteracoesFragment3_to_biodiversidadeInteracoesFragment4RedeTrofica"
@@ -1492,14 +1492,14 @@
         </fragment>
         <fragment
             android:id="@+id/biodiversidadeZonacaoFragment7ConnectWords"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment7ConnectWords"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade.BiodiversidadeZonacaoFragment7ConnectWords"
             android:label="BiodiversidadeZonacaoFragment7ConnectWords" />
     </navigation>
     <navigation android:id="@+id/navigation_riaformosa_naofiquesporaqui"
         app:startDestination="@id/riaFormosaNaoFiquesPorAquiFragment">
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment"
             android:label="RiaFormosaNaoFiquesPorAquiFragment" >
             <action
                 android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment_to_riaFormosaNaoFiquesPorAquiFragment2"
@@ -1511,7 +1511,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment2"
             android:label="RiaFormosaNaoFiquesPorAquiFragment2" >
             <action
                 android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment2_to_riaFormosaNaoFiquesPorAquiFragment3"
@@ -1523,7 +1523,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment3"
             android:label="RiaFormosaNaoFiquesPorAquiFragment3" >
             <action
                 android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment3_to_riaFormosaNaoFiquesPorAquiFragment4"
@@ -1535,7 +1535,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment4"
             android:label="RiaFormosaNaoFiquesPorAquiFragment4" >
             <action
                 android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment4_to_riaFormosaNaoFiquesPorAquiFragment5"
@@ -1547,7 +1547,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment5"
             android:label="RiaFormosaNaoFiquesPorAquiFragment5" >
             <action
                 android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment5_to_riaFormosaNaoFiquesPorAquiFragment6"
@@ -1559,7 +1559,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6"
             android:label="RiaFormosaNaoFiquesPorAquiFragment6" >
             <action
                 android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment6_to_riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
@@ -1578,11 +1578,11 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment6SabiasQue"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6SabiasQue"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment6SabiasQue"
             android:label="RiaFormosaNaoFiquesPorAquiFragment6SabiasQue" />
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment7"
             android:label="RiaFormosaNaoFiquesPorAquiFragment7" >
             <action
                 android:id="@+id/action_riaFormosaNaoFiquesPorAquiFragment7_to_riaFormosaNaoFiquesPorAquiFragment8"
@@ -1594,14 +1594,14 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNaoFiquesPorAquiFragment8"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment8"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.naofiquesporaqui.RiaFormosaNaoFiquesPorAquiFragment8"
             android:label="RiaFormosaNaoFiquesPorAquiFragment8" />
     </navigation>
     <navigation android:id="@+id/navigation_riaformosa_pradariasmarinhas"
         app:startDestination="@id/riaFormosaPradariasMarinhasFragment">
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment"
             android:label="RiaFormosaPradariasMarinhasFragment" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment_to_riaFormosaPradariasMarinhasFragment2"
@@ -1613,7 +1613,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment2"
             android:label="RiaFormosaPradariasMarinhasFragment2" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment2_to_riaFormosaPradariasMarinhasFragment3"
@@ -1625,7 +1625,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment3"
             android:label="RiaFormosaPradariasMarinhasFragment3" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment3_to_riaFormosaPradariasMarinhasFragment4"
@@ -1637,7 +1637,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment4"
             android:label="RiaFormosaPradariasMarinhasFragment4" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment4_to_riaFormosaPradariasMarinhasFragment5"
@@ -1649,7 +1649,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment5"
             android:label="RiaFormosaPradariasMarinhasFragment5" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment5_to_riaFormosaPradariasMarinhasFragment6"
@@ -1661,7 +1661,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment6"
             android:label="RiaFormosaPradariasMarinhasFragment6" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment6_to_riaFormosaPradariasMarinhasFragment7"
@@ -1673,7 +1673,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7"
             android:label="RiaFormosaPradariasMarinhasFragment7" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment7_to_riaFormosaPradariasMarinhasFragment7SabiasQue1"
@@ -1692,7 +1692,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment7SabiasQue1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue1"
             android:label="RiaFormosaPradariasMarinhasFragment7SabiasQue1" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment7SabiasQue1_to_riaFormosaPradariasMarinhasFragment7SabiasQue2"
@@ -1704,7 +1704,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment7SabiasQue2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue2"
             android:label="RiaFormosaPradariasMarinhasFragment7SabiasQue2" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment7SabiasQue2_to_riaFormosaPradariasMarinhasFragment7SabiasQue3"
@@ -1716,11 +1716,11 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment7SabiasQue3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment7SabiasQue3"
             android:label="RiaFormosaPradariasMarinhasFragment7SabiasQue3" />
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment8"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment8"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment8"
             android:label="RiaFormosaPradariasMarinhasFragment8" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment8_to_riaFormosaPradariasMarinhasFragment9TarefaInfo"
@@ -1732,7 +1732,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment9TarefaInfo"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment9TarefaInfo"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment9TarefaInfo"
             android:label="RiaFormosaPradariasMarinhasFragment9TarefaInfo" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment9TarefaInfo_to_riaFormosaPradariasMarinhasFragment10Sopa"
@@ -1744,7 +1744,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment10Sopa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment10Sopa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment10Sopa"
             android:label="RiaFormosaPradariasMarinhasFragment10Sopa" >
             <action
                 android:id="@+id/action_riaFormosaPradariasMarinhasFragment10Sopa_to_riaFormosaPradariasMarinhasFragment11"
@@ -1756,14 +1756,14 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaPradariasMarinhasFragment11"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment11"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas.RiaFormosaPradariasMarinhasFragment11"
             android:label="RiaFormosaPradariasMarinhasFragment11" />
     </navigation>
     <navigation android:id="@+id/navigation_riaformosa_sapal"
         app:startDestination="@id/riaFormosaSapalFragment">
         <fragment
             android:id="@+id/riaFormosaSapalFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment"
             android:label="RiaFormosaSapalFragment" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment_to_riaFormosaSapalFragment2"
@@ -1775,7 +1775,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment2"
             android:label="RiaFormosaSapalFragment2" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment2_to_riaFormosaSapalFragment3"
@@ -1787,7 +1787,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment3"
             android:label="RiaFormosaSapalFragment3" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment3_to_riaFormosaSapalFragment4"
@@ -1799,7 +1799,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment4"
             android:label="RiaFormosaSapalFragment4" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment4_to_riaFormosaSapalFragment5"
@@ -1811,7 +1811,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment5"
             android:label="RiaFormosaSapalFragment5" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment5_to_riaFormosaSapalFragment6"
@@ -1823,7 +1823,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment6"
             android:label="RiaFormosaSapalFragment6" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment6_to_riaFormosaSapalFragment7"
@@ -1835,7 +1835,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment7"
             android:label="RiaFormosaSapalFragment7" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment7_to_riaFormosaSapalFragment8SapalAlto"
@@ -1847,7 +1847,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment8SapalAlto"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment8SapalAlto"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment8SapalAlto"
             android:label="RiaFormosaSapalFragment8SapalAlto" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment8SapalAlto_to_riaFormosaSapalFragment9SapalMedio"
@@ -1866,7 +1866,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment9SapalMedio"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment9SapalMedio"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment9SapalMedio"
             android:label="RiaFormosaSapalFragment9SapalMedio" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment9SapalMedio_to_riaFormosaSapalFragment10SapalBaixo"
@@ -1885,7 +1885,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment10SapalBaixo"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment10SapalBaixo"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment10SapalBaixo"
             android:label="RiaFormosaSapalFragment10SapalBaixo" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment10SapalBaixo_to_riaFormosaSapalFragment10SapalBaixoSabiasQue"
@@ -1904,15 +1904,15 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment8SapalAltoSabiasQue"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment8SapalAltoSabiasQue"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment8SapalAltoSabiasQue"
             android:label="RiaFormosaSapalFragment8SapalAltoSabiasQue" />
         <fragment
             android:id="@+id/riaFormosaSapalFragment10SapalBaixoSabiasQue"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment10SapalBaixoSabiasQue"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment10SapalBaixoSabiasQue"
             android:label="RiaFormosaSapalFragment10SapalBaixoSabiasQue" />
         <fragment
             android:id="@+id/riaFormosaSapalFragment11"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment11"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment11"
             android:label="RiaFormosaSapalFragment11" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment11_to_riaFormosaSapalFragment12"
@@ -1924,7 +1924,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment12"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment12"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment12"
             android:label="RiaFormosaSapalFragment12" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment12_to_riaFormosaSapalFragment13"
@@ -1936,7 +1936,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment13"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment13"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment13"
             android:label="RiaFormosaSapalFragment13" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment13_to_riaFormosaSapalFragment14"
@@ -1955,7 +1955,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment14"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment14"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment14"
             android:label="RiaFormosaSapalFragment14" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment14_to_riaFormosaSapalFragment15"
@@ -1967,7 +1967,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment15"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment15"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment15"
             android:label="RiaFormosaSapalFragment15" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment15_to_riaFormosaSapalFragment16"
@@ -1979,11 +1979,11 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment16"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment16"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment16"
             android:label="RiaFormosaSapalFragment16" />
         <fragment
             android:id="@+id/riaFormosaSapalFragment13SabiasQue1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment13SabiasQue1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment13SabiasQue1"
             android:label="RiaFormosaSapalFragment13SabiasQue1" >
             <action
                 android:id="@+id/action_riaFormosaSapalFragment13SabiasQue1_to_riaFormosaSapalFragment13SabiasQue2"
@@ -1995,18 +1995,18 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaSapalFragment13SabiasQue2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment13SabiasQue2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment13SabiasQue2"
             android:label="RiaFormosaSapalFragment13SabiasQue2" />
         <fragment
             android:id="@+id/riaFormosaSapalFragment9SapalMedioSabiasQue"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment9SapalMedioSabiasQue"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal.RiaFormosaSapalFragment9SapalMedioSabiasQue"
             android:label="RiaFormosaSapalFragment9SapalMedioSabiasQue" />
     </navigation>
     <navigation android:id="@+id/navigation_riaformosa_dunas"
         app:startDestination="@id/riaFormosaDunasFragment">
         <fragment
             android:id="@+id/riaFormosaDunasFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment"
             android:label="RiaFormosaDunasFragment" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment_to_riaFormosaDunasFragment2"
@@ -2018,7 +2018,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment2"
             android:label="RiaFormosaDunasFragment2" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment2_to_riaFormosaDunasFragment3"
@@ -2030,7 +2030,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment3"
             android:label="RiaFormosaDunasFragment3" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment3_to_riaFormosaDunasFragment4"
@@ -2042,7 +2042,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment4"
             android:label="RiaFormosaDunasFragment4" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment4_to_riaFormosaDunasFragment5Pergunta"
@@ -2054,7 +2054,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment5Pergunta"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment5Pergunta"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment5Pergunta"
             android:label="RiaFormosaDunasFragment5Pergunta" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment5Pergunta_to_riaFormosaDunasFragment6"
@@ -2066,7 +2066,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment6"
             android:label="RiaFormosaDunasFragment6" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment6_to_riaFormosaDunasFragment7"
@@ -2078,7 +2078,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment7"
             android:label="RiaFormosaDunasFragment7" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment7_to_riaFormosaDunasFragment8Menu"
@@ -2090,7 +2090,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment8Menu"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment8Menu"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment8Menu"
             android:label="RiaFormosaDunasFragment8Menu" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment8Menu_to_riaFormosaDunasFragmentDunaEmbrionaria"
@@ -2130,7 +2130,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaEmbrionaria"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionaria"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionaria"
             android:label="RiaFormosaDunasFragmentDunaEmbrionaria" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaEmbrionaria_to_riaFormosaDunasFragmentDunaEmbrionariaSabiasQue"
@@ -2149,11 +2149,11 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaEmbrionariaSabiasQue"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionariaSabiasQue"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionariaSabiasQue"
             android:label="RiaFormosaDunasFragmentDunaEmbrionariaSabiasQue" />
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaEmbrionaria2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionaria2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionaria2"
             android:label="RiaFormosaDunasFragmentDunaEmbrionaria2" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaEmbrionaria2_to_riaFormosaDunasFragmentDunaEmbrionaria3Tarefa"
@@ -2165,7 +2165,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaEmbrionaria3Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionaria3Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaEmbrionaria3Tarefa"
             android:label="RiaFormosaDunasFragmentDunaEmbrionaria3Tarefa" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaEmbrionaria3Tarefa_to_newAvistamentoDunasFragment"
@@ -2177,7 +2177,7 @@
         </fragment>
         <fragment
             android:id="@+id/newAvistamentoDunasFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.tarefas.NewAvistamentoDunasFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.tarefas.NewAvistamentoDunasFragment"
             android:label="NewAvistamentoDunasFragment" >
             <argument
                 android:name="zona"
@@ -2188,7 +2188,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaPrimaria"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaPrimaria"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaPrimaria"
             android:label="RiaFormosaDunasFragmentDunaPrimaria" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaPrimaria_to_riaFormosaDunasFragmentDunaPrimaria2"
@@ -2200,7 +2200,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaPrimaria2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaPrimaria2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaPrimaria2"
             android:label="RiaFormosaDunasFragmentDunaPrimaria2" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaPrimaria2_to_riaFormosaDunasFragmentDunaPrimaria3Tarefa"
@@ -2212,7 +2212,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaPrimaria3Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaPrimaria3Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaPrimaria3Tarefa"
             android:label="RiaFormosaDunasFragmentDunaPrimaria3Tarefa" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaPrimaria3Tarefa_to_newAvistamentoDunasFragment"
@@ -2224,7 +2224,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentZonaInterdunar"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar"
             android:label="RiaFormosaDunasFragmentZonaInterdunar" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentZonaInterdunar_to_riaFormosaDunasFragmentZonaInterdunar2"
@@ -2243,7 +2243,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentZonaInterdunar2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar2"
             android:label="RiaFormosaDunasFragmentZonaInterdunar2" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentZonaInterdunar2_to_riaFormosaDunasFragmentZonaInterdunar3"
@@ -2255,7 +2255,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentZonaInterdunar3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar3"
             android:label="RiaFormosaDunasFragmentZonaInterdunar3" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentZonaInterdunar3_to_riaFormosaDunasFragmentZonaInterdunar4Tarefa"
@@ -2267,7 +2267,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentZonaInterdunar4Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar4Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunar4Tarefa"
             android:label="RiaFormosaDunasFragmentZonaInterdunar4Tarefa" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentZonaInterdunar4Tarefa_to_newAvistamentoDunasFragment"
@@ -2275,7 +2275,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaSecundaria"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria"
             android:label="RiaFormosaDunasFragmentDunaSecundaria" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaSecundaria_to_riaFormosaDunasFragmentDunaSecundaria2"
@@ -2287,7 +2287,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaSecundaria2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria2"
             android:label="RiaFormosaDunasFragmentDunaSecundaria2" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaSecundaria2_to_riaFormosaDunasFragmentDunaSecundaria3"
@@ -2299,7 +2299,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaSecundaria3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria3"
             android:label="RiaFormosaDunasFragmentDunaSecundaria3" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaSecundaria3_to_riaFormosaDunasFragmentDunaSecundaria4Tarefa"
@@ -2311,7 +2311,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentDunaSecundaria4Tarefa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria4Tarefa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentDunaSecundaria4Tarefa"
             android:label="RiaFormosaDunasFragmentDunaSecundaria4Tarefa" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragmentDunaSecundaria4Tarefa_to_newAvistamentoDunasFragment"
@@ -2323,11 +2323,11 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragmentZonaInterdunarEndemismo"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunarEndemismo"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragmentZonaInterdunarEndemismo"
             android:label="RiaFormosaDunasFragmentZonaInterdunarEndemismo" />
         <fragment
             android:id="@+id/riaFormosaDunasFragment9Pergunta1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment9Pergunta1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment9Pergunta1"
             android:label="RiaFormosaDunasFragment9Pergunta1" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment9Pergunta1_to_riaFormosaDunasFragment10Pergunta2"
@@ -2339,7 +2339,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment10Pergunta2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment10Pergunta2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment10Pergunta2"
             android:label="RiaFormosaDunasFragment10Pergunta2" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment10Pergunta2_to_riaFormosaDunasFragment13"
@@ -2351,7 +2351,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment13"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment13"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment13"
             android:label="RiaFormosaDunasFragment13" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment13_to_riaFormosaDunasFragment14"
@@ -2363,7 +2363,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment14"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment14"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment14"
             android:label="RiaFormosaDunasFragment14" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment14_to_riaFormosaDunasFragment15"
@@ -2375,7 +2375,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment15"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment15"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment15"
             android:label="RiaFormosaDunasFragment15" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment15_to_riaFormosaDunasFragment16"
@@ -2387,7 +2387,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment16"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment16"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment16"
             android:label="RiaFormosaDunasFragment16" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment16_to_riaFormosaDunasFragment17"
@@ -2399,7 +2399,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment17"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment17"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment17"
             android:label="RiaFormosaDunasFragment17" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment17_to_riaFormosaDunasFragment18ConnectWords"
@@ -2411,7 +2411,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment19"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment19"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment19"
             android:label="RiaFormosaDunasFragment19" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment19_to_riaFormosaDunasFragment20"
@@ -2423,7 +2423,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment20"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment20"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment20"
             android:label="RiaFormosaDunasFragment20" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment20_to_riaFormosaDunasFragment21"
@@ -2435,7 +2435,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment21"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment21"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment21"
             android:label="RiaFormosaDunasFragment21" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment21_to_riaFormosaDunasFragment22Pergunta1"
@@ -2447,7 +2447,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment22Pergunta1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment22Pergunta1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment22Pergunta1"
             android:label="RiaFormosaDunasFragment22Pergunta1" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment22Pergunta1_to_riaFormosaDunasFragment23Pergunta22"
@@ -2459,7 +2459,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment23Pergunta22"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment23Pergunta2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment23Pergunta2"
             android:label="RiaFormosaDunasFragment23Pergunta2" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment23Pergunta22_to_riaFormosaDunasFragment24"
@@ -2478,15 +2478,15 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaDunasFragment24"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment24"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment24"
             android:label="RiaFormosaDunasFragment24" />
         <fragment
             android:id="@+id/riaFormosaDunasFragment23Pergunta2ParaSaberesMais"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment23Pergunta2ParaSaberesMais"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment23Pergunta2ParaSaberesMais"
             android:label="RiaFormosaDunasFragment23Pergunta2ParaSaberesMais" />
         <fragment
             android:id="@+id/riaFormosaDunasFragment18ConnectWords"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment18ConnectWords"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas.RiaFormosaDunasFragment18ConnectWords"
             android:label="RiaFormosaDunasFragment18ConnectWords" >
             <action
                 android:id="@+id/action_riaFormosaDunasFragment18ConnectWords_to_riaFormosaDunasFragment19"
@@ -2501,7 +2501,7 @@
         app:startDestination="@id/riaFormosaIntertidalArenosoFragment">
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment"
             android:label="RiaFormosaIntertidalArenosoFragment" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment_to_riaFormosaIntertidalArenosoFragment22"
@@ -2513,7 +2513,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment2"
             android:label="RiaFormosaIntertidalArenosoFragment2" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment2_to_riaFormosaIntertidalArenosoFragment3"
@@ -2525,7 +2525,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment3"
             android:label="RiaFormosaIntertidalArenosoFragment3" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment3_to_riaFormosaIntertidalArenosoFragment4"
@@ -2537,7 +2537,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment4"
             android:label="RiaFormosaIntertidalArenosoFragment4" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment4_to_riaFormosaIntertidalArenosoFragment5"
@@ -2549,7 +2549,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment5"
             android:label="RiaFormosaIntertidalArenosoFragment5" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment5_to_riaFormosaIntertidalArenosoFragment6"
@@ -2561,7 +2561,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment6"
             android:label="RiaFormosaIntertidalArenosoFragment6" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment6_to_riaFormosaIntertidalArenosoFragment7"
@@ -2573,7 +2573,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment7"
             android:label="RiaFormosaIntertidalArenosoFragment7" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment7_to_riaFormosaIntertidalArenosoFragment8"
@@ -2592,7 +2592,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment8"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment8"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment8"
             android:label="RiaFormosaIntertidalArenosoFragment8" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment8_to_riaFormosaIntertidalArenosoFragment9"
@@ -2604,7 +2604,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment9"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment9"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment9"
             android:label="RiaFormosaIntertidalArenosoFragment9" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment9_to_riaFormosaIntertidalArenosoFragment10TarefaPocas"
@@ -2616,7 +2616,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment10TarefaPocas"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment10TarefaPocas"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment10TarefaPocas"
             android:label="RiaFormosaIntertidalArenosoFragment10TarefaPocas" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment10TarefaPocas_to_riaFormosaNewAvistamentoPocasFragment"
@@ -2635,7 +2635,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNewAvistamentoPocasFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.tarefa.RiaFormosaNewAvistamentoPocasFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.tarefa.RiaFormosaNewAvistamentoPocasFragment"
             android:label="RiaFormosaNewAvistamentoPocasFragment" >
             <argument
                 android:name="nrPoca"
@@ -2643,7 +2643,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment12"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment12"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment12"
             android:label="RiaFormosaIntertidalArenosoFragment12" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment12_to_riaFormosaIntertidalArenosoFragment13TarefaTranseptos"
@@ -2655,7 +2655,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment13TarefaTranseptos"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment13TarefaTranseptos"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment13TarefaTranseptos"
             android:label="RiaFormosaIntertidalArenosoFragment13TarefaTranseptos" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment13TarefaTranseptos_to_riaFormosaNewAvistamentoTranseptoFragment"
@@ -2674,7 +2674,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaNewAvistamentoTranseptoFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.tarefa.RiaFormosaNewAvistamentoTranseptoFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.tarefa.RiaFormosaNewAvistamentoTranseptoFragment"
             android:label="RiaFormosaNewAvistamentoTranseptoFragment" >
             <argument
                 android:name="nrTransepto"
@@ -2682,7 +2682,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment11Sopa"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment11Sopa"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment11Sopa"
             android:label="RiaFormosaIntertidalArenosoFragment11Sopa" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment11Sopa_to_riaFormosaIntertidalArenosoFragment12"
@@ -2694,7 +2694,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment14"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment14"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment14"
             android:label="RiaFormosaIntertidalArenosoFragment14" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment14_to_riaFormosaIntertidalArenosoFragment15Pergunta"
@@ -2706,7 +2706,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment15Pergunta"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment15Pergunta"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment15Pergunta"
             android:label="RiaFormosaIntertidalArenosoFragment15Pergunta" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment15Pergunta_to_riaFormosaIntertidalArenosoFragment16"
@@ -2718,7 +2718,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment16"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment16"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment16"
             android:label="RiaFormosaIntertidalArenosoFragment16" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment16_to_riaFormosaIntertidalArenosoFragment17ConnectWords"
@@ -2730,7 +2730,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment17ConnectWords"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment17ConnectWords"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment17ConnectWords"
             android:label="RiaFormosaIntertidalArenosoFragment17ConnectWords" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment17ConnectWords_to_riaFormosaIntertidalArenosoFragment18Menu"
@@ -2742,7 +2742,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment18Menu"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment18Menu"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment18Menu"
             android:label="RiaFormosaIntertidalArenosoFragment18Menu" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment18Menu_to_riaFormosaIntertidalArenosoFragmentPredacao1"
@@ -2768,15 +2768,15 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragmentPredacao1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragmentPredacao1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragmentPredacao1"
             android:label="RiaFormosaIntertidalArenosoFragmentPredacao1" />
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragmentCompeticao1"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragmentCompeticao1"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragmentCompeticao1"
             android:label="RiaFormosaIntertidalArenosoFragmentCompeticao1" />
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment19"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment19"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment19"
             android:label="RiaFormosaIntertidalArenosoFragment19" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment19_to_riaFormosaIntertidalArenosoFragment20RedeTrofica"
@@ -2788,7 +2788,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment20RedeTrofica"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment20RedeTrofica"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment20RedeTrofica"
             android:label="RiaFormosaIntertidalArenosoFragment20RedeTrofica" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment20RedeTrofica_to_riaFormosaIntertidalArenosoFragment21"
@@ -2800,7 +2800,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment21"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment21"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment21"
             android:label="RiaFormosaIntertidalArenosoFragment21" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment21_to_riaFormosaIntertidalArenosoFragment22"
@@ -2812,7 +2812,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment22"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment22"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment22"
             android:label="RiaFormosaIntertidalArenosoFragment22" >
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment22_to_riaFormosaIntertidalArenosoFragment23"
@@ -2824,7 +2824,7 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment23"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment23"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment23"
             android:label="RiaFormosaIntertidalArenosoFragment23">
             <action
                 android:id="@+id/action_riaFormosaIntertidalArenosoFragment23_to_riaFormosaIntertidalArenosoFragment24"
@@ -2836,18 +2836,18 @@
         </fragment>
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment24"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment24"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment24"
             android:label="RiaFormosaIntertidalArenosoFragment24" />
         <fragment
             android:id="@+id/riaFormosaIntertidalArenosoFragment7EspeciesExoticas"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment7EspeciesExoticas"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.intertidalarenoso.RiaFormosaIntertidalArenosoFragment7EspeciesExoticas"
             android:label="RiaFormosaIntertidalArenosoFragment7EspeciesExoticas" />
     </navigation>
     <navigation android:id="@+id/navigation_mares"
         app:startDestination="@id/maresFragment">
         <fragment
             android:id="@+id/maresFragment"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment"
             android:label="MaresFragment" >
             <action
                 android:id="@+id/action_maresFragment_to_maresFragment2"
@@ -2859,7 +2859,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment2"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment2"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment2"
             android:label="MaresFragment2" >
             <action
                 android:id="@+id/action_maresFragment2_to_maresFragment3"
@@ -2871,7 +2871,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment3"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment3"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment3"
             android:label="MaresFragment3" >
             <action
                 android:id="@+id/action_maresFragment3_to_maresFragment4"
@@ -2883,7 +2883,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment4"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment4"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment4"
             android:label="MaresFragment4" >
             <action
                 android:id="@+id/action_maresFragment4_to_maresFragment5"
@@ -2895,7 +2895,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment5"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment5"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment5"
             android:label="MaresFragment5" >
             <action
                 android:id="@+id/action_maresFragment5_to_maresFragment6"
@@ -2907,7 +2907,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment6"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment6"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment6"
             android:label="MaresFragment6" >
             <action
                 android:id="@+id/action_maresFragment6_to_maresFragment7"
@@ -2919,7 +2919,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment7"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment7"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment7"
             android:label="MaresFragment7" >
             <action
                 android:id="@+id/action_maresFragment7_to_maresFragment8"
@@ -2931,7 +2931,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment8"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment8"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment8"
             android:label="MaresFragment8" >
             <action
                 android:id="@+id/action_maresFragment8_to_maresFragment9"
@@ -2943,7 +2943,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment9"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment9"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment9"
             android:label="MaresFragment9" >
             <action
                 android:id="@+id/action_maresFragment9_to_maresFragment10"
@@ -2955,7 +2955,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment10"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment10"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment10"
             android:label="MaresFragment10" >
             <action
                 android:id="@+id/action_maresFragment10_to_maresFragment11"
@@ -2967,7 +2967,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment11"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment11"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment11"
             android:label="MaresFragment11" >
             <action
                 android:id="@+id/action_maresFragment11_to_maresFragment12"
@@ -2979,7 +2979,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment12"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment12"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment12"
             android:label="MaresFragment12" >
             <action
                 android:id="@+id/action_maresFragment12_to_maresFragment13"
@@ -2991,7 +2991,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment13"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment13"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment13"
             android:label="MaresFragment13" >
             <action
                 android:id="@+id/action_maresFragment13_to_maresFragment14"
@@ -3003,7 +3003,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment14"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment14"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment14"
             android:label="MaresFragment14" >
             <action
                 android:id="@+id/action_maresFragment14_to_maresFragment15"
@@ -3015,7 +3015,7 @@
         </fragment>
         <fragment
             android:id="@+id/maresFragment15"
-            android:name="com.android.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment15"
+            android:name="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.mares.MaresFragment15"
             android:label="MaresFragment15" />
     </navigation>
 </navigation>

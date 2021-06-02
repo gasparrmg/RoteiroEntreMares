@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.screens.guiadecampo.details.riaformosa.GlossarioRiaFormosaActivity">
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.riaformosa.GlossarioRiaFormosaActivity">
 
     <ScrollView
         android:layout_width="match_parent"

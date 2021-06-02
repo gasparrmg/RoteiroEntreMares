@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context=".ui.common.MediaPlayerActivity">
+    tools:context="com.lasige.roteiroentremares.ui.common.MediaPlayerActivity">
 
     <VideoView
         android:id="@+id/videoView"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.screens.artefactos.TurmaArtefactosFragment"
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.screens.artefactos.TurmaArtefactosFragment"
     android:background="@android:color/transparent">
 
     <LinearLayout

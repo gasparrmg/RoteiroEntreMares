@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context=".ui.dashboard.screens.artefactos.NewArtefactoActivity">
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.screens.artefactos.NewArtefactoActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

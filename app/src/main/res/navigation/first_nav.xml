@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.android.roteiroentremares.ui.onboarding.SplashFragment"
+        android:name="com.lasige.roteiroentremares.ui.onboarding.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.android.roteiroentremares.ui.onboarding.ViewPagerFragment"
+        android:name="com.lasige.roteiroentremares.ui.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
@@ -32,16 +32,16 @@
     </fragment>
     <fragment
         android:id="@+id/avencasViewPagerFragment"
-        android:name="com.android.roteiroentremares.ui.onboarding.AvencasViewPagerFragment"
+        android:name="com.lasige.roteiroentremares.ui.onboarding.AvencasViewPagerFragment"
         android:label="fragment_avencas_view_pager"
         tools:layout="@layout/fragment_avencas_view_pager" />
     <fragment
         android:id="@+id/riaFormosaViewPagerFragment"
-        android:name="com.android.roteiroentremares.ui.onboarding.RiaFormosaViewPagerFragment"
+        android:name="com.lasige.roteiroentremares.ui.onboarding.RiaFormosaViewPagerFragment"
         android:label="RiaFormosaViewPagerFragment" />
     <fragment
         android:id="@+id/chooseZoneInteresseFragment"
-        android:name="com.android.roteiroentremares.ui.onboarding.screens.ChooseZoneInteresseFragment"
+        android:name="com.lasige.roteiroentremares.ui.onboarding.screens.ChooseZoneInteresseFragment"
         android:label="ChooseZoneInteresseFragment" >
         <action
             android:id="@+id/action_chooseZoneInteresseFragment_to_avencasViewPagerFragment"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity"
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity"
     android:padding="16dp">
 
     <LinearLayout

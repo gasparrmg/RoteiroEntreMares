@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
-    tools:context=".ui.dashboard.UserDashboardActivity"
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.UserDashboardActivity"
     android:background="@color/colorBackground">
 
      <LinearLayout

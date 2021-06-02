@@ -9,7 +9,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.android.roteiroentremares"
+        applicationId "com.lasige.roteiroentremares"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
