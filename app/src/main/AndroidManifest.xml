@@ -27,6 +27,10 @@
             android:name="com.lasige.roteiroentremares.ui.dashboard.AboutUsActivity"
             android:parentActivityName="com.lasige.roteiroentremares.ui.dashboard.UserDashboardActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lasige.roteiroentremares.ui.dashboard.PoliticaPrivacidadeActivity"
+            android:parentActivityName="com.lasige.roteiroentremares.ui.dashboard.UserDashboardActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name="com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.riaformosa.GlossarioRiaFormosaActivity" />
         <activity
             android:name="com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity"

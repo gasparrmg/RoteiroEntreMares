@@ -145,6 +145,10 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 Intent intentAboutUs = new Intent(this, AboutUsActivity.class);
                 startActivity(intentAboutUs);
                 break;
+            case R.id.nav_privacy:
+                Intent intentPrivacy = new Intent(this, PoliticaPrivacidadeActivity.class);
+                startActivity(intentPrivacy);
+                break;
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
