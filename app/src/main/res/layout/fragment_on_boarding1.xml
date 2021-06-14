@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#EFF6FA"
     android:orientation="vertical"
-    tools:context=".ui.onboarding.SplashFragment">
+    tools:context="com.lasige.roteiroentremares.ui.onboarding.SplashFragment">
 
     <TextView
         android:id="@+id/text_appName"

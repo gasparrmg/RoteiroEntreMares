@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment6">
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment6">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -24,4 +24,9 @@
         android:id="@+id/nav_about_us"
         android:icon="@drawable/ic_info"
         android:title="@string/about_us_title" />
+
+    <item
+        android:id="@+id/nav_privacy"
+        android:icon="@drawable/ic_privacy"
+        android:title="Política de Privacidade" />
 </menu>

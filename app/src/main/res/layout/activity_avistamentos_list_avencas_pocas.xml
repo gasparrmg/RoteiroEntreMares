@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity">
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.AvistamentosChartsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

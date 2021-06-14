@@ -39,4 +39,5 @@
     <string name="permissions_successful">All needed permissions were granted</string>
     <string name="permissions_warning">A aplicação necessita da sua permissão para aceder a todas as funcionalidades</string>
     <string name="location_near_point">Já estás perto do local. Podes continuar!</string>
+    <string name="title_privacy_policy">Política de Privacidade</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment3">
+    tools:context="com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.historiaspassado.HistoriasPassadoFragment3">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.android.roteiroentremares.util.GestureDetectGridView
+        <com.lasige.roteiroentremares.util.GestureDetectGridView
             android:id="@+id/grid_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
