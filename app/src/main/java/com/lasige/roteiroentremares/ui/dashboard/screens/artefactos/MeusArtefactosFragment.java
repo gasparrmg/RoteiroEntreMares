@@ -219,7 +219,7 @@ public class MeusArtefactosFragment extends Fragment implements ArtefactoAdapter
         intent.putExtra("EDIT_ARTEFACTO_CONTENT", artefacto.getContent());
         intent.putExtra("EDIT_ARTEFACTO_TYPE", artefacto.getType());
         intent.putExtra("EDIT_ARTEFACTO_DESCRIPTION", artefacto.getDescription());
-        intent.putExtra("EDIT_ARTEFACTO_DATE", artefacto.getDate());
+        intent.putExtra("EDIT_ARTEFACTO_DATE", artefacto.getDate().getTime());
         intent.putExtra("EDIT_ARTEFACTO_LATITUDE", artefacto.getLatitude());
         intent.putExtra("EDIT_ARTEFACTO_LONGITUDE", artefacto.getLongitude());
         intent.putExtra("EDIT_ARTEFACTO_CODIGOTURMA", artefacto.getCodigoTurma());

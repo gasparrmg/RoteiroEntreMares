@@ -9,29 +9,30 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.lasige.roteiroentremares.data.model.Artefacto;
+import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
 
 import java.util.List;
 
 @Dao
-public interface ArtefactoDao {
+public interface ArtefactoTurmaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Artefacto artefacto);
+    void insert(ArtefactoTurma artefactoTurma);
 
     @Update
-    void update(Artefacto artefacto);
+    void update(ArtefactoTurma artefactoTurma);
 
     @Delete
-    void delete(Artefacto artefacto);
+    void delete(ArtefactoTurma artefactoTurma);
 
-    @Query("DELETE FROM artefacto_table")
+    @Query("DELETE FROM artefacto_turma_table")
     void deleteAll();
 
-    @Query("SELECT * FROM artefacto_table ORDER BY id DESC")
-    List<Artefacto> getAllArtefactos();
+    @Query("SELECT * FROM artefacto_turma_table ORDER BY id DESC")
+    List<ArtefactoTurma> getAllAlt();
 
-    @Query("SELECT * FROM artefacto_table ORDER BY id DESC")
-    LiveData<List<Artefacto>> getAll();
+    @Query("SELECT * FROM artefacto_turma_table ORDER BY id DESC")
+    LiveData<List<ArtefactoTurma>> getAll();
 
     @Query("SELECT idString FROM artefacto_table")
     LiveData<List<String>> getAllIdStrings();

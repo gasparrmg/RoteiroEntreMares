@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_marginBottom="8dp"
+    android:layout_height="?android:attr/listPreferredItemHeight">
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_baseline_phone_android_24" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+        <TextView
+            android:id="@+id/device_name"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Nome"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/colorTitleText"
+            android:textStyle="bold"
+            android:gravity="center_vertical" />
+        <TextView
+            android:id="@+id/device_details"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:text="Status"
+            android:gravity="center_vertical"
+            android:ellipsize="marquee"
+            android:textSize="16sp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorBodyText"/>
+    </LinearLayout>
+</LinearLayout>

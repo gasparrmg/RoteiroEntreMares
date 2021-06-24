@@ -16,6 +16,11 @@
         android:title="Pessoal" />
 
     <item
+        android:id="@+id/nav_wifip2p"
+        android:icon="@drawable/ic_group"
+        android:title="Turma" />
+
+    <item
         android:id="@+id/nav_change_zone"
         android:icon="@drawable/ic_baseline_place_24"
         android:title="Mudar zona de interesse" />

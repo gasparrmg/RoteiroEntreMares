@@ -105,6 +105,10 @@ public class UserDashboardActivity extends AppCompatActivity implements Navigati
                 Intent intent3 = new Intent(this, PessoalActivity.class);
                 startActivityForResult(intent3, 3);
                 break;
+            case R.id.nav_wifip2p:
+                Intent intentWifiP2p = new Intent(this, WifiP2PActivity.class);
+                startActivity(intentWifiP2p);
+                break;
             case R.id.nav_change_zone:
                 MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(this);
                 materialAlertDialogBuilder.setTitle("Atenção!");

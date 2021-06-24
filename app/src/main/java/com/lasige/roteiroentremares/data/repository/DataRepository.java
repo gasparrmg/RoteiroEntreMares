@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.sqlite.db.SupportSQLiteQuery;
 
 import com.lasige.roteiroentremares.data.dao.ArtefactoDao;
+import com.lasige.roteiroentremares.data.dao.ArtefactoTurmaDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoDunasRiaFormosaDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoPocasRiaFormosaDao;
@@ -16,7 +17,9 @@ import com.lasige.roteiroentremares.data.dao.AvistamentoTranseptosRiaFormosaDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.lasige.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.lasige.roteiroentremares.data.dao.EspecieRiaFormosaDao;
+import com.lasige.roteiroentremares.data.dao.WifiP2pConnectionDao;
 import com.lasige.roteiroentremares.data.model.Artefacto;
+import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
 import com.lasige.roteiroentremares.data.model.AvistamentoDunasRiaFormosa;
 import com.lasige.roteiroentremares.data.model.AvistamentoPocasAvencas;
 import com.lasige.roteiroentremares.data.model.AvistamentoPocasRiaFormosa;
@@ -29,6 +32,7 @@ import com.lasige.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.lasige.roteiroentremares.data.model.EspecieRiaFormosaDunasInstancias;
 import com.lasige.roteiroentremares.data.model.EspecieRiaFormosaPocasInstancias;
 import com.lasige.roteiroentremares.data.model.EspecieRiaFormosaTranseptosInstancias;
+import com.lasige.roteiroentremares.data.model.WifiP2pConnection;
 import com.lasige.roteiroentremares.data.model.relations.AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 import com.lasige.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
 import com.lasige.roteiroentremares.data.model.relations.AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
@@ -101,6 +105,8 @@ public class DataRepository {
 
     private SharedPreferences sharedPreferences;
     private ArtefactoDao artefactoDao;
+    private ArtefactoTurmaDao artefactoTurmaDao;
+    private WifiP2pConnectionDao wifiP2pConnectionDao;
 
     // Avencas
     private EspecieAvencasDao especieAvencasDao;
@@ -114,6 +120,11 @@ public class DataRepository {
     private AvistamentoTranseptosRiaFormosaDao avistamentoTranseptosRiaFormosaDao;
 
     private LiveData<List<Artefacto>> allArtefactos;
+    private LiveData<List<String>> allArtefactoIdString;
+
+    private LiveData<List<ArtefactoTurma>> allArtefactosTurma;
+    private LiveData<List<String>> allArtefactoTurmaIdString;
+
     private LiveData<List<EspecieAvencas>> allEspecieAvencas;
     private LiveData<List<EspecieRiaFormosa>> allEspecieRiaFormosa;
 
@@ -138,6 +149,8 @@ public class DataRepository {
     public DataRepository(
             SharedPreferences sharedPreferences,
             ArtefactoDao artefactoDao,
+            ArtefactoTurmaDao artefactoTurmaDao,
+            WifiP2pConnectionDao wifiP2pConnectionDao,
             EspecieAvencasDao especieAvencasDao,
             EspecieRiaFormosaDao especieRiaFormosaDao,
             AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
@@ -148,6 +161,8 @@ public class DataRepository {
     ) {
         this.sharedPreferences = sharedPreferences;
         this.artefactoDao = artefactoDao;
+        this.artefactoTurmaDao = artefactoTurmaDao;
+        this.wifiP2pConnectionDao = wifiP2pConnectionDao;
         this.especieAvencasDao = especieAvencasDao;
         this.especieRiaFormosaDao = especieRiaFormosaDao;
         this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
@@ -157,6 +172,10 @@ public class DataRepository {
         this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
 
         allArtefactos = artefactoDao.getAll();
+        allArtefactoIdString = artefactoDao.getAllIdStrings();
+
+        allArtefactosTurma = artefactoTurmaDao.getAll();
+        allArtefactoTurmaIdString = artefactoTurmaDao.getAllIdStrings();
 
         allEspecieAvencas = especieAvencasDao.getAll();
         allEspecieRiaFormosa = especieRiaFormosaDao.getAll();
@@ -1987,6 +2006,86 @@ public class DataRepository {
         }
     }
 
+    // --------------------------- WIFI P2P -------------------------------
+
+    public void insertWifiP2pConnection(WifiP2pConnection wifiP2pConnection) {
+        new InsertWifiP2pConnectionAsyncTask(wifiP2pConnectionDao).execute(wifiP2pConnection);
+    }
+
+    public void updateWifiP2pConnection(WifiP2pConnection wifiP2pConnection) {
+        new UpdateWifiP2pConnectionAsyncTask(wifiP2pConnectionDao).execute(wifiP2pConnection);
+    }
+
+    public void deleteWifiP2pConnection(WifiP2pConnection wifiP2pConnection) {
+        new DeleteWifiP2pConnectionAsyncTask(wifiP2pConnectionDao).execute(wifiP2pConnection);
+    }
+
+    public void deleteAllWifiP2pConnection(WifiP2pConnection wifiP2pConnection) {
+        new DeleteAllWifiP2pConnectionAsyncTask(wifiP2pConnectionDao).execute();
+    }
+
+    public WifiP2pConnection getLastConnectionWithDevice(String deviceAddress) {
+        return wifiP2pConnectionDao.getLastConnectionWithDevice(deviceAddress).get(0);
+    }
+
+    private static class InsertWifiP2pConnectionAsyncTask extends AsyncTask<WifiP2pConnection, Void, Void> {
+        private WifiP2pConnectionDao wifiP2pConnectionDao;
+
+        private InsertWifiP2pConnectionAsyncTask(WifiP2pConnectionDao wifiP2pConnectionDao) {
+            this.wifiP2pConnectionDao = wifiP2pConnectionDao;
+        }
+
+        @Override
+        protected Void doInBackground(WifiP2pConnection... wifiP2pConnections) {
+            wifiP2pConnectionDao.insert(wifiP2pConnections[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateWifiP2pConnectionAsyncTask extends AsyncTask<WifiP2pConnection, Void, Void> {
+        private WifiP2pConnectionDao wifiP2pConnectionDao;
+
+        private UpdateWifiP2pConnectionAsyncTask(WifiP2pConnectionDao wifiP2pConnectionDao) {
+            this.wifiP2pConnectionDao = wifiP2pConnectionDao;
+        }
+
+        @Override
+        protected Void doInBackground(WifiP2pConnection... wifiP2pConnections) {
+            wifiP2pConnectionDao.update(wifiP2pConnections[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteWifiP2pConnectionAsyncTask extends AsyncTask<WifiP2pConnection, Void, Void> {
+        private WifiP2pConnectionDao wifiP2pConnectionDao;
+
+        private DeleteWifiP2pConnectionAsyncTask(WifiP2pConnectionDao wifiP2pConnectionDao) {
+            this.wifiP2pConnectionDao = wifiP2pConnectionDao;
+        }
+
+        @Override
+        protected Void doInBackground(WifiP2pConnection... wifiP2pConnections) {
+            wifiP2pConnectionDao.delete(wifiP2pConnections[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllWifiP2pConnectionAsyncTask extends AsyncTask<Void, Void, Void> {
+        private WifiP2pConnectionDao wifiP2pConnectionDao;
+
+        private DeleteAllWifiP2pConnectionAsyncTask(WifiP2pConnectionDao wifiP2pConnectionDao) {
+            this.wifiP2pConnectionDao = wifiP2pConnectionDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            wifiP2pConnectionDao.deleteAllRecords();
+            return null;
+        }
+    }
+
+    // --------------------------- ARTEFACTOS -----------------------------
+
     public void insertArtefacto(Artefacto artefacto) {
         new InsertArtefactoAsyncTask(artefactoDao).execute(artefacto);
     }
@@ -2012,6 +2111,102 @@ public class DataRepository {
     public LiveData<List<Artefacto>> getAllArtefactos() {
         return allArtefactos;
     }
+
+    /**
+     * WARNING: Make sure this is executed in the background thread
+     * @return
+     */
+    public List<Artefacto> getAllArtefactosAlt() {
+        return artefactoDao.getAllArtefactos();
+    }
+
+    public LiveData<List<String>> getAllArtefactoIdString() {
+        return allArtefactoIdString;
+    }
+
+    // ------------------------------ ARTEFACTOS TURMA ----------------------
+
+    public LiveData<List<ArtefactoTurma>> getAllArtefactosTurma() {
+        return allArtefactosTurma;
+    }
+
+    public List<ArtefactoTurma> getAllArtefactosTurmaAlt() {
+        return artefactoTurmaDao.getAllAlt();
+    }
+
+    public void insertArtefactoTurma(ArtefactoTurma artefactoTurma) {
+        new InsertArtefactoTurmaAsyncTask(artefactoTurmaDao).execute(artefactoTurma);
+    }
+
+    public void updateArtefactoTurma(ArtefactoTurma artefactoTurma) {
+        new UpdateArtefactoTurmaAsyncTask(artefactoTurmaDao).execute(artefactoTurma);
+    }
+
+    public void deleteArtefactoTurma(ArtefactoTurma artefactoTurma) {
+        new DeleteArtefactoTurmaAsyncTask(artefactoTurmaDao).execute(artefactoTurma);
+    }
+
+    public void deleteAllArtefactoTurma() {
+        new DeleteAllArtefactoTurmaAsyncTask(artefactoTurmaDao).execute();
+    }
+
+    private static class InsertArtefactoTurmaAsyncTask extends AsyncTask<ArtefactoTurma, Void, Void> {
+        private ArtefactoTurmaDao artefactoTurmaDao;
+
+        private InsertArtefactoTurmaAsyncTask(ArtefactoTurmaDao artefactoTurmaDao) {
+            this.artefactoTurmaDao = artefactoTurmaDao;
+        }
+
+        @Override
+        protected Void doInBackground(ArtefactoTurma... artefactoTurmas) {
+            artefactoTurmaDao.insert(artefactoTurmas[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateArtefactoTurmaAsyncTask extends AsyncTask<ArtefactoTurma, Void, Void> {
+        private ArtefactoTurmaDao artefactoTurmaDao;
+
+        private UpdateArtefactoTurmaAsyncTask(ArtefactoTurmaDao artefactoTurmaDao) {
+            this.artefactoTurmaDao = artefactoTurmaDao;
+        }
+
+        @Override
+        protected Void doInBackground(ArtefactoTurma... artefactoTurmas) {
+            artefactoTurmaDao.update(artefactoTurmas[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteArtefactoTurmaAsyncTask extends AsyncTask<ArtefactoTurma, Void, Void> {
+        private ArtefactoTurmaDao artefactoTurmaDao;
+
+        private DeleteArtefactoTurmaAsyncTask(ArtefactoTurmaDao artefactoTurmaDao) {
+            this.artefactoTurmaDao = artefactoTurmaDao;
+        }
+
+        @Override
+        protected Void doInBackground(ArtefactoTurma... artefactoTurmas) {
+            artefactoTurmaDao.delete(artefactoTurmas[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAllArtefactoTurmaAsyncTask extends AsyncTask<Void, Void, Void> {
+        private ArtefactoTurmaDao artefactoTurmaDao;
+
+        private DeleteAllArtefactoTurmaAsyncTask(ArtefactoTurmaDao artefactoTurmaDao) {
+            this.artefactoTurmaDao = artefactoTurmaDao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            artefactoTurmaDao.deleteAll();
+            return null;
+        }
+    }
+
+    // ------------------------------ ESPECIES ------------------------------
 
     public LiveData<List<EspecieRiaFormosa>> getAllEspecieRiaFormosa() {
         return allEspecieRiaFormosa;

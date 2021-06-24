@@ -36,8 +36,13 @@
     <string name="message_correct_answer">Resposta correta!</string>
     <string name="coming_soon_message">Esta funcionalidade ainda não está disponível</string>
     <string name="about_us_title">Acerca do projecto</string>
-    <string name="permissions_successful">All needed permissions were granted</string>
+    <string name="permissions_successful">Todas as permissões necessárias foram dadas</string>
     <string name="permissions_warning">A aplicação necessita da sua permissão para aceder a todas as funcionalidades</string>
     <string name="location_near_point">Já estás perto do local. Podes continuar!</string>
     <string name="title_privacy_policy">Política de Privacidade</string>
+    <string name="title_wifip2p">Turma</string>
+    <string name="p2p_off_warning">Liga o Wifi P2P através do botão na barra de ferramentas</string>
+    <string name="group_owner_text">Sou o dono do Grupo? </string>
+    <string name="client_text">Este dispositivo irá funcionar como Cliente. Clica no botão Começar para começar o protocolo de comunicação.</string>
+    <string name="empty"></string>
 </resources>

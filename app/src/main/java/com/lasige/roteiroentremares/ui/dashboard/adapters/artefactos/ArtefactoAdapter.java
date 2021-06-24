@@ -26,6 +26,10 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHolder> {
 
@@ -91,6 +95,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         // Where we get the data to the Views
         Artefacto currentArtefacto = getItem(position);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
         switch (holder.getItemViewType()) {
             case 1:
@@ -98,7 +103,8 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 ViewHolderImage viewHolderImage = (ViewHolderImage) holder;
                 viewHolderImage.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderImage.textViewDescription.setText(currentArtefacto.getDescription());
-                viewHolderImage.textViewDate.setText(currentArtefacto.getDate());
+
+                viewHolderImage.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
 
                 File imageFile = new File(currentArtefacto.getContent());
 
@@ -118,7 +124,8 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 ViewHolderAudio viewHolderAudio = (ViewHolderAudio) holder;
                 viewHolderAudio.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderAudio.textViewDescription.setText(currentArtefacto.getDescription());
-                viewHolderAudio.textViewDate.setText(currentArtefacto.getDate());
+
+                viewHolderAudio.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
 
                 viewHolderAudio.currentAudioPath = currentArtefacto.getContent();
                 break;
@@ -127,7 +134,8 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 ViewHolderVideo viewHolderVideo = (ViewHolderVideo) holder;
                 viewHolderVideo.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderVideo.textViewDescription.setText(currentArtefacto.getDescription());
-                viewHolderVideo.textViewDate.setText(currentArtefacto.getDate());
+
+                viewHolderVideo.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
 
                 File videoFile = new File(currentArtefacto.getContent());
 
@@ -147,7 +155,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 ViewHolderText viewHolderTextAlt = (ViewHolderText) holder;
                 viewHolderTextAlt.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderTextAlt.textViewContent.setText(currentArtefacto.getContent());
-                viewHolderTextAlt.textViewDate.setText(currentArtefacto.getDate());
+                viewHolderTextAlt.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
         }
     }
 

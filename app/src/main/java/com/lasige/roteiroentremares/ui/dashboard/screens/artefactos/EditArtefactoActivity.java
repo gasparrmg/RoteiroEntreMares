@@ -122,7 +122,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private String artefactoContent;
     private int artefactoType;
     private String artefactoDescription;
-    private String artefactoDate;
+    private Date artefactoDate;
     private String artefactoLatitude;
     private String artefactoLongitude;
     private String artefactoCodigoTurma;
@@ -187,7 +187,10 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         artefactoContent = getIntent().getStringExtra("EDIT_ARTEFACTO_CONTENT");
         artefactoType = getIntent().getIntExtra("EDIT_ARTEFACTO_TYPE", 0);
         artefactoDescription = getIntent().getStringExtra("EDIT_ARTEFACTO_DESCRIPTION");
-        artefactoDate = getIntent().getStringExtra("EDIT_ARTEFACTO_DATE");
+
+        artefactoDate = new Date();
+        artefactoDate.setTime(getIntent().getLongExtra("EDIT_ARTEFACTO_DATE", -1));
+
         artefactoLatitude = getIntent().getStringExtra("EDIT_ARTEFACTO_LATITUDE");
         artefactoLongitude = getIntent().getStringExtra("EDIT_ARTEFACTO_LONGITUDE");
         artefactoCodigoTurma = getIntent().getStringExtra("EDIT_ARTEFACTO_CODIGOTURMA");
