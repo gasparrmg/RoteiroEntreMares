@@ -106,7 +106,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
             finish();
         }
 
-        disconnect();
+        removePersistentGroups();
     }
 
     private void initViews() {
@@ -220,11 +220,61 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     }
 
     public void removePersistentGroups() {
-        try {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
+                @Override
+                public void onGroupInfoAvailable(WifiP2pGroup group) {
+                    if (group != null) {
+                        manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
+
+                            @Override
+                            public void onFailure(int reasonCode) {
+                                Log.d(TAG, "Remove group failed failed. Reason: " + reasonCode);
+                                manager.cancelConnect(channel, new WifiP2pManager.ActionListener() {
+                                    @Override
+                                    public void onSuccess() {
+                                        Log.d(TAG, "Cancelled connect successfully");
+                                    }
+
+                                    @Override
+                                    public void onFailure(int reason) {
+                                        Log.d(TAG, "Cancel connect failed. Reason: " + reason);
+                                    }
+                                });
+
+                            }
+
+                            @Override
+                            public void onSuccess() {
+                                Log.d(TAG, "Group removed");
+                            }
+
+                        });
+                    } else {
+                        Log.d(TAG, "Group is null. Can't execute removeGroup. Trying to cancelConnect");
+
+                        manager.cancelConnect(channel, new WifiP2pManager.ActionListener() {
+                            @Override
+                            public void onSuccess() {
+                                Log.d(TAG, "Cancelled connect successfully");
+                            }
+
+                            @Override
+                            public void onFailure(int reason) {
+                                Log.d(TAG, "Cancel connect failed. Reason: " + reason);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+        /*try {
             Method[] methods = WifiP2pManager.class.getMethods();
             for (int i = 0; i < methods.length; i++) {
                 if (methods[i].getName().equals("deletePersistentGroup")) {
-                    // Remove any persistent groupo
+                    // Remove any persistent groups
                     for (int netid = 0; netid < 32; netid++) {
                         methods[i].invoke(manager, channel, netid, null);
                     }
@@ -235,7 +285,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         } catch(Exception e) {
             Log.e(TAG, "Failure removing persistent groups: " + e.getMessage());
             e.printStackTrace();
-        }
+        }*/
     }
 
     private boolean initP2p() {
@@ -368,23 +418,34 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     public void disconnect() {
         final DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.frag_detail);
-        fragment.resetViews();
-        manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
+                @Override
+                public void onGroupInfoAvailable(WifiP2pGroup group) {
+                    if (group != null) {
+                        fragment.resetViews();
+                        manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
 
-            @Override
-            public void onFailure(int reasonCode) {
-                Log.d(TAG, "Disconnect failed. Reason :" + reasonCode);
+                            @Override
+                            public void onFailure(int reasonCode) {
+                                Log.d(TAG, "Disconnect failed. Reason :" + reasonCode);
 
-            }
+                            }
 
-            @Override
-            public void onSuccess() {
-                fragment.getView().setVisibility(View.GONE);
-            }
+                            @Override
+                            public void onSuccess() {
+                                Log.d(TAG, "Group removed");
+                                fragment.getView().setVisibility(View.GONE);
+                            }
 
-        });
-
-        removePersistentGroups();
+                        });
+                    } else {
+                        Log.d(TAG, "Group is null. Can't execute removeGroup.");
+                    }
+                }
+            });
+        }
     }
 
     @Override
@@ -478,6 +539,8 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                     Toast.makeText(WifiP2PActivity.this,
                             "Failed to create group. Reason: " + reason,
                             Toast.LENGTH_SHORT).show();
+
+                    cancelDisconnect();
                 }
             });
         }
