@@ -27,6 +27,6 @@ public interface WifiP2pConnectionDao {
     @Query("DELETE FROM wifi_p2p_connections")
     void deleteAllRecords();
 
-    @Query("SELECT * FROM wifi_p2p_connections WHERE deviceAddress = :deviceAddress")
+    @Query("SELECT * FROM wifi_p2p_connections WHERE deviceAddress = :deviceAddress LIMIT 1")
     List<WifiP2pConnection> getLastConnectionWithDevice(String deviceAddress);
 }

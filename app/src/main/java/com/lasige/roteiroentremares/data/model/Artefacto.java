@@ -6,6 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.google.gson.Gson;
 import com.lasige.roteiroentremares.util.GithubTypeConverters;
 
 import java.util.Date;
@@ -64,6 +65,21 @@ public class Artefacto {
         this.idString = uuid.toString() + "_" + date.getTime();
     }
 
+    /**
+     * WARNING: receivedAt is going NULL
+     * @return
+     */
+    public String toJson() {
+        Artefacto tempArtefacto = this;
+        tempArtefacto.setDate(null);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(tempArtefacto);
+    }
+
+
+
     public String getIdString() {
         return idString;
     }
@@ -114,5 +130,9 @@ public class Artefacto {
 
     public boolean isShared() {
         return shared;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

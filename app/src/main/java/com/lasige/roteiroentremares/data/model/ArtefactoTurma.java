@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
+import com.google.gson.Gson;
 import com.lasige.roteiroentremares.util.GithubTypeConverters;
 
 import java.util.Date;
@@ -46,6 +47,27 @@ public class ArtefactoTurma {
         this.latitude = latitude;
         this.longitude = longitude;
         this.codigoTurma = codigoTurma;
+    }
+
+    /**
+     * WARNING: receivedAt is going NULL
+     * @return
+     */
+    public String toJson() {
+        ArtefactoTurma tempArtefacto = this;
+        tempArtefacto.setReceivedAt(null);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(tempArtefacto);
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setReceivedAt(Date receivedAt) {
+        this.receivedAt = receivedAt;
     }
 
     public int getId() {
@@ -98,5 +120,11 @@ public class ArtefactoTurma {
 
     public String getCodigoTurma() {
         return codigoTurma;
+    }
+
+    public String toString() {
+        Gson gson = new Gson();
+
+        return gson.toJson(this);
     }
 }

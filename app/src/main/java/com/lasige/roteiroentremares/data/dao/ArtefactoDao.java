@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.lasige.roteiroentremares.data.model.Artefacto;
+import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
 
 import java.util.List;
 
@@ -35,4 +36,7 @@ public interface ArtefactoDao {
 
     @Query("SELECT idString FROM artefacto_table")
     LiveData<List<String>> getAllIdStrings();
+
+    @Query("SELECT * FROM artefacto_table WHERE date BETWEEN :from AND :to")
+    List<Artefacto> getArtefactoFromTo(long from, long to);
 }

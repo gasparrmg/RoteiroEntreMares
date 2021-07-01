@@ -120,7 +120,7 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
 
     @Override
     public void onConnectionInfoAvailable(WifiP2pInfo info) {
-        Log.d(WifiP2PActivity.TAG, "Starting Server Service");
+        Log.d(WifiP2PActivity.TAG, "Starting Services");
 
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
@@ -150,6 +150,13 @@ public class DeviceDetailFragment extends Fragment implements WifiP2pManager.Con
             Log.d(WifiP2PActivity.TAG, "Starting Server Service");
             Intent serverServiceIntent = new Intent(getActivity(), WifiP2pServerService.class);
             serverServiceIntent.setAction(WifiP2pServerService.ACTION_COMMS);
+
+            // QUEUE -> quando um device é synced, vai para o fim da fila e depois vou correndo isto
+            // IR BUSCAR IP DO CLIENT E PASSAR PARA SERVICE
+
+            // OUTRA ABORDAGEM -> aqui só adicionar à queue e ter serviço à parte que corre de X em X tempo para ver se a queue tem algum device novo
+
+
             // serverServiceIntent.putExtra(WifiP2pServerService.DEVICE_MAC_ADDRESS, device.deviceAddress);
             getActivity().startService(serverServiceIntent);
         } else if (info.groupFormed) {

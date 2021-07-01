@@ -2025,6 +2025,14 @@ public class DataRepository {
     }
 
     public WifiP2pConnection getLastConnectionWithDevice(String deviceAddress) {
+        List<WifiP2pConnection> list = wifiP2pConnectionDao.getLastConnectionWithDevice(deviceAddress);
+
+        if (list == null) {
+            return null;
+        } else if (list.isEmpty()) {
+            return null;
+        }
+
         return wifiP2pConnectionDao.getLastConnectionWithDevice(deviceAddress).get(0);
     }
 
@@ -2124,6 +2132,10 @@ public class DataRepository {
         return allArtefactoIdString;
     }
 
+    public List<Artefacto> getArtefactoFromTo(long from, long to) {
+        return artefactoDao.getArtefactoFromTo(from, to);
+    }
+
     // ------------------------------ ARTEFACTOS TURMA ----------------------
 
     public LiveData<List<ArtefactoTurma>> getAllArtefactosTurma() {
@@ -2132,6 +2144,10 @@ public class DataRepository {
 
     public List<ArtefactoTurma> getAllArtefactosTurmaAlt() {
         return artefactoTurmaDao.getAllAlt();
+    }
+
+    public List<ArtefactoTurma> getArtefactoTurmaFromTo(long from, long to) {
+        return artefactoTurmaDao.getArtefactoTurmaFromTo(from, to);
     }
 
     public void insertArtefactoTurma(ArtefactoTurma artefactoTurma) {

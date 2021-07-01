@@ -37,7 +37,9 @@ import com.lasige.roteiroentremares.util.ClickableString;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
 
 import java.lang.reflect.Method;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -45,6 +47,9 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 @AndroidEntryPoint
 public class WifiP2PActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks, WifiP2pManager.ChannelListener, DeviceListFragment.DeviceActionListener {
+
+    public static final int ERROR_MESSAGE = 400;
+    public static final int SUCCESS_MESSAGE = 200;
 
     public static final String TAG = "Wifi_P2P_Activity";
     public static final int PERMISSIONS_REQUEST_CODE = 1001;
