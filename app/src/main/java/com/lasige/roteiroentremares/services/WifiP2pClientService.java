@@ -3,7 +3,6 @@ package com.lasige.roteiroentremares.services;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -14,7 +13,7 @@ import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
 import com.lasige.roteiroentremares.data.model.WifiP2pConnection;
 import com.lasige.roteiroentremares.data.repository.DataRepository;
 import com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity;
-import com.lasige.roteiroentremares.util.CollabUtils;
+import com.lasige.roteiroentremares.util.wifip2p.CollabUtils;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,8 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -45,6 +42,7 @@ public class WifiP2pClientService extends IntentService {
     public static final String ACTION_COMMS = "com.android.wifip2pprototype.COMMS";
     public static final String EXTRAS_GROUP_OWNER_ADDRESS = "go_host";
     public static final String EXTRAS_GROUP_OWNER_PORT = "go_port";
+    public static final String EXTRAS_MAC_ADDRESS = "my_mac";
 
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
@@ -64,6 +62,8 @@ public class WifiP2pClientService extends IntentService {
         Context context = getApplicationContext();
         if (intent.getAction().equals(ACTION_COMMS)) {
             String host = intent.getExtras().getString(EXTRAS_GROUP_OWNER_ADDRESS);
+            String myMacAddress = intent.getExtras().getString(EXTRAS_MAC_ADDRESS);
+            Log.d(WifiP2PActivity.TAG, "My mac address -> " + myMacAddress);
             Socket socket = new Socket();
             int port = intent.getExtras().getInt(EXTRAS_GROUP_OWNER_PORT);
 
@@ -121,7 +121,6 @@ public class WifiP2pClientService extends IntentService {
 
                 // Receiving number of artefactos to receive
                 int numberToReceive = inputStream.readInt();
-
                 Log.d(WifiP2PActivity.TAG, "Received number of Artefactos to receive with value: " + numberToReceive);
 
                 if (numberToReceive == 0) {
@@ -363,7 +362,6 @@ public class WifiP2pClientService extends IntentService {
                     }
                 }
             }
-
         }
     }
 }

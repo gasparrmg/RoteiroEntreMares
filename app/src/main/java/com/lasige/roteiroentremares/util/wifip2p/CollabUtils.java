@@ -1,4 +1,4 @@
-package com.lasige.roteiroentremares.util;
+package com.lasige.roteiroentremares.util.wifip2p;
 
 import android.util.Log;
 
@@ -13,6 +13,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class CollabUtils {
+
+    public static final int REGISTRATION_PORT = 8987;
+    public static final int SYNC_PORT = 8988;
+    public static final int SOCKET_TIMEOUT = 5000;
+
+    public static final String EXTRAS_ALUNO_IP_ADDRESS = "com.lasige.roteiroentremares.EXTRAS_ALUNO_IP_ADDRESS";
+    public static final String SUCCESS = "com.lasige.roteiroentremares.WIFI_P2P_SUCCESS";
+    public static final String ERROR_TIPOUTILIZADOR = "com.lasige.roteiroentremares.WIFI_P2P_ERROR_TIPOUTILIZADOR";
+    public static final String ERROR_CODIGOTURMA = "com.lasige.roteiroentremares.WIFI_P2P_ERROR_CODIGOTURMA";
+    public static final String ERROR_MACADDRESS_NULL = "com.lasige.roteiroentremares.WIFI_P2P_ERROR_MACADDRESS_NULL";
+    public static final String ERROR = "com.lasige.roteiroentremares.WIFI_P2P_ERROR";
+
     public static byte[] readFileIntoByteArray(File file) {
         int size = (int) file.length();
         byte[] bytes = new byte[size];

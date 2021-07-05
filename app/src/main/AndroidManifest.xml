@@ -151,6 +151,9 @@
         <!-- Used for transferring files  after a successful connection -->
         <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pClientService" />
         <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pServerService" />
+        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pGroupRegistrationServerService" />
+        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pSyncAlunoService" />
+        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pSyncProfessorService" />
     </application>
 
 </manifest>

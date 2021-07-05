@@ -41,6 +41,7 @@ import com.lasige.roteiroentremares.data.model.relations.AvistamentoZonacaoAvenc
 import com.lasige.roteiroentremares.ui.dashboard.PessoalActivity;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -52,6 +53,7 @@ public class DataRepository {
     private static final String SHAREDPREF_KEY_TIPOUTILIZADOR = "key_tipoutilizador";
     private static final String SHAREDPREF_KEY_ONBOARDING = "key_onboarding";
     private static final String SHAREDPREF_KEY_NOME = "key_nome";
+    private static final String SHAREDPREF_KEY_NOME_UUID = "key_nome_uuid";
     private static final String SHAREDPREF_KEY_ESCOLA = "key_escola";
     private static final String SHAREDPREF_KEY_ANOESCOLARIDADE = "key_anoescolaridade";
     private static final String SHAREDPREF_KEY_ANOLECTIVO = "key_anolectivo";
@@ -1215,6 +1217,34 @@ public class DataRepository {
         sharedPreferences.edit().putString(
                 SHAREDPREF_KEY_NOME,
                 nome
+        ).apply();
+    }
+
+    /**
+     * Returns the User's name written in the Shared Preferences
+     *
+     * @return
+     */
+    public String getNomeUUID() {
+        return sharedPreferences.getString(
+                SHAREDPREF_KEY_NOME_UUID,
+                ""
+        );
+    }
+
+    /**
+     * Inserts the User's name into Shared Preferences
+     *
+     * @param nome
+     */
+    public void setNomeUUID(String nome) {
+        UUID uuid = UUID.randomUUID();
+        String nomeUUID = nome + uuid.toString();
+
+
+        sharedPreferences.edit().putString(
+                SHAREDPREF_KEY_NOME_UUID,
+                nomeUUID
         ).apply();
     }
 

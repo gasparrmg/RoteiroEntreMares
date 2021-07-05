@@ -73,7 +73,7 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
         peers.clear();
         peers.addAll(peersList.getDeviceList());
 
-        /*Iterator<WifiP2pDevice> iterator = peers.iterator();
+        Iterator<WifiP2pDevice> iterator = peers.iterator();
 
         if (mDashboardViewModel.getTipoUtilizador() == 0) {
             // this happens for Alunos
@@ -88,7 +88,7 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
                     iterator.remove();
                 }
             }
-        }*/
+        }
 
         ((WiFiPeerListAdapter) getListAdapter()).notifyDataSetChanged();
         if (peers.size() == 0) {

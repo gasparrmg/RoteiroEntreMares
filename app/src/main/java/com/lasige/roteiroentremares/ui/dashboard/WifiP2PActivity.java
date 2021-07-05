@@ -13,6 +13,8 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pGroup;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -32,6 +34,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.android.roteiroentremares.R;
 import com.lasige.roteiroentremares.receivers.WifiP2pBroadcastReceiver;
+import com.lasige.roteiroentremares.services.WifiP2pGroupRegistrationServerService;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.lasige.roteiroentremares.util.ClickableString;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
@@ -347,15 +350,52 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         fragment.showDetails(device);
     }
 
-    public void checkGroupInfo() {
+    public void startRegistrationProtocol() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
                 @Override
                 public void onGroupInfoAvailable(WifiP2pGroup group) {
-                    Log.d(WifiP2PActivity.TAG, "Size of group -> " + group.getClientList().size());
+                    if (group.getClientList().size() > 0) {
+                        Log.d(TAG, "Group size: " + group.getClientList().size() + ", starting Registration Protocol...");
+
+                        Intent serverServiceIntent = new Intent(WifiP2PActivity.this, WifiP2pGroupRegistrationServerService.class);
+                        serverServiceIntent.setAction(WifiP2pGroupRegistrationServerService.ACTION_REGISTRATION);
+                        serverServiceIntent.putExtra("receiver", new DownloadReceiver(new Handler()));
+                        startService(serverServiceIntent);
+                    } else if (group.getClientList().size() == 0) {
+                        Log.d(TAG, "Group size: " + group.getClientList().size() + ", starting initSyncQueue...");
+
+                        final DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
+                                .findFragmentById(R.id.frag_detail);
+
+                        fragment.initSyncQueue();
+                    }
                 }
             });
+        }
+    }
+
+    private class DownloadReceiver extends ResultReceiver {
+
+        public DownloadReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == 100) {
+                String ipAddress = resultData.getString("wifi_p2p_ip_address");
+
+                Log.d(TAG, "onReceiveResult -> received " + ipAddress + "and adding to list");
+
+                final DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.frag_detail);
+
+                fragment.addIpToQueue(ipAddress);
+
+            }
         }
     }
 
@@ -441,6 +481,11 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                             @Override
                             public void onSuccess() {
                                 Log.d(TAG, "Group removed");
+
+                                if (fragment.timer != null) {
+                                    fragment.timer.cancel();
+                                }
+
                                 fragment.getView().setVisibility(View.GONE);
                             }
 
