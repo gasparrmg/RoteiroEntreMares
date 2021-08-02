@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.android.roteiroentremares.R;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -31,6 +32,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 import com.lasige.roteiroentremares.data.model.Artefacto;
 import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
+import com.lasige.roteiroentremares.ui.common.ImageFullscreenActivity;
+import com.lasige.roteiroentremares.ui.common.ImageFullscreenFileActivity;
+import com.lasige.roteiroentremares.ui.common.MediaPlayerActivity;
 import com.lasige.roteiroentremares.ui.dashboard.adapters.artefactos.ArtefactoAdapter;
 import com.lasige.roteiroentremares.ui.dashboard.adapters.artefactos.ArtefactoTurmaAdapter;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
@@ -53,6 +57,8 @@ public class TurmaArtefactosFragment extends Fragment implements ArtefactoTurmaA
     private RecyclerView recyclerView;
     private LinearLayout linearLayoutIsEmpty;
     private ProgressBar progressBar;
+    private TextView textViewIsEmptyTitle;
+    private TextView textViewIsEmptyMessage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,6 +96,17 @@ public class TurmaArtefactosFragment extends Fragment implements ArtefactoTurmaA
 
         linearLayoutIsEmpty = view.findViewById(R.id.linearlayout_isEmpty);
         progressBar = view.findViewById(R.id.progress_bar);
+
+        textViewIsEmptyTitle = view.findViewById(R.id.textView_isEmpty_title);
+        textViewIsEmptyMessage = view.findViewById(R.id.textView_isEmpty_message);
+
+        if (artefactosViewModel.getTipoUtilizador() == 1) {
+            textViewIsEmptyTitle.setText(getResources().getString(R.string.artefactos_turma_isempty_title_professor));
+            textViewIsEmptyMessage.setText(getResources().getString(R.string.artefactos_turma_isempty_message_professor));
+        } else if (artefactosViewModel.getTipoUtilizador() == 2) {
+            textViewIsEmptyTitle.setText(getResources().getString(R.string.artefactos_turma_isempty_title_explorador));
+            textViewIsEmptyMessage.setText(getResources().getString(R.string.artefactos_turma_isempty_message_explorador));
+        }
 
         artefactosViewModel.getAllArtefactosTurma().observe(getViewLifecycleOwner(), new Observer<List<ArtefactoTurma>>() {
             @Override
@@ -159,7 +176,19 @@ public class TurmaArtefactosFragment extends Fragment implements ArtefactoTurmaA
 
     @Override
     public void onItemClick(ArtefactoTurma artefactoTurma) {
-
+        // Open Image Activity
+        if (artefactoTurma.getType() == 1) {
+            Intent intent = new Intent(getActivity(), ImageFullscreenFileActivity.class);
+            intent.putExtra(ImageFullscreenFileActivity.INTENT_EXTRA_KEY, artefactoTurma.getContent());
+            startActivity(intent);
+        } else if (artefactoTurma.getType() == 2) {
+            // Audio
+        } else if (artefactoTurma.getType() == 3) {
+            // Video
+            Intent intent = new Intent(getActivity(), MediaPlayerActivity.class);
+            intent.putExtra("path", artefactoTurma.getContent());
+            startActivity(intent);
+        }
     }
 
     @Override

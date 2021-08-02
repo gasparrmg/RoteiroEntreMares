@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
+import android.net.wifi.p2p.WifiP2pGroup;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,9 +63,16 @@ public class DeviceListFragment extends ListFragment implements WifiP2pManager.P
 
     }
 
+    public void submitGroupDeviceList(WifiP2pGroup group) {
+        peers.clear();
+        peers.addAll(group.getClientList());
+
+        ((WiFiPeerListAdapter) getListAdapter()).notifyDataSetChanged();
+    }
+
     @Override
     public void onPeersAvailable(WifiP2pDeviceList peersList) {
-        Log.d(WifiP2PActivity.TAG, "onPeersAvailable");
+        Log.d(WifiP2PActivity.TAG, "onPeersAvailable, peerList size: " + peersList.getDeviceList().size());
 
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();

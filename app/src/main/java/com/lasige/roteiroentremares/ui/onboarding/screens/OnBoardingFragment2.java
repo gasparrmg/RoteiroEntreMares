@@ -157,13 +157,13 @@ public class OnBoardingFragment2 extends Fragment implements Validator.Validatio
                     textInputLayoutEscola.setVisibility(View.INVISIBLE);
                     textInputLayoutAnoEscolaridade.setVisibility(View.INVISIBLE);
                     textInputLayoutAnoLectivo.setVisibility(View.INVISIBLE);
-                    linearLayoutShareLocationArtefacto.setVisibility(View.INVISIBLE);
+                    // linearLayoutShareLocationArtefacto.setVisibility(View.INVISIBLE);
                 } else {
                     isExplorador = false;
                     textInputLayoutEscola.setVisibility(View.VISIBLE);
                     textInputLayoutAnoEscolaridade.setVisibility(View.VISIBLE);
                     textInputLayoutAnoLectivo.setVisibility(View.VISIBLE);
-                    linearLayoutShareLocationArtefacto.setVisibility(View.VISIBLE);
+                    // linearLayoutShareLocationArtefacto.setVisibility(View.VISIBLE);
                 }
             }
         });

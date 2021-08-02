@@ -200,13 +200,15 @@ public class DataRepository {
     }
 
     public void deleteAllProgress(Activity activity) {
-        new DeleteAllProgressAsyncTask(activity, sharedPreferences, artefactoDao, avistamentoDunasRiaFormosaDao, avistamentoPocasAvencasDao, avistamentoPocasRiaFormosaDao, avistamentoTranseptosRiaFormosaDao, avistamentoZonacaoAvencasDao).execute();
+        new DeleteAllProgressAsyncTask(activity, sharedPreferences, wifiP2pConnectionDao, artefactoDao, artefactoTurmaDao, avistamentoDunasRiaFormosaDao, avistamentoPocasAvencasDao, avistamentoPocasRiaFormosaDao, avistamentoTranseptosRiaFormosaDao, avistamentoZonacaoAvencasDao).execute();
     }
 
     private static class DeleteAllProgressAsyncTask extends AsyncTask<Void, Void, Boolean> {
         private Activity activity;
         private SharedPreferences sharedPreferences;
+        private WifiP2pConnectionDao wifiP2pConnectionDao;
         private ArtefactoDao artefactoDao;
+        private ArtefactoTurmaDao artefactoTurmaDao;
         private AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao;
         private AvistamentoPocasAvencasDao avistamentoPocasAvencasDao;
         private AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao;
@@ -216,7 +218,9 @@ public class DataRepository {
         private DeleteAllProgressAsyncTask(
                 Activity activity,
                 SharedPreferences sharedPreferences,
+                WifiP2pConnectionDao wifiP2pConnectionDao,
                 ArtefactoDao artefactoDao,
+                ArtefactoTurmaDao artefactoTurmaDao,
                 AvistamentoDunasRiaFormosaDao avistamentoDunasRiaFormosaDao,
                 AvistamentoPocasAvencasDao avistamentoPocasAvencasDao,
                 AvistamentoPocasRiaFormosaDao avistamentoPocasRiaFormosaDao,
@@ -225,7 +229,9 @@ public class DataRepository {
         ) {
             this.activity = activity;
             this.sharedPreferences = sharedPreferences;
+            this.wifiP2pConnectionDao = wifiP2pConnectionDao;
             this.artefactoDao = artefactoDao;
+            this.artefactoTurmaDao = artefactoTurmaDao;
             this.avistamentoDunasRiaFormosaDao = avistamentoDunasRiaFormosaDao;
             this.avistamentoPocasAvencasDao = avistamentoPocasAvencasDao;
             this.avistamentoPocasRiaFormosaDao = avistamentoPocasRiaFormosaDao;
@@ -238,7 +244,9 @@ public class DataRepository {
             sharedPreferences.edit().clear().commit();
 
             try {
+                wifiP2pConnectionDao.deleteAllRecords();
                 artefactoDao.deleteAll();
+                artefactoTurmaDao.deleteAll();
                 avistamentoDunasRiaFormosaDao.deleteAllAvistamentoDunasRiaFormosa();
                 avistamentoPocasAvencasDao.deleteAllAvistamentoPocasAvencas();
                 avistamentoPocasRiaFormosaDao.deleteAllAvistamentoPocasRiaFormosa();
@@ -2154,16 +2162,18 @@ public class DataRepository {
      * WARNING: Make sure this is executed in the background thread
      * @return
      */
-    public List<Artefacto> getAllArtefactosAlt() {
-        return artefactoDao.getAllArtefactos();
+    public List<Artefacto> getAllSharedArtefactos() {
+        // return artefactoDao.getAllArtefactos();
+        return artefactoDao.getAllSharedArtefactos();
     }
 
     public LiveData<List<String>> getAllArtefactoIdString() {
         return allArtefactoIdString;
     }
 
-    public List<Artefacto> getArtefactoFromTo(long from, long to) {
-        return artefactoDao.getArtefactoFromTo(from, to);
+    public List<Artefacto> getSharedArtefactoFromTo(long from, long to) {
+        //return artefactoDao.getArtefactoFromTo(from, to);
+        return artefactoDao.getSharedArtefactoFromTo(from, to);
     }
 
     // ------------------------------ ARTEFACTOS TURMA ----------------------
@@ -2176,8 +2186,8 @@ public class DataRepository {
         return artefactoTurmaDao.getAllAlt();
     }
 
-    public List<ArtefactoTurma> getArtefactoTurmaFromTo(long from, long to) {
-        return artefactoTurmaDao.getArtefactoTurmaFromTo(from, to);
+    public List<ArtefactoTurma> getArtefactoTurmaFromTo(long from, long to, String nome) {
+        return artefactoTurmaDao.getArtefactoTurmaFromTo(from, to, nome);
     }
 
     public void insertArtefactoTurma(ArtefactoTurma artefactoTurma) {

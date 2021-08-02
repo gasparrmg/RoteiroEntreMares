@@ -72,19 +72,19 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
         switch (viewType) {
             case 1:
                 View imageItemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.artefacto_image_item, parent, false);
+                        .inflate(R.layout.artefacto_turma_image_item, parent, false);
                 return new ViewHolderImage(imageItemView);
             case 2:
                 View audioItemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.artefacto_audio_item, parent, false);
+                        .inflate(R.layout.artefacto_turma_audio_item, parent, false);
                 return new ViewHolderAudio(audioItemView);
             case 3:
                 View videoItemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.artefacto_video_item, parent, false);
+                        .inflate(R.layout.artefacto_turma_video_item, parent, false);
                 return new ViewHolderVideo(videoItemView);
             default:
                 View textItemView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.artefacto_text_item, parent, false);
+                        .inflate(R.layout.artefacto_turma_text_item, parent, false);
                 return new ViewHolderText(textItemView);
         }
     }
@@ -103,6 +103,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
                 viewHolderImage.textViewDescription.setText(currentArtefacto.getDescription());
 
                 viewHolderImage.textViewDate.setText(sdf.format(currentArtefacto.getReceivedAt()));
+                viewHolderImage.textViewAutor.setText(currentArtefacto.getAutor());
 
                 File imageFile = new File(currentArtefacto.getContent());
 
@@ -124,6 +125,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
                 viewHolderAudio.textViewDescription.setText(currentArtefacto.getDescription());
 
                 viewHolderAudio.textViewDate.setText(sdf.format(currentArtefacto.getReceivedAt()));
+                viewHolderAudio.textViewAutor.setText(currentArtefacto.getAutor());
 
                 viewHolderAudio.currentAudioPath = currentArtefacto.getContent();
                 break;
@@ -134,6 +136,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
                 viewHolderVideo.textViewDescription.setText(currentArtefacto.getDescription());
 
                 viewHolderVideo.textViewDate.setText(sdf.format(currentArtefacto.getReceivedAt()));
+                viewHolderVideo.textViewAutor.setText(currentArtefacto.getAutor());
 
                 File videoFile = new File(currentArtefacto.getContent());
 
@@ -154,6 +157,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
                 viewHolderTextAlt.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderTextAlt.textViewContent.setText(currentArtefacto.getContent());
                 viewHolderTextAlt.textViewDate.setText(sdf.format(currentArtefacto.getReceivedAt()));
+                viewHolderTextAlt.textViewAutor.setText(currentArtefacto.getAutor());
         }
     }
 
@@ -170,6 +174,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
         private TextView textViewTitle;
         private TextView textViewContent;
         private TextView textViewDate;
+        private TextView textViewAutor;
         private MaterialCardView cardView;
 
 
@@ -178,6 +183,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
             textViewTitle = itemView.findViewById(R.id.textView_title);
             textViewContent = itemView.findViewById(R.id.textView_content);
             textViewDate = itemView.findViewById(R.id.textView_date);
+            textViewAutor = itemView.findViewById(R.id.textView_autor);
             cardView = itemView.findViewById(R.id.cardview_artefacto);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -209,6 +215,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewDate;
+        private TextView textViewAutor;
         private ImageView imageViewPhoto;
         private MaterialCardView cardView;
 
@@ -218,6 +225,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
             textViewTitle = itemView.findViewById(R.id.textView_title);
             textViewDescription = itemView.findViewById(R.id.textView_description);
             textViewDate = itemView.findViewById(R.id.textView_date);
+            textViewAutor = itemView.findViewById(R.id.textView_autor);
             imageViewPhoto = itemView.findViewById(R.id.imageview_picture);
             cardView = itemView.findViewById(R.id.cardview_artefacto);
 
@@ -250,6 +258,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewDate;
+        private TextView textViewAutor;
         private MaterialCardView cardView;
         private SeekBar seekBarAudio;
         private TextView textViewAudioDuration;
@@ -268,6 +277,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
             textViewTitle = itemView.findViewById(R.id.textView_title);
             textViewDescription = itemView.findViewById(R.id.textView_description);
             textViewDate = itemView.findViewById(R.id.textView_date);
+            textViewAutor = itemView.findViewById(R.id.textView_autor);
             cardView = itemView.findViewById(R.id.cardview_artefacto);
             imageButtonPlay = itemView.findViewById(R.id.imagebutton_play_audio);
             imageButtonPause = itemView.findViewById(R.id.imagebutton_pause_audio);
@@ -420,8 +430,10 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewDate;
+        private TextView textViewAutor;
         private ImageView imageViewThumbnail;
         private MaterialCardView cardView;
+
 
 
         public ViewHolderVideo(@NonNull View itemView) {
@@ -429,6 +441,7 @@ public class ArtefactoTurmaAdapter extends ListAdapter<ArtefactoTurma, RecyclerV
             textViewTitle = itemView.findViewById(R.id.textView_title);
             textViewDescription = itemView.findViewById(R.id.textView_description);
             textViewDate = itemView.findViewById(R.id.textView_date);
+            textViewAutor = itemView.findViewById(R.id.textView_autor);
             imageViewThumbnail = itemView.findViewById(R.id.imageview_thumbnail);
             cardView = itemView.findViewById(R.id.cardview_artefacto);
 

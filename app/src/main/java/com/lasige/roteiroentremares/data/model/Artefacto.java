@@ -22,6 +22,8 @@ public class Artefacto {
 
     private String idString;
 
+    private String autor;
+
     private String title;
 
     private String content;
@@ -50,7 +52,8 @@ public class Artefacto {
 
     private boolean shared;
 
-    public Artefacto(String title, String content, int type, String description, Date date, String latitude, String longitude, String codigoTurma, boolean shared) {
+    public Artefacto(String autor, String title, String content, int type, String description, Date date, String latitude, String longitude, String codigoTurma, boolean shared) {
+        this.autor = autor;
         this.title = title;
         this.content = content;
         this.type = type;
@@ -94,6 +97,10 @@ public class Artefacto {
 
     public int getId() {
         return id;
+    }
+
+    public String getAutor() {
+        return autor;
     }
 
     public String getTitle() {

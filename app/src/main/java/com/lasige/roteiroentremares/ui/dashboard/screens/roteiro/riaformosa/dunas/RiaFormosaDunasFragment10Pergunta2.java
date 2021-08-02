@@ -176,6 +176,7 @@ public class RiaFormosaDunasFragment10Pergunta2 extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Dunas - Porque achas que se diz que “as dunas são montanhas nómadas”?",
                             textInputEditTextResposta.getText().toString(),
                             0,

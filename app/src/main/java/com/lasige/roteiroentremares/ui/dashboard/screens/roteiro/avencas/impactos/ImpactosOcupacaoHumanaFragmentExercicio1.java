@@ -195,6 +195,7 @@ public class ImpactosOcupacaoHumanaFragmentExercicio1 extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Impactos da ação humana (ocupação humana das arribas) - Observa bem as arribas que rodeiam esta praia e procura exemplos de ocupação, ou intervenção, humana nestas arribas. Escreve aqui os problemas que identificaste.",
                             textInputEditTextResposta.getText().toString(),
                             0,

@@ -17,7 +17,7 @@ import com.lasige.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.lasige.roteiroentremares.data.dao.EspecieRiaFormosaDao;
 import com.lasige.roteiroentremares.data.dao.WifiP2pConnectionDao;
 import com.lasige.roteiroentremares.data.database.RoteiroDatabase;
-import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
+import com.lasige.roteiroentremares.util.wifip2p.SyncList;
 
 import javax.inject.Singleton;
 
@@ -45,6 +45,12 @@ public class AppModule {
                 .fallbackToDestructiveMigration()
                 .addCallback(callback)
                 .build();
+    }
+
+    @Singleton
+    @Provides
+    SyncList provideSyncList() {
+        return new SyncList();
     }
 
     @Provides

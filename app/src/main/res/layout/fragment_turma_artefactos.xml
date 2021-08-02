@@ -43,6 +43,7 @@
             android:src="@drawable/ic_note_taking_flatline" />
 
         <TextView
+            android:id="@+id/textView_isEmpty_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -54,6 +55,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/textView_isEmpty_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

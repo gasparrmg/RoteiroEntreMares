@@ -67,6 +67,10 @@ public class ArtefactosViewModel extends ViewModel {
         dataRepository.deleteAllArtefacto();
     }
 
+    public void deleteAllArtefactoTurma() {
+        dataRepository.deleteAllArtefactoTurma();
+    }
+
     public LiveData<List<Artefacto>> getAllArtefactos() {
         return allArtefactos;
     }
@@ -77,5 +81,9 @@ public class ArtefactosViewModel extends ViewModel {
 
     public void deleteArtefactoTurma(ArtefactoTurma artefactoTurma) {
         dataRepository.deleteArtefactoTurma(artefactoTurma);
+    }
+
+    public String getNome() {
+        return dataRepository.getNome();
     }
 }

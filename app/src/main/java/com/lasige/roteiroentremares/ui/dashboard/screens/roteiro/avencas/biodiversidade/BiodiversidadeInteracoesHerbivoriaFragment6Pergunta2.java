@@ -202,6 +202,7 @@ public class BiodiversidadeInteracoesHerbivoriaFragment6Pergunta2 extends Fragme
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Biodiversidade // Interações // Herbívoria - A que correspondem os outros dois tratamentos representados no gráfico e qual achas que é a sua função?",
                             textInputEditTextResposta.getText().toString(),
                             0,

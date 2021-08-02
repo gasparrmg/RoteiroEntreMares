@@ -184,6 +184,7 @@ public class RiaFormosaDunasFragment23Pergunta2 extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Dunas - Será que consegues identificar alguma espécie invasora (que não é original deste local)?",
                             textInputEditTextResposta.getText().toString(),
                             0,

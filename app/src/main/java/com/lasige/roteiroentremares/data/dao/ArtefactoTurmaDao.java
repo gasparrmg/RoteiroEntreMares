@@ -28,8 +28,8 @@ public interface ArtefactoTurmaDao {
     @Query("DELETE FROM artefacto_turma_table")
     void deleteAll();
 
-    @Query("SELECT * FROM artefacto_turma_table WHERE receivedAt BETWEEN :from AND :to")
-    List<ArtefactoTurma> getArtefactoTurmaFromTo(long from, long to);
+    @Query("SELECT * FROM artefacto_turma_table WHERE autor != :nome AND receivedAt BETWEEN :from AND :to")
+    List<ArtefactoTurma> getArtefactoTurmaFromTo(long from, long to, String nome);
 
     @Query("SELECT * FROM artefacto_turma_table ORDER BY id DESC")
     List<ArtefactoTurma> getAllAlt();

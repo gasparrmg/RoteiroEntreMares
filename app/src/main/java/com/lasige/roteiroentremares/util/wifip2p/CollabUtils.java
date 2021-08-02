@@ -25,6 +25,12 @@ public class CollabUtils {
     public static final String ERROR_MACADDRESS_NULL = "com.lasige.roteiroentremares.WIFI_P2P_ERROR_MACADDRESS_NULL";
     public static final String ERROR = "com.lasige.roteiroentremares.WIFI_P2P_ERROR";
 
+    public static final int PROGRESS_ADDED_TO_QUEUE = 100;
+    public static final int PROGRESS_RECEIVED = 101;
+    public static final int PROGRESS_SENT = 102;
+    public static final int SYNC_STARTED = 103;
+    public static final int SYNC_FINISHED = 104;
+
     public static byte[] readFileIntoByteArray(File file) {
         int size = (int) file.length();
         byte[] bytes = new byte[size];

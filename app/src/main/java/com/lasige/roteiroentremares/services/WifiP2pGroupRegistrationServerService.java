@@ -1,16 +1,22 @@
 package com.lasige.roteiroentremares.services;
 
 import android.app.IntentService;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.lasige.roteiroentremares.RoteiroEntreMaresApplication;
 import com.lasige.roteiroentremares.data.repository.DataRepository;
 import com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity;
 import com.lasige.roteiroentremares.util.wifip2p.CollabUtils;
+import com.lasige.roteiroentremares.util.wifip2p.SyncList;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -32,9 +38,13 @@ public class WifiP2pGroupRegistrationServerService extends IntentService {
     @Inject
     DataRepository dataRepository;
 
+    @Inject
+    SyncList syncList;
+
     private static final int SOCKET_TIMEOUT = 5000;
 
     public static final String ACTION_REGISTRATION = "com.lasige.roteiroentremares.ACTION_REGISTRATION";
+    public static final String ACTION_SEND_IP_ADDRESS = "com.lasige.roteiroentremares.ACTION_SEND_IP_ADDRESS";
     public static final String EXTRAS_GROUP_OWNER_ADDRESS = "com.lasige.roteiroentremares.ACTION";
 
     /**
@@ -113,12 +123,9 @@ public class WifiP2pGroupRegistrationServerService extends IntentService {
 
                 // Add Client to the Queue and send them SUCCESS or ERROR
 
-                ResultReceiver receiver = intent.getParcelableExtra("receiver");
-                Bundle data = new Bundle();
-                data.putString("wifi_p2p_ip_address", clientIpAddress);
-                receiver.send(100, data);
-
-                Log.d(WifiP2PActivity.TAG, "Sent ipAddress to Receiver...");
+                // Teste SyncList
+                Log.d(WifiP2PActivity.TAG, "Adding to SYNCLIST...");
+                syncList.addIpToList(clientIpAddress);
 
                 outputStream.writeUTF(CollabUtils.SUCCESS);
 

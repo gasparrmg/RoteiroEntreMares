@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:name="com.lasige.roteiroentremares.RoteiroEntreMaresApplication"
@@ -148,12 +149,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <!-- Used for transferring files  after a successful connection -->
-        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pClientService" />
-        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pServerService" />
+        <!-- Used for transferring files after a successful connection -->
         <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pGroupRegistrationServerService" />
-        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pSyncAlunoService" />
         <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pSyncProfessorService" />
+        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pSyncAlunoTesteService" />
     </application>
 
 </manifest>

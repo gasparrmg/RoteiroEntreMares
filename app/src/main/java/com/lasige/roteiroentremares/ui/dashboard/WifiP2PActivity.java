@@ -6,15 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pGroup;
+import android.net.wifi.p2p.WifiP2pInfo;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.ResultReceiver;
 import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -23,26 +21,29 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.roteiroentremares.R;
-import com.lasige.roteiroentremares.receivers.WifiP2pBroadcastReceiver;
+import com.lasige.roteiroentremares.RoteiroEntreMaresApplication;
+import com.lasige.roteiroentremares.receivers.WifiP2pTurmaBroadcastReceiver;
 import com.lasige.roteiroentremares.services.WifiP2pGroupRegistrationServerService;
+import com.lasige.roteiroentremares.services.WifiP2pSyncAlunoTesteService;
+import com.lasige.roteiroentremares.services.WifiP2pSyncProfessorService;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
-import com.lasige.roteiroentremares.util.ClickableString;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
+import com.lasige.roteiroentremares.util.wifip2p.SyncList;
 
-import java.lang.reflect.Method;
-import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Queue;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -50,6 +51,9 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 @AndroidEntryPoint
 public class WifiP2PActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks, WifiP2pManager.ChannelListener, DeviceListFragment.DeviceActionListener {
+
+    @Inject
+    SyncList syncList;
 
     public static final int ERROR_MESSAGE = 400;
     public static final int SUCCESS_MESSAGE = 200;
@@ -71,6 +75,13 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     private BroadcastReceiver receiver = null;
 
     private TextView textView;
+
+    // public LinearLayout statusBar;
+    public TextView textViewFeedback;
+    // private TextView textViewEnviadoCounter;
+    // private TextView textViewRecebidoCounter;
+    // private int enviadoCounter;
+    // private int recebidoCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +106,12 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
             setContentView(R.layout.activity_wifip2p);
         }
 
+        // statusBar = findViewById(R.id.status_bar);
+        textViewFeedback = findViewById(R.id.group_owner);
+        /*textViewEnviadoCounter = findViewById(R.id.enviado_count);
+        textViewRecebidoCounter = findViewById(R.id.recebido_count);*/
+        resetCounters();
+
         initToolbar();
         initViews();
 
@@ -109,21 +126,125 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_DISCOVERY_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pGroupRegistrationServerService.ACTION_SEND_IP_ADDRESS);
+        intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
 
         if (!initP2p()) {
+            Intent returnIntent = new Intent();
+            setResult(ERROR_MESSAGE, returnIntent);
             finish();
         }
 
-        removePersistentGroups();
+        // removePersistentGroups();
+
+        if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+            if (((RoteiroEntreMaresApplication) getApplicationContext()).isUsingWifiP2pFeature()) {
+                // load info
+                manager.requestConnectionInfo(channel, new WifiP2pManager.ConnectionInfoListener() {
+                    @Override
+                    public void onConnectionInfoAvailable(WifiP2pInfo info) {
+                        if (info != null) {
+
+                            DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
+                                    .findFragmentById(R.id.frag_detail);
+
+                            // hide the connect button
+
+                            if (info.groupFormed) {
+                                fragment.getView().setVisibility(View.VISIBLE);
+                                fragment.getView().findViewById(R.id.btn_connect).setVisibility(View.GONE);
+                            }
+
+                            if (ContextCompat.checkSelfPermission(WifiP2PActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                                    == PackageManager.PERMISSION_GRANTED) {
+                                manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+                                    @Override
+                                    public void onSuccess() {
+                                        // Toast.makeText(WifiP2PActivity.this, "Discovery Initiated", Toast.LENGTH_SHORT).show();
+                                        Log.d(TAG, "Discovery initiated");
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(int reasonCode) {
+                                        Log.d(TAG, "Discovery Failed : " + reasonCode);
+                                    }
+                                });
+
+                                if (mDashboardViewModel.getTipoUtilizador() == 1) {
+                                    manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
+                                        @Override
+                                        public void onGroupInfoAvailable(WifiP2pGroup group) {
+                                            if (group != null) {
+                                                if (group.getClientList().size() > 0) {
+                                                    DeviceListFragment fragmentList = (DeviceListFragment) getSupportFragmentManager()
+                                                            .findFragmentById(R.id.frag_list);
+
+                                                    fragmentList.submitGroupDeviceList(group);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        /*manager.requestConnectionInfo(channel, new WifiP2pManager.ConnectionInfoListener() {
+            @Override
+            public void onConnectionInfoAvailable(WifiP2pInfo info) {
+                if (info != null) {
+
+                    DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.frag_detail);
+
+                    // hide the connect button
+
+                    if (info.groupFormed) {
+                        fragment.getView().setVisibility(View.VISIBLE);
+                        fragment.getView().findViewById(R.id.btn_connect).setVisibility(View.GONE);
+                    }
+
+                    if (ContextCompat.checkSelfPermission(WifiP2PActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+                        manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+                            @Override
+                            public void onSuccess() {
+                                Toast.makeText(WifiP2PActivity.this, "Discovery Initiated",
+                                        Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "Discovery initiated");
+
+                            }
+
+                            @Override
+                            public void onFailure(int reasonCode) {
+                                Log.d(TAG, "Discovery Failed : " + reasonCode);
+                            }
+                        });
+                    }
+                }
+            }
+        });*/
+    }
+
+    public void resetCounters() {
+        /*enviadoCounter = 0;
+        recebidoCounter = 0;*/
+
+        /*textViewEnviadoCounter.setText(Integer.toString(enviadoCounter));
+        textViewRecebidoCounter.setText(Integer.toString(recebidoCounter));*/
     }
 
     private void initViews() {
         textView = findViewById(R.id.textView);
 
         if (mDashboardViewModel.getTipoUtilizador() == 0) {
-            textView.setText("Liga-te ao teu professor para partilhares automaticamente alguns dos teus Artefactos e para explorar os Artefactos capturados pelos teus colegas.");
+            textView.setText("Liga-te ao teu professor para conseguires partilhar alguns dos teus Artefactos e para explorar os Artefactos partilhados pelos teus colegas.");
         } else if (mDashboardViewModel.getTipoUtilizador() == 1) {
-            textView.setText("Ligue-se aos seus alunos e tenha automaticamente acesso aos Artefactos capturados por eles.\n" +
+            textView.setText("Assim que os seus alunos se ligarem ao grupo e poderá ter acesso aos Artefactos partilhados por eles.\n" +
                     "Partilhe com os seus alunos o Código de Turma gerado por si no ecrã Pessoal.");
         }
     }
@@ -131,7 +252,13 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.wifip2p_menu, menu);
+
+        if (mDashboardViewModel.getTipoUtilizador() == 0) {
+            inflater.inflate(R.menu.wifip2p_menu, menu);
+        } else if (mDashboardViewModel.getTipoUtilizador() == 1) {
+            inflater.inflate(R.menu.wifip2p_menu_professor, menu);
+        }
+
         return true;
     }
 
@@ -141,20 +268,72 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.atn_direct_enable:
-                if (manager != null && channel != null) {
+        if (mDashboardViewModel.getTipoUtilizador() == 0) {
+            switch (item.getItemId()) {
+                case R.id.atn_direct_discover:
+                    if (!isWifiP2pEnabled) {
+                        Toast.makeText(WifiP2PActivity.this, R.string.p2p_off_warning,
+                                Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    final DeviceListFragment fragment = (DeviceListFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.frag_list);
 
-                    // Since this is the system wireless settings activity, it's
-                    // not going to send us a result. We will be notified by
-                    // WiFiDeviceBroadcastReceiver instead.
+                    // this method pops up the modal
+                    fragment.onInitiateDiscovery();
 
-                    startActivity(new Intent(Settings.ACTION_WIRELESS_SETTINGS));
-                } else {
-                    Log.e(TAG, "channel or manager is null");
-                }
-                return true;
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+                        manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+                            @Override
+                            public void onSuccess() {
+                                // Toast.makeText(WifiP2PActivity.this, "Discovery Initiated", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "Discovery initiated");
 
+                            }
+
+                            @Override
+                            public void onFailure(int reasonCode) {
+                                Log.d(TAG, "Discovery Failed : " + reasonCode);
+                            }
+                        });
+
+                        return true;
+                    }
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+
+        } else if (mDashboardViewModel.getTipoUtilizador() == 1) {
+            switch (item.getItemId()) {
+                case R.id.atn_direct_discover_professor:
+                    if (!isWifiP2pEnabled) {
+                        Toast.makeText(WifiP2PActivity.this, R.string.p2p_off_warning,
+                                Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+
+                    final DeviceListFragment fragment = (DeviceListFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.frag_list);
+
+                    // this method pops up the modal
+                    fragment.onInitiateCreateGroup();
+
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+                        createGroup();
+
+                        return true;
+                    }
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+
+
+        /*switch (item.getItemId()) {
             case R.id.atn_direct_discover:
                 if (!isWifiP2pEnabled) {
                     Toast.makeText(WifiP2PActivity.this, R.string.p2p_off_warning,
@@ -177,22 +356,16 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                         createGroup();
                     } else {
                         manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-
                             @Override
                             public void onSuccess() {
                                 Toast.makeText(WifiP2PActivity.this, "Discovery Initiated",
                                         Toast.LENGTH_SHORT).show();
                                 Log.d(TAG, "Discovery initiated");
 
-                            /*if (mDashboardViewModel.getTipoUtilizador() == 1) {
-                                createGroup();
-                            }*/
                             }
 
                             @Override
                             public void onFailure(int reasonCode) {
-                            /*Toast.makeText(WifiP2PActivity.this, "Discovery Failed : " + reasonCode,
-                                    Toast.LENGTH_SHORT).show();*/
                                 Log.d(TAG, "Discovery Failed : " + reasonCode);
                             }
                         });
@@ -202,15 +375,14 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                 }
             default:
                 return super.onOptionsItemSelected(item);
-        }
+        }*/
     }
 
     /** register the BroadcastReceiver with the intent values to be matched */
     @Override
     public void onResume() {
         super.onResume();
-        receiver = new WifiP2pBroadcastReceiver(manager, channel, this);
-
+        receiver = new WifiP2pTurmaBroadcastReceiver(manager, channel, this);
         registerReceiver(receiver, intentFilter);
     }
 
@@ -223,78 +395,9 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        removePersistentGroups();
     }
 
-    public void removePersistentGroups() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
-                @Override
-                public void onGroupInfoAvailable(WifiP2pGroup group) {
-                    if (group != null) {
-                        manager.removeGroup(channel, new WifiP2pManager.ActionListener() {
 
-                            @Override
-                            public void onFailure(int reasonCode) {
-                                Log.d(TAG, "Remove group failed failed. Reason: " + reasonCode);
-                                manager.cancelConnect(channel, new WifiP2pManager.ActionListener() {
-                                    @Override
-                                    public void onSuccess() {
-                                        Log.d(TAG, "Cancelled connect successfully");
-                                    }
-
-                                    @Override
-                                    public void onFailure(int reason) {
-                                        Log.d(TAG, "Cancel connect failed. Reason: " + reason);
-                                    }
-                                });
-
-                            }
-
-                            @Override
-                            public void onSuccess() {
-                                Log.d(TAG, "Group removed");
-                            }
-
-                        });
-                    } else {
-                        Log.d(TAG, "Group is null. Can't execute removeGroup. Trying to cancelConnect");
-
-                        manager.cancelConnect(channel, new WifiP2pManager.ActionListener() {
-                            @Override
-                            public void onSuccess() {
-                                Log.d(TAG, "Cancelled connect successfully");
-                            }
-
-                            @Override
-                            public void onFailure(int reason) {
-                                Log.d(TAG, "Cancel connect failed. Reason: " + reason);
-                            }
-                        });
-                    }
-                }
-            });
-        }
-
-        /*try {
-            Method[] methods = WifiP2pManager.class.getMethods();
-            for (int i = 0; i < methods.length; i++) {
-                if (methods[i].getName().equals("deletePersistentGroup")) {
-                    // Remove any persistent groups
-                    for (int netid = 0; netid < 32; netid++) {
-                        methods[i].invoke(manager, channel, netid, null);
-                    }
-                }
-            }
-
-            Log.i(TAG, "Persistent groups removed");
-        } catch(Exception e) {
-            Log.e(TAG, "Failure removing persistent groups: " + e.getMessage());
-            e.printStackTrace();
-        }*/
-    }
 
     private boolean initP2p() {
         // Device capability definition check
@@ -350,6 +453,13 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         fragment.showDetails(device);
     }
 
+    public void startAlunoSyncService() {
+        Log.d(WifiP2PActivity.TAG, "Starting sync service with Server");
+
+        Intent serviceIntent = new Intent(this, WifiP2pSyncAlunoTesteService.class);
+        startService(serviceIntent);
+    }
+
     public void startRegistrationProtocol() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -359,9 +469,15 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                     if (group.getClientList().size() > 0) {
                         Log.d(TAG, "Group size: " + group.getClientList().size() + ", starting Registration Protocol...");
 
+                        // testing
+                        /*Iterator<WifiP2pDevice> iterator = group.getClientList().iterator();
+
+                        while (iterator.hasNext()) {
+                            Log.d(TAG, "Group element: " + iterator.next().deviceName);
+                        }*/
+
                         Intent serverServiceIntent = new Intent(WifiP2PActivity.this, WifiP2pGroupRegistrationServerService.class);
                         serverServiceIntent.setAction(WifiP2pGroupRegistrationServerService.ACTION_REGISTRATION);
-                        serverServiceIntent.putExtra("receiver", new DownloadReceiver(new Handler()));
                         startService(serverServiceIntent);
                     } else if (group.getClientList().size() == 0) {
                         Log.d(TAG, "Group size: " + group.getClientList().size() + ", starting initSyncQueue...");
@@ -369,33 +485,11 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                         final DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
                                 .findFragmentById(R.id.frag_detail);
 
-                        fragment.initSyncQueue();
+                        //fragment.initSyncQueue();
+                        syncList.initWifiP2pSyncList();
                     }
                 }
             });
-        }
-    }
-
-    private class DownloadReceiver extends ResultReceiver {
-
-        public DownloadReceiver(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        public void onReceiveResult(int resultCode, Bundle resultData) {
-            super.onReceiveResult(resultCode, resultData);
-            if (resultCode == 100) {
-                String ipAddress = resultData.getString("wifi_p2p_ip_address");
-
-                Log.d(TAG, "onReceiveResult -> received " + ipAddress + "and adding to list");
-
-                final DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
-                        .findFragmentById(R.id.frag_detail);
-
-                fragment.addIpToQueue(ipAddress);
-
-            }
         }
     }
 
@@ -403,35 +497,6 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     public void connect(WifiP2pConfig config) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-
-            /*if (mDashboardViewModel.getTipoUtilizador() == 0) {
-                manager.connect(channel, config, new WifiP2pManager.ActionListener() {
-
-                    @Override
-                    public void onSuccess() {
-                        // WiFiDirectBroadcastReceiver will notify us. Ignore for now.
-                    }
-
-                    @Override
-                    public void onFailure(int reason) {
-                        Toast.makeText(WifiP2PActivity.this, "Connect failed. Retry.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } else if (mDashboardViewModel.getTipoUtilizador() == 1) {
-                manager.createGroup(channel, new WifiP2pManager.ActionListener() {
-                    @Override
-                    public void onSuccess() {
-                        // WiFiDirectBroadcastReceiver will notify us. Ignore for now.
-                    }
-
-                    @Override
-                    public void onFailure(int reason) {
-                        Toast.makeText(WifiP2PActivity.this, "Connect with createGroup failed. Retry.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }*/
 
             if (config.groupOwnerIntent == -1) {
                 if (mDashboardViewModel.getTipoUtilizador() == 0) {
@@ -459,6 +524,15 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         }
     }
 
+    public void stopServices() {
+        if (mDashboardViewModel.getTipoUtilizador() == 0) {
+            Intent serviceIntent = new Intent(this, WifiP2pSyncAlunoTesteService.class);
+            stopService(serviceIntent);
+        } else if (mDashboardViewModel.getTipoUtilizador() == 1) {
+            stopService(new Intent(this, WifiP2pSyncProfessorService.class));
+        }
+    }
+
     @Override
     public void disconnect() {
         final DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
@@ -482,8 +556,21 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                             public void onSuccess() {
                                 Log.d(TAG, "Group removed");
 
-                                if (fragment.timer != null) {
-                                    fragment.timer.cancel();
+                                /*if (fragment.imediateFuture != null) {
+                                    fragment.imediateFuture.cancel(true);
+                                }
+
+                                if (fragment.scheduledFuture != null) {
+                                    fragment.scheduledFuture.cancel(true);
+                                }*/
+
+                                // stopService()
+
+                                syncList.cancelJobs();
+                                stopServices();
+
+                                if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+                                    ((RoteiroEntreMaresApplication) getApplicationContext()).setUsingWifiP2pFeature(false);
                                 }
 
                                 fragment.getView().setVisibility(View.GONE);
@@ -574,20 +661,20 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                     Log.d(TAG, "Group created successfully");
 
                     Toast.makeText(WifiP2PActivity.this,
-                            "Group created successfully",
-                            Toast.LENGTH_SHORT).show();
+                            "Grupo criado com sucesso. Os seus alunos podem agora ligar-se",
+                            Toast.LENGTH_LONG).show();
 
-                    final DeviceListFragment fragment = (DeviceListFragment) getSupportFragmentManager()
+                    /*final DeviceListFragment fragment = (DeviceListFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.frag_list);
 
                     // this method pops up the modal
-                    //fragment.removeDialogIfActive();
+                    fragment.removeDialogIfActive();*/
                 }
 
                 @Override
                 public void onFailure(int reason) {
                     Toast.makeText(WifiP2PActivity.this,
-                            "Failed to create group. Reason: " + reason,
+                            "Ocorreu um erro ao criar o grupo. Tente novamente mais tarde.",
                             Toast.LENGTH_SHORT).show();
 
                     cancelDisconnect();

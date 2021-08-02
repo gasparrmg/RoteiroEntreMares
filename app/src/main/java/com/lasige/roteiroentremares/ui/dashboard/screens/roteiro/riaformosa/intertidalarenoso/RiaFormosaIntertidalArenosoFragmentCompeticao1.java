@@ -207,6 +207,7 @@ public class RiaFormosaIntertidalArenosoFragmentCompeticao1 extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Intertidal Arenoso // Interações // Competição - Explica qual das duas espécies será competitivamente mais forte, “empurrando” a outra espécie para uma zona menos favorável à sobrevivência",
                             textInputEditTextResposta.getText().toString(),
                             0,

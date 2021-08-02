@@ -176,6 +176,7 @@ public class RiaFormosaDunasFragment22Pergunta1 extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Dunas - Quais as ameaças que identificas neste sistema dunar?",
                             textInputEditTextResposta.getText().toString(),
                             0,

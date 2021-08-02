@@ -4,10 +4,10 @@ import com.lasige.roteiroentremares.data.model.Artefacto;
 import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
 
 public class ArtefactoConverter {
-    public static ArtefactoTurma toArtefactoTurma(Artefacto artefacto, String nome) {
+    public static ArtefactoTurma toArtefactoTurma(Artefacto artefacto) {
         return new ArtefactoTurma(
                 artefacto.getIdString(),
-                nome,
+                artefacto.getAutor(),
                 artefacto.getTitle(),
                 artefacto.getContent(),
                 artefacto.getType(),
