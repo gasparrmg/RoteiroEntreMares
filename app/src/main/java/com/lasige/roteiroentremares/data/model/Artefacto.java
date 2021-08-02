@@ -1,7 +1,16 @@
 package com.lasige.roteiroentremares.data.model;
 
+import android.util.Log;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.google.gson.Gson;
+import com.lasige.roteiroentremares.util.GithubTypeConverters;
+
+import java.util.Date;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -10,6 +19,10 @@ public class Artefacto {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    private String idString;
+
+    private String autor;
 
     private String title;
 
@@ -26,7 +39,10 @@ public class Artefacto {
 
     private String description;
 
-    private String date;
+    // private String date;
+
+    @TypeConverters(GithubTypeConverters.class)
+    private Date date;
 
     private String latitude;
 
@@ -36,7 +52,8 @@ public class Artefacto {
 
     private boolean shared;
 
-    public Artefacto(String title, String content, int type, String description, String date, String latitude, String longitude, String codigoTurma, boolean shared) {
+    public Artefacto(String autor, String title, String content, int type, String description, Date date, String latitude, String longitude, String codigoTurma, boolean shared) {
+        this.autor = autor;
         this.title = title;
         this.content = content;
         this.type = type;
@@ -46,6 +63,32 @@ public class Artefacto {
         this.longitude = longitude;
         this.codigoTurma = codigoTurma;
         this.shared = shared;
+
+        UUID uuid = UUID.randomUUID();
+        this.idString = uuid.toString() + "_" + date.getTime();
+    }
+
+    /**
+     * WARNING: receivedAt is going NULL
+     * @return
+     */
+    public String toJson() {
+        Artefacto tempArtefacto = this;
+        tempArtefacto.setDate(null);
+
+        Gson gson = new Gson();
+
+        return gson.toJson(tempArtefacto);
+    }
+
+
+
+    public String getIdString() {
+        return idString;
+    }
+
+    public void setIdString(String idString) {
+        this.idString = idString;
     }
 
     public void setId(int id) {
@@ -54,6 +97,10 @@ public class Artefacto {
 
     public int getId() {
         return id;
+    }
+
+    public String getAutor() {
+        return autor;
     }
 
     public String getTitle() {
@@ -72,7 +119,7 @@ public class Artefacto {
         return description;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -90,5 +137,9 @@ public class Artefacto {
 
     public boolean isShared() {
         return shared;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

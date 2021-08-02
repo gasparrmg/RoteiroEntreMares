@@ -230,11 +230,12 @@ public class BiodiversidadeInteracoesCompeticaoFragment extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Biodiversidade // Interações // Competição - Explica qual das duas espécies será competitivamente mais forte, “empurrando” a outra espécie para uma zona menos favorável à sobrevivência",
                             textInputEditTextResposta.getText().toString(),
                             0,
                             "",
-                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                            Calendar.getInstance().getTime(),
                             "",
                             "",
                             artefactosViewModel.getCodigoTurma(),

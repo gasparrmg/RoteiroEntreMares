@@ -196,11 +196,12 @@ public class HistoriasPassadoFragment8 extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Histórias do Passado - Tendo em conta o ambiente onde estes organismos ocorrem, como achas que terá sido o ambiente neste local (paleoambiente)?",
                             textInputEditTextResposta.getText().toString(),
                             0,
                             "",
-                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                            Calendar.getInstance().getTime(),
                             "",
                             "",
                             artefactosViewModel.getCodigoTurma(),

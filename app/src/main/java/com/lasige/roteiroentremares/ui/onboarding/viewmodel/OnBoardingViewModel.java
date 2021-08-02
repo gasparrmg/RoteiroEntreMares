@@ -53,6 +53,7 @@ public class OnBoardingViewModel extends ViewModel {
 
     public void setNome(String nome) {
         dataRepository.setNome(nome);
+        dataRepository.setNomeUUID(nome);
     }
 
     public void setEscola(String escola) {

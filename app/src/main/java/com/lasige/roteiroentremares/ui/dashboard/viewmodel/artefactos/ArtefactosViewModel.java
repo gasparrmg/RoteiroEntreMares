@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 import com.lasige.roteiroentremares.data.model.Artefacto;
+import com.lasige.roteiroentremares.data.model.ArtefactoTurma;
 import com.lasige.roteiroentremares.data.repository.DataRepository;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ArtefactosViewModel extends ViewModel {
     private SavedStateHandle savedStateHandle;
 
     private LiveData<List<Artefacto>> allArtefactos;
+    private LiveData<List<ArtefactoTurma>> allArtefactosTurma;
 
     @Inject
     public ArtefactosViewModel(
@@ -30,6 +32,7 @@ public class ArtefactosViewModel extends ViewModel {
         this.dataRepository = dataRepository;
 
         allArtefactos = dataRepository.getAllArtefactos();
+        allArtefactosTurma = dataRepository.getAllArtefactosTurma();
     }
 
     public String getCodigoTurma() {
@@ -64,7 +67,23 @@ public class ArtefactosViewModel extends ViewModel {
         dataRepository.deleteAllArtefacto();
     }
 
+    public void deleteAllArtefactoTurma() {
+        dataRepository.deleteAllArtefactoTurma();
+    }
+
     public LiveData<List<Artefacto>> getAllArtefactos() {
         return allArtefactos;
+    }
+
+    public LiveData<List<ArtefactoTurma>> getAllArtefactosTurma() {
+        return allArtefactosTurma;
+    }
+
+    public void deleteArtefactoTurma(ArtefactoTurma artefactoTurma) {
+        dataRepository.deleteArtefactoTurma(artefactoTurma);
+    }
+
+    public String getNome() {
+        return dataRepository.getNome();
     }
 }

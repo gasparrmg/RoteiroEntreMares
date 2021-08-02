@@ -7,11 +7,18 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 
 import com.android.roteiroentremares.R;
+import com.lasige.roteiroentremares.RoteiroEntreMaresApplication;
+import com.lasige.roteiroentremares.receivers.WifiP2pTurmaBroadcastReceiver;
 import com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.AvistamentosFragment;
 import com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.EspeciesFragment;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
@@ -36,6 +43,12 @@ public class GuiaDeCampoActivity extends AppCompatActivity {
     // Tab Item's Fragments
     private EspeciesFragment especiesFragment;
     private AvistamentosFragment avistamentosFragment;
+
+    // Wifi P2p
+    private final IntentFilter intentFilter = new IntentFilter();
+    private WifiP2pManager.Channel channel;
+    private BroadcastReceiver receiver = null;
+    private WifiP2pManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +88,58 @@ public class GuiaDeCampoActivity extends AppCompatActivity {
         tabLayoutMediator.attach();
 
         viewPager.setUserInputEnabled(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+            if (((RoteiroEntreMaresApplication) getApplicationContext()).isUsingWifiP2pFeature()) {
+                Log.d("debug_bg", "registering BR from UserDashboard");
+
+                if (setupP2p()) {
+                    receiver = new WifiP2pTurmaBroadcastReceiver(manager, channel, this);
+                    registerReceiver(receiver, intentFilter);
+                }
+            }
+        }
+    }
+
+    private boolean setupP2p() {
+        Log.d("debug_bg", "setupP2p()");
+
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_DISCOVERY_CHANGED_ACTION);
+
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        if (manager == null) {
+            Log.e(WifiP2PActivity.TAG, "Cannot get Wi-Fi Direct system service.");
+            return false;
+        }
+
+        channel = manager.initialize(this, getMainLooper(), null);
+        if (channel == null) {
+            Log.e(WifiP2PActivity.TAG, "Cannot initialize Wi-Fi Direct.");
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+            if (((RoteiroEntreMaresApplication) getApplicationContext()).isUsingWifiP2pFeature()) {
+                Log.d("debug_bg", "unregister BR from UserDashboard");
+                unregisterReceiver(receiver);
+            }
+        }
     }
 
     /**

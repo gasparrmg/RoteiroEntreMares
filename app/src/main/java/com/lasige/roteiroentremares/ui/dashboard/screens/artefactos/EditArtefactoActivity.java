@@ -1,15 +1,19 @@
 package com.lasige.roteiroentremares.ui.dashboard.screens.artefactos;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -39,8 +43,12 @@ import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.roteiroentremares.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.lasige.roteiroentremares.RoteiroEntreMaresApplication;
 import com.lasige.roteiroentremares.data.model.Artefacto;
+import com.lasige.roteiroentremares.receivers.WifiP2pTurmaBroadcastReceiver;
 import com.lasige.roteiroentremares.ui.common.MediaPlayerActivity;
+import com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
 import com.lasige.roteiroentremares.util.Constants;
 import com.lasige.roteiroentremares.util.ImageFilePath;
@@ -60,6 +68,7 @@ import com.tooltip.Tooltip;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -122,7 +131,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private String artefactoContent;
     private int artefactoType;
     private String artefactoDescription;
-    private String artefactoDate;
+    private Date artefactoDate;
     private String artefactoLatitude;
     private String artefactoLongitude;
     private String artefactoCodigoTurma;
@@ -143,6 +152,12 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
     private Runnable updateSeekBar;
     private boolean isPlayingAudio = false;
     private boolean isRecordingAudio = false;
+
+    // Wifi P2p
+    private final IntentFilter intentFilter = new IntentFilter();
+    private WifiP2pManager.Channel channel;
+    private BroadcastReceiver receiver = null;
+    private WifiP2pManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,13 +196,69 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         setOnClickListeners();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+            if (((RoteiroEntreMaresApplication) getApplicationContext()).isUsingWifiP2pFeature()) {
+                Log.d("debug_bg", "registering BR from UserDashboard");
+
+                if (setupP2p()) {
+                    receiver = new WifiP2pTurmaBroadcastReceiver(manager, channel, this);
+                    registerReceiver(receiver, intentFilter);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+            if (((RoteiroEntreMaresApplication) getApplicationContext()).isUsingWifiP2pFeature()) {
+                Log.d("debug_bg", "unregister BR from UserDashboard");
+                unregisterReceiver(receiver);
+            }
+        }
+    }
+
+    private boolean setupP2p() {
+        Log.d("debug_bg", "setupP2p()");
+
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_DISCOVERY_CHANGED_ACTION);
+
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        if (manager == null) {
+            Log.e(WifiP2PActivity.TAG, "Cannot get Wi-Fi Direct system service.");
+            return false;
+        }
+
+        channel = manager.initialize(this, getMainLooper(), null);
+        if (channel == null) {
+            Log.e(WifiP2PActivity.TAG, "Cannot initialize Wi-Fi Direct.");
+            return false;
+        }
+
+        return true;
+    }
+
     private void getIntentData() {
         artefactoId = getIntent().getIntExtra("EDIT_ARTEFACTO_ID", -1);
         artefactoTitle = getIntent().getStringExtra("EDIT_ARTEFACTO_TITLE");
         artefactoContent = getIntent().getStringExtra("EDIT_ARTEFACTO_CONTENT");
         artefactoType = getIntent().getIntExtra("EDIT_ARTEFACTO_TYPE", 0);
         artefactoDescription = getIntent().getStringExtra("EDIT_ARTEFACTO_DESCRIPTION");
-        artefactoDate = getIntent().getStringExtra("EDIT_ARTEFACTO_DATE");
+
+        artefactoDate = new Date();
+        artefactoDate.setTime(getIntent().getLongExtra("EDIT_ARTEFACTO_DATE", -1));
+
         artefactoLatitude = getIntent().getStringExtra("EDIT_ARTEFACTO_LATITUDE");
         artefactoLongitude = getIntent().getStringExtra("EDIT_ARTEFACTO_LONGITUDE");
         artefactoCodigoTurma = getIntent().getStringExtra("EDIT_ARTEFACTO_CODIGOTURMA");
@@ -504,15 +575,72 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (switchMaterialShare.isChecked()) {
+                    // Check for file size
+                    if (artefactoType != 0) {
+
+                        long fileInBytes;
+                        long fileInMb = 0;
+
+                        // Not text
+                        if (artefactoType == 1) {
+                            // Photo
+                            File photoFile = new File(currentPhotoPath);
+
+                            fileInBytes = photoFile.length();
+                            Log.d("NEW_ARTEFACTO", "This file is " + fileInBytes + "B large.");
+                            fileInMb = (fileInBytes / 1024) / 1024;
+                        } else if (artefactoType == 2) {
+                            // Audio
+                            File audioFile = new File(currentAudioPath);
+
+                            fileInBytes = audioFile.length();
+                            Log.d("NEW_ARTEFACTO", "This file is " + fileInBytes + "B large.");
+                            fileInMb = (fileInBytes / 1024) / 1024;
+                        } else if (artefactoType == 3) {
+                            // Video
+                            File videoFile = new File(currentVideoPath);
+
+                            fileInBytes = videoFile.length();
+                            Log.d("NEW_ARTEFACTO", "This file is " + fileInBytes + "B large.");
+                            fileInMb = (fileInBytes / 1024) / 1024;
+                        }
+
+                        Log.d("NEW_ARTEFACTO", "This file is " + fileInMb + "MB large.");
+
+                        if (fileInMb > 25) {
+                            MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(EditArtefactoActivity.this);
+                            materialAlertDialogBuilder.setTitle("Erro");
+                            materialAlertDialogBuilder.setMessage(getResources().getString(R.string.artefactos_too_large_file));
+                            materialAlertDialogBuilder.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // dismiss
+                                }
+                            });
+                            materialAlertDialogBuilder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    switchMaterialShare.setChecked(false);
+                                }
+                            });
+                            materialAlertDialogBuilder.show();
+
+                            return;
+                        }
+                    }
+                }
+
                 linearProgressIndicator.setVisibility(View.VISIBLE);
 
                 if (artefactoType == 0) {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             textInputEditTextTitle.getText().toString(),
                             textInputEditTextContent.getText().toString(),
                             artefactoType,
                             artefactoDescription,
-                            artefactoDate,
+                            Calendar.getInstance().getTime(),
                             artefactoLatitude,
                             artefactoLongitude,
                             codigoTurma,
@@ -524,11 +652,12 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                     scanFile(currentPhotoPath);
 
                     Artefacto newImageArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             textInputEditTextTitle.getText().toString(),
                             currentPhotoPath,
                             artefactoType,
                             textInputEditTextDescription.getText().toString(),
-                            artefactoDate,
+                            Calendar.getInstance().getTime(),
                             artefactoLatitude,
                             artefactoLongitude,
                             codigoTurma,
@@ -538,11 +667,12 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                     artefactosViewModel.updateArtefacto(newImageArtefacto);
                 } else if (artefactoType == 2) {
                     Artefacto newAudioArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             textInputEditTextTitle.getText().toString(),
                             currentAudioPath,
                             artefactoType,
                             textInputEditTextDescription.getText().toString(),
-                            artefactoDate,
+                            Calendar.getInstance().getTime(),
                             artefactoLatitude,
                             artefactoLongitude,
                             codigoTurma,
@@ -552,11 +682,12 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                     artefactosViewModel.updateArtefacto(newAudioArtefacto);
                 } else {
                     Artefacto newVideoArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             textInputEditTextTitle.getText().toString(),
                             currentVideoPath,
                             artefactoType,
                             textInputEditTextDescription.getText().toString(),
-                            artefactoDate,
+                            Calendar.getInstance().getTime(),
                             artefactoLatitude,
                             artefactoLongitude,
                             codigoTurma,

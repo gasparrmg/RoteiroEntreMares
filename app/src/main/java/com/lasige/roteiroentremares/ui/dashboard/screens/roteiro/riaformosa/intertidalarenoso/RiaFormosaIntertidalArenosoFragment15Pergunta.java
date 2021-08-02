@@ -176,11 +176,12 @@ public class RiaFormosaIntertidalArenosoFragment15Pergunta extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Intertidal Arenoso - Com base nas tuas observações, achas que a diversidade é igual ao local explorado anteriormente (3b)? Como explicas as diferenças encontradas?",
                             textInputEditTextResposta.getText().toString(),
                             0,
                             "",
-                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                            Calendar.getInstance().getTime(),
                             "",
                             "",
                             artefactosViewModel.getCodigoTurma(),

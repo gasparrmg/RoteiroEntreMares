@@ -35,9 +35,23 @@
     <string name="warning_delete_image">Tens a certeza de que queres apagar esta imagem?</string>
     <string name="message_correct_answer">Resposta correta!</string>
     <string name="coming_soon_message">Esta funcionalidade ainda não está disponível</string>
+    <string name="turma_message_new_artefactos">Esta funcionalidade só estará disponível assim que inserires o Código de Turma na secção Pessoal</string>
     <string name="about_us_title">Acerca do projecto</string>
-    <string name="permissions_successful">All needed permissions were granted</string>
+    <string name="permissions_successful">Todas as permissões necessárias foram dadas</string>
     <string name="permissions_warning">A aplicação necessita da sua permissão para aceder a todas as funcionalidades</string>
     <string name="location_near_point">Já estás perto do local. Podes continuar!</string>
     <string name="title_privacy_policy">Política de Privacidade</string>
+    <string name="title_wifip2p">Turma</string>
+    <string name="p2p_off_warning">Liga o Wifi P2P através do botão na barra de ferramentas</string>
+    <string name="group_owner_text">Sou o dono do Grupo? </string>
+    <string name="client_text">Este dispositivo irá funcionar como Cliente. Clica no botão Começar para começar o protocolo de comunicação.</string>
+    <string name="empty"></string>
+    <string name="wifi_p2p_error_disconnect_codigo_turma">O teu código de turma não é válido. Confirma com o mesmo com o teu Professor</string>
+    <string name="wifi_p2p_error_disconnect_tipo_user">Só te podes ligar a outros Professores</string>
+    <string name="wifi_p2p_error_disconnect_lost_conn">Perdeu a ligação ao grupo</string>
+    <string name="artefactos_turma_isempty_title_professor">Ainda não possui Artefactos dos seus alunos</string>
+    <string name="artefactos_turma_isempty_message_professor">Comece a recebê-los através da criação de um grupo no ecrã Turma</string>
+    <string name="artefactos_turma_isempty_title_explorador">Oops!</string>
+    <string name="artefactos_turma_isempty_message_explorador">Esta funcionalidade está apenas disponível para Alunos e Professores</string>
+    <string name="artefactos_too_large_file">O ficheiro é demasiado grande para ser partilhado</string>
 </resources>

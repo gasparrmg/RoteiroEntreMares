@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import androidx.room.Room;
 
 import com.lasige.roteiroentremares.data.dao.ArtefactoDao;
+import com.lasige.roteiroentremares.data.dao.ArtefactoTurmaDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoDunasRiaFormosaDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoPocasAvencasDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoPocasRiaFormosaDao;
@@ -14,7 +15,9 @@ import com.lasige.roteiroentremares.data.dao.AvistamentoTranseptosRiaFormosaDao;
 import com.lasige.roteiroentremares.data.dao.AvistamentoZonacaoAvencasDao;
 import com.lasige.roteiroentremares.data.dao.EspecieAvencasDao;
 import com.lasige.roteiroentremares.data.dao.EspecieRiaFormosaDao;
+import com.lasige.roteiroentremares.data.dao.WifiP2pConnectionDao;
 import com.lasige.roteiroentremares.data.database.RoteiroDatabase;
+import com.lasige.roteiroentremares.util.wifip2p.SyncList;
 
 import javax.inject.Singleton;
 
@@ -44,10 +47,28 @@ public class AppModule {
                 .build();
     }
 
+    @Singleton
+    @Provides
+    SyncList provideSyncList() {
+        return new SyncList();
+    }
+
     @Provides
     @Singleton
     ArtefactoDao provideArtefactoDao(RoteiroDatabase roteiroDatabase) {
         return roteiroDatabase.artefactoDao();
+    }
+
+    @Provides
+    @Singleton
+    ArtefactoTurmaDao provideArtefactoTurmaDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.artefactoTurmaDao();
+    }
+
+    @Provides
+    @Singleton
+    WifiP2pConnectionDao provideWifiP2pConnectionDao(RoteiroDatabase roteiroDatabase) {
+        return roteiroDatabase.wifiP2pConnectionDao();
     }
 
     @Provides

@@ -26,6 +26,10 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHolder> {
 
@@ -91,6 +95,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         // Where we get the data to the Views
         Artefacto currentArtefacto = getItem(position);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
         switch (holder.getItemViewType()) {
             case 1:
@@ -98,7 +103,8 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 ViewHolderImage viewHolderImage = (ViewHolderImage) holder;
                 viewHolderImage.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderImage.textViewDescription.setText(currentArtefacto.getDescription());
-                viewHolderImage.textViewDate.setText(currentArtefacto.getDate());
+
+                viewHolderImage.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
 
                 File imageFile = new File(currentArtefacto.getContent());
 
@@ -112,22 +118,38 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 } else {
                     Log.e("ARTEFACTO_ADAPTER", "Não foi possível encontrar a imagem.");
                 }
+
+                if (currentArtefacto.isShared()) {
+                    viewHolderImage.imageViewIsShared.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolderImage.imageViewIsShared.setVisibility(View.GONE);
+                }
+
                 break;
             case 2:
                 // Audio Artefact
                 ViewHolderAudio viewHolderAudio = (ViewHolderAudio) holder;
                 viewHolderAudio.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderAudio.textViewDescription.setText(currentArtefacto.getDescription());
-                viewHolderAudio.textViewDate.setText(currentArtefacto.getDate());
+
+                viewHolderAudio.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
 
                 viewHolderAudio.currentAudioPath = currentArtefacto.getContent();
+
+                if (currentArtefacto.isShared()) {
+                    viewHolderAudio.imageViewIsShared.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolderAudio.imageViewIsShared.setVisibility(View.GONE);
+                }
+
                 break;
             case 3:
                 // Video Artefact
                 ViewHolderVideo viewHolderVideo = (ViewHolderVideo) holder;
                 viewHolderVideo.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderVideo.textViewDescription.setText(currentArtefacto.getDescription());
-                viewHolderVideo.textViewDate.setText(currentArtefacto.getDate());
+
+                viewHolderVideo.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
 
                 File videoFile = new File(currentArtefacto.getContent());
 
@@ -141,13 +163,26 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
                 } else {
                     Log.e("ARTEFACTO_ADAPTER", "Não foi possível encontrar o vídeo.");
                 }
+
+                if (currentArtefacto.isShared()) {
+                    viewHolderVideo.imageViewIsShared.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolderVideo.imageViewIsShared.setVisibility(View.GONE);
+                }
+
                 break;
             default:
                 // Text Artefact
                 ViewHolderText viewHolderTextAlt = (ViewHolderText) holder;
                 viewHolderTextAlt.textViewTitle.setText(currentArtefacto.getTitle());
                 viewHolderTextAlt.textViewContent.setText(currentArtefacto.getContent());
-                viewHolderTextAlt.textViewDate.setText(currentArtefacto.getDate());
+                viewHolderTextAlt.textViewDate.setText(sdf.format(currentArtefacto.getDate()));
+
+                if (currentArtefacto.isShared()) {
+                    viewHolderTextAlt.imageViewIsShared.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolderTextAlt.imageViewIsShared.setVisibility(View.GONE);
+                }
         }
     }
 
@@ -165,6 +200,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
         private TextView textViewContent;
         private TextView textViewDate;
         private MaterialCardView cardView;
+        private ImageView imageViewIsShared;
 
 
         public ViewHolderText(@NonNull View itemView) {
@@ -173,6 +209,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
             textViewContent = itemView.findViewById(R.id.textView_content);
             textViewDate = itemView.findViewById(R.id.textView_date);
             cardView = itemView.findViewById(R.id.cardview_artefacto);
+            imageViewIsShared = itemView.findViewById(R.id.imageView_isShared);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -205,6 +242,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
         private TextView textViewDate;
         private ImageView imageViewPhoto;
         private MaterialCardView cardView;
+        private ImageView imageViewIsShared;
 
 
         public ViewHolderImage(@NonNull View itemView) {
@@ -214,6 +252,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
             textViewDate = itemView.findViewById(R.id.textView_date);
             imageViewPhoto = itemView.findViewById(R.id.imageview_picture);
             cardView = itemView.findViewById(R.id.cardview_artefacto);
+            imageViewIsShared = itemView.findViewById(R.id.imageView_isShared);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -249,6 +288,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
         private TextView textViewAudioDuration;
         private ImageButton imageButtonPlay;
         private ImageButton imageButtonPause;
+        private ImageView imageViewIsShared;
 
         private MediaPlayer mediaPlayer;
         private Handler handlerSeekBar;
@@ -267,6 +307,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
             imageButtonPause = itemView.findViewById(R.id.imagebutton_pause_audio);
             seekBarAudio = itemView.findViewById(R.id.seekbar_audio);
             textViewAudioDuration = itemView.findViewById(R.id.textView_audio_duration);
+            imageViewIsShared = itemView.findViewById(R.id.imageView_isShared);
 
             imageButtonPlay.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -416,6 +457,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
         private TextView textViewDate;
         private ImageView imageViewThumbnail;
         private MaterialCardView cardView;
+        private ImageView imageViewIsShared;
 
 
         public ViewHolderVideo(@NonNull View itemView) {
@@ -425,6 +467,7 @@ public class ArtefactoAdapter extends ListAdapter<Artefacto, RecyclerView.ViewHo
             textViewDate = itemView.findViewById(R.id.textView_date);
             imageViewThumbnail = itemView.findViewById(R.id.imageview_thumbnail);
             cardView = itemView.findViewById(R.id.cardview_artefacto);
+            imageViewIsShared = itemView.findViewById(R.id.imageView_isShared);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

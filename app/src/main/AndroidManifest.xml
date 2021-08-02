@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.android.roteiroentremares">
 
     <uses-feature
@@ -14,9 +15,18 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
     <application
         android:name="com.lasige.roteiroentremares.RoteiroEntreMaresApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
+        tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
@@ -25,6 +35,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.lasige.roteiroentremares.ui.dashboard.AboutUsActivity"
+            android:parentActivityName="com.lasige.roteiroentremares.ui.dashboard.UserDashboardActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity"
             android:parentActivityName="com.lasige.roteiroentremares.ui.dashboard.UserDashboardActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -134,6 +148,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <!-- Used for transferring files after a successful connection -->
+        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pGroupRegistrationServerService" />
+        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pSyncProfessorService" />
+        <service android:enabled="true" android:name="com.lasige.roteiroentremares.services.WifiP2pSyncAlunoTesteService" />
     </application>
 
 </manifest>

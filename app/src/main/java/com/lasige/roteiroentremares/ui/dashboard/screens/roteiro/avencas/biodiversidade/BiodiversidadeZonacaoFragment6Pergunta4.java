@@ -202,11 +202,12 @@ public class BiodiversidadeZonacaoFragment6Pergunta4 extends Fragment {
                     materialAlertDialogBuilder.show();
                 } else {
                     Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
                             "Biodiversidade // Zonação - Porque encontramos organismos diferentes consoante a distância ao nível da água na maré-baixa?",
                             textInputEditTextResposta.getText().toString(),
                             0,
                             "",
-                            Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + "/" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "/" + Calendar.getInstance().get(Calendar.YEAR),
+                            Calendar.getInstance().getTime(),
                             "",
                             "",
                             artefactosViewModel.getCodigoTurma(),

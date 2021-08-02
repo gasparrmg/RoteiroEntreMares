@@ -1,10 +1,13 @@
 package com.lasige.roteiroentremares.ui.dashboard;
 
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spannable;
@@ -29,6 +32,8 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.roteiroentremares.R;
+import com.lasige.roteiroentremares.RoteiroEntreMaresApplication;
+import com.lasige.roteiroentremares.receivers.WifiP2pTurmaBroadcastReceiver;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.lasige.roteiroentremares.ui.onboarding.MainActivity;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
@@ -107,6 +112,12 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
     private boolean isResettingApp;
     private AlertDialog dialogProgress;
 
+    // Wifi P2p
+    private final IntentFilter intentFilter = new IntentFilter();
+    private WifiP2pManager.Channel channel;
+    private BroadcastReceiver receiver = null;
+    private WifiP2pManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +152,7 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
 
         Log.d(TAG, "Tipo Utilizador: " + tipoUtilizador);
 
-        hideShareFuncionality();
+        // hideShareFuncionality();
     }
 
     private void hideShareFuncionality() {
@@ -157,6 +168,53 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
         if (dialogProgress != null && dialogProgress.isShowing()) {
             dialogProgress.dismiss();
         }
+
+        if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+            if (((RoteiroEntreMaresApplication) getApplicationContext()).isUsingWifiP2pFeature()) {
+                Log.d("debug_bg", "unregister BR from UserDashboard");
+                unregisterReceiver(receiver);
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (getApplicationContext() instanceof RoteiroEntreMaresApplication) {
+            if (((RoteiroEntreMaresApplication) getApplicationContext()).isUsingWifiP2pFeature()) {
+                Log.d("debug_bg", "registering BR from UserDashboard");
+
+                if (setupP2p()) {
+                    receiver = new WifiP2pTurmaBroadcastReceiver(manager, channel, this);
+                    registerReceiver(receiver, intentFilter);
+                }
+            }
+        }
+    }
+
+    private boolean setupP2p() {
+        Log.d("debug_bg", "setupP2p()");
+
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+        intentFilter.addAction(WifiP2pManager.WIFI_P2P_DISCOVERY_CHANGED_ACTION);
+
+        manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        if (manager == null) {
+            Log.e(WifiP2PActivity.TAG, "Cannot get Wi-Fi Direct system service.");
+            return false;
+        }
+
+        channel = manager.initialize(this, getMainLooper(), null);
+        if (channel == null) {
+            Log.e(WifiP2PActivity.TAG, "Cannot initialize Wi-Fi Direct.");
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -365,6 +423,10 @@ public class PessoalActivity extends AppCompatActivity implements Validator.Vali
                 editTextCodigoTurma.setText(code);
                 editTextGerarCodigoTurma.setText(code);
                 btnGerarCodigoTurma.setVisibility(View.GONE);
+
+                if (tipoUtilizador == 1) {
+                    btnCopiarCodigoTurma.setVisibility(View.VISIBLE);
+                }
             } else {
                 if (tipoUtilizador == 0) {
                     // Aluno
