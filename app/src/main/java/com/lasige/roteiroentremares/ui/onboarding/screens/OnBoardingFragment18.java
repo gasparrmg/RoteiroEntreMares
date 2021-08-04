@@ -96,7 +96,7 @@ public class OnBoardingFragment18 extends Fragment implements EasyPermissions.Pe
         textViewContent.setText(HtmlCompat.fromHtml(
                 "<b>ATENÇÃO:</b>" +
                         "<br>" +
-                        "Para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a tabela de marés relativa ao Porto de Cascais, tem em atenção o seguinte:" +
+                        "Para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a tabela de marés relativa sítio onde te encontras, tendo em atenção o seguinte:" +
                         "<br>" +
                         "<b>- Altura da maré-baixa:</b> tem de ser inferior a 0.9m" +
                         "<br>" +
