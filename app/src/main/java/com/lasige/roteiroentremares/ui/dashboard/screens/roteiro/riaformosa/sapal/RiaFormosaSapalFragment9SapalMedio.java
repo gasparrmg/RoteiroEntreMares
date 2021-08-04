@@ -190,7 +190,7 @@ public class RiaFormosaSapalFragment9SapalMedio extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment9SapalMedio_to_riaFormosaSapalFragment10SapalBaixo);
+                Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment9SapalMedio_to_riaFormosaSapalFragment9SapalMedioPergunta);
             }
         });
 

@@ -191,7 +191,7 @@ public class RiaFormosaSapalFragment8SapalAlto extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment8SapalAlto_to_riaFormosaSapalFragment9SapalMedio);
+                Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment8SapalAlto_to_riaFormosaSapalFragment8SapalAltoPergunta);
             }
         });
 

@@ -2,6 +2,8 @@ package com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dun
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Spannable;
@@ -32,13 +34,17 @@ import com.lasige.roteiroentremares.data.model.relations.AvistamentoDunasRiaForm
 import com.lasige.roteiroentremares.ui.common.ImageFullscreenFileActivity;
 import com.lasige.roteiroentremares.ui.dashboard.adapters.guiadecampo.EspecieRiaFormosaHorizontalAdapterWithCounter;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
+import com.lasige.roteiroentremares.util.ImageFilePath;
 import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.theartofdev.edmodo.cropper.CropImage;
+import com.watermark.androidwm_light.WatermarkBuilder;
+import com.watermark.androidwm_light.bean.WatermarkImage;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -237,9 +243,18 @@ public class NewAvistamentoDunasFragment extends Fragment implements EasyPermiss
 
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
-            // result.getUri();
+            Bitmap bitmapBg = BitmapFactory.decodeFile(ImageFilePath.getPath(getActivity(), result.getUri()));
 
-            newPhotoFile = new File(result.getUri().getPath());
+            WatermarkImage watermarkImage = new WatermarkImage(getActivity(), R.drawable.grelha_registo_branco)
+                    .setSize(1)
+                    .setImageAlpha(255);
+
+            Bitmap bitmapWithWM = WatermarkBuilder.create(getActivity(), bitmapBg)
+                    .loadWatermarkImage(watermarkImage)
+                    .getWatermark()
+                    .getOutputImage();
+
+            newPhotoFile = saveToInternalStorage(bitmapWithWM);
             currentPhotoPath = newPhotoFile.getPath();
 
             Glide.with(getActivity())
@@ -248,6 +263,34 @@ public class NewAvistamentoDunasFragment extends Fragment implements EasyPermiss
 
             imageViewPhotoGrelha.setVisibility(View.VISIBLE);
         }
+    }
+
+    private File saveToInternalStorage(Bitmap bitmapImage){
+
+        // File directory = getActivity().getDir("imageDir", Context.MODE_PRIVATE);
+        File directory = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
+        String currentTimeStamp = dateFormat.format(new Date());
+
+        File mypath = new File(directory,"roteiroentremares_biodiversidade_dunas_" + zona + "_" + iteracao + "_" + currentTimeStamp + ".jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        // return directory.getAbsolutePath();
+        return mypath;
     }
 
     private void deleteLastInsertedPhoto() {

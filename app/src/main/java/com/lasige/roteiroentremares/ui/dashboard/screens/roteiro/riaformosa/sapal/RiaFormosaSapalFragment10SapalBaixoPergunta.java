@@ -1,9 +1,8 @@
-package com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.pradariasmarinhas;
+package com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.sapal;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -14,56 +13,56 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
-import com.lasige.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.rjbasitali.wordsearch.Word;
-import com.rjbasitali.wordsearch.WordSearchView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.lasige.roteiroentremares.data.model.Artefacto;
+import com.lasige.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
+import com.lasige.roteiroentremares.util.TypefaceSpan;
 
+import java.util.Calendar;
 import java.util.Locale;
 
-public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
+import dagger.hilt.android.AndroidEntryPoint;
 
-    private static final String htmlContent = "Procura encontrar os principais fatores referidos relacionados com os recursos disponibilizados por estes ecossistemas.<br><br>Pescas, berçário, carbono, turismo, clima.";
+@AndroidEntryPoint
+public class RiaFormosaSapalFragment10SapalBaixoPergunta extends Fragment {
+
+    private ArtefactosViewModel artefactosViewModel;
 
     // Views
+    private TextView textViewTitle;
     private TextView textViewContent;
+    private TextInputEditText textInputEditTextResposta;
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
 
-    private WordSearchView wordsGrid;
-
     private TextToSpeech tts;
     private boolean ttsEnabled;
-
-    private int wordsFound;
-    private Vibrator vibrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_biodiversidade_microhabitats_pocas5_sopa_letras, container, false);
+        View view = inflater.inflate(R.layout.fragment_sapal_pergunta, container, false);
+
+        artefactosViewModel = new ViewModelProvider(this).get(ArtefactosViewModel.class);
         ttsEnabled = false;
         initViews(view);
-        setupWordSearch(view);
         setOnClickListeners(view);
         insertContent();
-
-        wordsFound = 0;
-
-        vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         return view;
     }
@@ -75,7 +74,7 @@ public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
     }
 
     private void initToolbar() {
-        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_pradariasmarinhas_title));
+        SpannableString s = new SpannableString(getResources().getString(R.string.riaformosa_sapal_title));
         s.setSpan(new TypefaceSpan(getActivity(), "poppins_medium.ttf", R.font.poppins_medium), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -108,7 +107,7 @@ public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
                         tts.stop();
                     } else {
                         String text = HtmlCompat.fromHtml(
-                                htmlContent,
+                                "Observa bem o Sapal onde te encontras. Que plantas consegues identificar? Utiliza o Guia de Campo se necessário.",
                                 HtmlCompat.FROM_HTML_MODE_LEGACY
                         ).toString();
                         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
@@ -124,70 +123,17 @@ public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
     }
 
     private void initViews(View view) {
+        textViewTitle = view.findViewById(R.id.text_title);
         textViewContent = view.findViewById(R.id.text_content);
+        textInputEditTextResposta = view.findViewById(R.id.textinputedittext_resposta);
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-    }
-
-    private void setupWordSearch(View view) {
-        wordsGrid = view.findViewById(R.id.wordsGrid);
-
-        wordsGrid.setTypeface(ResourcesCompat.getFont(getActivity(), R.font.open_sans));
-
-
-        // create a 10x10 grid of characters which includes words to be found
-        wordsGrid.setLetters(new char[][]{
-                "MZODWSJARZ".toCharArray(),
-                "ZPQURYZSOQ".toCharArray(),
-                "BERÇÁRIOXW".toCharArray(),
-                "EPKCSDNNOM".toCharArray(),
-                "ZLEJLOYOHZ".toCharArray(),
-                "BUZSBIAVQP".toCharArray(),
-                "NJRRCLMTHK".toCharArray(),
-                "YRAGAAIAME".toCharArray(),
-                "PCRGQRSQUG".toCharArray(),
-                "TURISMOPWH".toCharArray()
-        });
-
-        // words with their respective starting and ending X and Y values in the grid
-        wordsGrid.setWords(
-                new Word("ONOBRAC", false, 8, 1, 2, 7),
-                new Word("BERÇÁRIO", false, 2, 0, 2, 7),
-                new Word("TURISMO", false, 9, 0, 9, 6),
-                new Word("PESCAS", false, 3, 1, 8, 6),
-                new Word("CLIMA", false, 3, 3, 7, 7));
-
-        // callback when a word is found
-        wordsGrid.setOnWordSearchedListener(new WordSearchView.OnWordSearchedListener() {
-            @Override
-            public void wordFound(String word) {
-                if (word.equals("ONOBRAC")) {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append(word);
-                    stringBuilder.reverse();
-                    Toast.makeText(getActivity(), "Encontraste a palavra " + stringBuilder.toString(), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), "Encontraste a palavra " + word, Toast.LENGTH_SHORT).show();
-                }
-
-
-                wordsFound++;
-
-                if (wordsFound >= 5) {
-                    buttonFabNext.setVisibility(View.VISIBLE);
-                    buttonFabNext.setEnabled(true);
-
-                    vibrator.vibrate(500);
-                }
-            }
-        });
     }
 
     private void setOnClickListeners(View view) {
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Navigation.findNavController(view).navigate(R.id.action_global_roteiroFragment);
                 Navigation.findNavController(view).popBackStack();
             }
         });
@@ -195,14 +141,24 @@ public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
         buttonFabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (wordsFound < 5) {
+                // Guardar nos Artefactos
+                    // If !Explorador -> Partilhar
+
+                if (textInputEditTextResposta.getText().toString().trim().length() == 0) {
+                    // if empty
                     MaterialAlertDialogBuilder materialAlertDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
                     materialAlertDialogBuilder.setTitle("Atenção!");
-                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_task_not_finished));
+                    materialAlertDialogBuilder.setMessage(getResources().getString(R.string.warning_question_not_finished));
                     materialAlertDialogBuilder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment10Sopa_to_riaFormosaPradariasMarinhasFragment11);
+                            // next no save
+                            InputMethodManager inputManager = (InputMethodManager)
+                                    getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                            inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                            Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment10SapalBaixoPergunta_to_riaFormosaSapalFragment11);
                         }
                     });
                     materialAlertDialogBuilder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -213,21 +169,32 @@ public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
                     });
                     materialAlertDialogBuilder.show();
                 } else {
-                    Navigation.findNavController(view).navigate(R.id.action_riaFormosaPradariasMarinhasFragment10Sopa_to_riaFormosaPradariasMarinhasFragment11);
+                    Artefacto newTextArtefacto = new Artefacto(
+                            artefactosViewModel.getNome(),
+                            "Sapal baixo - Observa bem o Sapal onde te encontras. Que plantas consegues identificar?",
+                            textInputEditTextResposta.getText().toString(),
+                            0,
+                            "",
+                            Calendar.getInstance().getTime(),
+                            "",
+                            "",
+                            artefactosViewModel.getCodigoTurma(),
+                            false
+                    );
+
+                    artefactosViewModel.insertArtefacto(newTextArtefacto);
+
+                    Toast.makeText(getActivity(), "A tua resposta foi guardada nos teus Artefactos!", Toast.LENGTH_LONG).show();
+
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    inputManager.hideSoftInputFromWindow((null == getActivity().getCurrentFocus()) ? null : getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+                    Navigation.findNavController(view).navigate(R.id.action_riaFormosaSapalFragment10SapalBaixoPergunta_to_riaFormosaSapalFragment11);
                 }
             }
         });
-    }
-
-    /**
-     * Inserts all the content text into the proper Views
-     */
-    private void insertContent() {
-
-        textViewContent.setText(HtmlCompat.fromHtml(
-                htmlContent,
-                HtmlCompat.FROM_HTML_MODE_LEGACY
-        ));
 
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
             @Override
@@ -246,5 +213,20 @@ public class RiaFormosaPradariasMarinhasFragment10Sopa extends Fragment {
                 }
             }
         });
+    }
+
+    /**
+     * Inserts all the content text into the proper Views
+     */
+    private void insertContent() {
+        textViewTitle.setText(HtmlCompat.fromHtml(
+                "Olha à tua volta...",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
+
+        textViewContent.setText(HtmlCompat.fromHtml(
+                "Observa bem o Sapal onde te encontras. Que plantas consegues identificar? Utiliza o Guia de Campo se necessário.",
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
     }
 }

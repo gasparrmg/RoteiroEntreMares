@@ -3,6 +3,8 @@ package com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiv
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -33,17 +35,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.roteiroentremares.R;
+import com.bumptech.glide.Glide;
 import com.lasige.roteiroentremares.data.model.EspecieAvencas;
 import com.lasige.roteiroentremares.data.model.relations.AvistamentoPocasAvencasWithEspecieAvencasPocasInstancias;
+import com.lasige.roteiroentremares.ui.common.ImageBottomSheetDialog;
+import com.lasige.roteiroentremares.ui.common.ImageFullscreenFileActivity;
 import com.lasige.roteiroentremares.ui.dashboard.adapters.guiadecampo.EspecieHorizontalAdapterWithCounter;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
 import com.lasige.roteiroentremares.util.Constants;
+import com.lasige.roteiroentremares.util.ImageFilePath;
 import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.watermark.androidwm_light.WatermarkBuilder;
+import com.watermark.androidwm_light.bean.WatermarkImage;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -277,7 +287,29 @@ public class NewEditAvistamentoPocasFragment extends Fragment implements EasyPer
     private View.OnClickListener newPhotoListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            askCameraPermissions();
+            if (currentPhotoPath == null) {
+                askCameraPermissions();
+            } else {
+                // modal
+                ImageBottomSheetDialog bottomSheetDialog = new ImageBottomSheetDialog();
+                bottomSheetDialog.setButtonClickListener(new ImageBottomSheetDialog.BottomSheetListener() {
+                    @Override
+                    public void onButtonClicked(String action) {
+                        if (action.equals(ImageBottomSheetDialog.ACTION_IMAGE_FULLSCREEN)) {
+                            if (currentPhotoPath != null) {
+                                if (!currentPhotoPath.isEmpty()) {
+                                    Intent intent = new Intent(getActivity(), ImageFullscreenFileActivity.class);
+                                    intent.putExtra(ImageFullscreenFileActivity.INTENT_EXTRA_KEY, currentPhotoPath);
+                                    startActivity(intent);
+                                }
+                            }
+                        } else if (action.equals(ImageBottomSheetDialog.ACTION_NEW_IMAGE)) {
+                            askCameraPermissions();
+                        }
+                    }
+                });
+                bottomSheetDialog.show(getActivity().getSupportFragmentManager(), "imageBottomSheetDialog");
+            }
         }
     };
 
@@ -376,6 +408,47 @@ public class NewEditAvistamentoPocasFragment extends Fragment implements EasyPer
         }
     }
 
+    private void deleteLastInsertedPhoto() {
+        if (newPhotoFile != null) {
+            if (newPhotoFile.exists()) {
+                if (newPhotoFile.delete()) {
+                    Log.d("CROP", "last inserted photo deleted");
+                    newPhotoFile = null;
+                } else {
+                    Log.d("CROP", "last inserted photo NOT deleted");
+                }
+            }
+        }
+    }
+
+    private File saveToInternalStorage(Bitmap bitmapImage){
+
+        // File directory = getActivity().getDir("imageDir", Context.MODE_PRIVATE);
+        File directory = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HH_mm_ss");
+        String currentTimeStamp = dateFormat.format(new Date());
+
+        File mypath = new File(directory,"roteiroentremares_biodiversidade_pocas" + nrPoca + "_" + currentTimeStamp + ".jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        // return directory.getAbsolutePath();
+        return mypath;
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -397,17 +470,53 @@ public class NewEditAvistamentoPocasFragment extends Fragment implements EasyPer
                 }
             }
         }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            deleteLastInsertedPhoto();
+
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            Bitmap bitmapBg = BitmapFactory.decodeFile(ImageFilePath.getPath(getActivity(), result.getUri()));
+
+            WatermarkImage watermarkImage = new WatermarkImage(getActivity(), R.drawable.grelha_registo_branco)
+                    .setSize(1)
+                    .setImageAlpha(255);
+
+            Bitmap bitmapWithWM = WatermarkBuilder.create(getActivity(), bitmapBg)
+                    .loadWatermarkImage(watermarkImage)
+                    .getWatermark()
+                    .getOutputImage();
+
+            newPhotoFile = saveToInternalStorage(bitmapWithWM);
+            currentPhotoPath = newPhotoFile.getPath();
+
+            Glide.with(getActivity())
+                    .load(newPhotoFile)
+                    .into(imageViewPhoto);
+
+            imageViewPhoto.setVisibility(View.VISIBLE);
+            buttonAddPhoto.setVisibility(View.GONE);
+        }
     }
 
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE)
     private void askCameraPermissions() {
         if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getCameraPermissionList())) {
             // Open Camera
-            dispatchTakePictureIntent();
+            // dispatchTakePictureIntent();
+            cropImage();
         } else {
             EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
                     PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
         }
+    }
+
+    private void cropImage() {
+        Intent intent = CropImage.activity()
+                .setAspectRatio(1, 1)
+                .getIntent(getContext());
+
+        startActivityForResult(intent, CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE);
     }
 
     @Override

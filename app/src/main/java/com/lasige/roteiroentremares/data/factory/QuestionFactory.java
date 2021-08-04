@@ -27,7 +27,7 @@ public class QuestionFactory {
         // Question 1
         onBoardingQuestions.add(new Question(
                 1,
-                "As marés altas ocorrem:",
+                "As marés vivas ocorrem:",
                 "Quando está Quarto Minguante",
                 "Quando está Quarto Crescente",
                 "Quando está Lua Nova ou Cheia",

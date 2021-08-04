@@ -29,6 +29,7 @@ import androidx.navigation.Navigation;
 import com.android.roteiroentremares.R;
 import com.lasige.roteiroentremares.data.model.Artefacto;
 import com.lasige.roteiroentremares.data.model.EspecieAvencas;
+import com.lasige.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.lasige.roteiroentremares.ui.common.ImageFullscreenActivity;
 import com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
@@ -258,32 +259,29 @@ public class RiaFormosaIntertidalArenosoFragmentCompeticao1 extends Fragment {
             public void onClick(View v) {
                 // Open Especie
 
-                EspecieAvencas especieAvencas1 = new EspecieAvencas(
+                EspecieRiaFormosa especie1 = new EspecieRiaFormosa(
                         "Cracas pequenas",
                         "Chthamalus spp",
+                        "Intertidal arenoso",
+                        "Fauna",
                         "Crustáceos (Arthropoda)",
-                        "Os crustáceos apresentam grande diversidade morfológica. No caso destas espécies, em vez de uma única carapaça, o corpo está protegido por placas calcárias, que protege parte ou todo o corpo.\n" +
+                        "Os crustáceos apresentam grande diversidade morfológica. No caso destas espécies, em vez de uma única carapaça, o corpo está protegido por placas calcárias, que protege parte ou todo o corpo.\n" +
                                 "Presentes no mediolitoral.",
                         "Filtradores (alimentam-se de partículas em suspensão na água)",
-                        "Fecham-se no interior das placas",
+                        "Fecham-se no interior das placas.",
                         "",
-                        false,
-                        false,
-                        false,
-                        false,
-                        false,
-                        true,
-                        false,
-                        5,
+                        "",
                         new ArrayList<String>(Arrays.asList(
                                 "img_guiadecampo_cracaspequenas_1"
                         )),
                         new ArrayList<String>(Arrays.asList()),
+                        new ArrayList<String>(Arrays.asList()),
+                        "",
                         ""
                 );
 
                 Intent intent = new Intent(getActivity(), EspecieDetailsActivity.class);
-                intent.putExtra("especie", especieAvencas1);
+                intent.putExtra("especie", especie1);
                 startActivity(intent);
             }
         });
@@ -295,32 +293,29 @@ public class RiaFormosaIntertidalArenosoFragmentCompeticao1 extends Fragment {
             @Override
             public void onClick(View v) {
                 // Open Especie
-                EspecieAvencas especieAvencas2 = new EspecieAvencas(
+                EspecieRiaFormosa especie2 = new EspecieRiaFormosa(
                         "Cracas grandes",
                         "Balanus sp",
+                        "Intertidal arenoso",
+                        "Fauna",
                         "Crustáceos (Arthropoda)",
-                        "Os crustáceos apresentam grande diversidade morfológica. No caso destas espécies, em vez de uma única carapaça, o corpo está protegido por placas calcárias, que protege parte ou todo o corpo.\n" +
+                        "Os crustáceos apresentam grande diversidade morfológica. No caso destas espécies, em vez de uma única carapaça, o corpo está protegido por placas calcárias, que protege parte ou todo o corpo.\n" +
                                 "Presentes no mediolitoral.",
                         "Filtradores (alimentam-se de partículas em suspensão na água)",
-                        "Fecham-se no interior das placas",
+                        "Fecham-se no interior das placas.",
                         "",
-                        false,
-                        false,
-                        false,
-                        false,
-                        false,
-                        true,
-                        false,
-                        5,
+                        "",
                         new ArrayList<String>(Arrays.asList(
                                 "img_guiadecampo_cracasgrandes_1"
                         )),
                         new ArrayList<String>(Arrays.asList()),
+                        new ArrayList<String>(Arrays.asList()),
+                        "",
                         ""
                 );
 
                 Intent intent = new Intent(getActivity(), EspecieDetailsActivity.class);
-                intent.putExtra("especie", especieAvencas2);
+                intent.putExtra("especie", especie2);
                 startActivity(intent);
             }
         });
