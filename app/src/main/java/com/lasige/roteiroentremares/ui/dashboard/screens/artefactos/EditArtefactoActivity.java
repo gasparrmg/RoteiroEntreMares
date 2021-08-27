@@ -700,12 +700,10 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 if (switchMaterialShare.isChecked() != artefactoShared) {
                     if (switchMaterialShare.isChecked()) {
                         // Not yet shared, but they want to share now
-                        // TODO: Upload to remote database
-                        Toast.makeText(EditArtefactoActivity.this, "Would upload to remote DB", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(EditArtefactoActivity.this, "Would upload to remote DB", Toast.LENGTH_SHORT).show();
                     } else {
                         // It is posted, but user wants to erase it
-                        // TODO: Delete from remote database
-                        Toast.makeText(EditArtefactoActivity.this, "Would delete from remote DB", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(EditArtefactoActivity.this, "Would delete from remote DB", Toast.LENGTH_SHORT).show();
                     }
                 }
 
