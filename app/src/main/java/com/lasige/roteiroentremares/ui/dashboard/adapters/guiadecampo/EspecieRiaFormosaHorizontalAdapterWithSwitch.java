@@ -1,6 +1,7 @@
 package com.lasige.roteiroentremares.ui.dashboard.adapters.guiadecampo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.roteiroentremares.R;
 import com.lasige.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.bumptech.glide.Glide;
+import com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +73,16 @@ public class EspecieRiaFormosaHorizontalAdapterWithSwitch extends RecyclerView.A
                 .load(context.getResources().getIdentifier(currentEspecie.getPictures().get(0), "drawable", context.getPackageName()))
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(holder.imageViewPicture);
+
+        holder.imageViewPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EspecieDetailsActivity.class);
+                intent.putExtra("avencasOrRiaFormosa", 1);
+                intent.putExtra("especie", currentEspecie);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

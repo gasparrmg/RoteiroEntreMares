@@ -115,8 +115,8 @@ public class MaresFragment14 extends Fragment {
         textViewContent = view.findViewById(R.id.text_content);
 
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
-        buttonFabNext.setVisibility(View.INVISIBLE);
-        buttonFabNext.setEnabled(false);
+        // buttonFabNext.setVisibility(View.INVISIBLE);
+        // buttonFabNext.setEnabled(false);
 
         buttonPrev = view.findViewById(R.id.btn_prev);
     }
@@ -126,6 +126,13 @@ public class MaresFragment14 extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).popBackStack();
+            }
+        });
+
+        buttonFabNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_maresFragment14_to_maresFragment15);
             }
         });
     }

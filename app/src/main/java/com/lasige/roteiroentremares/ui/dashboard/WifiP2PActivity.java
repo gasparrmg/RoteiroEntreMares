@@ -242,7 +242,8 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         textView = findViewById(R.id.textView);
 
         if (mDashboardViewModel.getTipoUtilizador() == 0) {
-            textView.setText("Liga-te ao teu professor para conseguires partilhar alguns dos teus Artefactos e para explorar os Artefactos partilhados pelos teus colegas.");
+            textView.setText("Liga-te ao teu professor e explora os Artefactos partilhados pelos teus colegas.\n" +
+                    "Para a Turma conseguir ver os teus Artefactos, terás de os partilhar manualmente.");
         } else if (mDashboardViewModel.getTipoUtilizador() == 1) {
             textView.setText("Assim que os seus alunos se ligarem ao grupo poderá ter acesso aos Artefactos partilhados por eles.\n" +
                     "Partilhe com os seus alunos o Código de Turma gerado por si no ecrã Pessoal.");
