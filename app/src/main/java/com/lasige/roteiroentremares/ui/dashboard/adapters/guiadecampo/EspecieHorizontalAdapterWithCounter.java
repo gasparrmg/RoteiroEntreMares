@@ -1,6 +1,7 @@
 package com.lasige.roteiroentremares.ui.dashboard.adapters.guiadecampo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.android.roteiroentremares.R;
 import com.lasige.roteiroentremares.data.model.EspecieAvencas;
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.lasige.roteiroentremares.data.model.EspecieRiaFormosa;
+import com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.EspecieDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +71,16 @@ public class EspecieHorizontalAdapterWithCounter extends RecyclerView.Adapter<Es
                 .load(context.getResources().getIdentifier(currentEspecie.getPictures().get(0), "drawable", context.getPackageName()))
                 .placeholder(android.R.drawable.ic_media_play)
                 .into(holder.imageViewPicture);
+
+        holder.imageViewPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EspecieDetailsActivity.class);
+                intent.putExtra("avencasOrRiaFormosa", 0);
+                intent.putExtra("especie", currentEspecie);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

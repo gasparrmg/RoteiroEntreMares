@@ -232,4 +232,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
 
+    <Button
+        android:id="@+id/button_avistamentos"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:text="Avistamentos"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_fabNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_fabNext"
+        app:layout_constraintTop_toTopOf="@+id/btn_fabNext" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

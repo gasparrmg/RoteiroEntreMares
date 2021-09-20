@@ -197,7 +197,7 @@ public class RiaFormosaNewAvistamentoPocasFragment extends Fragment implements E
                         if (avistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias != null && avistamentoSubmitted) {
                             Log.d("NEW_EDIT_SUBMIT", "avistamento is NOT null");
                             Navigation.findNavController(view).popBackStack();
-                            Toast.makeText(getActivity(), "Poça " + nrPoca + " submetida!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Poça " + nrPoca + " submetida! Podes visualizar o Avistamento submetido no Guia de Campo.", Toast.LENGTH_LONG).show();
                         } else {
                             Log.d("NEW_EDIT_SUBMIT", "avistamento is null");
                         }

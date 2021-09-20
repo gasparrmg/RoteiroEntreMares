@@ -53,7 +53,7 @@ public class OnBoardingFragment17 extends Fragment {
         // Progress Bar update
         progressBar.setMax(viewPager.getAdapter().getItemCount());
         progressBar.setProgress(SEQUENCE_NUMBER);
-        buttonFabNext.setEnabled(false);
+        //buttonFabNext.setEnabled(false);
 
         return view;
     }
@@ -66,6 +66,13 @@ public class OnBoardingFragment17 extends Fragment {
             @Override
             public void onClick(View v) {
                 viewPager.setCurrentItem(SEQUENCE_NUMBER-2);
+            }
+        });
+
+        buttonFabNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(SEQUENCE_NUMBER);
             }
         });
     }

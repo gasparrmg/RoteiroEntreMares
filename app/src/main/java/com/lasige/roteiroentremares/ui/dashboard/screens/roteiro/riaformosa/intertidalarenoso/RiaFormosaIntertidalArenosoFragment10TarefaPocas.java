@@ -29,6 +29,7 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.lasige.roteiroentremares.data.model.relations.AvistamentoPocasRiaFormosaWithEspecieRiaFormosaPocasInstancias;
+import com.lasige.roteiroentremares.ui.dashboard.GuiaDeCampoActivity;
 import com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.riaformosa.AvistamentosRiaFormosaPocasTranseptosChartsActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
@@ -64,7 +65,7 @@ public class RiaFormosaIntertidalArenosoFragment10TarefaPocas extends Fragment {
 
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
-    private Button buttonGraficos;
+    private Button buttonAvistamentos;
 
     private TextToSpeech tts;
     private boolean ttsEnabled;
@@ -161,15 +162,16 @@ public class RiaFormosaIntertidalArenosoFragment10TarefaPocas extends Fragment {
 
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
-        buttonGraficos = view.findViewById(R.id.button_graficos);
+        buttonAvistamentos = view.findViewById(R.id.button_avistamentos);
     }
 
     private void setOnClickListeners(View view) {
-        buttonGraficos.setOnClickListener(new View.OnClickListener() {
+        buttonAvistamentos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AvistamentosRiaFormosaPocasTranseptosChartsActivity.class);
-                intent.putExtra(AvistamentosRiaFormosaPocasTranseptosChartsActivity.CHART_KEY, AvistamentosRiaFormosaPocasTranseptosChartsActivity.CHART_TYPE_POCAS);
+                // ir para guia de campo avistamentos
+                Intent intent = new Intent(getActivity(), GuiaDeCampoActivity.class);
+                intent.putExtra(GuiaDeCampoActivity.GUIA_CAMPO_INTENT_EXTRA_KEY_INITIAL_TAB, 1);
                 startActivity(intent);
             }
         });
@@ -383,11 +385,11 @@ public class RiaFormosaIntertidalArenosoFragment10TarefaPocas extends Fragment {
     }
 
     private void checkIfTaskFinished() {
-        if (poca1Finished || poca2Finished || poca3Finished) {
+        /*if (poca1Finished || poca2Finished || poca3Finished) {
             buttonGraficos.setVisibility(View.VISIBLE);
         } else {
             buttonGraficos.setVisibility(View.GONE);
-        }
+        }*/
 
         if (poca1Finished && poca2Finished && poca3Finished) {
             if (buttonFabNext.getVisibility() == View.INVISIBLE) {

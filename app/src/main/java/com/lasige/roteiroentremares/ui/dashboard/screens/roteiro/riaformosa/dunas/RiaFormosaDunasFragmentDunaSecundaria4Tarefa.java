@@ -1,6 +1,7 @@
 package com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.riaformosa.dunas;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +29,7 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.lasige.roteiroentremares.data.model.AvistamentoDunasRiaFormosa;
+import com.lasige.roteiroentremares.ui.dashboard.GuiaDeCampoActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
@@ -64,6 +67,7 @@ public class RiaFormosaDunasFragmentDunaSecundaria4Tarefa extends Fragment {
 
     private FloatingActionButton buttonFabNext;
     private ImageButton buttonPrev;
+    private Button buttonAvistamentos;
 
     private TextToSpeech tts;
     private boolean ttsEnabled;
@@ -160,6 +164,7 @@ public class RiaFormosaDunasFragmentDunaSecundaria4Tarefa extends Fragment {
 
         buttonFabNext = view.findViewById(R.id.btn_fabNext);
         buttonPrev = view.findViewById(R.id.btn_prev);
+        buttonAvistamentos = view.findViewById(R.id.button_avistamentos);
     }
 
     private void setOnClickListeners(View view) {
@@ -288,6 +293,16 @@ public class RiaFormosaDunasFragmentDunaSecundaria4Tarefa extends Fragment {
                     dashboardViewModel.setRiaFormosaDunasDunaSecundariaAsFinished();
                     Navigation.findNavController(view).popBackStack(R.id.riaFormosaDunasFragment8Menu ,false);
                 }
+            }
+        });
+
+        buttonAvistamentos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ir para guia de campo avistamentos
+                Intent intent = new Intent(getActivity(), GuiaDeCampoActivity.class);
+                intent.putExtra(GuiaDeCampoActivity.GUIA_CAMPO_INTENT_EXTRA_KEY_INITIAL_TAB, 1);
+                startActivity(intent);
             }
         });
     }

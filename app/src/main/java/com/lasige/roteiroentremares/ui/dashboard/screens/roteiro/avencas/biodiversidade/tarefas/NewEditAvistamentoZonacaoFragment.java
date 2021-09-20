@@ -197,7 +197,7 @@ public class NewEditAvistamentoZonacaoFragment extends Fragment implements EasyP
                         if (avistamentoZonacaoAvencasWithEspecieAvencasZonacaoInstancias != null && avistamentoSubmitted) {
                             Log.d("NEW_EDIT_SUBMIT", "avistamento is NOT null");
                             Navigation.findNavController(view).popBackStack();
-                            Toast.makeText(getActivity(), "Quadrado " + iteracao + " submetida!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Quadrado " + iteracao + " submetido! Podes visualizar o Avistamento submetido no Guia de Campo.", Toast.LENGTH_LONG).show();
                         } else {
                             Log.d("NEW_EDIT_SUBMIT", "avistamento is null");
                         }

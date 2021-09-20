@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/open_sans"
-            android:text="Assinala a presença de cada espécie ao longo do transepto:"
+            android:text="Assinala a presença de cada espécie ao longo do transepto. Em caso de dúvidas em relação às espécies, visita o Guia de Campo."
             android:textColor="@color/colorBodyText" />
 
         <androidx.recyclerview.widget.RecyclerView

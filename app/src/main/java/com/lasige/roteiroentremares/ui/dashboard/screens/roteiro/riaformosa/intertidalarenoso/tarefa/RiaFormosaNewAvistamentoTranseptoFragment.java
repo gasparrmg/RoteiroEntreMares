@@ -176,7 +176,7 @@ public class RiaFormosaNewAvistamentoTranseptoFragment extends Fragment implemen
                     public void onChanged(AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias avistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias) {
                         if (avistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias != null && avistamentoSubmitted) {
                             Navigation.findNavController(view).popBackStack();
-                            Toast.makeText(getActivity(), "Transepto " + nrTransepto + " submetido!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Transepto " + nrTransepto + " submetido! Podes visualizar o Avistamento submetido no Guia de Campo.", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

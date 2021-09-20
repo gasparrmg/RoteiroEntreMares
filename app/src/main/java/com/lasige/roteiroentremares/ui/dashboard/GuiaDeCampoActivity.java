@@ -34,6 +34,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class GuiaDeCampoActivity extends AppCompatActivity {
 
+    public static final String GUIA_CAMPO_INTENT_EXTRA_KEY_INITIAL_TAB = "GUIA_CAMPO_INTENT_EXTRA_KEY_INITIAL_TAB";
+
     private MaterialToolbar toolbar;
 
     // Views
@@ -88,6 +90,13 @@ public class GuiaDeCampoActivity extends AppCompatActivity {
         tabLayoutMediator.attach();
 
         viewPager.setUserInputEnabled(false);
+
+        // get intent info
+        int initialTab = getIntent().getIntExtra(GUIA_CAMPO_INTENT_EXTRA_KEY_INITIAL_TAB, 0);
+
+        if (initialTab == 1) {
+            tabLayout.getTabAt(1).select();
+        }
     }
 
     @Override

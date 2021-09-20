@@ -7,6 +7,10 @@
     tools:context="com.lasige.roteiroentremares.ui.onboarding.AvencasViewPagerFragment"
     android:background="@drawable/img_avencas_onboarding">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager_avencas"
