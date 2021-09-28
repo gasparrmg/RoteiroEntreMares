@@ -23,15 +23,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.roteiroentremares.R;
+import com.canhub.cropper.CropImage;
 import com.lasige.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.lasige.roteiroentremares.data.model.relations.AvistamentoTranseptosRiaFormosaWithEspecieRiaFormosaTranseptosInstancias;
 import com.lasige.roteiroentremares.ui.common.ImageFullscreenFileActivity;
 import com.lasige.roteiroentremares.ui.dashboard.adapters.guiadecampo.EspecieRiaFormosaTranseptosAdapter;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
+import com.lasige.roteiroentremares.util.FileUtils;
 import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
 import java.util.List;
@@ -203,7 +204,8 @@ public class RiaFormosaNewAvistamentoTranseptoFragment extends Fragment implemen
 
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
-            newPhotoFile = new File(result.getUri().getPath());
+            // newPhotoFile = new File(result.getUri().getPath());
+            newPhotoFile = new File(FileUtils.getPath(getActivity(), result.getUri()));
             currentPhotoPath = newPhotoFile.getPath();
 
             adapter.setPhotoPaths(currentImagePosition, currentPhotoPath);

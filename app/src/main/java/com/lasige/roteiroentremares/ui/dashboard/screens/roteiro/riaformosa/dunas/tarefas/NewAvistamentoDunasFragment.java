@@ -29,17 +29,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.roteiroentremares.R;
+import com.canhub.cropper.CropImage;
 import com.lasige.roteiroentremares.data.model.EspecieRiaFormosa;
 import com.lasige.roteiroentremares.data.model.relations.AvistamentoDunasRiaFormosaWithEspecieRiaFormosaDunasInstancias;
 import com.lasige.roteiroentremares.ui.common.ImageFullscreenFileActivity;
 import com.lasige.roteiroentremares.ui.dashboard.adapters.guiadecampo.EspecieRiaFormosaHorizontalAdapterWithCounter;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.guiadecampo.GuiaDeCampoViewModel;
+import com.lasige.roteiroentremares.util.FileUtils;
 import com.lasige.roteiroentremares.util.ImageFilePath;
 import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.theartofdev.edmodo.cropper.CropImage;
 import com.watermark.androidwm_light.WatermarkBuilder;
 import com.watermark.androidwm_light.bean.WatermarkImage;
 
@@ -243,7 +244,7 @@ public class NewAvistamentoDunasFragment extends Fragment implements EasyPermiss
 
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
-            Bitmap bitmapBg = BitmapFactory.decodeFile(ImageFilePath.getPath(getActivity(), result.getUri()));
+            Bitmap bitmapBg = BitmapFactory.decodeFile(FileUtils.getPath(getActivity(), result.getUri()));
 
             WatermarkImage watermarkImage = new WatermarkImage(getActivity(), R.drawable.grelha_registo_branco)
                     .setSize(1)
