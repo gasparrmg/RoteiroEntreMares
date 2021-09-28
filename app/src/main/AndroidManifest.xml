@@ -75,7 +75,7 @@
             android:name="com.lasige.roteiroentremares.ui.dashboard.screens.guiadecampo.details.AvistamentoRiaFormosaTranseptosDetails"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:name="com.canhub.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name="com.lasige.roteiroentremares.ui.common.ImageFullscreenFileActivity"

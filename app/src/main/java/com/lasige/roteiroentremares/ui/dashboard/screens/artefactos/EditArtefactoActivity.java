@@ -51,7 +51,7 @@ import com.lasige.roteiroentremares.ui.common.MediaPlayerActivity;
 import com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
 import com.lasige.roteiroentremares.util.Constants;
-import com.lasige.roteiroentremares.util.ImageFilePath;
+import com.lasige.roteiroentremares.util.FileUtils;
 import com.lasige.roteiroentremares.util.ImageUtils;
 import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.TimeUtils;
@@ -961,7 +961,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         } else if (requestCode == Constants.GALLERY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri contentUri = data.getData();
-                currentPhotoPath = ImageFilePath.getPath(EditArtefactoActivity.this, contentUri); // TO SAVE TO THE DB
+                currentPhotoPath = FileUtils.getPath(EditArtefactoActivity.this, contentUri); // TO SAVE TO THE DB
                 currentPhotoFile = new File(currentPhotoPath);
 
                 if (currentPhotoFile.exists()) {
@@ -975,7 +975,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             }
         } else if (requestCode == Constants.VIDEO_REQUEST_CODE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
-            currentVideoPath = ImageFilePath.getPath(EditArtefactoActivity.this, videoUri);
+            currentVideoPath = FileUtils.getPath(EditArtefactoActivity.this, videoUri);
             currentVideoFile = new File(currentVideoPath);
 
             videoView.setVideoURI(videoUri);
@@ -985,7 +985,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
             videoView.start();
         } else if (requestCode == Constants.VIDEO_FROM_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
-            currentVideoPath = ImageFilePath.getPath(EditArtefactoActivity.this, videoUri);
+            currentVideoPath = FileUtils.getPath(EditArtefactoActivity.this, videoUri);
             currentVideoFile = new File(currentVideoPath);
 
             videoView.setVideoURI(videoUri);

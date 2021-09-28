@@ -36,7 +36,7 @@ dependencies {
 
     implementation 'com.huangyz0918:androidwm-light:0.1.2'
 
-    implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+    implementation 'com.github.CanHub:Android-Image-Cropper:2.1.0'
 
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
 

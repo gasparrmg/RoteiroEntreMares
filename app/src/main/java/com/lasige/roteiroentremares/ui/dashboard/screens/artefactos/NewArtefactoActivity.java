@@ -57,7 +57,7 @@ import com.lasige.roteiroentremares.ui.common.MediaPlayerActivity;
 import com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.artefactos.ArtefactosViewModel;
 import com.lasige.roteiroentremares.util.Constants;
-import com.lasige.roteiroentremares.util.ImageFilePath;
+import com.lasige.roteiroentremares.util.FileUtils;
 import com.lasige.roteiroentremares.util.ImageUtils;
 import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.TimeUtils;
@@ -1092,7 +1092,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         if (requestCode == Constants.GALLERY_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri contentUri = data.getData();
-                currentPhotoPath = ImageFilePath.getPath(NewArtefactoActivity.this, contentUri); // TO SAVE TO THE DB
+                currentPhotoPath = FileUtils.getPath(NewArtefactoActivity.this, contentUri); // TO SAVE TO THE DB
                 newPhotoFile = new File(currentPhotoPath);
 
                 if (newPhotoFile.exists()) {
@@ -1116,7 +1116,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 Log.d("NEW_ARTEFACTO_ACTIVITY", "onActivityResult");
                 Uri videoUri = data.getData();
                 //currentVideoPath = videoUri.toString();
-                currentVideoPath = ImageFilePath.getPath(NewArtefactoActivity.this, videoUri);
+                currentVideoPath = FileUtils.getPath(NewArtefactoActivity.this, videoUri);
                 Log.d("NEW_ARTEFACTO_ACTIVITY", "videoUri.toString(): " + videoUri.toString());
                 frameLayoutVideo.setVisibility(View.VISIBLE);
                 videoView.setVideoURI(videoUri);
@@ -1138,7 +1138,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
 
         if (requestCode == Constants.VIDEO_FROM_GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
-            currentVideoPath = ImageFilePath.getPath(NewArtefactoActivity.this, videoUri);
+            currentVideoPath = FileUtils.getPath(NewArtefactoActivity.this, videoUri);
 
             frameLayoutVideo.setVisibility(View.VISIBLE);
             videoView.setVideoURI(videoUri);
