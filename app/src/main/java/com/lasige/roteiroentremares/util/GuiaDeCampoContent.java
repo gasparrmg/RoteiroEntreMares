@@ -575,7 +575,7 @@ public class GuiaDeCampoContent {
                     "https://sapientia.ualg.pt/bitstream/10400.1/1643/2/Guia%20de%20Campo.pdf"
             ),
             new EspecieAvencas(
-                    "Algas Vermelhas (Clorofíceas)",
+                    "Algas Vermelhas (Rodofíceas)",
                     "",
                     "Algas",
                     "As algas são classificadas de acordo com a sua cor. A cor das algas resulta da presença de pigmentos diferentes. Esses pigmentos são responsáveis pela fotossíntese.",
