@@ -95,7 +95,7 @@ public class AvencasOnBoardingFragment2 extends Fragment {
 
         textViewContent.setText(HtmlCompat.fromHtml(
                 "<b>Atenção:</b><br><br>" +
-                        "Tal como referido no início desta App, para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a ",
+                        "Para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
         textViewContent.append(link);
