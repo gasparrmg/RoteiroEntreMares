@@ -45,7 +45,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 @AndroidEntryPoint
 public class OnBoardingFragment2 extends Fragment implements Validator.ValidationListener, EasyPermissions.PermissionCallbacks {
-    private static final int SEQUENCE_NUMBER = 18;
+    private static final int SEQUENCE_NUMBER = 2;
 
     // ViewModel
     /*@Inject

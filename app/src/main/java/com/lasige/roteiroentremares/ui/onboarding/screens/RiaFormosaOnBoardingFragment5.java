@@ -91,7 +91,7 @@ public class RiaFormosaOnBoardingFragment5 extends Fragment {
 
         textViewContent.setText(HtmlCompat.fromHtml(
                 "ATENÇÃO:<br><br>" +
-                        "Tal como referido no início desta App, para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a ",
+                        "Para saberes em que altura do dia podes visitar a zona entre marés tens de consultar a ",
                 HtmlCompat.FROM_HTML_MODE_LEGACY
         ));
 

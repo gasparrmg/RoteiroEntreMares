@@ -50,8 +50,8 @@ public class ViewPagerFragment extends Fragment {
 
         ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
         fragmentList.add(new OnBoardingFragment1());
-        //fragmentList.add(new OnBoardingFragment2());
-        fragmentList.add(new OnBoardingFragment3());
+        fragmentList.add(new OnBoardingFragment2());
+        /*fragmentList.add(new OnBoardingFragment3());
         fragmentList.add(new OnBoardingFragment4());
         fragmentList.add(new OnBoardingFragment5());
         fragmentList.add(new OnBoardingFragment6());
@@ -67,7 +67,7 @@ public class ViewPagerFragment extends Fragment {
         fragmentList.add(new OnBoardingFragment16());
         fragmentList.add(new OnBoardingFragment17());
         fragmentList.add(new OnBoardingFragment18());
-        fragmentList.add(new OnBoardingFragment2());
+        fragmentList.add(new OnBoardingFragment2());*/
 
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(
