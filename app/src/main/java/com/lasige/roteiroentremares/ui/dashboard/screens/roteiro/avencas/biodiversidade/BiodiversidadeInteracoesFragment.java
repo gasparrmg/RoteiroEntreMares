@@ -28,7 +28,7 @@ import java.util.Locale;
 
 public class BiodiversidadeInteracoesFragment extends Fragment {
 
-    private static final String htmlContent = "Tal como em qualquer ecossistema, os organismos das plataformas rochosas da zona entre-marés, interagem com o meio ambiente e interagem entre si. No que diz respeito às interações entre os organismos, estas podem ocorrer entre indivíduos da mesma espécie (interespecíficas), ou entre indivíduos de espécies diferentes (heteroespecíficas).";
+    private static final String htmlContent = "Tal como em qualquer ecossistema, os organismos das plataformas rochosas da zona entre-marés, interagem com o meio ambiente e interagem entre si. No que diz respeito às interações entre os organismos, estas podem ocorrer entre indivíduos da mesma espécie (intraespecíficas), ou entre indivíduos de espécies diferentes (interespecíficas).";
 
     // Views
     private TextView textViewTitle;
