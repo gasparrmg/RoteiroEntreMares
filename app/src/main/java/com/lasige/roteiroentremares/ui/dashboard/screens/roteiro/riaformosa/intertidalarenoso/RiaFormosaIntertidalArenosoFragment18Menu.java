@@ -38,7 +38,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class RiaFormosaIntertidalArenosoFragment18Menu extends Fragment {
 
-    private static final String htmlContent = "Tal como em qualquer ecossistema, os organismos da zona entre-marés, interagem com o meio ambiente e interagem entre si. No que diz respeito às interações entre os organismos, estas podem ocorrer entre indivíduos da mesma espécie (interespecíficas), ou entre indivíduos de espécies diferentes (heteroespecíficas). Como exemplos de interações entre espécies diferentes, temos:";
+    private static final String htmlContent = "Tal como em qualquer ecossistema, os organismos da zona entre-marés, interagem com o meio ambiente e interagem entre si. No que diz respeito às interações entre os organismos, estas podem ocorrer entre indivíduos da mesma espécie (intraespecíficas), ou entre indivíduos de espécies diferentes (interespecíficas). Como exemplos de interações entre espécies diferentes, temos:";
 
     private DashboardViewModel dashboardViewModel;
 
