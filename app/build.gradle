@@ -6,14 +6,14 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.lasige.roteiroentremares"
         minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 6
-        versionName "2.1.1"
+        targetSdkVersion 31
+        versionCode 7
+        versionName "2.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
