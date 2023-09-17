@@ -30,6 +30,7 @@ import com.lasige.roteiroentremares.services.WifiP2pSyncProfessorService;
 import com.lasige.roteiroentremares.ui.dashboard.DeviceDetailFragment;
 import com.lasige.roteiroentremares.ui.dashboard.DeviceListFragment;
 import com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity;
+import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.wifip2p.CollabUtils;
 import com.lasige.roteiroentremares.util.wifip2p.SyncList;
 
@@ -135,8 +136,7 @@ public class WifiP2pTurmaBroadcastReceiver extends BroadcastReceiver {
                 // asynchronous call and the calling activity is notified with a
                 // callback on PeerListListener.onPeersAvailable()
                 if (manager != null) {
-                    if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
+                    if (PermissionsUtils.hasAcceptedWifiP2pPermissions(context)) {
                         Log.d(WifiP2PActivity.TAG, "Peers changed and manager not null -> requestPeers");
                         manager.requestPeers(channel, (WifiP2pManager.PeerListListener) ((WifiP2PActivity) activity).getSupportFragmentManager().findFragmentById(R.id.frag_list));
                     }
@@ -278,8 +278,7 @@ public class WifiP2pTurmaBroadcastReceiver extends BroadcastReceiver {
      * @param context
      */
     private void startRegistrationProtocol(Context context) {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (PermissionsUtils.hasAcceptedWifiP2pPermissions(context)) {
 
             Log.d("debug_bg", "startRegistrationProtocol");
 

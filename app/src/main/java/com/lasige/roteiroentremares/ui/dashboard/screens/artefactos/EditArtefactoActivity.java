@@ -444,7 +444,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 @Override
                 public void onClick(View v) {
                     // Ask for permissions
-                    askCameraPermissions();
+                    askPhotoPermissions();
                 }
             });
 
@@ -525,7 +525,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
                 public void onClick(View v) {
                     // Ask for permissions
                     Log.d("NEW_ARTEFACTO_ACTIVITY", "take video clicked");
-                    askCameraPermissions();
+                    askVideoPermissions();
                 }
             });
 
@@ -769,7 +769,7 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         currentAudioPath = getExternalFilesDir("/").getAbsolutePath() + "/" + simpleDateFormat.format(date) + "_ROTEIROENTREMARES_audio_record.3gp";
         mediaRecorder.setOutputFile(currentAudioPath);
 
-        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
     }
 
     private void startRecordingAudio() {
@@ -893,18 +893,37 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
         }
     }
 
-    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE)
-    private void askCameraPermissions() {
-        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getCameraPermissionList())) {
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE)
+    private void askPhotoPermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getPhotoPermissionList())) {
             // Open Camera
-            if (artefactoType == 3) {
+            /*if (artefactoType == 3) {
                 dispatchTakeVideoIntent();
             } else {
                 dispatchTakePictureIntent();
-            }
+            }*/
+
+            dispatchTakePictureIntent();
         } else {
             EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
-                    PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
+                    PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE, PermissionsUtils.getPhotoPermissionList());
+        }
+    }
+
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_VIDEO_REQUEST_CODE)
+    private void askVideoPermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getVideoPermissionList())) {
+            // Open Camera
+            /*if (artefactoType == 3) {
+                dispatchTakeVideoIntent();
+            } else {
+                dispatchTakePictureIntent();
+            }*/
+
+            dispatchTakeVideoIntent();
+        } else {
+            EasyPermissions.requestPermissions(this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
+                    PermissionsUtils.PERMISSIONS_VIDEO_REQUEST_CODE, PermissionsUtils.getVideoPermissionList());
         }
     }
 
@@ -927,9 +946,9 @@ public class EditArtefactoActivity extends AppCompatActivity implements EasyPerm
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
+        /*if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
             Log.d("NEW_ARTEFACTO_IMAGE", "Camera permissions granted");
-        }
+        }*/
     }
 
     @Override

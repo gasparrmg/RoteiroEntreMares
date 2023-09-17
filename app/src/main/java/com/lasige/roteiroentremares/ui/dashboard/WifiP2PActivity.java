@@ -37,6 +37,7 @@ import com.lasige.roteiroentremares.services.WifiP2pGroupRegistrationServerServi
 import com.lasige.roteiroentremares.services.WifiP2pSyncAlunoTesteService;
 import com.lasige.roteiroentremares.services.WifiP2pSyncProfessorService;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
+import com.lasige.roteiroentremares.util.PermissionsUtils;
 import com.lasige.roteiroentremares.util.TypefaceSpan;
 import com.lasige.roteiroentremares.util.wifip2p.SyncList;
 
@@ -60,9 +61,6 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
 
     public static final String TAG = "Wifi_P2P_Activity";
     public static final int PERMISSIONS_REQUEST_CODE = 1001;
-    public static final String[] perms = {
-            Manifest.permission.ACCESS_FINE_LOCATION
-    };
 
     private DashboardViewModel mDashboardViewModel;
 
@@ -115,9 +113,11 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         initToolbar();
         initViews();
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            EasyPermissions.requestPermissions(this, "São necessárias permissões para esta funcionalidade", PERMISSIONS_REQUEST_CODE, perms);
+        if (!PermissionsUtils.hasAcceptedWifiP2pPermissions(this)) {
+            EasyPermissions.requestPermissions(this,
+                    "São necessárias permissões para esta funcionalidade",
+                    PERMISSIONS_REQUEST_CODE,
+                    PermissionsUtils.getWifiP2pPermissions());
         }
 
         // add necessary intent values to be matched.
@@ -155,8 +155,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                                 fragment.getView().findViewById(R.id.btn_connect).setVisibility(View.GONE);
                             }
 
-                            if (ContextCompat.checkSelfPermission(WifiP2PActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
-                                    == PackageManager.PERMISSION_GRANTED) {
+                            if (PermissionsUtils.hasAcceptedWifiP2pPermissions(WifiP2PActivity.this)) {
                                 manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
                                     @Override
                                     public void onSuccess() {
@@ -192,42 +191,6 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                 });
             }
         }
-
-        /*manager.requestConnectionInfo(channel, new WifiP2pManager.ConnectionInfoListener() {
-            @Override
-            public void onConnectionInfoAvailable(WifiP2pInfo info) {
-                if (info != null) {
-
-                    DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
-                            .findFragmentById(R.id.frag_detail);
-
-                    // hide the connect button
-
-                    if (info.groupFormed) {
-                        fragment.getView().setVisibility(View.VISIBLE);
-                        fragment.getView().findViewById(R.id.btn_connect).setVisibility(View.GONE);
-                    }
-
-                    if (ContextCompat.checkSelfPermission(WifiP2PActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-                        manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-                            @Override
-                            public void onSuccess() {
-                                Toast.makeText(WifiP2PActivity.this, "Discovery Initiated",
-                                        Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, "Discovery initiated");
-
-                            }
-
-                            @Override
-                            public void onFailure(int reasonCode) {
-                                Log.d(TAG, "Discovery Failed : " + reasonCode);
-                            }
-                        });
-                    }
-                }
-            }
-        });*/
     }
 
     public void resetCounters() {
@@ -283,8 +246,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                     // this method pops up the modal
                     fragment.onInitiateDiscovery();
 
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
+                    if (PermissionsUtils.hasAcceptedWifiP2pPermissions(this)) {
                         manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
                             @Override
                             public void onSuccess() {
@@ -320,8 +282,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
                     // this method pops up the modal
                     fragment.onInitiateCreateGroup();
 
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
+                    if (PermissionsUtils.hasAcceptedWifiP2pPermissions(this)) {
                         createGroup();
 
                         return true;
@@ -332,51 +293,6 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
         } else {
             return super.onOptionsItemSelected(item);
         }
-
-
-        /*switch (item.getItemId()) {
-            case R.id.atn_direct_discover:
-                if (!isWifiP2pEnabled) {
-                    Toast.makeText(WifiP2PActivity.this, R.string.p2p_off_warning,
-                            Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                final DeviceListFragment fragment = (DeviceListFragment) getSupportFragmentManager()
-                        .findFragmentById(R.id.frag_list);
-
-                // this method pops up the modal
-                if (mDashboardViewModel.getTipoUtilizador() == 0) {
-                    fragment.onInitiateDiscovery();
-                } else if (mDashboardViewModel.getTipoUtilizador() == 1) {
-                    fragment.onInitiateCreateGroup();
-                }
-
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    if (mDashboardViewModel.getTipoUtilizador() == 1) {
-                        createGroup();
-                    } else {
-                        manager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
-                            @Override
-                            public void onSuccess() {
-                                Toast.makeText(WifiP2PActivity.this, "Discovery Initiated",
-                                        Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, "Discovery initiated");
-
-                            }
-
-                            @Override
-                            public void onFailure(int reasonCode) {
-                                Log.d(TAG, "Discovery Failed : " + reasonCode);
-                            }
-                        });
-                    }
-
-                    return true;
-                }
-            default:
-                return super.onOptionsItemSelected(item);
-        }*/
     }
 
     /** register the BroadcastReceiver with the intent values to be matched */
@@ -462,8 +378,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     }
 
     public void startRegistrationProtocol() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (PermissionsUtils.hasAcceptedWifiP2pPermissions(this)) {
             manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
                 @Override
                 public void onGroupInfoAvailable(WifiP2pGroup group) {
@@ -496,9 +411,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
 
     @Override
     public void connect(WifiP2pConfig config) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-
+        if (PermissionsUtils.hasAcceptedWifiP2pPermissions(this)) {
             if (config.groupOwnerIntent == -1) {
                 if (mDashboardViewModel.getTipoUtilizador() == 0) {
                     config.groupOwnerIntent = 0;
@@ -538,8 +451,7 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     public void disconnect() {
         final DeviceDetailFragment fragment = (DeviceDetailFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.frag_detail);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (PermissionsUtils.hasAcceptedWifiP2pPermissions(this)) {
             manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
                 @Override
                 public void onGroupInfoAvailable(WifiP2pGroup group) {
@@ -639,14 +551,11 @@ public class WifiP2PActivity extends AppCompatActivity implements EasyPermission
     }
 
     public void createGroup() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (PermissionsUtils.hasAcceptedWifiP2pPermissions(this)) {
             manager.createGroup(channel, new WifiP2pManager.ActionListener() {
                 @Override
                 public void onSuccess() {
-
-                    if (ContextCompat.checkSelfPermission(WifiP2PActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
+                    if (PermissionsUtils.hasAcceptedWifiP2pPermissions(WifiP2PActivity.this)) {
                         manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
                             @Override
                             public void onGroupInfoAvailable(WifiP2pGroup group) {

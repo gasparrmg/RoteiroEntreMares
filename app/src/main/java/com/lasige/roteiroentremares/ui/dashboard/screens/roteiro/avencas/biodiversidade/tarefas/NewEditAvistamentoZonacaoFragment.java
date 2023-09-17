@@ -137,23 +137,15 @@ public class NewEditAvistamentoZonacaoFragment extends Fragment implements EasyP
 
         guiaDeCampoViewModel.filterEspecies(QUERY_ALL_ESPECIES);
 
-        guiaDeCampoViewModel.getAllEspecies().observe(getViewLifecycleOwner(), new Observer<List<EspecieAvencas>>() {
-            @Override
-            public void onChanged(List<EspecieAvencas> especieAvencas) {
-                //set recycler view
-                adapter.setEspeciesAvencas(especieAvencas);
-            }
+        guiaDeCampoViewModel.getAllEspecies().observe(getViewLifecycleOwner(), especieAvencas -> {
+            //set recycler view
+            adapter.setEspeciesAvencas(especieAvencas);
         });
 
         textViewTitle.setText(zona + " - Quadrado " + iteracao);
     }
 
-    private View.OnClickListener newPhotoListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            askCameraPermissions();
-        }
-    };
+    private View.OnClickListener newPhotoListener = v -> askPhotoPermissions();
 
     private void setOnClickListeners(View view) {
         buttonAddPhoto.setOnClickListener(newPhotoListener);
@@ -290,14 +282,14 @@ public class NewEditAvistamentoZonacaoFragment extends Fragment implements EasyP
         return mypath;
     }
 
-    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE)
-    private void askCameraPermissions() {
-        if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getCameraPermissionList())) {
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE)
+    private void askPhotoPermissions() {
+        if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getPhotoPermissionList())) {
             // Open Camera
             cropImage();
         } else {
             EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
-                    PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
+                    PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE, PermissionsUtils.getPhotoPermissionList());
         }
     }
 
@@ -310,9 +302,9 @@ public class NewEditAvistamentoZonacaoFragment extends Fragment implements EasyP
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
+        /*if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
             Log.d("NEW_ARTEFACTO_IMAGE", "Camera permissions granted");
-        }
+        }*/
     }
 
     @Override

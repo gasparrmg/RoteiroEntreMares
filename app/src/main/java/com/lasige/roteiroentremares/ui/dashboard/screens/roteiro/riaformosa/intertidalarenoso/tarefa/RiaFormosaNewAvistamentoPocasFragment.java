@@ -153,7 +153,7 @@ public class RiaFormosaNewAvistamentoPocasFragment extends Fragment implements E
     private View.OnClickListener newPhotoListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            askCameraPermissions();
+            askPhotoPermissions();
         }
     };
 
@@ -253,14 +253,14 @@ public class RiaFormosaNewAvistamentoPocasFragment extends Fragment implements E
         }
     }
 
-    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE)
-    private void askCameraPermissions() {
-        if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getCameraPermissionList())) {
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE)
+    private void askPhotoPermissions() {
+        if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getPhotoPermissionList())) {
             // Open Camera
             cropImage();
         } else {
             EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
-                    PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
+                    PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE, PermissionsUtils.getPhotoPermissionList());
         }
     }
 
@@ -273,9 +273,9 @@ public class RiaFormosaNewAvistamentoPocasFragment extends Fragment implements E
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
+        /*if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
             Log.d("NEW_ARTEFACTO_IMAGE", "Camera permissions granted");
-        }
+        }*/
     }
 
     @Override

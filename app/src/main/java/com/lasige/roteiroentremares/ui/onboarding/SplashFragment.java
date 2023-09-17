@@ -27,6 +27,7 @@ import com.lasige.roteiroentremares.ui.dashboard.UserDashboardActivity;
 import com.lasige.roteiroentremares.ui.dashboard.WifiP2PActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.dashboard.DashboardViewModel;
 import com.lasige.roteiroentremares.ui.onboarding.viewmodel.OnBoardingViewModel;
+import com.lasige.roteiroentremares.util.PermissionsUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -93,8 +94,7 @@ public class SplashFragment extends Fragment {
 
     private void cleanWifiP2pStuff() {
         if (setupP2p()) {
-            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
+            if (PermissionsUtils.hasAcceptedWifiP2pPermissions(getActivity())) {
                 manager.requestGroupInfo(channel, new WifiP2pManager.GroupInfoListener() {
                     @Override
                     public void onGroupInfoAvailable(WifiP2pGroup group) {

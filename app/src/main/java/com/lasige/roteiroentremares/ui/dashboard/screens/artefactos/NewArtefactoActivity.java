@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -357,8 +358,8 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 @Override
                 public void onClick(View v) {
                     // Ask for permissions
-                    Log.d("NEW_ARTEFACTO_ACTIVITY", "take picture clicked");
-                    askCameraPermissions();
+                    Log.d("UPGRADE_2.3", "take picture clicked");
+                    askPhotoPermissions();
                 }
             });
 
@@ -440,7 +441,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                 public void onClick(View v) {
                     // Ask for permissions
                     Log.d("NEW_ARTEFACTO_ACTIVITY", "take video clicked");
-                    askCameraPermissions();
+                    askVideoPermissions();
                 }
             });
 
@@ -541,7 +542,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
                     fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(NewArtefactoActivity.this);
 
                     // Check permissions (required by fusedLocationProviderClient)
-                    if (ActivityCompat.checkSelfPermission(NewArtefactoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(NewArtefactoActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(NewArtefactoActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         EasyPermissions.requestPermissions(NewArtefactoActivity.this, "A aplicação necessita da sua permissão para aceder a todas as funcionalidades",
                                 PermissionsUtils.PERMISSIONS_REQUEST_CODE, PermissionsUtils.getLocationPermissionList());
                         return;
@@ -780,31 +781,38 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
+        /*if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
             Log.d("NEW_ARTEFACTO_IMAGE", "Camera permissions granted");
         } else if (requestCode == PermissionsUtils.PERMISSIONS_LOCATION_REQUEST_CODE) {
             // switchMaterialLocation.setChecked(true);
             // checkIfLocationIsOn();
-        }
+        }*/
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        Log.d("UPGRADE_2.3", "this is the request code -> " + requestCode);
+
+        Log.d("UPGRADE_2.3", "camera -> " + ContextCompat.checkSelfPermission(NewArtefactoActivity.this,
+                Manifest.permission.CAMERA));
+
+        Log.d("UPGRADE_2.3", "write external -> " + ContextCompat.checkSelfPermission(NewArtefactoActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE));
+
+        Log.d("UPGRADE_2.3", "read media images -> " + ContextCompat.checkSelfPermission(NewArtefactoActivity.this,
+                Manifest.permission.READ_MEDIA_IMAGES));
+
+
         if (requestCode == PermissionsUtils.PERMISSIONS_LOCATION_REQUEST_CODE) {
             switchMaterialLocation.setChecked(false);
+        }
 
-            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-                new AppSettingsDialog.Builder(this).build().show();
-            }
-        } else if (requestCode == PermissionsUtils.PERMISSIONS_GALLERY_REQUEST_CODE) {
-            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-                new AppSettingsDialog.Builder(this).build().show();
-            }
-        } else if (requestCode == PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE) {
-            if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-                new AppSettingsDialog.Builder(this).build().show();
-            }
-        } else if (requestCode == PermissionsUtils.PERMISSIONS_MICROPHONE_REQUEST_CODE) {
+        if (requestCode == PermissionsUtils.PERMISSIONS_GALLERY_REQUEST_CODE ||
+                requestCode == PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE ||
+                requestCode == PermissionsUtils.PERMISSIONS_VIDEO_REQUEST_CODE ||
+                requestCode == PermissionsUtils.PERMISSIONS_MICROPHONE_REQUEST_CODE ||
+                requestCode == PermissionsUtils.PERMISSIONS_LOCATION_REQUEST_CODE
+        ) {
             if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
                 new AppSettingsDialog.Builder(this).build().show();
             }
@@ -882,7 +890,7 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         currentAudioPath = getExternalFilesDir("/").getAbsolutePath() + "/" + simpleDateFormat.format(date) + "_ROTEIROENTREMARES_audio_record.3gp";
         mediaRecorder.setOutputFile(currentAudioPath);
 
-        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
     }
 
     private void startRecordingAudio() {
@@ -1007,18 +1015,37 @@ public class NewArtefactoActivity extends AppCompatActivity implements EasyPermi
         }
     }
 
-    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE)
-    private void askCameraPermissions() {
-        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getCameraPermissionList())) {
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE)
+    private void askPhotoPermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getPhotoPermissionList())) {
             // Open Camera
-            if (artefactoType == 3) {
+            /*if (artefactoType == 3) {
                 dispatchTakeVideoIntent();
             } else {
                 dispatchTakePictureIntent();
-            }
+            }*/
+
+            dispatchTakePictureIntent();
         } else {
             EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
-                    PermissionsUtils.PERMISSIONS_CAMERA_REQUEST_CODE, PermissionsUtils.getCameraPermissionList());
+                    PermissionsUtils.PERMISSIONS_PHOTOS_REQUEST_CODE, PermissionsUtils.getPhotoPermissionList());
+        }
+    }
+
+    @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_VIDEO_REQUEST_CODE)
+    private void askVideoPermissions() {
+        if (EasyPermissions.hasPermissions(this, PermissionsUtils.getVideoPermissionList())) {
+            // Open Camera
+            /*if (artefactoType == 3) {
+                dispatchTakeVideoIntent();
+            } else {
+                dispatchTakePictureIntent();
+            }*/
+
+            dispatchTakeVideoIntent();
+        } else {
+            EasyPermissions.requestPermissions(this, getResources().getString(R.string.permissions_warning),
+                    PermissionsUtils.PERMISSIONS_VIDEO_REQUEST_CODE, PermissionsUtils.getVideoPermissionList());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.lasige.roteiroentremares.ui.dashboard.screens.roteiro.avencas.biodiversidade;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -33,6 +35,7 @@ import androidx.navigation.Navigation;
 
 import com.android.roteiroentremares.R;
 import com.lasige.roteiroentremares.data.model.LocationDetails;
+import com.lasige.roteiroentremares.ui.dashboard.screens.artefactos.NewArtefactoActivity;
 import com.lasige.roteiroentremares.ui.dashboard.viewmodel.common.LocationViewModel;
 import com.lasige.roteiroentremares.util.Constants;
 import com.lasige.roteiroentremares.util.PermissionsUtils;
@@ -276,11 +279,14 @@ public class BiodiversidadeMicrohabitatsPocasFragment2 extends Fragment implemen
         Task<LocationSettingsResponse> result =
                 LocationServices.getSettingsClient(getActivity()).checkLocationSettings(builder.build());
 
+        Log.d("LocationFragment", "checkIfLocationIsOn");
 
 
         result.addOnCompleteListener(new OnCompleteListener<LocationSettingsResponse>() {
             @Override
             public void onComplete(@NonNull Task<LocationSettingsResponse> task) {
+                Log.d("LocationFragment", "checkIfLocationIsOn.onComplete");
+
                 try {
                     LocationSettingsResponse response = task.getResult(ApiException.class);
                     // All location settings are satisfied. The client can initialize location
@@ -323,10 +329,12 @@ public class BiodiversidadeMicrohabitatsPocasFragment2 extends Fragment implemen
         locationViewModel.getLocation().observe(getViewLifecycleOwner(), new Observer<LocationDetails>() {
             @Override
             public void onChanged(LocationDetails locationDetails) {
+                Log.d("LocationFragment", "initRequestLocationUpdates");
+
                 float[] results = new float[1];
                 Location.distanceBetween(locationDetails.getLatitude(), locationDetails.getLongitude(), spotLatitude, spotLongitude, results);
 
-                // Toast.makeText(getActivity(), "Distance: " + results[0] + " meters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Distance: " + results[0] + " meters", Toast.LENGTH_SHORT).show();
 
                 // TODO: Change this value to 100m after testing
                 if (results[0] < Constants.MAXIMUM_DISTANCE_TO_HOTSPOT && !isNearSpot) {
@@ -343,6 +351,9 @@ public class BiodiversidadeMicrohabitatsPocasFragment2 extends Fragment implemen
 
     @AfterPermissionGranted(PermissionsUtils.PERMISSIONS_REQUEST_CODE)
     private void askLocationPermissions() {
+        Log.d("LocationFragment", "camera -> " + ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION));
+
         if (EasyPermissions.hasPermissions(getActivity(), PermissionsUtils.getLocationPermissionList())) {
             checkIfLocationIsOn();
             // initRequestLocationUpdates();
