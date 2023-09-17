@@ -1,5 +1,7 @@
 package com.lasige.roteiroentremares.services;
 
+import static android.app.PendingIntent.FLAG_IMMUTABLE;
+
 import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -78,7 +80,7 @@ public class WifiP2pSyncProfessorService extends IntentService {
             // setup notification -----------
 
             Intent notificationIntent = new Intent(this, WifiP2PActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, FLAG_IMMUTABLE);
 
             mNotificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
                     .setContentTitle("Turma")
@@ -339,7 +341,7 @@ public class WifiP2pSyncProfessorService extends IntentService {
 
     private void updateNotification(String text) {
         Intent notificationIntent = new Intent(this, WifiP2PActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, FLAG_IMMUTABLE);
 
         mNotificationBuilder
                 .setContentText(text)
